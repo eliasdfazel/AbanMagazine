@@ -1,0 +1,2 @@
+include ':AbanMagezinePhone'
+rootProject.name = "Aban Magezine"
