@@ -2,15 +2,127 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/21/20 7:53 AM
-  ~ Last modified 6/21/20 7:53 AM
+  ~ Created by Elias Fazel on 6/21/20 8:02 AM
+  ~ Last modified 6/21/20 7:57 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <color name="default_color">#237DAE</color>
+    <color name="default_color_light">#008dda</color>
+    <color name="default_color_darker">#0a415e</color>
+    <color name="default_color_transparent">#33237dae</color>
+    <color name="default_color_transparent_twice">#80237dae</color>
+
+    <color name="default_color_game">#ae2357</color>
+    <color name="default_color_game_light">#FF005D</color>
+    <color name="default_color_game_dark">#760F35</color>
+    <color name="default_color_game_transparent">#80ae2357</color>
+
+    <color name="red">#9b000e</color>
+    <color name="red_transparent">#4d9b000e</color>
+    <color name="green">#007b08</color>
+    <color name="cyberGreen">#40ff84</color>
+    <color name="yellow">#ffb506</color>
+    <color name="yellow_transparent">#80ffb506</color>
+    <color name="brown">#800909</color>
+    <color name="pink">#FE5475</color>
+    <color name="cyan">#1FD4AF</color>
+    <color name="purple">#be0193</color>
+
+    <color name="light">#f2f7ff</color>
+    <color name="lighter">#fafbff</color>
+    <color name="light_transparent">#b7f2f7ff</color>
+
+    <color name="dark">#0a0f18</color>
+    <color name="darker">#070b12</color>
+    <color name="dark_transparent">#b30a0f18</color>
+    <color name="dark_transparent_50">#b30a0f18</color>
+
+    <string-array name="neonColors">
+        <item>#40ff84</item>
+        <item>#08f7f3</item>
+        <item>#09fbd3</item>
+        <item>#fe53bb</item>
+        <item>#f5d300</item>
+        <item>#ffacfc</item>
+        <item>#f148fb</item>
+        <item>#7122fa</item>
+        <item>#560a86</item>
+        <item>#75d5fd</item>
+        <item>#b76cfd</item>
+        <item>#ff2281</item>
+        <item>#011ffd</item>
+        <item>#fdc7d7</item>
+        <item>#ff9de6</item>
+        <item>#a5d8f3</item>
+        <item>#e8e500</item>
+        <item>#00feca</item>
+        <item>#fdf200</item>
+        <item>#ff85ea</item>
+        <item>#7b61f8</item>
+        <item>#ffd300</item>
+        <item>#de38c8</item>
+        <item>#652ec7</item>
+        <item>#33135c</item>
+        <item>#3b27ba</item>
+        <item>#e847ae</item>
+        <item>#13ca91</item>
+        <item>#ff9472</item>
+        <item>#ff61be</item>
+        <item>#3b55ce</item>
+        <item>#35212a</item>
+        <item>#fdd400</item>
+        <item>#fdb232</item>
+        <item>#02b8a2</item>
+        <item>#01535f</item>
+        <item>#fec763</item>
+        <item>#ea55b1</item>
+        <item>#a992fa</item>
+        <item>#00207f</item>
+        <item>#79fffe</item>
+        <item>#fea0fe</item>
+        <item>#ff8b8b</item>
+        <item>#f85125</item>
+        <item>#ce96fb</item>
+        <item>#ff8fcf</item>
+        <item>#00c2ba</item>
+        <item>#037a90</item>
+        <item>#01ffc3</item>
+        <item>#01ffff</item>
+        <item>#ffb3fd</item>
+        <item>#9d72ff</item>
+        <item>#a0edff</item>
+        <item>#28cd75</item>
+        <item>#fe6b35</item>
+        <item>#fc6e22</item>
+        <item>#ff1493</item>
+        <item>#c24cf6</item>
+        <item>#d9eb4b</item>
+        <item>#00a9fe</item>
+        <item>#fd6bb6</item>
+        <item>#ef0888</item>
+        <item>#fe1c80</item>
+        <item>#ff5f01</item>
+        <item>#ce0000</item>
+        <item>#03dddc</item>
+        <item>#ff822e</item>
+        <item>#f21a1d</item>
+        <item>#ff2079</item>
+        <item>#440bd4</item>
+        <item>#04005e</item>
+        <item>#bdbdfd</item>
+        <item>#bc75f9</item>
+        <item>#535eeb</item>
+        <item>#00218a</item>
+        <item>#5ce5d5</item>
+        <item>#001437</item>
+        <item>#ffaa01</item>
+        <item>#12b296</item>
+        <item>#027a9f</item>
+    </string-array>
+
 </resources>

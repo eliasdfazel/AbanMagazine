@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/21/20 7:53 AM
-  ~ Last modified 6/21/20 7:53 AM
+  ~ Created by Elias Fazel on 6/21/20 8:02 AM
+  ~ Last modified 6/21/20 8:00 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,13 +12,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.abanabsalan.aban.magezine">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/GeeksEmpire.Material">
+
         <activity android:name=".EntryConfiguration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
