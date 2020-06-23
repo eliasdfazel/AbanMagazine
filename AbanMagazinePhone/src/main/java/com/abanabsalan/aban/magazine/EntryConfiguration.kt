@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/23/20 10:33 AM
- * Last modified 6/23/20 10:08 AM
+ * Created by Elias Fazel on 6/23/20 11:43 AM
+ * Last modified 6/23/20 11:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import com.abanabsalan.aban.magazine.databinding.EntryConfigurationViewBinding
 
 class EntryConfiguration : AppCompatActivity() {
 
-    lateinit var entryConfigurationViewBinding: EntryConfigurationViewBinding
+    private lateinit var entryConfigurationViewBinding: EntryConfigurationViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
