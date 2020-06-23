@@ -8,12 +8,11 @@
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.Network.Operations.Extensions
+package com.abanabsalan.aban.magazine.DataPresenter
 
-import com.abanabsalan.aban.magazine.Network.Endpoints.PostsEndpoints
+import androidx.lifecycle.ViewModel
 
-//PostsEndpointsExtensions
-fun PostsEndpoints.retrievePosts() {
+class PostsLiveData : ViewModel() {
 
 
 }
