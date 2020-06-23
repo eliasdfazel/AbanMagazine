@@ -1,1 +1,1 @@
-# AbanMagezine
+# AbanMagazine
