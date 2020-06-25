@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 12:23 PM
- * Last modified 6/25/20 12:20 PM
+ * Created by Elias Fazel on 6/25/20 12:29 PM
+ * Last modified 6/25/20 12:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +25,12 @@ import java.nio.charset.Charset
 
 class HomePage : AppCompatActivity() {
 
+    lateinit var homePageViewBinding: HomePageViewBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
+        setContentView(homePageViewBinding.root)
 
         CoroutineScope(Dispatchers.IO).launch {
 
