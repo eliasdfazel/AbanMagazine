@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/24/20 5:36 PM
- * Last modified 6/24/20 5:36 PM
+ * Created by Elias Fazel on 6/24/20 5:42 PM
+ * Last modified 6/24/20 5:40 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -76,10 +76,7 @@ class EntryConfiguration : AppCompatActivity() {
 //                entryConfigurationViewBinding.text.settings.loadWithOverviewMode = true
 //                entryConfigurationViewBinding.text.settings.loadsImagesAutomatically = true
 //                entryConfigurationViewBinding.text.settings.textZoom = 200
-
-                /*
-                * <iframe width="560" height="315" src="https://www.youtube.com/embed/k1_Ojp8LY_o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                * */
+//
 //                entryConfigurationViewBinding.text.settings.useWideViewPort = true
 //                entryConfigurationViewBinding.text.loadData(
 //                    "<iframe width=\"560\" height=\"315\" src=\"https://www.aparat.com/video/video/embed/videohash/Xgf1S/vt/frame\"></iframe>",
