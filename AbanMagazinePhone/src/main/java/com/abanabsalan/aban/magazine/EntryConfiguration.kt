@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/23/20 12:43 PM
- * Last modified 6/23/20 12:43 PM
+ * Created by Elias Fazel on 6/24/20 5:36 PM
+ * Last modified 6/24/20 5:36 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.databinding.EntryConfigurationViewBinding
 import org.json.JSONArray
 import org.json.JSONObject
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 import java.net.URL
 import java.nio.charset.Charset
 
@@ -37,16 +39,53 @@ class EntryConfiguration : AppCompatActivity() {
 
             val content = JSONObject(fullJsonData[0].toString()).getJSONObject("content").get("rendered").toString()
 
-            runOnUiThread {
-                entryConfigurationViewBinding.text.settings.loadWithOverviewMode = true
-                entryConfigurationViewBinding.text.settings.loadsImagesAutomatically = true
-                entryConfigurationViewBinding.text.settings.textZoom = 200
+            val document: Document = Jsoup.parse(content)
 
 
+            document.allElements.forEachIndexed { index, element ->
 
-                entryConfigurationViewBinding.text.settings.useWideViewPort = true
-                entryConfigurationViewBinding.text.loadData("<html dir=\"rtl\" lang=\"\"><body>" + content + "</body></html>","text/html", "UTF-8")
+                println(">>> >>> > ${element.cssSelector()}")
+
+                if (element.`is`("p")) {
+
+                    println(">>>> Paragraph " + element)
+
+                } else if (element.`is`("a")) {
+
+                    println(">>>> Link " + element)
+
+                } else if (element.`is`("img")) {
+
+                    println(">>>> Image " + element)
+
+                }
+
             }
+
+//            val paragraph: Elements = document.select("p")
+//
+//            paragraph.forEachIndexed { index, element ->
+//
+//                val e = element.text()
+//
+//                println(">>> ${index}. " + e)
+//            }
+
+//            runOnUiThread {
+//                entryConfigurationViewBinding.text.settings.javaScriptEnabled = true
+//                entryConfigurationViewBinding.text.settings.loadWithOverviewMode = true
+//                entryConfigurationViewBinding.text.settings.loadsImagesAutomatically = true
+//                entryConfigurationViewBinding.text.settings.textZoom = 200
+
+                /*
+                * <iframe width="560" height="315" src="https://www.youtube.com/embed/k1_Ojp8LY_o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                * */
+//                entryConfigurationViewBinding.text.settings.useWideViewPort = true
+//                entryConfigurationViewBinding.text.loadData(
+//                    "<iframe width=\"560\" height=\"315\" src=\"https://www.aparat.com/video/video/embed/videohash/Xgf1S/vt/frame\"></iframe>",
+//                    "text/html", "UTF-8")
+//            }
+
 
         }).start()
 

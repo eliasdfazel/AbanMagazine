@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/23/20 12:43 PM
-  ~ Last modified 6/23/20 12:24 PM
+  ~ Created by Elias Fazel on 6/24/20 5:36 PM
+  ~ Last modified 6/24/20 5:26 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -13,11 +13,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
     tools:context=".EntryConfiguration">
 
     <WebView
         android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
