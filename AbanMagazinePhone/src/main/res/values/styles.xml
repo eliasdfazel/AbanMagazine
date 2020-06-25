@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/25/20 12:29 PM
-  ~ Last modified 6/25/20 12:28 PM
+  ~ Created by Elias Fazel on 6/25/20 2:00 PM
+  ~ Last modified 6/25/20 1:53 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -34,8 +34,8 @@
         <item name="colorPrimaryDark">@color/default_color_game_dark</item>
         <item name="colorAccent">@color/default_color_game_light</item>
 
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <style name="GeeksEmpire.Material.PostView" parent="GeeksEmpire.Material">
@@ -47,8 +47,8 @@
         <item name="colorPrimaryDark">@color/default_color_game_dark</item>
         <item name="colorAccent">@color/default_color_game_light</item>
 
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <style name="ContentLoadingProgress">
