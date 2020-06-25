@@ -2,33 +2,35 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/24/20 6:29 PM
-  ~ Last modified 6/24/20 6:29 PM
+  ~ Created by Elias Fazel on 6/25/20 12:23 PM
+  ~ Last modified 6/25/20 12:19 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EntryConfiguration">
 
-
     <ScrollView
+        android:id="@+id/postNestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
 
-            <view class="androidx.appcompat.app.AlertController$RecycleListView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" />
 
-            </view>
         </RelativeLayout>
 
     </ScrollView>
