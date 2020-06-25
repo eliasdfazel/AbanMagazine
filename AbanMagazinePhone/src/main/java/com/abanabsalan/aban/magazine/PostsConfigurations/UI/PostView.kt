@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:00 PM
- * Last modified 6/25/20 1:44 PM
+ * Created by Elias Fazel on 6/25/20 2:26 PM
+ * Last modified 6/25/20 2:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemData
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemImage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemParagraph
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
@@ -67,8 +68,16 @@ class PostView : AppCompatActivity() {
 
 
                 } else if (element.`is`("img")) {
-                    Log.d(this@PostView.javaClass.simpleName, "Image ${element}")
+                    Log.d(this@PostView.javaClass.simpleName, "Image ${element.attr("src")}")
 
+                    postViewAdapter.postItemsData.add(
+                        PostItemData(PostsDataParameters.PostItemsParameters.PostImage,
+                            null,
+                            PostItemImage(element.attr("src")),
+                            null,
+                            null
+                        )
+                    )
 
                 } else if (element.`is`("iframe")) {
                     Log.d(this@PostView.javaClass.simpleName, "iFrame ${element}")

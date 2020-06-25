@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:00 PM
- * Last modified 6/25/20 1:39 PM
+ * Created by Elias Fazel on 6/25/20 2:26 PM
+ * Last modified 6/25/20 2:26 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,10 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewParagraphAdapterViewHolder
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewTextLinkAdapterViewHolder
 import com.abanabsalan.aban.magazine.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+
 
 class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -101,7 +105,15 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
             }
             PostsDataParameters.PostItemsParameters.PostImage -> {
 
+                postItemsData[position].postItemImage?.let {
 
+
+                    Glide.with(context)
+                        .load(it.imageLink)
+                        .transform(CenterInside(),RoundedCorners(13))
+                        .into((viewHolder as PostViewImageAdapterViewHolder).postImage)
+
+                }
 
             }
             PostsDataParameters.PostItemsParameters.PostTextLink -> {

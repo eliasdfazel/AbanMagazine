@@ -1,16 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:00 PM
- * Last modified 6/25/20 1:31 PM
+ * Created by Elias Fazel on 6/25/20 2:26 PM
+ * Last modified 6/25/20 2:26 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
-
-import android.graphics.drawable.Drawable
 
 
 class PostsDataParameters {
@@ -32,7 +30,7 @@ class PostsDataParameters {
 }
 
 data class PostItemParagraph(var paragraphText: String)
-data class PostItemImage(var paragraphText: Drawable)
+data class PostItemImage(var imageLink: String )
 data class PostItemTextLink(var linkText: String)
 data class PostItemIFrame(var iFrameContent: String)
 
