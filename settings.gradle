@@ -1,12 +1,13 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/23/20 3:14 PM
- * Last modified 6/23/20 3:13 PM
+ * Created by Elias Fazel on 6/26/20 3:50 PM
+ * Last modified 6/26/20 3:49 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+include ':LoadingSpin'
 
 include ':AbanMagazinePhone'
 rootProject.name = "Aban Magazine"

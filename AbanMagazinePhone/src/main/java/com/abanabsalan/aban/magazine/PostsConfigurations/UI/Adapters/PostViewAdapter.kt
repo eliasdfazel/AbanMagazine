@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:26 PM
- * Last modified 6/25/20 2:26 PM
+ * Created by Elias Fazel on 6/26/20 3:50 PM
+ * Last modified 6/26/20 3:42 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,8 @@
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,8 +24,10 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewTextLinkAdapterViewHolder
 import com.abanabsalan.aban.magazine.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 
 
 class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -99,7 +103,7 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
 
                 postItemsData[position].postItemParagraph?.let {
 
-                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = it.paragraphText
+                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText)
                 }
 
             }
@@ -107,10 +111,17 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
 
                 postItemsData[position].postItemImage?.let {
 
+                    val drawableError: Drawable? = context.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(context.getColor(R.color.pink))
+
+                    val requestOptions = RequestOptions()
+                        .error(drawableError)
 
                     Glide.with(context)
                         .load(it.imageLink)
+                        .apply(requestOptions)
                         .transform(CenterInside(),RoundedCorners(13))
+                        .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .into((viewHolder as PostViewImageAdapterViewHolder).postImage)
 
                 }
