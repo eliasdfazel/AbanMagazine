@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/27/20 11:26 AM
- * Last modified 6/27/20 11:25 AM
+ * Created by Elias Fazel on 6/27/20 12:45 PM
+ * Last modified 6/27/20 12:38 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,7 +35,7 @@ class HomePage : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
 
-            val link = URL("https://abanabsalan.com/wp-json/wp/v2/posts?page=3&per_page=1&orderby=date&order=asc")
+            val link = URL("https://abanabsalan.com/wp-json/wp/v2/posts?page=4&per_page=1&orderby=date&order=asc")
             val downloadedData = link.readText(Charset.defaultCharset())
 
             val fullJsonData: JSONArray = JSONArray(downloadedData)

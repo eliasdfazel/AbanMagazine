@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/27/20 11:26 AM
-  ~ Last modified 6/27/20 11:23 AM
+  ~ Created by Elias Fazel on 6/27/20 12:45 PM
+  ~ Last modified 6/27/20 12:23 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -115,7 +115,6 @@
         android:id="@+id/postNestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="3dp"
         android:cacheColorHint="@android:color/transparent"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="13dp"
@@ -123,8 +122,6 @@
         android:scrollbars="none"
         android:smoothScrollbar="true"
         android:background="@android:color/transparent"
-
-        android:layout_marginTop="19dp"
 
         apps:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
@@ -139,6 +136,7 @@
                 android:id="@+id/postRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingVertical="23dp"
                 android:nestedScrollingEnabled="false"
                 android:persistentDrawingCache="animation|scrolling"
                 android:saveEnabled="true"

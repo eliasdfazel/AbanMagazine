@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/27/20 11:26 AM
- * Last modified 6/27/20 11:19 AM
+ * Created by Elias Fazel on 6/27/20 12:45 PM
+ * Last modified 6/27/20 12:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataPar
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.isDrawableLightDark
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -104,6 +106,12 @@ class PostView : AppCompatActivity() {
 
                                 postsViewUiBinding.postFavoriteItButton.backgroundTintList = ColorStateList.valueOf(vibrantColor)
                                 postsViewUiBinding.postFavoriteItButton.rippleColor = ColorStateList.valueOf(dominantColor)
+
+                                if (!isDrawableLightDark(applicationContext, resource)) {
+                                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                                } else {
+                                    window.decorView.systemUiVisibility = 0
+                                }
 
                             }
 
