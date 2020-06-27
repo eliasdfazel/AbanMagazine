@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/27/20 12:45 PM
- * Last modified 6/27/20 12:45 PM
+ * Created by Elias Fazel on 6/27/20 12:46 PM
+ * Last modified 6/27/20 12:46 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.Utils.UI.Colors
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.core.graphics.ColorUtils
 import androidx.palette.graphics.Palette
@@ -76,6 +77,12 @@ fun extractDominantColor(context: Context, drawable: Drawable): Int {
     return dominantColor
 }
 
+fun isColorDark(color: Int): Boolean {
+
+    val darkness: Double = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
+
+    return (darkness >= 0.50)
+}
 fun isDrawableLightDark(context: Context, drawable: Drawable): Boolean {
 
     var isLightDark = false
