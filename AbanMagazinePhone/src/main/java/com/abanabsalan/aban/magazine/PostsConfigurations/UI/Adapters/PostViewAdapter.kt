@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 3:50 PM
- * Last modified 6/26/20 3:42 PM
+ * Created by Elias Fazel on 6/26/20 7:05 PM
+ * Last modified 6/26/20 4:40 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,10 +10,10 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemData
@@ -22,15 +22,20 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewImageAdapterViewHolder
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewParagraphAdapterViewHolder
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewTextLinkAdapterViewHolder
+import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 
 
-class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val postItemsData: ArrayList<PostItemData> = ArrayList<PostItemData>()
 
@@ -41,7 +46,7 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
             PostsDataParameters.PostItemsParameters.PostParagraph -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(context)
+                    LayoutInflater.from(postViewContext)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
                 )
 
@@ -49,7 +54,7 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
             PostsDataParameters.PostItemsParameters.PostImage -> {
 
                 PostViewImageAdapterViewHolder(
-                    LayoutInflater.from(context)
+                    LayoutInflater.from(postViewContext)
                         .inflate(R.layout.post_view_content_item_image, viewGroup, false)
                 )
 
@@ -57,7 +62,7 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
             PostsDataParameters.PostItemsParameters.PostTextLink -> {
 
                 PostViewTextLinkAdapterViewHolder(
-                    LayoutInflater.from(context)
+                    LayoutInflater.from(postViewContext)
                         .inflate(R.layout.post_view_content_item_text_link, viewGroup, false)
                 )
 
@@ -65,7 +70,7 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
             PostsDataParameters.PostItemsParameters.PostIFrame -> {
 
                 PostViewIFrameAdapterViewHolder(
-                    LayoutInflater.from(context)
+                    LayoutInflater.from(postViewContext)
                         .inflate(R.layout.post_view_content_item_i_frame, viewGroup, false)
                 )
 
@@ -73,7 +78,7 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
             else -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(context)
+                    LayoutInflater.from(postViewContext)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
                 )
 
@@ -101,28 +106,50 @@ class PostViewAdapter (private val context: Context) : RecyclerView.Adapter<Recy
 
             PostsDataParameters.PostItemsParameters.PostParagraph -> {
 
+                viewHolder as PostViewParagraphAdapterViewHolder
+
                 postItemsData[position].postItemParagraph?.let {
 
-                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText)
+                    viewHolder.postParagraph.text = Html.fromHtml(it.paragraphText)
                 }
 
             }
             PostsDataParameters.PostItemsParameters.PostImage -> {
 
+                viewHolder as PostViewImageAdapterViewHolder
+
                 postItemsData[position].postItemImage?.let {
 
-                    val drawableError: Drawable? = context.getDrawable(android.R.drawable.ic_menu_report_image)
-                    drawableError?.setTint(context.getColor(R.color.pink))
+                    val drawableError: Drawable? = postViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(postViewContext.getColor(R.color.pink))
 
                     val requestOptions = RequestOptions()
                         .error(drawableError)
 
-                    Glide.with(context)
+                    Glide.with(postViewContext)
                         .load(it.imageLink)
                         .apply(requestOptions)
                         .transform(CenterInside(),RoundedCorners(13))
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
-                        .into((viewHolder as PostViewImageAdapterViewHolder).postImage)
+                        .listener(object : RequestListener<Drawable> {
+
+                            override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                                return true
+                            }
+
+                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                                postViewContext.runOnUiThread {
+                                    viewHolder.postImage.setImageDrawable(resource)
+                                    viewHolder.postImageLoading.visibility = View.GONE
+                                }
+
+                                return true
+                            }
+
+                        })
+                        .submit()
 
                 }
 

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/25/20 2:26 PM
-  ~ Last modified 6/25/20 2:19 PM
+  ~ Created by Elias Fazel on 6/26/20 7:05 PM
+  ~ Last modified 6/26/20 4:34 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -17,6 +17,19 @@
     android:layout_height="wrap_content"
     android:background="@color/light"
     tools:context=".HomePageConfigurations.UI.HomePage">
+
+    <net.geeksempire.loadingspin.SpinKitView
+        android:id="@+id/postImageLoading"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+
+        apps:SpinKit_Style="Pulse"
+        apps:SpinKit_Color="@color/default_color_game_transparent"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/postImage"

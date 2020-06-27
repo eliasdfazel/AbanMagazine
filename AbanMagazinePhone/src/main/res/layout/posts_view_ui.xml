@@ -2,38 +2,94 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/25/20 2:00 PM
-  ~ Last modified 6/25/20 1:50 PM
+  ~ Created by Elias Fazel on 6/26/20 7:05 PM
+  ~ Last modified 6/26/20 6:29 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light"
     tools:context=".PostsConfigurations.UI.PostView">
 
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/postTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+
+        apps:elevation="13dp"
+        apps:expanded="true"
+
+        apps:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingPostTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@android:color/transparent"
+
+            apps:contentScrim="@color/default_color_transparent"
+            apps:expandedTitleMarginEnd="19dp"
+            apps:expandedTitleMarginStart="19dp"
+            apps:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/postFeatureImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:scaleType="centerCrop"
+
+                apps:layout_scrollFlags="scroll|enterAlways"
+                apps:layout_collapseMode="parallax"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/postNestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent">
+        android:cacheColorHint="@android:color/transparent"
+        android:fadingEdge="vertical"
+        android:fadingEdgeLength="13dp"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="none"
+        android:smoothScrollbar="true"
+        android:background="@android:color/transparent"
+
+        apps:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+        apps:layout_constraintTop_toTopOf="@id/postTopBar"
+        apps:layout_constraintBottom_toBottomOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent">
+            android:background="@android:color/transparent"
+
+            apps:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/postRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:persistentDrawingCache="animation|scrolling"
+                android:saveEnabled="true"
+
+                apps:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </RelativeLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

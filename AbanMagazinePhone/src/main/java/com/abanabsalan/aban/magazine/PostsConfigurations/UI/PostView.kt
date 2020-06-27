@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:26 PM
- * Last modified 6/25/20 2:14 PM
+ * Created by Elias Fazel on 6/26/20 7:05 PM
+ * Last modified 6/26/20 7:05 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,8 +10,12 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +24,19 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemImag
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemParagraph
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -37,14 +50,53 @@ class PostView : AppCompatActivity() {
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
 
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.statusBarColor = Color.TRANSPARENT
+
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager
 
         val rawPostContent = intent.getStringExtra("RawPostContent")
+        val featureImageLink = intent.getStringExtra("FeatureImageLink")
 
-        val postViewAdapter: PostViewAdapter = PostViewAdapter(applicationContext)
+        val postViewAdapter: PostViewAdapter = PostViewAdapter(this@PostView)
 
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Default).async {
+
+            Glide.with(this@PostView)
+                .load(featureImageLink)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .listener(object : RequestListener<Drawable> {
+
+                    override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                        return true
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                        runOnUiThread {
+
+                            postsViewUiBinding.postFeatureImage.setImageDrawable(resource)
+
+                            resource?.let {
+
+                                val dominantColor = extractDominantColor(applicationContext, it)
+                                val vibrantColor = extractVibrantColor(applicationContext, it)
+
+
+                                postsViewUiBinding.collapsingPostTopBar.contentScrim = GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray())
+                                window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
+
+                            }
+
+                        }
+
+                        return true
+                    }
+
+                })
+                .submit()
 
             val postContent: Document = Jsoup.parse(rawPostContent)
 
@@ -93,5 +145,23 @@ class PostView : AppCompatActivity() {
             }
         }
 
+        postsViewUiBinding.postTopBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+
+
+        })
+
+        postsViewUiBinding.postTopBar.removeOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+
+
+        })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }
