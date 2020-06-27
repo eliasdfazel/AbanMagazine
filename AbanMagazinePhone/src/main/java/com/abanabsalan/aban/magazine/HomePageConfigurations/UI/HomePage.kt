@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/27/20 9:22 AM
- * Last modified 6/27/20 9:01 AM
+ * Created by Elias Fazel on 6/27/20 11:26 AM
+ * Last modified 6/27/20 11:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +35,7 @@ class HomePage : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
 
-            val link = URL("https://abanabsalan.com/wp-json/wp/v2/posts?page=4&per_page=1&orderby=date&order=asc")
+            val link = URL("https://abanabsalan.com/wp-json/wp/v2/posts?page=3&per_page=1&orderby=date&order=asc")
             val downloadedData = link.readText(Charset.defaultCharset())
 
             val fullJsonData: JSONArray = JSONArray(downloadedData)
@@ -48,7 +49,7 @@ class HomePage : AppCompatActivity() {
                 putExtra("PostTitle", postTitle)
                 putExtra("PostFeatureImageLink", postFeatureImageLink)
                 putExtra("RawPostContent", rawPostContent)
-            })
+            }, ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
 
         }
     }

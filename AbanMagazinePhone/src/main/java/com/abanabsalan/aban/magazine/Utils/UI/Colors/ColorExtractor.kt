@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 6/26/20 6:25 PM
+ * Created by Elias Fazel on 6/27/20 11:26 AM
+ * Last modified 6/27/20 10:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Images.drawableToBitmap
 
 fun extractVibrantColor(context: Context, drawable: Drawable): Int {
 
-    var vibrantColor: Int = context.getColor(R.color.default_color)
+    var vibrantColor: Int = context.getColor(R.color.default_color_game)
 
     val bitmap: Bitmap = drawableToBitmap(drawable)
 
@@ -27,7 +27,7 @@ fun extractVibrantColor(context: Context, drawable: Drawable): Int {
     try {
         if (bitmap != null && !bitmap.isRecycled) {
             currentColor = Palette.from(bitmap).generate()
-            val defaultColor: Int = context.getColor(R.color.default_color)
+            val defaultColor: Int = context.getColor(R.color.default_color_game)
             vibrantColor = currentColor.getVibrantColor(defaultColor)
         }
     } catch (e: Exception) {
@@ -35,7 +35,7 @@ fun extractVibrantColor(context: Context, drawable: Drawable): Int {
         try {
             if (bitmap != null && !bitmap.isRecycled) {
                 currentColor = Palette.from(bitmap).generate()
-                val defaultColor: Int = context.getColor(R.color.default_color)
+                val defaultColor: Int = context.getColor(R.color.default_color_game)
                 vibrantColor = currentColor.getMutedColor(defaultColor)
             }
         } catch (e1: Exception) {

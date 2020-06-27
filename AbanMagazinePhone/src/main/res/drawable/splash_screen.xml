@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/26/20 7:05 PM
-  ~ Last modified 6/26/20 6:58 PM
+  ~ Created by Elias Fazel on 6/27/20 11:26 AM
+  ~ Last modified 6/27/20 10:15 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -21,7 +21,7 @@
     </item>
 
     <item
-        android:bottom="19dp">
+        android:bottom="37dp">
         <bitmap
             android:gravity="bottom|center_horizontal"
             android:src="@drawable/icon_aban_magezine_splash" />

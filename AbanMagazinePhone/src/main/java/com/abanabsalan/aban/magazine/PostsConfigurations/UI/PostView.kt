@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/27/20 9:22 AM
- * Last modified 6/27/20 9:11 AM
+ * Created by Elias Fazel on 6/27/20 11:26 AM
+ * Last modified 6/27/20 11:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -51,11 +52,14 @@ class PostView : AppCompatActivity() {
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = Color.TRANSPARENT
 
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager
+
+        val postViewAdapter: PostViewAdapter = PostViewAdapter(this@PostView)
+
 
         val featureImageLink = intent.getStringExtra("PostFeatureImageLink")
         val postTitle = intent.getStringExtra("PostTitle")
@@ -64,7 +68,12 @@ class PostView : AppCompatActivity() {
 
         postsViewUiBinding.postTitle.text = Html.fromHtml(postTitle)
 
-        val postViewAdapter: PostViewAdapter = PostViewAdapter(this@PostView)
+        postsViewUiBinding.postTitle.post {
+            val postTopBarMarginLayoutParams = postsViewUiBinding.postTopBarMargin.layoutParams
+            postTopBarMarginLayoutParams.height = postsViewUiBinding.postTitle.height
+            postsViewUiBinding.postTopBarMargin.layoutParams = postTopBarMarginLayoutParams
+        }
+
 
         CoroutineScope(Dispatchers.Default).async {
 
@@ -89,9 +98,12 @@ class PostView : AppCompatActivity() {
                                 val dominantColor = extractDominantColor(applicationContext, it)
                                 val vibrantColor = extractVibrantColor(applicationContext, it)
 
+                                window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
 
                                 postsViewUiBinding.collapsingPostTopBar.contentScrim = GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray())
-                                window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
+
+                                postsViewUiBinding.postFavoriteItButton.backgroundTintList = ColorStateList.valueOf(vibrantColor)
+                                postsViewUiBinding.postFavoriteItButton.rippleColor = ColorStateList.valueOf(dominantColor)
 
                             }
 
@@ -151,22 +163,6 @@ class PostView : AppCompatActivity() {
         }
 
         postsViewUiBinding.postTopBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-
-            var isShow = false
-            var scrollRange = -1
-
-            if (scrollRange == -1) {
-                scrollRange = appBarLayout.totalScrollRange
-            }
-            if (scrollRange + verticalOffset == 0) {
-
-                isShow = true
-
-            } else if (isShow) {
-
-                isShow = false
-
-            }
 
         })
 
