@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:26 PM
- * Last modified 6/25/20 2:26 PM
+ * Created by Elias Fazel on 6/27/20 9:22 AM
+ * Last modified 6/27/20 9:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,12 +13,16 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 
 class PostsDataParameters {
 
+    object JsonDataStructure {
+        const val FeauturedImage: String = "jetpack_featured_media_url"
+    }
+
     object PostParameters {
-        const val PostLinkAddress: Int = 0
-        const val PostTitle: Int = 1
-        const val PostExcerpt: Int = 2
-        const val PostFeaturedImage: Int = 3
-        const val postPublishDate: Int = 4
+        const val PostLinkAddress: String = "PostLinkAddress"
+        const val PostTitle: String = "PostTitle"
+        const val PostExcerpt: String = "PostExcerpt"
+        const val PostFeaturedImage: String = "PostFeaturedImage"
+        const val PostPublishDate: String = "PostPublishDate"
     }
 
     object PostItemsParameters {

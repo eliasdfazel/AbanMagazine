@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 6/26/20 7:05 PM
+ * Created by Elias Fazel on 6/27/20 9:22 AM
+ * Last modified 6/27/20 9:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -56,8 +57,12 @@ class PostView : AppCompatActivity() {
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager
 
+        val featureImageLink = intent.getStringExtra("PostFeatureImageLink")
+        val postTitle = intent.getStringExtra("PostTitle")
+
         val rawPostContent = intent.getStringExtra("RawPostContent")
-        val featureImageLink = intent.getStringExtra("FeatureImageLink")
+
+        postsViewUiBinding.postTitle.text = Html.fromHtml(postTitle)
 
         val postViewAdapter: PostViewAdapter = PostViewAdapter(this@PostView)
 
@@ -147,11 +152,21 @@ class PostView : AppCompatActivity() {
 
         postsViewUiBinding.postTopBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
 
+            var isShow = false
+            var scrollRange = -1
 
-        })
+            if (scrollRange == -1) {
+                scrollRange = appBarLayout.totalScrollRange
+            }
+            if (scrollRange + verticalOffset == 0) {
 
-        postsViewUiBinding.postTopBar.removeOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+                isShow = true
 
+            } else if (isShow) {
+
+                isShow = false
+
+            }
 
         })
 

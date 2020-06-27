@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 6/26/20 6:01 PM
+ * Created by Elias Fazel on 6/27/20 9:22 AM
+ * Last modified 6/27/20 9:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,14 +39,16 @@ class HomePage : AppCompatActivity() {
 
             val fullJsonData: JSONArray = JSONArray(downloadedData)
 
+            val postTitle = JSONObject(fullJsonData[0].toString()).getJSONObject("title").getString("rendered")
+            val postFeatureImageLink = JSONObject(fullJsonData[0].toString()).getString("jetpack_featured_media_url")
+
             val rawPostContent = JSONObject(fullJsonData[0].toString()).getJSONObject("content").get("rendered").toString()
 
-            //jetpack_featured_media_url
-            val featureImageLink = JSONObject(fullJsonData[0].toString()).getString("jetpack_featured_media_url")
-
-            startActivity(Intent(applicationContext, PostView::class.java)
-                .putExtra("RawPostContent", rawPostContent)
-                .putExtra("FeatureImageLink", featureImageLink))
+            startActivity(Intent(applicationContext, PostView::class.java).apply {
+                putExtra("PostTitle", postTitle)
+                putExtra("PostFeatureImageLink", postFeatureImageLink)
+                putExtra("RawPostContent", rawPostContent)
+            })
 
         }
     }

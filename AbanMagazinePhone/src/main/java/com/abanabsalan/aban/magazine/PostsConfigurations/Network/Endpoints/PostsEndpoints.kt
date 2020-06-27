@@ -1,14 +1,16 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/24/20 5:47 PM
- * Last modified 6/24/20 5:45 PM
+ * Created by Elias Fazel on 6/27/20 9:22 AM
+ * Last modified 6/27/20 7:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints
+
+import com.abanabsalan.aban.magazine.Utils.Network.GeneralEndpoints
 
 data class PostsEndpointsFactory (
     /**
@@ -31,7 +33,7 @@ data class PostsEndpointsFactory (
 
 class PostsEndpoints (postsEndpointsFactory: PostsEndpointsFactory = PostsEndpointsFactory()) {
 
-    val PostEndpointsAddress = "https://abanabsalan.com/wp-json/wp/v2/posts?" +
+    val PostEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
             "page=${postsEndpointsFactory.numberOfPageInPostsList}&per_page=${postsEndpointsFactory.amountOfPostsToGet}&orderby=${postsEndpointsFactory.sortByType}&order=${postsEndpointsFactory.sortBy}"
 
 }
