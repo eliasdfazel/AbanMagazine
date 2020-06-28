@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 3:54 PM
- * Last modified 6/28/20 3:54 PM
+ * Created by Elias Fazel on 6/28/20 3:59 PM
+ * Last modified 6/28/20 3:59 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI
 
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,8 +22,10 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.setupUserInt
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
 import com.google.android.material.appbar.AppBarLayout
+import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
+import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 
-class PostView : AppCompatActivity() {
+class PostView : AppCompatActivity(), GestureListenerInterface {
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
@@ -72,5 +75,11 @@ class PostView : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+    }
+
+    override fun onSwipeGesture(gestureConstants: GestureConstants, downMotionEvent: MotionEvent, moveMotionEvent: MotionEvent, initVelocityX: Float, initVelocityY: Float) {
+        super.onSwipeGesture(gestureConstants, downMotionEvent, moveMotionEvent, initVelocityX, initVelocityY)
+
+
     }
 }
