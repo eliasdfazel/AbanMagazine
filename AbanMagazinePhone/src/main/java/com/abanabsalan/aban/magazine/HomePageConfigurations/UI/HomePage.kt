@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 5:47 PM
- * Last modified 6/28/20 5:47 PM
+ * Created by Elias Fazel on 6/30/20 3:35 PM
+ * Last modified 6/30/20 3:35 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,11 +13,19 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
+import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
+import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
+import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.Extensions.JsonRequestResponseInterface
+import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.PostsRetrieval
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import org.json.JSONArray
 import javax.inject.Inject
 
 class HomePage : AppCompatActivity() {
@@ -44,7 +52,42 @@ class HomePage : AppCompatActivity() {
 
         homePageViewBinding.root.post {
 
+            val homePageLiveData: HomePageLiveData = ViewModelProvider(this@HomePage).get(HomePageLiveData::class.java)
+
+            homePageLiveData.postsLiveItemDataSingle.observe(this@HomePage, Observer {
+
+                if (it.isNotEmpty()) {
+
+
+
+                }
+
+            })
+
             if (networkCheckpoint.networkConnection()) {
+
+                val postsRetrieval = PostsRetrieval()
+
+                postsRetrieval.start(
+                    applicationContext,
+                    PostsEndpointsFactory(numberOfPageInPostsList = 1, amountOfPostsToGet = 3, sortByType = "date", sortBy = "desc"),
+                    object : JsonRequestResponseInterface {
+                        override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+
+                            homePageLiveData.prepareRawDataToRenderForPosts(rawDataJsonArray)
+                        }
+
+                        override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                            Log.d(this@HomePage.javaClass.simpleName, jsonError.toString())
+
+                        }
+
+                    })
+
+
+
+
+
 
 
 
@@ -52,7 +95,15 @@ class HomePage : AppCompatActivity() {
 
 
 
+
             }
+
+
+
+
+
+
+
 
         }
 

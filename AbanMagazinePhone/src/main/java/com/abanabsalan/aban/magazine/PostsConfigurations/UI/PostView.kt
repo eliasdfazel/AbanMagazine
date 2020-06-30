@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 3:59 PM
- * Last modified 6/28/20 3:59 PM
+ * Created by Elias Fazel on 6/30/20 3:36 PM
+ * Last modified 6/30/20 3:17 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,20 +48,20 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
         val postsLiveData = ViewModelProvider(this@PostView).get(PostsLiveData::class.java)
 
-        postsLiveData.postLiveItemData.observe(this@PostView, Observer {
+        postsLiveData.singleSinglePostLiveItemData.observe(this@PostView, Observer {
 
             if (it.isNotEmpty()) {
 
-                postViewAdapter.postItemsData.clear()
+                postViewAdapter.singlePostItemsData.clear()
 
-                postViewAdapter.postItemsData.addAll(it)
+                postViewAdapter.singlePostItemsData.addAll(it)
                 postsViewUiBinding.postRecyclerView.adapter = postViewAdapter
 
             }
 
         })
 
-        postsLiveData.prepareRawDataToRender(rawPostContent)
+        postsLiveData.prepareRawDataToRenderForSinglePost(rawPostContent)
 
     }
 

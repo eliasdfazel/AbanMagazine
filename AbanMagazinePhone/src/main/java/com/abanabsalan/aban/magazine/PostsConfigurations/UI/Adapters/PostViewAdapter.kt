@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 6/26/20 4:40 PM
+ * Created by Elias Fazel on 6/30/20 3:36 PM
+ * Last modified 6/30/20 3:35 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,8 +16,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewIFrameAdapterViewHolder
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewImageAdapterViewHolder
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewParagraphAdapterViewHolder
@@ -37,7 +37,7 @@ import com.bumptech.glide.request.target.Target
 
 class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val postItemsData: ArrayList<PostItemData> = ArrayList<PostItemData>()
+    val singlePostItemsData: ArrayList<SinglePostItemData> = ArrayList<SinglePostItemData>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -91,24 +91,24 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
     override fun getItemViewType(position: Int): Int {
         super.getItemViewType(position)
 
-        return postItemsData[position].dataType
+        return singlePostItemsData[position].dataType
     }
 
     override fun getItemCount(): Int {
 
-        return postItemsData.size
+        return singlePostItemsData.size
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
 
 
-        when (postItemsData[position].dataType) {
+        when (singlePostItemsData[position].dataType) {
 
             PostsDataParameters.PostItemsParameters.PostParagraph -> {
 
                 viewHolder as PostViewParagraphAdapterViewHolder
 
-                postItemsData[position].postItemParagraph?.let {
+                singlePostItemsData[position].postItemParagraph?.let {
 
                     viewHolder.postParagraph.text = Html.fromHtml(it.paragraphText)
                 }
@@ -118,7 +118,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                 viewHolder as PostViewImageAdapterViewHolder
 
-                postItemsData[position].postItemImage?.let {
+                singlePostItemsData[position].postItemImage?.let {
 
                     val drawableError: Drawable? = postViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
                     drawableError?.setTint(postViewContext.getColor(R.color.pink))

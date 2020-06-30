@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 3:54 PM
- * Last modified 6/28/20 3:54 PM
+ * Created by Elias Fazel on 6/30/20 3:36 PM
+ * Last modified 6/30/20 3:35 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,13 +22,13 @@ import org.jsoup.nodes.Document
 
 class PostsLiveData : ViewModel() {
 
-    val postLiveItemData: MutableLiveData<ArrayList<PostItemData>> by lazy {
-        MutableLiveData<ArrayList<PostItemData>>()
+    val singleSinglePostLiveItemData: MutableLiveData<ArrayList<SinglePostItemData>> by lazy {
+        MutableLiveData<ArrayList<SinglePostItemData>>()
     }
 
-    fun prepareRawDataToRender(rawPostContent: String) = CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+    fun prepareRawDataToRenderForSinglePost(rawPostContent: String) = CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
 
-        val postItemsData: ArrayList<PostItemData> = ArrayList<PostItemData>()
+        val singlePostItemsData: ArrayList<SinglePostItemData> = ArrayList<SinglePostItemData>()
 
         val postContent: Document = Jsoup.parse(rawPostContent)
 
@@ -37,8 +37,8 @@ class PostsLiveData : ViewModel() {
             if (element.`is`("p")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Paragraph ${element}")
 
-                postItemsData.add(
-                    PostItemData(PostsDataParameters.PostItemsParameters.PostParagraph,
+                singlePostItemsData.add(
+                    SinglePostItemData(PostsDataParameters.PostItemsParameters.PostParagraph,
                         PostItemParagraph(element.text()),
                         null,
                         null,
@@ -54,8 +54,8 @@ class PostsLiveData : ViewModel() {
             } else if (element.`is`("img")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src")}")
 
-                postItemsData.add(
-                    PostItemData(PostsDataParameters.PostItemsParameters.PostImage,
+                singlePostItemsData.add(
+                    SinglePostItemData(PostsDataParameters.PostItemsParameters.PostImage,
                         null,
                         PostItemImage(element.attr("src")),
                         null,
@@ -71,7 +71,7 @@ class PostsLiveData : ViewModel() {
 
         }
 
-        postLiveItemData.postValue(postItemsData)
+        singleSinglePostLiveItemData.postValue(singlePostItemsData)
 
     }
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/27/20 9:22 AM
- * Last modified 6/27/20 7:56 AM
+ * Created by Elias Fazel on 6/30/20 3:36 PM
+ * Last modified 6/30/20 3:03 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,7 +33,7 @@ data class PostsEndpointsFactory (
 
 class PostsEndpoints (postsEndpointsFactory: PostsEndpointsFactory = PostsEndpointsFactory()) {
 
-    val PostEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
+    val getPostEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
             "page=${postsEndpointsFactory.numberOfPageInPostsList}&per_page=${postsEndpointsFactory.amountOfPostsToGet}&orderby=${postsEndpointsFactory.sortByType}&order=${postsEndpointsFactory.sortBy}"
 
 }

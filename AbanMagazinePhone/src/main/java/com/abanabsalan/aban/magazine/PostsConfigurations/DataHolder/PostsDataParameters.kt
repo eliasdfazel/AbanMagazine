@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 5:47 PM
- * Last modified 6/28/20 4:49 PM
+ * Created by Elias Fazel on 6/30/20 3:35 PM
+ * Last modified 6/30/20 3:17 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,7 +21,7 @@ class PostsDataParameters {
         const val PostTitle: String = "title"
         const val PostContent: String = "content"
         const val PostExcerpt: String = "excerpt"
-        const val PostComments: String = "replies"
+        const val PostCommentsLink: String = "replies"
 
 
         const val PostDate: String = "date_gmt"
@@ -37,7 +37,7 @@ class PostsDataParameters {
         const val PostTitle: String = "PostTitle"
         const val PostContent: String = "content"
         const val PostExcerpt: String = "PostExcerpt"
-        const val PostComments: String = "PostComments"
+        const val PostCommentsLink: String = "PostCommentsLink"
 
         const val PostPublishDate: String = "PostPublishDate"
     }
@@ -50,13 +50,22 @@ class PostsDataParameters {
     }
 }
 
+data class PostsItemData (var postLink: String,
+                          var postId: String,
+                          var postFeaturedImage: String,
+                          var postTitle: String,
+                          var postContent: String,
+                          var postExcerpt: String,
+                          var postCommentsLink: String,
+                          var postPublishDate: String)
+
 data class PostItemParagraph(var paragraphText: String)
 data class PostItemImage(var imageLink: String )
 data class PostItemTextLink(var linkText: String)
 data class PostItemIFrame(var iFrameContent: String)
 
-data class PostItemData (var dataType: Int,
-                         var postItemParagraph: PostItemParagraph?,
-                         var postItemImage: PostItemImage?,
-                         var postItemTextLink: PostItemTextLink?,
-                         var postItemIFrame: PostItemIFrame?)
+data class SinglePostItemData (var dataType: Int,
+                               var postItemParagraph: PostItemParagraph?,
+                               var postItemImage: PostItemImage?,
+                               var postItemTextLink: PostItemTextLink?,
+                               var postItemIFrame: PostItemIFrame?)
