@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/1/20 2:52 PM
- * Last modified 7/1/20 2:49 PM
+ * Created by Elias Fazel on 7/1/20 3:03 PM
+ * Last modified 7/1/20 3:02 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,6 +29,9 @@ data class CategoriesEndpointsFactory (
 
 class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory = CategoriesEndpointsFactory()) {
 
+    /**
+     * To Get All Parent Categories Check If Each Category Has Json Object With Key Of 'parent=0'
+     **/
     val getCategoriesEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/categories?" +
             "exclude=${subCategoriesEndpointsFactory.excludeCategory}&per_page=${subCategoriesEndpointsFactory.amountOfCategoriesToGet}&orderby=${subCategoriesEndpointsFactory.sortByType}"
 
