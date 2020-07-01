@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/1/20 3:03 PM
- * Last modified 7/1/20 3:02 PM
+ * Created by Elias Fazel on 7/1/20 3:54 PM
+ * Last modified 7/1/20 3:54 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,10 +24,12 @@ data class CategoriesEndpointsFactory (
     /**
      * Sort collection by object attribute
      **/
-    var sortByType: String = "count"
+    var sortByType: String = "count",
+
+    var IdOfCategoryToGetPosts: Int
 )
 
-class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory = CategoriesEndpointsFactory()) {
+class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory = CategoriesEndpointsFactory(IdOfCategoryToGetPosts = 2016)) {
 
     /**
      * To Get All Parent Categories Check If Each Category Has Json Object With Key Of 'parent=0'
@@ -35,4 +37,11 @@ class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFac
     val getCategoriesEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/categories?" +
             "exclude=${subCategoriesEndpointsFactory.excludeCategory}&per_page=${subCategoriesEndpointsFactory.amountOfCategoriesToGet}&orderby=${subCategoriesEndpointsFactory.sortByType}"
 
+
+    /**
+     * Always Change This To Id Category You Want.
+     * Get All Posts Of A Specific Category
+     **/
+    val getSpecificCategoryPostsEndpointAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
+            "categories=${subCategoriesEndpointsFactory.IdOfCategoryToGetPosts}"
 }
