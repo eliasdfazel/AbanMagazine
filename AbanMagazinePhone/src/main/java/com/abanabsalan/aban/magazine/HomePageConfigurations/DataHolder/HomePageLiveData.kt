@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 3:35 PM
- * Last modified 6/30/20 3:35 PM
+ * Created by Elias Fazel on 6/30/20 4:21 PM
+ * Last modified 6/30/20 4:21 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,8 +10,10 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,11 +29,16 @@ class HomePageLiveData : ViewModel() {
 
     fun prepareRawDataToRenderForPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        for (postJsonObject in 0..postsJsonArray.length()) {
+        for (i in 0 until postsJsonArray.length()) {
+            val postJsonObject = postsJsonArray.getJSONObject(i)
+            Log.d(this@HomePageLiveData.javaClass.simpleName, postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
-
+            /*
+            *
+            *
+            *
+            */
 
         }
-
     }
 }

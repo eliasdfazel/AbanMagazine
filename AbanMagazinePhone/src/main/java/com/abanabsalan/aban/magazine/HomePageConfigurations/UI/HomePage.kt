@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 3:35 PM
- * Last modified 6/30/20 3:35 PM
+ * Created by Elias Fazel on 6/30/20 4:21 PM
+ * Last modified 6/30/20 4:06 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -66,15 +66,21 @@ class HomePage : AppCompatActivity() {
 
             if (networkCheckpoint.networkConnection()) {
 
-                val postsRetrieval = PostsRetrieval()
+                val postsRetrieval = PostsRetrieval(applicationContext)
 
                 postsRetrieval.start(
-                    applicationContext,
-                    PostsEndpointsFactory(numberOfPageInPostsList = 1, amountOfPostsToGet = 3, sortByType = "date", sortBy = "desc"),
+                    PostsEndpointsFactory(
+                        numberOfPageInPostsList = 1,
+                        amountOfPostsToGet = 3,
+                        sortByType = "date",
+                        sortBy = "desc"
+                    ),
                     object : JsonRequestResponseInterface {
+
                         override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
 
                             homePageLiveData.prepareRawDataToRenderForPosts(rawDataJsonArray)
+
                         }
 
                         override fun jsonRequestResponseFailureHandler(jsonError: String?) {
