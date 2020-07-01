@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 /.idea/
+/.settings/org.eclipse.buildship.core.prefs
+/AbanMagazinePhone/.settings/org.eclipse.buildship.core.prefs
+/AbanMagazinePhone/productionConfiguration/release/AbanMagazinePhone-productionConfiguration-release.aab
