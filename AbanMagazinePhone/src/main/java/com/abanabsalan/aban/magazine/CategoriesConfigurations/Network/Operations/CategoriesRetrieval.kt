@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:41 PM
- * Last modified 7/2/20 2:31 PM
+ * Created by Elias Fazel on 7/2/20 2:44 PM
+ * Last modified 7/2/20 2:43 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,6 @@ import android.content.Context
 import android.util.Log
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpoints
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
-import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.EnqueueEndPointQuery
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
