@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:41 PM
- * Last modified 7/2/20 2:41 PM
+ * Created by Elias Fazel on 7/2/20 3:53 PM
+ * Last modified 7/2/20 3:22 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,11 +25,11 @@ import org.json.JSONArray
 
 class HomePageLiveData : ViewModel() {
 
-    val postsLiveItemDataSingle: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+    val postsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
         MutableLiveData<ArrayList<PostsItemData>>()
     }
 
-    val categoriesLiveItemDataSingle: MutableLiveData<ArrayList<CategoriesItemData>> by lazy {
+    val categoriesLiveItemData: MutableLiveData<ArrayList<CategoriesItemData>> by lazy {
         MutableLiveData<ArrayList<CategoriesItemData>>()
     }
 

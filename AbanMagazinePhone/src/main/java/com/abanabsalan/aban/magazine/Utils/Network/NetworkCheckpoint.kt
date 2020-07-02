@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 2:44 PM
- * Last modified 6/28/20 2:44 PM
+ * Created by Elias Fazel on 7/2/20 3:53 PM
+ * Last modified 7/2/20 3:26 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,10 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import javax.inject.Inject
+
+object NetworkSettingCallback {
+    const val WifiSetting: Int = 111
+}
 
 interface InterfaceNetworkCheckpoint {
 

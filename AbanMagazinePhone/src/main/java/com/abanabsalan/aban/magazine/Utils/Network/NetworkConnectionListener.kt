@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 2:44 PM
- * Last modified 6/28/20 2:40 PM
+ * Created by Elias Fazel on 7/2/20 3:53 PM
+ * Last modified 7/2/20 3:50 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,12 +28,20 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.offline_indicator.view.*
 import javax.inject.Inject
 
+interface NetworkConnectionListenerInterface {
+    fun networkAvailable()
+    fun networkLost()
+}
+
 @ActivityScope
 class NetworkConnectionListener @Inject constructor (private var appCompatActivity: AppCompatActivity,
                                                      private var rootView: ConstraintLayout,
                                                      private var networkCheckpoint: NetworkCheckpoint) :  ConnectivityManager.NetworkCallback() {
 
+    var networkConnectionListenerInterface: NetworkConnectionListenerInterface? = null
+
     private val connectivityManager = appCompatActivity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
     private var offlineIndicator: View
 
     init {
@@ -46,6 +54,10 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
         super.onAvailable(network)
 
         appCompatActivity.runOnUiThread {
+
+            networkConnectionListenerInterface?.let {
+                it.networkAvailable()
+            }
 
             Handler().postDelayed({
                 if (networkCheckpoint.networkConnection()) {
@@ -62,6 +74,10 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
 
         appCompatActivity.runOnUiThread {
 
+            networkConnectionListenerInterface?.let {
+                it.networkLost()
+            }
+
             Handler().postDelayed({
                 if (!networkCheckpoint.networkConnection()) {
                     Log.d(this@NetworkConnectionListener.javaClass.simpleName, "Network Lost")
@@ -75,7 +91,12 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
                         .into(offlineIndicator.offlineWait)
 
                     offlineIndicator.offlineWait.setOnClickListener {
-                        appCompatActivity.startActivity(Intent(Settings.ACTION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+                        appCompatActivity.startActivityForResult(
+                            Intent(Settings.ACTION_WIFI_SETTINGS)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                            NetworkSettingCallback.WifiSetting
+                        )
 
                         appCompatActivity.finish()
                     }
