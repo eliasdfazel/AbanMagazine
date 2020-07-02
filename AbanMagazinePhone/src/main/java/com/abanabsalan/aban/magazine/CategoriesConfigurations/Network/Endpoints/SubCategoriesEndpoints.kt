@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/1/20 2:52 PM
- * Last modified 7/1/20 2:52 PM
+ * Created by Elias Fazel on 7/2/20 1:22 PM
+ * Last modified 7/2/20 1:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,7 +27,7 @@ data class SubCategoriesEndpointsFactory (
     var sortByType: String = "count"
 )
 
-class SubCategoriesEndpoints (subCategoriesEndpointsFactory: SubCategoriesEndpointsFactory = SubCategoriesEndpointsFactory(parentCategoryId = 2016)) {
+class SubCategoriesEndpoints (subCategoriesEndpointsFactory: SubCategoriesEndpointsFactory) {
 
     val getSubCategoriesEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/categories?" +
             "parent=${subCategoriesEndpointsFactory.parentCategoryId}&per_page=${subCategoriesEndpointsFactory.amountOfCategoriesToGet}&orderby=${subCategoriesEndpointsFactory.sortByType}"

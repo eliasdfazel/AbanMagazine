@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/1/20 3:54 PM
- * Last modified 7/1/20 3:54 PM
+ * Created by Elias Fazel on 7/2/20 1:22 PM
+ * Last modified 7/2/20 1:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,7 +29,7 @@ data class CategoriesEndpointsFactory (
     var IdOfCategoryToGetPosts: Int
 )
 
-class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory = CategoriesEndpointsFactory(IdOfCategoryToGetPosts = 2016)) {
+class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory) {
 
     /**
      * To Get All Parent Categories Check If Each Category Has Json Object With Key Of 'parent=0'
