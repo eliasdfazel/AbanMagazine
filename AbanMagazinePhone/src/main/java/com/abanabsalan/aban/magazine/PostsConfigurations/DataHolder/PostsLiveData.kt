@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 3:36 PM
- * Last modified 6/30/20 3:35 PM
+ * Created by Elias Fazel on 7/2/20 2:04 PM
+ * Last modified 7/2/20 2:03 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,7 +38,7 @@ class PostsLiveData : ViewModel() {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Paragraph ${element}")
 
                 singlePostItemsData.add(
-                    SinglePostItemData(PostsDataParameters.PostItemsParameters.PostParagraph,
+                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostParagraph,
                         PostItemParagraph(element.text()),
                         null,
                         null,
@@ -55,7 +55,7 @@ class PostsLiveData : ViewModel() {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src")}")
 
                 singlePostItemsData.add(
-                    SinglePostItemData(PostsDataParameters.PostItemsParameters.PostImage,
+                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostImage,
                         null,
                         PostItemImage(element.attr("src")),
                         null,

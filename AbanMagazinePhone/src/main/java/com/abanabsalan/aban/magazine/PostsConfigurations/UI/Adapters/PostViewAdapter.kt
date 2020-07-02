@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 3:36 PM
- * Last modified 6/30/20 3:35 PM
+ * Created by Elias Fazel on 7/2/20 2:04 PM
+ * Last modified 7/2/20 2:03 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
         return when (viewType) {
 
-            PostsDataParameters.PostItemsParameters.PostParagraph -> {
+            PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 PostViewParagraphAdapterViewHolder(
                     LayoutInflater.from(postViewContext)
@@ -51,7 +51,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 )
 
             }
-            PostsDataParameters.PostItemsParameters.PostImage -> {
+            PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
                 PostViewImageAdapterViewHolder(
                     LayoutInflater.from(postViewContext)
@@ -59,7 +59,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 )
 
             }
-            PostsDataParameters.PostItemsParameters.PostTextLink -> {
+            PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
                 PostViewTextLinkAdapterViewHolder(
                     LayoutInflater.from(postViewContext)
@@ -67,7 +67,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 )
 
             }
-            PostsDataParameters.PostItemsParameters.PostIFrame -> {
+            PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
 
                 PostViewIFrameAdapterViewHolder(
                     LayoutInflater.from(postViewContext)
@@ -104,7 +104,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
         when (singlePostItemsData[position].dataType) {
 
-            PostsDataParameters.PostItemsParameters.PostParagraph -> {
+            PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 viewHolder as PostViewParagraphAdapterViewHolder
 
@@ -114,7 +114,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 }
 
             }
-            PostsDataParameters.PostItemsParameters.PostImage -> {
+            PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
                 viewHolder as PostViewImageAdapterViewHolder
 
@@ -154,12 +154,12 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 }
 
             }
-            PostsDataParameters.PostItemsParameters.PostTextLink -> {
+            PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
 
 
             }
-            PostsDataParameters.PostItemsParameters.PostIFrame -> {
+            PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
 
 
 

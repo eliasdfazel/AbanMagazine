@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 3:35 PM
- * Last modified 6/30/20 3:17 PM
+ * Created by Elias Fazel on 7/2/20 2:04 PM
+ * Last modified 7/2/20 2:03 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,7 +42,7 @@ class PostsDataParameters {
         const val PostPublishDate: String = "PostPublishDate"
     }
 
-    object PostItemsParameters {
+    object PostItemsViewParameters {
         const val PostParagraph: Int = 0
         const val PostTextLink: Int = 1
         const val PostImage: Int = 2
