@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:04 PM
- * Last modified 7/2/20 2:03 PM
+ * Created by Elias Fazel on 7/2/20 2:13 PM
+ * Last modified 7/2/20 2:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,11 +21,19 @@ class CategoriesDataParameters {
         const val CategoryPostCount: String = "count"
         const val CategoryDescription: String = "description"
 
-        const val CategoryHasParent: String = "parent"
+        const val CategoryParentId: String = "parent"
     }
 
     object CategoryParameters {
+        const val CategoryLink: String = "CategoryLinkAddress"
+        const val CategoryId: String = "CategoryId"
 
+        const val CategoryName: String = "CategoryName"
+
+        const val CategoryPostCount: String = "CategoryPostCount"
+        const val CategoryDescription: String = "CategoryDescription"
+
+        const val CategoryParentId: String = "CategoryParentId"
     }
 
     object CategoryItemsViewParameters {
