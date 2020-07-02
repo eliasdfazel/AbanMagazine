@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 1:22 PM
- * Last modified 7/2/20 1:14 PM
+ * Created by Elias Fazel on 7/2/20 2:26 PM
+ * Last modified 7/2/20 2:21 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,7 +40,8 @@ class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFac
 
     /**
      * Always Change This To Id Category You Want.
-     * Get All Posts Of A Specific Category
+     * Get All Posts Of A Specific Category.
+     * Then Use Posts Json Parameters To Get Each Post Data.
      **/
     val getSpecificCategoryPostsEndpointAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
             "categories=${subCategoriesEndpointsFactory.IdOfCategoryToGetPosts}"
