@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 4:21 PM
- * Last modified 6/30/20 4:06 PM
+ * Created by Elias Fazel on 7/2/20 2:41 PM
+ * Last modified 7/2/20 2:41 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,10 +18,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
+import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
+import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
-import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.PostsRetrieval
+import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
@@ -78,6 +80,7 @@ class HomePage : AppCompatActivity() {
                     object : JsonRequestResponseInterface {
 
                         override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                            super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
                             homePageLiveData.prepareRawDataToRenderForPosts(rawDataJsonArray)
 
@@ -90,11 +93,30 @@ class HomePage : AppCompatActivity() {
 
                     })
 
+                val categoriesRetrieval: CategoriesRetrieval = CategoriesRetrieval(applicationContext)
 
+                categoriesRetrieval.start(
+                    CategoriesEndpointsFactory(
+                        excludeCategory = 199,
+                        amountOfCategoriesToGet = 100,
+                        sortByType = "count",
+                        IdOfCategoryToGetPosts = 0
+                    ),
 
+                    object : JsonRequestResponseInterface {
 
+                        override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                            super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
+                            homePageLiveData.prepareRawDataToRenderForCategories(rawDataJsonArray)
 
+                        }
+
+                        override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
 
 
             } else {

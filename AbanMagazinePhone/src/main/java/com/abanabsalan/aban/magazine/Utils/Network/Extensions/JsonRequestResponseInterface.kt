@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/30/20 4:21 PM
- * Last modified 6/30/20 3:59 PM
+ * Created by Elias Fazel on 7/2/20 2:41 PM
+ * Last modified 7/2/20 2:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.Extensions
+package com.abanabsalan.aban.magazine.Utils.Network.Extensions
 
 import android.util.Log
 import org.json.JSONArray
