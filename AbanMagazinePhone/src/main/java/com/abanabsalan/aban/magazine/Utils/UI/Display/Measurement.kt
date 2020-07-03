@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 6/26/20 6:33 PM
+ * Created by Elias Fazel on 7/2/20 4:39 PM
+ * Last modified 7/2/20 4:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,10 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.util.TypedValue
+
+fun columnCount(context: Context, itemWidth: Int): Int {
+    return (displayX(context) / DpToPixel(context, itemWidth.toFloat())).toInt()
+}
 
 fun DpToPixel(context:Context, dp: Float): Float {
     val resources: Resources = context.resources

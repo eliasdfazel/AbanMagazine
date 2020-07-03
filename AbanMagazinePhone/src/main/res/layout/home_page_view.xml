@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/25/20 12:29 PM
-  ~ Last modified 6/25/20 12:29 PM
+  ~ Created by Elias Fazel on 7/2/20 4:39 PM
+  ~ Last modified 7/2/20 4:33 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -16,5 +16,18 @@
     android:layout_height="match_parent"
     android:background="@color/light"
     tools:context=".HomePageConfigurations.UI.HomePage">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

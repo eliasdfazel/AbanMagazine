@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 3:53 PM
- * Last modified 7/2/20 3:53 PM
+ * Created by Elias Fazel on 7/2/20 4:39 PM
+ * Last modified 7/2/20 4:39 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,9 +17,9 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 interface SnackbarActionHandlerInterface {
-    fun onActionButtonClicked() {}
-    fun onSnackbarShows() {}
-    fun onSnackbarDismissed() {}
+    fun onActionButtonClicked(snackbar: Snackbar) {}
+    fun onSnackbarShows(snackbar: Snackbar) {}
+    fun onSnackbarDismissed(snackbar: Snackbar) {}
 }
 
 class SnackbarBuilder(private val context: Context) {
@@ -31,7 +31,7 @@ class SnackbarBuilder(private val context: Context) {
              messageTextColor: Int = context.getColor(R.color.light),
              actionButtonTextColor: Int = context.getColor(R.color.pink),
              backgroundColor: Int = context.getColor(R.color.default_color_darker),
-             snackbarActionHandlerInterface: SnackbarActionHandlerInterface) {
+             snackbarActionHandlerInterface: SnackbarActionHandlerInterface) : Snackbar {
 
         val snackbar: Snackbar = Snackbar.make(
             rootView,
@@ -43,7 +43,7 @@ class SnackbarBuilder(private val context: Context) {
         snackbar.setBackgroundTint(backgroundColor)
         snackbar.setAction(actionButtonText) {
 
-            snackbarActionHandlerInterface.onActionButtonClicked()
+            snackbarActionHandlerInterface.onActionButtonClicked(snackbar)
 
         }
         snackbar.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
@@ -51,18 +51,20 @@ class SnackbarBuilder(private val context: Context) {
             override fun onShown(transientBottomBar: Snackbar?) {
                 super.onShown(transientBottomBar)
 
-                snackbarActionHandlerInterface.onSnackbarShows()
+                snackbarActionHandlerInterface.onSnackbarShows(snackbar)
 
             }
 
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 super.onDismissed(transientBottomBar, event)
 
-                snackbarActionHandlerInterface.onSnackbarDismissed()
+                snackbarActionHandlerInterface.onSnackbarDismissed(snackbar)
 
             }
 
         })
         snackbar.show()
+
+        return snackbar
     }
 }

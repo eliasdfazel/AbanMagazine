@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 3:53 PM
- * Last modified 7/2/20 3:50 PM
+ * Created by Elias Fazel on 7/2/20 4:39 PM
+ * Last modified 7/2/20 4:39 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -84,22 +84,26 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
 
                     rootView.addView(offlineIndicator)
 
-                    Glide.with(appCompatActivity)
-                        .asGif()
-                        .diskCacheStrategy(DiskCacheStrategy.DATA)
-                        .load(R.drawable.no_internet_connection)
-                        .into(offlineIndicator.offlineWait)
+                    Handler().postDelayed(Runnable {
+                        Glide.with(appCompatActivity)
+                            .asGif()
+                            .diskCacheStrategy(DiskCacheStrategy.DATA)
+                            .load(R.drawable.no_internet_connection)
+                            .into(offlineIndicator.offlineWait)
 
-                    offlineIndicator.offlineWait.setOnClickListener {
+                        offlineIndicator.offlineWait.setOnClickListener {
 
-                        appCompatActivity.startActivityForResult(
-                            Intent(Settings.ACTION_WIFI_SETTINGS)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-                            NetworkSettingCallback.WifiSetting
-                        )
+                            appCompatActivity.startActivityForResult(
+                                Intent(Settings.ACTION_WIFI_SETTINGS)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                                NetworkSettingCallback.WifiSetting
+                            )
 
-                        appCompatActivity.finish()
-                    }
+                            appCompatActivity.finish()
+                        }
+
+                    }, 555)
+
                 }
             }, 555)
         }

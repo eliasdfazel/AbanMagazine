@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 3:53 PM
- * Last modified 7/2/20 3:53 PM
+ * Created by Elias Fazel on 7/2/20 4:39 PM
+ * Last modified 7/2/20 4:22 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,7 +48,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         (application as AbanMagazinePhoneApplication)
             .dependencyGraph
             .subDependencyGraph()
-            .create(this@HomePage, homePageViewBinding.root)
+            .create(this@HomePage, homePageViewBinding.rootView)
             .inject(this@HomePage)
 
         networkConnectionListener.networkConnectionListenerInterface = this@HomePage
@@ -75,6 +75,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             })
 
+            startNetworkOperations()
 
         }
 
