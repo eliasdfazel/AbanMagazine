@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 9:01 AM
- * Last modified 7/3/20 8:44 AM
+ * Created by Elias Fazel on 7/3/20 10:20 AM
+ * Last modified 7/3/20 10:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -62,7 +62,7 @@ fun HomePage.startNetworkOperations() {
                 excludeCategory = 199,
                 amountOfCategoriesToGet = 100,
                 sortByType = "count",
-                IdOfCategoryToGetPosts = 0
+                IdOfCategoryToGetPosts = null
             ),
 
             object : JsonRequestResponseInterface {

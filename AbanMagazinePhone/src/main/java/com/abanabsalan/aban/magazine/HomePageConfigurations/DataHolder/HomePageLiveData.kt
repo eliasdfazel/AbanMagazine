@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 3:53 PM
- * Last modified 7/2/20 3:22 PM
+ * Created by Elias Fazel on 7/3/20 10:20 AM
+ * Last modified 7/3/20 10:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,17 +35,27 @@ class HomePageLiveData : ViewModel() {
 
     fun prepareRawDataToRenderForCategories(categoriesJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
+        val categoriesItemData: ArrayList<CategoriesItemData> = ArrayList<CategoriesItemData>()
+
         for (i in 0 until categoriesJsonArray.length()) {
             val categoryJsonObject = categoriesJsonArray.getJSONObject(i)
             Log.d(this@HomePageLiveData.javaClass.simpleName, categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryId))
 
-            /*
-            *
-            *
-            *
-            */
+            if (categoryJsonObject.getInt(CategoriesDataParameters.JsonDataStructure.CategoryParentId) == 0) {
+
+                categoriesItemData.add(CategoriesItemData(
+                    categoryLink = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryLink),
+                    categoryId = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryId),
+                    categoryName = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName),
+                    categoryDescription = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryDescription)
+                ))
+
+            }
 
         }
+
+        categoriesLiveItemData.postValue(categoriesItemData)
+
     }
 
     fun prepareRawDataToRenderForPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:13 PM
- * Last modified 7/2/20 2:08 PM
+ * Created by Elias Fazel on 7/3/20 10:20 AM
+ * Last modified 7/3/20 9:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,5 +45,4 @@ class CategoriesDataParameters {
 data class CategoriesItemData (var categoryLink: String,
                           var categoryId: String,
                           var categoryName: String,
-                          var categoryDescription: String,
-                          var categoryCommentsLink: String?)
+                          var categoryDescription: String)

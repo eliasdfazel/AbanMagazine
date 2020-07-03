@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 9:31 AM
- * Last modified 7/3/20 9:12 AM
+ * Created by Elias Fazel on 7/3/20 10:20 AM
+ * Last modified 7/3/20 10:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,8 @@ import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
@@ -67,8 +69,12 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         val primaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
         homePageViewBinding.primaryCategoriesView.layoutManager = primaryRecyclerViewLayoutManager
 
+        val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+
         val secondaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 55), RecyclerView.VERTICAL, false)
-        homePageViewBinding.primaryCategoriesView.layoutManager = secondaryRecyclerViewLayoutManager
+        homePageViewBinding.secondaryCategoriesView.layoutManager = secondaryRecyclerViewLayoutManager
+
+        val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
         homePageViewBinding.root.post {
 
@@ -87,6 +93,16 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                 if (it.isNotEmpty()) {
 
 
+                    /*split by number of columnCount for primary and rest of list for secondary*/
+                    primaryCategoryAdapter.categoriesItemData.clear()
+                    primaryCategoryAdapter.categoriesItemData.addAll(it)
+
+                    homePageViewBinding.primaryCategoriesView.adapter = primaryCategoryAdapter
+
+//                    secondaryCategoryAdapter.categoriesItemData.clear()
+//                    secondaryCategoryAdapter.categoriesItemData.addAll(it)
+//
+//                    homePageViewBinding.secondaryCategoriesView.adapter = secondaryCategoryAdapter
 
                 }
 
