@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 9:31 AM
- * Last modified 7/3/20 9:09 AM
+ * Created by Elias Fazel on 7/3/20 2:19 PM
+ * Last modified 7/3/20 2:18 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,8 @@
 package com.abanabsalan.aban.magazine.Utils.UI.Theme
 
 import android.content.Context
+import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
+import com.abanabsalan.aban.magazine.Utils.Preferences.SavePreferences
 
 object ThemeType {
     const val ThemeLight: Int = 0
@@ -19,13 +21,16 @@ object ThemeType {
 
 class OverallTheme (private val context: Context) {
 
+    private val savePreferences: SavePreferences = SavePreferences(context)
+    private val readPreferences: ReadPreferences = ReadPreferences(context)
+
     /**
      * True = Light
      * False =
      **/
     fun checkThemeLightDark() : Int {
 
-        return ThemeType.ThemeLight
+        return readPreferences.readPreference(".Theme", "OverallTheme", ThemeType.ThemeLight)
     }
 
 }
