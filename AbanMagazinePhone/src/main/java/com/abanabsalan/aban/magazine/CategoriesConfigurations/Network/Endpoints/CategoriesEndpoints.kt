@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 10:20 AM
- * Last modified 7/3/20 10:18 AM
+ * Created by Elias Fazel on 7/3/20 1:48 PM
+ * Last modified 7/3/20 12:16 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,7 +30,7 @@ data class CategoriesEndpointsFactory (
      **/
     var sortBy: String = "desc",
 
-    var IdOfCategoryToGetPosts: Int?
+    var IdOfCategoryToGetPosts: Int = 0
 )
 
 class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory) {

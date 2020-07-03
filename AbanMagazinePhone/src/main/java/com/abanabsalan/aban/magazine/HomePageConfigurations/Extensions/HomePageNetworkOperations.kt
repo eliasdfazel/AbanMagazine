@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 10:20 AM
- * Last modified 7/3/20 10:12 AM
+ * Created by Elias Fazel on 7/3/20 1:48 PM
+ * Last modified 7/3/20 12:17 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -61,8 +61,7 @@ fun HomePage.startNetworkOperations() {
             CategoriesEndpointsFactory(
                 excludeCategory = 199,
                 amountOfCategoriesToGet = 100,
-                sortByType = "count",
-                IdOfCategoryToGetPosts = null
+                sortByType = "count"
             ),
 
             object : JsonRequestResponseInterface {

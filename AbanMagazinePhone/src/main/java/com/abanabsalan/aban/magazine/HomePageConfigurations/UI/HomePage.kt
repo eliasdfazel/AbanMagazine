@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 10:20 AM
- * Last modified 7/3/20 10:20 AM
+ * Created by Elias Fazel on 7/3/20 1:48 PM
+ * Last modified 7/3/20 1:48 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
@@ -71,7 +72,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
-        val secondaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 55), RecyclerView.VERTICAL, false)
+        val secondaryRecyclerViewLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
         homePageViewBinding.secondaryCategoriesView.layoutManager = secondaryRecyclerViewLayoutManager
 
         val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
@@ -92,17 +93,20 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                 if (it.isNotEmpty()) {
 
-
                     /*split by number of columnCount for primary and rest of list for secondary*/
+                    val primaryCategoriesData = it.slice(IntRange(0, (columnCount(applicationContext, 115) - 1)))
+
                     primaryCategoryAdapter.categoriesItemData.clear()
-                    primaryCategoryAdapter.categoriesItemData.addAll(it)
+                    primaryCategoryAdapter.categoriesItemData.addAll(primaryCategoriesData)
 
                     homePageViewBinding.primaryCategoriesView.adapter = primaryCategoryAdapter
 
-//                    secondaryCategoryAdapter.categoriesItemData.clear()
-//                    secondaryCategoryAdapter.categoriesItemData.addAll(it)
-//
-//                    homePageViewBinding.secondaryCategoriesView.adapter = secondaryCategoryAdapter
+                    val secondaryCategoriesData = it.slice(IntRange(columnCount(applicationContext, 115), (it.size - 1)))
+
+                    secondaryCategoryAdapter.categoriesItemData.clear()
+                    secondaryCategoryAdapter.categoriesItemData.addAll(secondaryCategoriesData)
+
+                    homePageViewBinding.secondaryCategoriesView.adapter = secondaryCategoryAdapter
 
                 }
 
