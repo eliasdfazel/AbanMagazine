@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 1:48 PM
- * Last modified 7/3/20 12:17 PM
+ * Created by Elias Fazel on 7/3/20 2:12 PM
+ * Last modified 7/3/20 2:00 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -59,7 +59,7 @@ fun HomePage.startNetworkOperations() {
 
         categoriesRetrieval.start(
             CategoriesEndpointsFactory(
-                excludeCategory = 199,
+                excludeCategory = "199,1034,150",
                 amountOfCategoriesToGet = 100,
                 sortByType = "count"
             ),

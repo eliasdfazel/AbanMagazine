@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 1:48 PM
- * Last modified 7/3/20 12:16 PM
+ * Created by Elias Fazel on 7/3/20 2:12 PM
+ * Last modified 7/3/20 1:57 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,9 +14,10 @@ import com.abanabsalan.aban.magazine.Utils.Network.GeneralEndpoints
 
 data class CategoriesEndpointsFactory (
     /**
-     * Exclude A Category - Usually Set Id Number Of Uncategorized Category
+     * Exclude Categories - Usually Set Id Number Of Uncategorized Category.
+     * Add Them As Comma Separated List.
      **/
-    var excludeCategory: Int = 199,
+    var excludeCategory: String = "199",
     /**
      * Amount Of Categories Per Each Page - Default is 100
      **/

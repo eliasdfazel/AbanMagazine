@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 4:39 PM
- * Last modified 7/2/20 4:39 PM
+ * Created by Elias Fazel on 7/3/20 2:12 PM
+ * Last modified 7/3/20 2:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,7 +30,7 @@ class SnackbarBuilder(private val context: Context) {
              actionButtonText: Int = android.R.string.ok,
              messageTextColor: Int = context.getColor(R.color.light),
              actionButtonTextColor: Int = context.getColor(R.color.pink),
-             backgroundColor: Int = context.getColor(R.color.default_color_darker),
+             backgroundColor: Int = context.getColor(R.color.default_color_dark),
              snackbarActionHandlerInterface: SnackbarActionHandlerInterface) : Snackbar {
 
         val snackbar: Snackbar = Snackbar.make(
