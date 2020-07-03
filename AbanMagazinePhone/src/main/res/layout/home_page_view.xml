@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/3/20 2:19 PM
-  ~ Last modified 7/3/20 2:14 PM
+  ~ Created by Elias Fazel on 7/3/20 2:38 PM
+  ~ Last modified 7/3/20 2:29 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/primaryCategoriesView"
+                android:id="@+id/primaryCategoriesRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="137dp"
                 android:padding="7dp"
@@ -99,7 +99,7 @@
                 apps:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/secondaryCategoriesView"
+                android:id="@+id/secondaryCategoriesRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
                 android:padding="3dp"
@@ -108,9 +108,33 @@
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="7dp"
 
-                apps:layout_constraintTop_toBottomOf="@id/primaryCategoriesView"/>
+                apps:layout_constraintTop_toBottomOf="@id/primaryCategoriesRecyclerView"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/featuredPostsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginVertical="7dp"
+                android:paddingHorizontal="7dp"
+                android:gravity="center_vertical"
+                android:text="@string/featuredPostsText"
+                android:textSize="23sp"
+                android:textColor="@color/darker"
+                android:fontFamily="@font/persian_sans"
 
+                apps:layout_constraintTop_toBottomOf="@id/secondaryCategoriesRecyclerView"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/featuredPostsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="193dp"
+                android:padding="3dp"
+                android:scrollbars="none"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="7dp"
+
+                apps:layout_constraintTop_toBottomOf="@id/featuredPostsTextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

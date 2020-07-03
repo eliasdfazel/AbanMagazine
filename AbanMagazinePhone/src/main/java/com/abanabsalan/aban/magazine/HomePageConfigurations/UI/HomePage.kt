@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 1:48 PM
- * Last modified 7/3/20 1:48 PM
+ * Created by Elias Fazel on 7/3/20 2:38 PM
+ * Last modified 7/3/20 2:36 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -68,12 +68,12 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         networkConnectionListener.networkConnectionListenerInterface = this@HomePage
 
         val primaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
-        homePageViewBinding.primaryCategoriesView.layoutManager = primaryRecyclerViewLayoutManager
+        homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = primaryRecyclerViewLayoutManager
 
         val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
         val secondaryRecyclerViewLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-        homePageViewBinding.secondaryCategoriesView.layoutManager = secondaryRecyclerViewLayoutManager
+        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = secondaryRecyclerViewLayoutManager
 
         val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
@@ -99,14 +99,14 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                     primaryCategoryAdapter.categoriesItemData.clear()
                     primaryCategoryAdapter.categoriesItemData.addAll(primaryCategoriesData)
 
-                    homePageViewBinding.primaryCategoriesView.adapter = primaryCategoryAdapter
+                    homePageViewBinding.primaryCategoriesRecyclerView.adapter = primaryCategoryAdapter
 
                     val secondaryCategoriesData = it.slice(IntRange(columnCount(applicationContext, 115), (it.size - 1)))
 
                     secondaryCategoryAdapter.categoriesItemData.clear()
                     secondaryCategoryAdapter.categoriesItemData.addAll(secondaryCategoriesData)
 
-                    homePageViewBinding.secondaryCategoriesView.adapter = secondaryCategoryAdapter
+                    homePageViewBinding.secondaryCategoriesRecyclerView.adapter = secondaryCategoryAdapter
 
                 }
 
