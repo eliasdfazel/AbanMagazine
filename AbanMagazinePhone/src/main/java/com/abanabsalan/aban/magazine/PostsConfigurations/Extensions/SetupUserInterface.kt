@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 3:54 PM
- * Last modified 6/28/20 3:38 PM
+ * Created by Elias Fazel on 7/3/20 9:31 AM
+ * Last modified 7/3/20 9:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,11 +21,13 @@ import android.view.View
 import android.view.WindowManager
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.isColorDark
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -37,6 +39,21 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
     window.statusBarColor = Color.TRANSPARENT
+
+    when (overallTheme.checkThemeLightDark()) {
+        ThemeType.ThemeLight -> {
+
+            window.navigationBarColor = getColor(R.color.light)
+
+
+        }
+        ThemeType.ThemeDark -> {
+
+            window.navigationBarColor = getColor(R.color.dark)
+
+
+        }
+    }
 
     postsViewUiBinding.postTitle.text = Html.fromHtml(postTitle)
 

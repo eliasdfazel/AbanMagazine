@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 9:01 AM
- * Last modified 7/3/20 9:01 AM
+ * Created by Elias Fazel on 7/3/20 9:31 AM
+ * Last modified 7/3/20 9:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,15 +20,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
+import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import javax.inject.Inject
 
 class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
+
+    val overallTheme: OverallTheme by lazy {
+        OverallTheme(applicationContext)
+    }
 
     val networkCheckpoint: NetworkCheckpoint by lazy {
         NetworkCheckpoint(applicationContext)
@@ -47,6 +53,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         super.onCreate(savedInstanceState)
         homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
+
+        setupUserInterface()
 
         (application as AbanMagazinePhoneApplication)
             .dependencyGraph

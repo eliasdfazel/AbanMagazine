@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 7/3/20 9:31 AM
+  ~ Last modified 7/3/20 9:18 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@color/pink" >
+        <shape>
+            <corners android:radius="13dp"/>
+        </shape>
+    </item>
+
+</layer-list>
