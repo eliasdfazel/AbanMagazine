@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 4:39 PM
- * Last modified 7/2/20 4:38 PM
+ * Created by Elias Fazel on 7/3/20 9:01 AM
+ * Last modified 7/3/20 8:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -87,9 +87,9 @@ fun HomePage.startNetworkOperations() {
 
         SnackbarBuilder(applicationContext).show (
             rootView = homePageViewBinding.rootView,
-            messageText= getString(R.string.noInternetConnection),
+            messageText= getString(R.string.noInternetConnectionText),
             messageDuration = Snackbar.LENGTH_INDEFINITE,
-            actionButtonText = R.string.turnOn,
+            actionButtonText = R.string.turnOnText,
             snackbarActionHandlerInterface = object : SnackbarActionHandlerInterface {
 
                 override fun onActionButtonClicked(snackbar: Snackbar) {

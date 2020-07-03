@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 4:39 PM
- * Last modified 7/2/20 4:22 PM
+ * Created by Elias Fazel on 7/3/20 9:01 AM
+ * Last modified 7/3/20 9:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,12 +16,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
+import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import javax.inject.Inject
 
@@ -52,6 +55,12 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
             .inject(this@HomePage)
 
         networkConnectionListener.networkConnectionListenerInterface = this@HomePage
+
+        val primaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
+        homePageViewBinding.primaryCategoriesView.layoutManager = primaryRecyclerViewLayoutManager
+
+        val secondaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 55), RecyclerView.VERTICAL, false)
+        homePageViewBinding.primaryCategoriesView.layoutManager = secondaryRecyclerViewLayoutManager
 
         homePageViewBinding.root.post {
 
@@ -89,6 +98,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
     override fun onPause() {
         super.onPause()
+
     }
 
     override fun onDestroy() {
