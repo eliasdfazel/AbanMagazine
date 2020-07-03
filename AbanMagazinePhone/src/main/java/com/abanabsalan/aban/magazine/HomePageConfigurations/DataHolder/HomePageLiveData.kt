@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 10:20 AM
- * Last modified 7/3/20 10:20 AM
+ * Created by Elias Fazel on 7/3/20 2:50 PM
+ * Last modified 7/3/20 2:43 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,28 @@ class HomePageLiveData : ViewModel() {
         MutableLiveData<ArrayList<CategoriesItemData>>()
     }
 
+    val featuredPostsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+        MutableLiveData<ArrayList<PostsItemData>>()
+    }
+
+    fun prepareRawDataToRenderForPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+
+        val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+
+
+        for (i in 0 until postsJsonArray.length()) {
+            val postJsonObject = postsJsonArray.getJSONObject(i)
+            Log.d(this@HomePageLiveData.javaClass.simpleName, postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
+
+            /*
+            *
+            *
+            *
+            */
+
+        }
+    }
+
     fun prepareRawDataToRenderForCategories(categoriesJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
         val categoriesItemData: ArrayList<CategoriesItemData> = ArrayList<CategoriesItemData>()
@@ -58,10 +80,12 @@ class HomePageLiveData : ViewModel() {
 
     }
 
-    fun prepareRawDataToRenderForPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+    fun prepareRawDataToRenderForFeaturedPosts(featuredPostsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        for (i in 0 until postsJsonArray.length()) {
-            val postJsonObject = postsJsonArray.getJSONObject(i)
+        val featuredPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+
+        for (i in 0 until featuredPostsJsonArray.length()) {
+            val postJsonObject = featuredPostsJsonArray.getJSONObject(i)
             Log.d(this@HomePageLiveData.javaClass.simpleName, postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
             /*
@@ -71,5 +95,7 @@ class HomePageLiveData : ViewModel() {
             */
 
         }
+
     }
+
 }

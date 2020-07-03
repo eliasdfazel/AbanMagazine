@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:38 PM
- * Last modified 7/3/20 2:36 PM
+ * Created by Elias Fazel on 7/3/20 2:50 PM
+ * Last modified 7/3/20 2:39 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -72,8 +72,9 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
-        val secondaryRecyclerViewLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = secondaryRecyclerViewLayoutManager
+        val horizontalRecyclerViewLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = horizontalRecyclerViewLayoutManager
+        homePageViewBinding.featuredPostsRecyclerView.layoutManager = horizontalRecyclerViewLayoutManager
 
         val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
