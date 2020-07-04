@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 11:25 AM
- * Last modified 7/4/20 11:24 AM
+ * Created by Elias Fazel on 7/4/20 11:28 AM
+ * Last modified 7/4/20 11:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,20 +39,28 @@ class HomePageLiveData : ViewModel() {
 
     fun prepareRawDataToRenderForNewestPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+        val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
 
         for (i in 0 until postsJsonArray.length()) {
             val postJsonObject = postsJsonArray.getJSONObject(i)
             Log.d(this@HomePageLiveData.javaClass.simpleName, postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
-            /*
-            *
-            *
-            *
-            */
+            newestPostsItemData.add(PostsItemData(
+                postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
+                postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId),
+                postFeaturedImage = postJsonObject.getString(PostsDataParameters.JsonDataStructure.FeauturedImage),
+                postTitle = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostTitle),
+                postContent = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostContent),
+                postExcerpt = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostExcerpt),
+                postCommentsLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostCommentsLink),
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate)
+            ))
 
         }
+
+        newestPostsLiveItemData.postValue(newestPostsItemData)
+
     }
 
     fun prepareRawDataToRenderForCategories(categoriesJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
@@ -82,13 +90,13 @@ class HomePageLiveData : ViewModel() {
 
     fun prepareRawDataToRenderForSpecificPosts(featuredPostsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+        val specificCategoryPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
         for (i in 0 until featuredPostsJsonArray.length()) {
             val postJsonObject = featuredPostsJsonArray.getJSONObject(i)
             Log.d(this@HomePageLiveData.javaClass.simpleName, postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
-            newestPostsItemData.add(PostsItemData(
+            specificCategoryPostsItemData.add(PostsItemData(
                 postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
                 postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId),
                 postFeaturedImage = postJsonObject.getString(PostsDataParameters.JsonDataStructure.FeauturedImage),
@@ -101,7 +109,7 @@ class HomePageLiveData : ViewModel() {
 
         }
 
-        specificCategoryLiveItemData.postValue(newestPostsItemData)
+        specificCategoryLiveItemData.postValue(specificCategoryPostsItemData)
 
     }
 
