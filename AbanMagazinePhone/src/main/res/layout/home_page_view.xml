@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/4/20 2:46 PM
-  ~ Last modified 7/4/20 2:45 PM
+  ~ Created by Elias Fazel on 7/4/20 3:34 PM
+  ~ Last modified 7/4/20 2:50 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -132,7 +132,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/featuredPostsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="249dp"
+                android:layout_height="259dp"
                 android:padding="3dp"
                 android:scrollbars="none"
                 android:requiresFadingEdge="horizontal"

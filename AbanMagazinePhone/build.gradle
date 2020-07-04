@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 2:44 PM
- * Last modified 6/28/20 2:43 PM
+ * Created by Elias Fazel on 7/4/20 3:34 PM
+ * Last modified 7/4/20 3:05 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -92,6 +92,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation project(path: ':LoadingSpin')
+    implementation project(path: ':ShapesCustomImageViewLibrary')
 
 
     implementation 'com.google.firebase:firebase-analytics:17.4.3'

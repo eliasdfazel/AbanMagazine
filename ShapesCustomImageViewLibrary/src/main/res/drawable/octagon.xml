@@ -1,0 +1,19 @@
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 7/4/20 3:34 PM
+  ~ Last modified 3/29/20 2:22 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="100dp"
+        android:height="100dp"
+        android:viewportWidth="24"
+        android:viewportHeight="24">
+    <path
+        android:fillColor="#000"
+        android:pathData="M15.73,3H8.27L3,8.27V15.73L8.27,21H15.73L21,15.73V8.27"/>
+</vector>

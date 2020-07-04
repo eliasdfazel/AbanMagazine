@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 2:28 PM
+ * Created by Elias Fazel on 7/4/20 3:34 PM
+ * Last modified 7/4/20 3:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,8 +23,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.bitmap.CenterInside
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
@@ -67,7 +65,6 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
         Glide.with(context)
             .load(postsItemData[position].postFeaturedImage)
             .apply(requestOptions)
-            .transform(CenterInside(), RoundedCorners(13))
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .listener(object : RequestListener<Drawable> {
 
@@ -90,6 +87,10 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
 
         specificCategoryViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle)
         specificCategoryViewHolder.postExcerptView.text = Html.fromHtml(postsItemData[position].postExcerpt)
+
+        specificCategoryViewHolder.rootViewItem.setOnClickListener {
+
+        }
 
     }
 
