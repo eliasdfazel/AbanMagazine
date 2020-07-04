@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 11:25 AM
- * Last modified 7/4/20 11:07 AM
+ * Created by Elias Fazel on 7/4/20 2:46 PM
+ * Last modified 7/4/20 1:55 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,7 +42,7 @@ class SpecificCategoryRetrieval (private val context: Context){
             specificCategoryEndpoints.getSpecificCategoryPostsEndpointAddress,
             null,
             Response.Listener<JSONArray?> { response ->
-                Log.d("JsonObjectRequest", response.toString())
+                Log.d("JsonObjectRequest ${this@SpecificCategoryRetrieval.javaClass.simpleName}", response.toString())
 
                 if (response != null) {
 

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/4/20 11:42 AM
-  ~ Last modified 7/4/20 11:41 AM
+  ~ Created by Elias Fazel on 7/4/20 2:46 PM
+  ~ Last modified 7/4/20 2:45 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,16 +12,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
-    android:layout_width="157dp"
-    android:layout_height="213dp"
-    android:layout_marginVertical="3dp"
-    android:layout_marginHorizontal="1dp"
+    android:layout_width="197dp"
+    android:layout_height="247dp"
+    android:layout_marginVertical="1dp"
+    android:layout_marginHorizontal="7dp"
     android:background="@drawable/specific_category_item_background">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/postFeatureImageView"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="83dp"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
 
         apps:layout_constraintTop_toTopOf="parent"/>
@@ -30,15 +31,15 @@
         android:id="@+id/postTitleView"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:padding="3dp"
-        android:gravity="center"
+        android:padding="1dp"
+        android:gravity="center_vertical"
         android:lines="2"
         android:ellipsize="end"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="@color/light"
+        android:textColor="@color/darker"
         android:fontFamily="@font/persian_sans"
-        android:shadowColor="@color/darker"
+        android:shadowColor="@color/dark"
         android:shadowRadius="3"
 
         apps:layout_constraintTop_toBottomOf="@id/postFeatureImageView"/>
@@ -46,13 +47,12 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/postExcerptView"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="101dp"
         android:padding="3dp"
-        android:gravity="center"
-        android:lines="2"
         android:ellipsize="end"
+        android:justificationMode="inter_word"
         android:textSize="13sp"
-        android:textColor="@color/light"
+        android:textColor="@color/dark"
         android:fontFamily="@font/persian_sans"
 
         apps:layout_constraintTop_toBottomOf="@id/postTitleView"/>

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:04 PM
- * Last modified 7/2/20 2:03 PM
+ * Created by Elias Fazel on 7/4/20 2:46 PM
+ * Last modified 7/4/20 2:29 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -121,7 +121,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 singlePostItemsData[position].postItemImage?.let {
 
                     val drawableError: Drawable? = postViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
-                    drawableError?.setTint(postViewContext.getColor(R.color.pink))
+                    drawableError?.setTint(postViewContext.getColor(R.color.red))
 
                     val requestOptions = RequestOptions()
                         .error(drawableError)

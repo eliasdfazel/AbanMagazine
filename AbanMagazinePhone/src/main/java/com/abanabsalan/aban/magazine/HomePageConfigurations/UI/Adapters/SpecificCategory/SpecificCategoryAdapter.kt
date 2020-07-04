@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 12:17 PM
- * Last modified 7/4/20 12:17 PM
+ * Created by Elias Fazel on 7/4/20 2:46 PM
+ * Last modified 7/4/20 2:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,8 +45,6 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
 
     override fun onBindViewHolder(specificCategoryViewHolder: SpecificCategoryViewHolder, position: Int) {
 
-        println(">>>>>>>>>>>>>>>> 3 " + postsItemData[position])
-
         when (themeLightDark) {
             ThemeType.ThemeLight -> {
 
@@ -61,7 +59,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
         }
 
         val drawableError: Drawable? = context.getDrawable(android.R.drawable.ic_menu_report_image)
-        drawableError?.setTint(context.getColor(R.color.pink))
+        drawableError?.setTint(context.getColor(R.color.red))
 
         val requestOptions = RequestOptions()
             .error(drawableError)

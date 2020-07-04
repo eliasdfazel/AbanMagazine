@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 12:17 PM
- * Last modified 7/4/20 12:14 PM
+ * Created by Elias Fazel on 7/4/20 2:46 PM
+ * Last modified 7/4/20 2:02 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,7 +42,6 @@ fun HomePage.startNetworkOperations() {
                 override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                     super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                    println(">>>>>>>>>>>>> " + rawDataJsonArray)
                     homePageLiveData.prepareRawDataToRenderForSpecificPosts(rawDataJsonArray)
 
                 }
