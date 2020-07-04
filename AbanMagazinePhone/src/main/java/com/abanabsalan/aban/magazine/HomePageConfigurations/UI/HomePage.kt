@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 11:25 AM
- * Last modified 7/4/20 11:25 AM
+ * Created by Elias Fazel on 7/4/20 12:17 PM
+ * Last modified 7/4/20 12:17 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUser
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
@@ -70,23 +71,32 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         val primaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
         homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = primaryRecyclerViewLayoutManager
 
+        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        homePageViewBinding.featuredPostsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+
         val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
-        val horizontalRecyclerViewLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = horizontalRecyclerViewLayoutManager
-        homePageViewBinding.featuredPostsRecyclerView.layoutManager = horizontalRecyclerViewLayoutManager
-
         val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+
+        val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
         homePageViewBinding.root.post {
 
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
 
+                println(">>>>>>>>>>>>> 1")
                 if (it.isNotEmpty()) {
 
+                    println(">>>>>>>>>>>>> 2")
 
+                    specificCategoryAdapter.postsItemData.clear()
+                    specificCategoryAdapter.postsItemData.addAll(it)
+
+                    homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
 
                 }
+
+                homePageLiveData.controlLoadingView.postValue(false)
 
             })
 
@@ -97,6 +107,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
 
                 }
+
+                homePageLiveData.controlLoadingView.postValue(false)
 
             })
 
@@ -120,6 +132,14 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                     homePageViewBinding.secondaryCategoriesRecyclerView.adapter = secondaryCategoryAdapter
 
                 }
+
+                homePageLiveData.controlLoadingView.postValue(false)
+
+            })
+
+            homePageLiveData.controlLoadingView.observe(this@HomePage, Observer {
+
+
 
             })
 

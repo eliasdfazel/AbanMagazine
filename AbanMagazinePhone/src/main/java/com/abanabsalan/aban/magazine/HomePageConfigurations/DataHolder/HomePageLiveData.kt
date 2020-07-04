@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 11:28 AM
- * Last modified 7/4/20 11:28 AM
+ * Created by Elias Fazel on 7/4/20 12:17 PM
+ * Last modified 7/4/20 11:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,10 +37,15 @@ class HomePageLiveData : ViewModel() {
         MutableLiveData<ArrayList<PostsItemData>>()
     }
 
+    val controlLoadingView: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+
     fun prepareRawDataToRenderForNewestPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+        controlLoadingView.postValue(true)
 
+        val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
         for (i in 0 until postsJsonArray.length()) {
             val postJsonObject = postsJsonArray.getJSONObject(i)
@@ -64,6 +69,8 @@ class HomePageLiveData : ViewModel() {
     }
 
     fun prepareRawDataToRenderForCategories(categoriesJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+
+        controlLoadingView.postValue(true)
 
         val categoriesItemData: ArrayList<CategoriesItemData> = ArrayList<CategoriesItemData>()
 
@@ -89,6 +96,8 @@ class HomePageLiveData : ViewModel() {
     }
 
     fun prepareRawDataToRenderForSpecificPosts(featuredPostsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+
+        controlLoadingView.postValue(true)
 
         val specificCategoryPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
