@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:12 PM
- * Last modified 7/3/20 2:00 PM
+ * Created by Elias Fazel on 7/4/20 11:25 AM
+ * Last modified 7/4/20 11:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,8 +17,10 @@ import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
-import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.PostsRetrieval
+import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.NewestPostsRetrieval
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpointsFactory
+import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations.SpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkSettingCallback
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
@@ -30,9 +32,29 @@ fun HomePage.startNetworkOperations() {
 
     if (networkCheckpoint.networkConnection()) {
 
-        val postsRetrieval = PostsRetrieval(applicationContext)
+        val specificCategoryRetrieval: SpecificCategoryRetrieval = SpecificCategoryRetrieval(applicationContext)
+        specificCategoryRetrieval.start(
+            SpecificCategoryEndpointsFactory(
+                IdOfCategoryToGetPosts = 1034
+            ),
+            object : JsonRequestResponseInterface {
 
-        postsRetrieval.start(
+                override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                    super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
+
+                    homePageLiveData.prepareRawDataToRenderForSpecificPosts(rawDataJsonArray)
+
+                }
+
+                override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                    Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
+
+                }
+
+            })
+
+        val newestPostsRetrieval: NewestPostsRetrieval = NewestPostsRetrieval(applicationContext)
+        newestPostsRetrieval.start(
             PostsEndpointsFactory(
                 numberOfPageInPostsList = 1,
                 amountOfPostsToGet = 3,
@@ -44,7 +66,7 @@ fun HomePage.startNetworkOperations() {
                 override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                     super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                    homePageLiveData.prepareRawDataToRenderForPosts(rawDataJsonArray)
+                    homePageLiveData.prepareRawDataToRenderForNewestPosts(rawDataJsonArray)
 
                 }
 
@@ -56,7 +78,6 @@ fun HomePage.startNetworkOperations() {
             })
 
         val categoriesRetrieval: CategoriesRetrieval = CategoriesRetrieval(applicationContext)
-
         categoriesRetrieval.start(
             CategoriesEndpointsFactory(
                 excludeCategory = "199,1034,150",

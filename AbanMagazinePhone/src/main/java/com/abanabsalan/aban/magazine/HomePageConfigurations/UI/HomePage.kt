@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:50 PM
- * Last modified 7/3/20 2:39 PM
+ * Created by Elias Fazel on 7/4/20 11:25 AM
+ * Last modified 7/4/20 11:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -80,7 +80,17 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         homePageViewBinding.root.post {
 
-            homePageLiveData.postsLiveItemData.observe(this@HomePage, Observer {
+            homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
+
+                if (it.isNotEmpty()) {
+
+
+
+                }
+
+            })
+
+            homePageLiveData.newestPostsLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
 

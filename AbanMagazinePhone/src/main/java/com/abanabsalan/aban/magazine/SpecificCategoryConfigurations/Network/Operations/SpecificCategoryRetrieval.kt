@@ -1,19 +1,19 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:41 PM
- * Last modified 7/2/20 2:28 PM
+ * Created by Elias Fazel on 7/4/20 11:25 AM
+ * Last modified 7/4/20 11:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations
+package com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations
 
 import android.content.Context
 import android.util.Log
-import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpoints
-import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
+import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpoints
+import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpointsFactory
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -30,16 +30,16 @@ object EnqueueEndPointQuery {
     const val JSON_REQUEST_RETRIES = (3)
 }
 
-class PostsRetrieval (private val context: Context) {
+class SpecificCategoryRetrieval (private val context: Context){
 
-    fun start(postsEndpointsFactory: PostsEndpointsFactory,
+    fun start(specificCategoryEndpointsFactory: SpecificCategoryEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).launch {
 
-        val postsEndpoints: PostsEndpoints = PostsEndpoints(postsEndpointsFactory)
+        val specificCategoryEndpoints: SpecificCategoryEndpoints = SpecificCategoryEndpoints(specificCategoryEndpointsFactory)
 
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET,
-            postsEndpoints.getPostEndpointsAddress,
+            specificCategoryEndpoints.getSpecificCategoryPostsEndpointAddress,
             null,
             Response.Listener<JSONArray?> { response ->
                 Log.d("JsonObjectRequest", response.toString())
@@ -66,5 +66,4 @@ class PostsRetrieval (private val context: Context) {
         val requestQueue = Volley.newRequestQueue(context)
         requestQueue.add(jsonObjectRequest)
     }
-
 }

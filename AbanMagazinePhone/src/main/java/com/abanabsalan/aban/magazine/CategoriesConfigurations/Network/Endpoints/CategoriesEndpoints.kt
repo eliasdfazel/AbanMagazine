@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:12 PM
- * Last modified 7/3/20 1:57 PM
+ * Created by Elias Fazel on 7/4/20 11:25 AM
+ * Last modified 7/4/20 11:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,25 +29,15 @@ data class CategoriesEndpointsFactory (
     /**
      * Order sort attribute ascending or descending
      **/
-    var sortBy: String = "desc",
-
-    var IdOfCategoryToGetPosts: Int = 0
+    var sortBy: String = "desc"
 )
 
-class CategoriesEndpoints (subCategoriesEndpointsFactory: CategoriesEndpointsFactory) {
+class CategoriesEndpoints (categoriesEndpointsFactory: CategoriesEndpointsFactory) {
 
     /**
      * To Get All Parent Categories Check If Each Category Has Json Object With Key Of 'parent=0'
      **/
     val getCategoriesEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/categories?" +
-            "exclude=${subCategoriesEndpointsFactory.excludeCategory}&per_page=${subCategoriesEndpointsFactory.amountOfCategoriesToGet}&orderby=${subCategoriesEndpointsFactory.sortByType}&order=${subCategoriesEndpointsFactory.sortBy}"
+            "exclude=${categoriesEndpointsFactory.excludeCategory}&per_page=${categoriesEndpointsFactory.amountOfCategoriesToGet}&orderby=${categoriesEndpointsFactory.sortByType}&order=${categoriesEndpointsFactory.sortBy}"
 
-
-    /**
-     * Always Change This To Id Category You Want.
-     * Get All Posts Of A Specific Category.
-     * Then Use Posts Json Parameters To Get Each Post Data.
-     **/
-    val getSpecificCategoryPostsEndpointAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
-            "categories=${subCategoriesEndpointsFactory.IdOfCategoryToGetPosts?:0}"
 }

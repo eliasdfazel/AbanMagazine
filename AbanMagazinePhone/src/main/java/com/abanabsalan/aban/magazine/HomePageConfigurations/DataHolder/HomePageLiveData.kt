@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:50 PM
- * Last modified 7/3/20 2:43 PM
+ * Created by Elias Fazel on 7/4/20 11:25 AM
+ * Last modified 7/4/20 11:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@ import org.json.JSONArray
 
 class HomePageLiveData : ViewModel() {
 
-    val postsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+    val newestPostsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
         MutableLiveData<ArrayList<PostsItemData>>()
     }
 
@@ -33,11 +33,11 @@ class HomePageLiveData : ViewModel() {
         MutableLiveData<ArrayList<CategoriesItemData>>()
     }
 
-    val featuredPostsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+    val specificCategoryLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
         MutableLiveData<ArrayList<PostsItemData>>()
     }
 
-    fun prepareRawDataToRenderForPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+    fun prepareRawDataToRenderForNewestPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
         val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
@@ -80,21 +80,28 @@ class HomePageLiveData : ViewModel() {
 
     }
 
-    fun prepareRawDataToRenderForFeaturedPosts(featuredPostsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+    fun prepareRawDataToRenderForSpecificPosts(featuredPostsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        val featuredPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+        val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
         for (i in 0 until featuredPostsJsonArray.length()) {
             val postJsonObject = featuredPostsJsonArray.getJSONObject(i)
             Log.d(this@HomePageLiveData.javaClass.simpleName, postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
-            /*
-            *
-            *
-            *
-            */
+            newestPostsItemData.add(PostsItemData(
+                postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
+                postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId),
+                postFeaturedImage = postJsonObject.getString(PostsDataParameters.JsonDataStructure.FeauturedImage),
+                postTitle = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostTitle),
+                postContent = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostContent),
+                postExcerpt = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostExcerpt),
+                postCommentsLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostCommentsLink),
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate)
+            ))
 
         }
+
+        specificCategoryLiveItemData.postValue(newestPostsItemData)
 
     }
 
