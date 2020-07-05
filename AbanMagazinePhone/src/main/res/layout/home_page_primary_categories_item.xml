@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/3/20 1:48 PM
-  ~ Last modified 7/3/20 1:16 PM
+  ~ Created by Elias Fazel on 7/4/20 4:24 PM
+  ~ Last modified 7/4/20 4:20 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -16,8 +16,9 @@
     android:layout_height="115dp"
     android:layout_marginVertical="3dp"
     android:layout_marginHorizontal="1dp"
-    android:layout_gravity="center"
-    android:background="@drawable/primary_categories_item_background">
+    android:background="@drawable/primary_categories_item_background"
+
+    apps:layout_constraintDimensionRatio="1:1">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/categoryNameView"
@@ -31,8 +32,6 @@
         android:textColor="@color/light"
         android:fontFamily="@font/persian_sans"
         android:shadowColor="@color/darker"
-        android:shadowRadius="19"
-
-        apps:layout_constraintDimensionRatio="1:1"/>
+        android:shadowRadius="19" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

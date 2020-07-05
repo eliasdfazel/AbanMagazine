@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/4/20 3:34 PM
-  ~ Last modified 7/4/20 2:50 PM
+  ~ Created by Elias Fazel on 7/4/20 4:24 PM
+  ~ Last modified 7/4/20 4:14 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -81,12 +81,28 @@
 
         />
 
+    <net.geeksempire.loadingspin.SpinKitView
+        android:id="@+id/loadingView"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:padding="13dp"
+        android:rotation="45"
+        android:background="@android:color/transparent"
+        android:visibility="gone"
+
+        apps:SpinKit_Style="CubeGrid"
+        apps:SpinKit_Color="@color/default_color"
+
+        apps:layout_constraintTop_toBottomOf="@id/officialLogo"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_marginVertical="7dp"
-        apps:layout_constraintTop_toBottomOf="@id/officialLogo">
+        apps:layout_constraintTop_toBottomOf="@id/loadingView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/homepageScrollingContentView"
@@ -132,7 +148,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/featuredPostsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="259dp"
+                android:layout_height="271dp"
                 android:padding="3dp"
                 android:scrollbars="none"
                 android:requiresFadingEdge="horizontal"
@@ -141,20 +157,29 @@
 
                 apps:layout_constraintTop_toBottomOf="@id/featuredPostsTextView"/>
 
-            <net.geeksempire.loadingspin.SpinKitView
-                android:id="@+id/loadingView"
-                android:layout_width="57dp"
-                android:layout_height="57dp"
-                android:padding="13dp"
-                android:rotation="45"
-                android:background="@android:color/transparent"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/newestPostsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="7dp"
+                android:paddingHorizontal="7dp"
+                android:gravity="center_vertical"
+                android:text="@string/newestPostsText"
+                android:textSize="23sp"
+                android:textColor="@color/darker"
+                android:fontFamily="@font/persian_sans"
 
-                apps:SpinKit_Style="CubeGrid"
-                apps:SpinKit_Color="@color/default_color"
+                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
 
-                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"
-                apps:layout_constraintStart_toStartOf="parent"
-                apps:layout_constraintEnd_toEndOf="parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newestPostsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="177dp"
+                android:padding="3dp"
+                android:scrollbars="none"
+
+                apps:layout_constraintTop_toBottomOf="@id/newestPostsTextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
