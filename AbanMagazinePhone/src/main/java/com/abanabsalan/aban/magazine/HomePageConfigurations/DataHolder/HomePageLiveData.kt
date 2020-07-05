@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 2:33 PM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 1:12 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,8 +43,6 @@ class HomePageLiveData : ViewModel() {
 
     fun prepareRawDataToRenderForNewestPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
 
-        println(">>>>> 1")
-
         controlLoadingView.postValue(true)
 
         val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
@@ -70,8 +68,6 @@ class HomePageLiveData : ViewModel() {
     }
 
     fun prepareRawDataToRenderForCategories(categoriesJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
-
-        println(">>>>> 2")
 
         controlLoadingView.postValue(true)
 
@@ -99,8 +95,6 @@ class HomePageLiveData : ViewModel() {
     }
 
     fun prepareRawDataToRenderForSpecificPosts(featuredPostsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
-
-        println(">>>>> 3")
 
         controlLoadingView.postValue(true)
 

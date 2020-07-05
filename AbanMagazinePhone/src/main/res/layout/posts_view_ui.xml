@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/27/20 12:45 PM
-  ~ Last modified 6/27/20 12:23 PM
+  ~ Created by Elias Fazel on 7/5/20 3:47 PM
+  ~ Last modified 7/5/20 3:22 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -125,9 +125,11 @@
 
         apps:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="1dp"
+            android:paddingBottom="77dp"
             android:background="@android:color/transparent"
 
             apps:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -143,7 +145,7 @@
 
                 apps:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 

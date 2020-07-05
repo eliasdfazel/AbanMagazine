@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 2:03 PM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 1:38 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +24,7 @@ import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
@@ -68,11 +70,13 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         networkConnectionListener.networkConnectionListenerInterface = this@HomePage
 
-        val primaryRecyclerViewLayoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
-        homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = primaryRecyclerViewLayoutManager
+        homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
 
         homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+
         homePageViewBinding.featuredPostsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+
+        homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
 
         val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
@@ -80,14 +84,18 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
+        val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+
         homePageViewBinding.root.post {
 
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
 
-                    specificCategoryAdapter.postsItemData.clear()
-                    specificCategoryAdapter.postsItemData.addAll(it)
+                    homePageViewBinding.featuredPostsTextView.visibility = View.VISIBLE
+
+                    specificCategoryAdapter.specificCategoryPostsItemData.clear()
+                    specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
 
                     homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
 
@@ -101,7 +109,12 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                 if (it.isNotEmpty()) {
 
+                    homePageViewBinding.newestPostsTextView.visibility = View.VISIBLE
 
+                    newestPostsAdapter.newestPostsItemData.clear()
+                    newestPostsAdapter.newestPostsItemData.addAll(it)
+
+                    homePageViewBinding.newestPostsRecyclerView.adapter = newestPostsAdapter
 
                 }
 

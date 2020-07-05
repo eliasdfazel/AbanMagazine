@@ -2,13 +2,13 @@
  * Copyright © 2020 By Geeks Empire.
  *
  * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 3:47 PM
+ * Last modified 7/5/20 3:11 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory
+package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts
 
 import android.graphics.drawable.Drawable
 import android.text.Html
@@ -28,21 +28,21 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
-class SpecificCategoryAdapter (private val context: HomePage, private val themeLightDark: Int): RecyclerView.Adapter<SpecificCategoryViewHolder>() {
+class NewestPostsAdapter (private val context: HomePage, private val themeLightDark: Int): RecyclerView.Adapter<NewestPostsViewHolder>() {
 
-    val specificCategoryPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+    val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SpecificCategoryViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): NewestPostsViewHolder {
 
-        return SpecificCategoryViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_specific_category_item, viewGroup, false))
+        return NewestPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_newest_posts_item, viewGroup, false))
     }
 
     override fun getItemCount(): Int {
 
-        return specificCategoryPostsItemData.size
+        return newestPostsItemData.size
     }
 
-    override fun onBindViewHolder(specificCategoryViewHolder: SpecificCategoryViewHolder, position: Int) {
+    override fun onBindViewHolder(newestPostsViewHolder: NewestPostsViewHolder, position: Int) {
 
         when (themeLightDark) {
             ThemeType.ThemeLight -> {
@@ -64,7 +64,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
             .error(drawableError)
 
         Glide.with(context)
-            .load(specificCategoryPostsItemData[position].postFeaturedImage)
+            .load(newestPostsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .listener(object : RequestListener<Drawable> {
@@ -77,7 +77,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
                     context.runOnUiThread {
-                        specificCategoryViewHolder.postFeatureImageView.setImageDrawable(resource)
+                        newestPostsViewHolder.postFeatureImageView.setImageDrawable(resource)
                     }
 
                     return false
@@ -86,16 +86,15 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
             })
             .submit()
 
-        specificCategoryViewHolder.postTitleView.text = Html.fromHtml(specificCategoryPostsItemData[position].postTitle)
-        specificCategoryViewHolder.postExcerptView.text = Html.fromHtml(specificCategoryPostsItemData[position].postExcerpt)
+        newestPostsViewHolder.postTitleView.text = Html.fromHtml(newestPostsItemData[position].postTitle)
 
-        specificCategoryViewHolder.rootViewItem.setOnClickListener {
+        newestPostsViewHolder.rootViewItem.setOnClickListener {
 
             PostView.show(
                 context = context,
-                postFeaturedImage = specificCategoryPostsItemData[position].postFeaturedImage,
-                postTitle = specificCategoryPostsItemData[position].postTitle,
-                postContent = specificCategoryPostsItemData[position].postContent
+                postFeaturedImage = newestPostsItemData[position].postFeaturedImage,
+                postTitle = newestPostsItemData[position].postTitle,
+                postContent = newestPostsItemData[position].postContent
             )
 
         }

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/4/20 4:24 PM
-  ~ Last modified 7/4/20 4:04 PM
+  ~ Created by Elias Fazel on 7/5/20 3:47 PM
+  ~ Last modified 7/5/20 1:41 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -55,6 +55,7 @@
         android:layout_height="101dp"
         android:paddingHorizontal="5dp"
         android:paddingVertical="3dp"
+        android:lines="4"
         android:ellipsize="end"
         android:justificationMode="inter_word"
         android:textSize="13sp"

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 2:25 PM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 2:38 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,7 +60,7 @@ data class PostsItemData (var postLink: String,
                           var postPublishDate: String)
 
 data class PostItemParagraph(var paragraphText: String)
-data class PostItemImage(var imageLink: String )
+data class PostItemImage(var imageLink: String)
 data class PostItemTextLink(var linkText: String)
 data class PostItemIFrame(var iFrameContent: String)
 

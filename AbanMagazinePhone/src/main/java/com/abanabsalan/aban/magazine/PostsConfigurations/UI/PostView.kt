@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 9:31 AM
- * Last modified 7/3/20 9:08 AM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 2:51 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,9 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI
 
+import android.app.ActivityOptions
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +20,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
 import com.google.android.material.appbar.AppBarLayout
@@ -34,15 +39,34 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
+    companion object {
+
+        fun show(context: Context, postFeaturedImage: String, postTitle: String, postContent: String) {
+
+            Intent(context, PostView::class.java).apply {
+                putExtra(PostsDataParameters.PostParameters.PostFeaturedImage, postFeaturedImage)
+
+                putExtra(PostsDataParameters.PostParameters.PostTitle, postTitle)
+                putExtra(PostsDataParameters.PostParameters.PostContent, postContent)
+
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this@apply,
+                    ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, R.anim.fade_out).toBundle())
+            }
+
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
 
-        val featureImageLink = intent.getStringExtra("PostFeatureImageLink")
-        val postTitle = intent.getStringExtra("PostTitle")
+        val featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
+        val postTitle = intent.getStringExtra(PostsDataParameters.PostParameters.PostTitle)
 
-        val rawPostContent = intent.getStringExtra("RawPostContent")
+        val rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
 
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager
@@ -80,6 +104,13 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
     override fun onPause() {
         super.onPause()
+    }
+
+    override fun onBackPressed() {
+
+        this@PostView.finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
     }
 
     override fun onSwipeGesture(gestureConstants: GestureConstants, downMotionEvent: MotionEvent, moveMotionEvent: MotionEvent, initVelocityX: Float, initVelocityY: Float) {

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 2:29 PM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 3:47 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -101,22 +101,17 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
 
-
         when (singlePostItemsData[position].dataType) {
 
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
-                viewHolder as PostViewParagraphAdapterViewHolder
-
                 singlePostItemsData[position].postItemParagraph?.let {
 
-                    viewHolder.postParagraph.text = Html.fromHtml(it.paragraphText)
+                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText)
                 }
 
             }
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
-
-                viewHolder as PostViewImageAdapterViewHolder
 
                 singlePostItemsData[position].postItemImage?.let {
 
@@ -135,17 +130,17 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                             override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
 
-                                return true
+                                return false
                             }
 
                             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
                                 postViewContext.runOnUiThread {
-                                    viewHolder.postImage.setImageDrawable(resource)
-                                    viewHolder.postImageLoading.visibility = View.GONE
+                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.setImageDrawable(resource)
+                                    (viewHolder as PostViewImageAdapterViewHolder).postImageLoading.visibility = View.GONE
                                 }
 
-                                return true
+                                return false
                             }
 
                         })
@@ -156,12 +151,19 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             }
             PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
+                singlePostItemsData[position].postItemTextLink?.let {
 
+                    (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.text = Html.fromHtml(it.linkText)
+                }
 
             }
             PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
 
+                singlePostItemsData[position].postItemIFrame?.let {
 
+                    (viewHolder as PostViewIFrameAdapterViewHolder).postIFrame.settings.javaScriptEnabled = true
+                    (viewHolder as PostViewIFrameAdapterViewHolder).postIFrame.loadData(it.iFrameContent, "text/html", "UTF-8")
+                }
 
             }
             else -> {

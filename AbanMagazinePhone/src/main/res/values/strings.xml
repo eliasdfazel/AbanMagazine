@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/3/20 2:38 PM
-  ~ Last modified 7/3/20 2:30 PM
+  ~ Created by Elias Fazel on 7/5/20 3:47 PM
+  ~ Last modified 7/5/20 1:47 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@
 
     <string name="featuredPostsText">Featured Posts</string>
     <string name="newestPostsText">Newest Posts</string>
+    <string name="forYouPostsText">Recommended For You</string>
 
     <string name="turnOnText">Turn On</string>
 

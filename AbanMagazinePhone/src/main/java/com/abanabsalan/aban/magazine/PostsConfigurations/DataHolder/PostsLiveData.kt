@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:04 PM
- * Last modified 7/2/20 2:03 PM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 3:39 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,15 +49,22 @@ class PostsLiveData : ViewModel() {
             } else if (element.`is`("a")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Link ${element}")
 
-
+                singlePostItemsData.add(
+                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostTextLink,
+                        null,
+                        null,
+                        PostItemTextLink("${element}"),
+                        null
+                    )
+                )
 
             } else if (element.`is`("img")) {
-                Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src")}")
+                Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src").replace(" ", "")}")
 
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostImage,
                         null,
-                        PostItemImage(element.attr("src")),
+                        PostItemImage(element.attr("src").replace(" ", "")),
                         null,
                         null
                     )
@@ -66,6 +73,14 @@ class PostsLiveData : ViewModel() {
             } else if (element.`is`("iframe")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "iFrame ${element}")
 
+                singlePostItemsData.add(
+                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostIFrame,
+                        null,
+                        null,
+                        null,
+                        PostItemIFrame("${element}")
+                    )
+                )
 
             }
 

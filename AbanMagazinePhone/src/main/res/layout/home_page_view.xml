@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/4/20 4:24 PM
-  ~ Last modified 7/4/20 4:14 PM
+  ~ Created by Elias Fazel on 7/5/20 3:47 PM
+  ~ Last modified 7/5/20 1:47 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -107,7 +107,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/homepageScrollingContentView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp"
+            android:paddingBottom="177dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/primaryCategoriesRecyclerView"
@@ -142,13 +144,14 @@
                 android:textSize="23sp"
                 android:textColor="@color/darker"
                 android:fontFamily="@font/persian_sans"
+                android:visibility="invisible"
 
                 apps:layout_constraintTop_toBottomOf="@id/secondaryCategoriesRecyclerView"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/featuredPostsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="271dp"
+                android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:scrollbars="none"
                 android:requiresFadingEdge="horizontal"
@@ -169,17 +172,34 @@
                 android:textSize="23sp"
                 android:textColor="@color/darker"
                 android:fontFamily="@font/persian_sans"
+                android:visibility="invisible"
 
                 apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newestPostsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="177dp"
+                android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:scrollbars="none"
 
                 apps:layout_constraintTop_toBottomOf="@id/newestPostsTextView"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/forYouPostsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="7dp"
+                android:paddingHorizontal="7dp"
+                android:gravity="center_vertical"
+                android:text="@string/forYouPostsText"
+                android:textSize="23sp"
+                android:textColor="@color/darker"
+                android:fontFamily="@font/persian_sans"
+                android:visibility="invisible"
+
+                apps:layout_constraintTop_toBottomOf="@id/newestPostsRecyclerView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

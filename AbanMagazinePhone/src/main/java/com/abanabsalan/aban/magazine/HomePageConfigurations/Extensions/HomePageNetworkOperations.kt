@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 2:02 PM
+ * Created by Elias Fazel on 7/5/20 3:47 PM
+ * Last modified 7/5/20 1:31 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -57,7 +57,7 @@ fun HomePage.startNetworkOperations() {
         newestPostsRetrieval.start(
             PostsEndpointsFactory(
                 numberOfPageInPostsList = 1,
-                amountOfPostsToGet = 3,
+                amountOfPostsToGet = 6,
                 sortByType = "date",
                 sortBy = "desc"
             ),
