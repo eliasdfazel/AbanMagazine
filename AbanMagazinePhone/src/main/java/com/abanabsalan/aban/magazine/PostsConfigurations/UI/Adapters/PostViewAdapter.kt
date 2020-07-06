@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 3:47 PM
+ * Created by Elias Fazel on 7/5/20 4:39 PM
+ * Last modified 7/5/20 4:39 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewTextLinkAdapterViewHolder
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -33,6 +35,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 
 
 class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -108,6 +112,13 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 singlePostItemsData[position].postItemParagraph?.let {
 
                     (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText)
+
+                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setOnClickListener {
+
+
+
+                    }
+
                 }
 
             }
@@ -124,7 +135,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                     Glide.with(postViewContext)
                         .load(it.imageLink)
                         .apply(requestOptions)
-                        .transform(CenterInside(),RoundedCorners(13))
+                        .transform(CenterInside(),RoundedCorners(11))
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .listener(object : RequestListener<Drawable> {
 
@@ -154,6 +165,23 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 singlePostItemsData[position].postItemTextLink?.let {
 
                     (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.text = Html.fromHtml(it.linkText)
+
+                    val linkContent: Document = Jsoup.parse(it.linkText)
+
+                    (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.setOnClickListener {
+
+                        linkContent.select("a").first().attr("abs:href")?.let { aLink ->
+
+                            Intent(postViewContext, BuiltInWebView::class.java).apply {
+                                putExtra("Link", aLink)
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                postViewContext.startActivity(this@apply)
+                            }
+
+                        }
+
+                    }
+
                 }
 
             }

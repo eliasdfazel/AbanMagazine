@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 4:39 PM
- * Last modified 7/2/20 4:08 PM
+ * Created by Elias Fazel on 7/5/20 4:39 PM
+ * Last modified 7/5/20 4:36 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,19 +19,19 @@ fun columnCount(context: Context, itemWidth: Int): Int {
     return (displayX(context) / DpToPixel(context, itemWidth.toFloat())).toInt()
 }
 
-fun DpToPixel(context:Context, dp: Float): Float {
+fun DpToPixel(context: Context, dp: Float): Float {
     val resources: Resources = context.resources
     val metrics = resources.displayMetrics
     return dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
 }
 
-fun PixelToDp(context:Context, px: Float): Float {
+fun PixelToDp(context: Context, px: Float): Float {
     val resources: Resources = context.resources
     val metrics = resources.displayMetrics
     return px / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
 }
 
-fun DpToInteger(context:Context, dp: Int): Int {
+fun DpToInteger(context: Context, dp: Int): Int {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         dp.toFloat(),
@@ -39,10 +39,21 @@ fun DpToInteger(context:Context, dp: Int): Int {
     ).toInt()
 }
 
-fun displayX(context:Context): Int {
+fun displayX(context: Context): Int {
     return context.resources.displayMetrics.widthPixels
 }
 
-fun displayY(context:Context): Int {
+fun displayY(context: Context): Int {
     return context.resources.displayMetrics.heightPixels
+}
+
+fun statusBarHeight(context: Context) : Int {
+
+    var result = 0
+    val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
+    if (resourceId > 0) {
+        result = context.resources.getDimensionPixelSize(resourceId)
+    }
+
+    return result
 }
