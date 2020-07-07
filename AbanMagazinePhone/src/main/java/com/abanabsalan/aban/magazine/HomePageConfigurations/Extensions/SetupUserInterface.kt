@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/7/20 1:28 PM
- * Last modified 7/7/20 1:25 PM
+ * Created by Elias Fazel on 7/7/20 1:40 PM
+ * Last modified 7/7/20 1:30 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 
 fun HomePage.setupUserInterface() {
 
-    homePageViewBinding.nestedScrollView.setPadding(0, homePageViewBinding.homepageTopBar.height, 0, 0)
+    homePageViewBinding.homepageScrollingContentView.setPadding(0, homePageViewBinding.homepageTopBar.height, 0, 0)
 
     when (overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {
