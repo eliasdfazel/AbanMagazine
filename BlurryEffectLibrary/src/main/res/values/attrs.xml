@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 7/7/20 3:42 PM
+  ~ Last modified 5/24/19 12:45 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<resources>
+	<declare-styleable name="RealtimeBlurView">
+		<attr name="realtimeBlurRadius" format="dimension"/>
+		<attr name="realtimeDownsampleFactor" format="float"/>
+		<attr name="realtimeOverlayColor" format="color"/>
+	</declare-styleable>
+</resources>

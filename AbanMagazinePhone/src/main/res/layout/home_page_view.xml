@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/7/20 1:40 PM
-  ~ Last modified 7/7/20 1:31 PM
+  ~ Created by Elias Fazel on 7/7/20 3:42 PM
+  ~ Last modified 7/7/20 3:37 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@
     android:background="@color/light"
     tools:context=".HomePageConfigurations.UI.HomePage">
 
+    <!-- Content  -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
@@ -142,15 +143,23 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Top Bar  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homepageTopBar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/home_page_top_bar_background"
 
         apps:layout_constraintTop_toTopOf="parent"
 
         apps:layout_constraintHeight_percent="0.079" >
+
+        <net.geeksempire.blurry.effect.view.RealtimeBlurView
+            android:id="@+id/blurView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            apps:realtimeBlurRadius="20dp"
+            apps:realtimeOverlayColor="@color/default_color_light_transparent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/officialLogo"
@@ -211,6 +220,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Bottom Bar  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homepageBottomBar"
         android:layout_width="match_parent"

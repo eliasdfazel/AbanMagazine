@@ -1,12 +1,13 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 3:34 PM
- * Last modified 7/4/20 2:48 PM
+ * Created by Elias Fazel on 7/7/20 3:42 PM
+ * Last modified 7/7/20 2:32 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+include ':BlurryEffectLibrary'
 include ':ShapesCustomImageViewLibrary'
 include ':LoadingSpin'
 
