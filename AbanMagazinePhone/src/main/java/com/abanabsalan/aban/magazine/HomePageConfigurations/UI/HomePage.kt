@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 1:38 PM
+ * Created by Elias Fazel on 7/7/20 1:28 PM
+ * Last modified 7/7/20 1:23 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,8 +60,6 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
 
-        setupUserInterface()
-
         (application as AbanMagazinePhoneApplication)
             .dependencyGraph
             .subDependencyGraph()
@@ -87,6 +85,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme.checkThemeLightDark())
 
         homePageViewBinding.root.post {
+
+            setupUserInterface()
 
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
 
@@ -126,7 +126,6 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                 if (it.isNotEmpty()) {
 
-                    /*split by number of columnCount for primary and rest of list for secondary*/
                     val primaryCategoriesData = it.slice(IntRange(0, (columnCount(applicationContext, 115) - 1)))
 
                     primaryCategoryAdapter.categoriesItemData.clear()
@@ -149,11 +148,17 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             homePageLiveData.controlLoadingView.observe(this@HomePage, Observer {
 
+                if (it) {
 
+                    homePageViewBinding.loadingView.visibility = View.VISIBLE
+
+                } else {
+
+                    homePageViewBinding.loadingView.visibility = View.INVISIBLE
+
+                }
 
             })
-
-            startNetworkOperations()
 
         }
 

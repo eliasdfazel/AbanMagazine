@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 2:46 PM
- * Last modified 7/4/20 1:55 PM
+ * Created by Elias Fazel on 7/7/20 1:28 PM
+ * Last modified 7/7/20 1:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,7 +22,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.async
 import org.json.JSONArray
 
 object EnqueueEndPointQuery {
@@ -33,7 +33,7 @@ object EnqueueEndPointQuery {
 class SpecificCategoryRetrieval (private val context: Context){
 
     fun start(specificCategoryEndpointsFactory: SpecificCategoryEndpointsFactory,
-              jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).launch {
+              jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
 
         val specificCategoryEndpoints: SpecificCategoryEndpoints = SpecificCategoryEndpoints(specificCategoryEndpointsFactory)
 
