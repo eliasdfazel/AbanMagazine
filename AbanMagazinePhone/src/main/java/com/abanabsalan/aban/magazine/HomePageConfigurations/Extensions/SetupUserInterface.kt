@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/7/20 3:42 PM
- * Last modified 7/7/20 3:38 PM
+ * Created by Elias Fazel on 7/7/20 3:57 PM
+ * Last modified 7/7/20 3:55 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,14 +10,22 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions
 
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 
 
 fun HomePage.setupUserInterface() {
 
-    homePageViewBinding.homepageScrollingContentView.setPadding(0, homePageViewBinding.homepageTopBar.height, 0, 0)
+    val topBarLayoutParams = homePageViewBinding.homepageTopBar.layoutParams as ConstraintLayout.LayoutParams
+    topBarLayoutParams.height = homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext)
+    homePageViewBinding.homepageTopBar.layoutParams = topBarLayoutParams
+
+    homePageViewBinding.homepageScrollingContentView.setPadding(0,
+        homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext),
+        0, 0)
 
     when (overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {

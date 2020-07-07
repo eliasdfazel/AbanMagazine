@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/5/20 4:39 PM
-  ~ Last modified 7/5/20 4:33 PM
+  ~ Created by Elias Fazel on 7/7/20 3:57 PM
+  ~ Last modified 7/7/20 3:43 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -35,7 +35,7 @@
         <item name="android:statusBarColor">@color/default_color_light</item>
         <item name="android:navigationBarColor">@color/default_color_light</item>
 
-        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
 
         <item name="android:windowBackground">@color/light</item>
