@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 6/27/20 11:26 AM
-  ~ Last modified 6/27/20 10:15 AM
+  ~ Created by Elias Fazel on 7/9/20 11:38 AM
+  ~ Last modified 7/9/20 11:32 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -14,17 +14,34 @@
     <item
         android:drawable="@color/default_color" />
 
+    <item
+        android:gravity="center">
+
+        <shape
+            android:shape="oval">
+
+            <gradient
+                android:gradientRadius="43%"
+                android:type="radial"
+                android:startColor="@color/dark"
+                android:centerColor="@color/dark_transparent"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/icon_aban_magezine_splash" />
+            android:src="@drawable/official_business_logo" />
     </item>
 
     <item
-        android:bottom="37dp">
+        android:height="58dp"
+        android:width="169dp"
+        android:bottom="51dp"
+        android:gravity="bottom|center_horizontal" >
         <bitmap
-            android:gravity="bottom|center_horizontal"
-            android:src="@drawable/icon_aban_magezine_splash" />
+            android:src="@drawable/official_website_logo" />
     </item>
 
 </layer-list>
