@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/5/20 4:39 PM
-  ~ Last modified 7/5/20 4:11 PM
+  ~ Created by Elias Fazel on 7/9/20 10:37 AM
+  ~ Last modified 7/9/20 10:36 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -33,6 +33,13 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/icon_notification"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/default_color"/>
 
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
@@ -73,6 +80,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/GeeksEmpire.Material.WebView"
             android:name=".WebView.BuiltInWebView" />
+
+        <service
+            android:name=".Utils.RemoteTask.CloudNotificationHandler">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
     </application>
 
