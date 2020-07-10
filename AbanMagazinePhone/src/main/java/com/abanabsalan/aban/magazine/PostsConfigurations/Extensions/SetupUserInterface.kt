@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 3:11 PM
+ * Created by Elias Fazel on 7/10/20 10:03 AM
+ * Last modified 7/10/20 9:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Extensions
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.text.Html
@@ -39,6 +40,13 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
     window.statusBarColor = Color.TRANSPARENT
+
+    val animatable = getDrawable(R.drawable.animated_post_menu_vector_icon) as Animatable
+    animatable.start()
+
+    Glide.with(applicationContext)
+        .load(animatable as Drawable)
+        .into(postsViewUiBinding.postMenuIcon)
 
     when (overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {
@@ -74,10 +82,15 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
             DpToInteger(applicationContext, 11)
         )
 
-        val coordinatorLayoutLayoutParams = postsViewUiBinding.postFavoriteItButton.layoutParams as CoordinatorLayout.LayoutParams
-        coordinatorLayoutLayoutParams.anchorGravity = Gravity.BOTTOM or Gravity.START
-        coordinatorLayoutLayoutParams.marginEnd = DpToInteger(applicationContext, 11)
-        postsViewUiBinding.postFavoriteItButton.layoutParams = coordinatorLayoutLayoutParams
+        val postMenuButtonCoordinatorLayoutLayoutParams = postsViewUiBinding.postMenuButton.layoutParams as CoordinatorLayout.LayoutParams
+        postMenuButtonCoordinatorLayoutLayoutParams.anchorGravity = Gravity.BOTTOM or Gravity.START
+        postMenuButtonCoordinatorLayoutLayoutParams.marginEnd = DpToInteger(applicationContext, 11)
+        postsViewUiBinding.postMenuButton.layoutParams = postMenuButtonCoordinatorLayoutLayoutParams
+
+        val postMenuIconCoordinatorLayoutLayoutParams = postsViewUiBinding.postMenuIcon.layoutParams as CoordinatorLayout.LayoutParams
+        postMenuIconCoordinatorLayoutLayoutParams.anchorGravity = Gravity.BOTTOM or Gravity.START
+        postMenuIconCoordinatorLayoutLayoutParams.marginEnd = DpToInteger(applicationContext, 11)
+        postsViewUiBinding.postMenuIcon.layoutParams = postMenuIconCoordinatorLayoutLayoutParams
 
     } else {
 
@@ -88,10 +101,16 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
             DpToInteger(applicationContext, 11)
         )
 
-        val coordinatorLayoutLayoutParams = postsViewUiBinding.postFavoriteItButton.layoutParams as CoordinatorLayout.LayoutParams
-        coordinatorLayoutLayoutParams.anchorGravity = Gravity.BOTTOM or Gravity.END
-        coordinatorLayoutLayoutParams.marginEnd = DpToInteger(applicationContext, 11)
-        postsViewUiBinding.postFavoriteItButton.layoutParams = coordinatorLayoutLayoutParams
+        val postMenuButtonCoordinatorLayoutLayoutParams = postsViewUiBinding.postMenuButton.layoutParams as CoordinatorLayout.LayoutParams
+        postMenuButtonCoordinatorLayoutLayoutParams.anchorGravity = Gravity.BOTTOM or Gravity.END
+        postMenuButtonCoordinatorLayoutLayoutParams.marginEnd = DpToInteger(applicationContext, 11)
+        postsViewUiBinding.postMenuButton.layoutParams = postMenuButtonCoordinatorLayoutLayoutParams
+
+        val postMenuIconCoordinatorLayoutLayoutParams = postsViewUiBinding.postMenuIcon.layoutParams as CoordinatorLayout.LayoutParams
+        postMenuIconCoordinatorLayoutLayoutParams.anchorGravity = Gravity.BOTTOM or Gravity.END
+        postMenuIconCoordinatorLayoutLayoutParams.marginEnd = DpToInteger(applicationContext, 11)
+        postsViewUiBinding.postMenuIcon.layoutParams = postMenuIconCoordinatorLayoutLayoutParams
+
     }
 
     Glide.with(this@setupUserInterface)
@@ -120,8 +139,8 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
                         postsViewUiBinding.collapsingPostTopBar.contentScrim = GradientDrawable(
                             GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray())
 
-                        postsViewUiBinding.postFavoriteItButton.backgroundTintList = ColorStateList.valueOf(vibrantColor)
-                        postsViewUiBinding.postFavoriteItButton.rippleColor = ColorStateList.valueOf(dominantColor)
+                        postsViewUiBinding.postMenuButton.backgroundTintList = ColorStateList.valueOf(vibrantColor)
+                        postsViewUiBinding.postMenuButton.rippleColor = ColorStateList.valueOf(dominantColor)
 
                         if (isColorDark(dominantColor) && isColorDark(vibrantColor)) {
                             Log.d(this@setupUserInterface.javaClass.simpleName, "Dark Extracted Colors")

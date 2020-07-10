@@ -1,0 +1,29 @@
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 7/10/20 10:03 AM
+  ~ Last modified 7/10/20 9:59 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<animated-vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:drawable="@drawable/post_menu_vector_icon">
+
+  <target
+    android:name="center_line_square_one"
+    android:animation="@animator/line_animator"/>
+  <target
+    android:name="center_line_square_two"
+    android:animation="@animator/line_animator"/>
+  <target
+    android:name="center_line_square_three"
+    android:animation="@animator/line_animator"/>
+
+  <target
+      android:name="center_line_circle"
+      android:animation="@animator/line_animator_reverse"/>
+
+</animated-vector>

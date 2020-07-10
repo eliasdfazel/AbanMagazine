@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/5/20 3:47 PM
-  ~ Last modified 7/5/20 3:22 PM
+  ~ Created by Elias Fazel on 7/10/20 10:03 AM
+  ~ Last modified 7/10/20 10:00 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -92,21 +92,25 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/postFavoriteItButton"
+        android:id="@+id/postMenuButton"
         android:layout_width="79dp"
         android:layout_height="59dp"
         android:layout_marginStart="11dp"
 
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
         apps:cornerRadius="51dp"
         apps:elevation="23dp"
-        apps:icon="@drawable/icon_aban_magezine_splash"
-        apps:iconGravity="textStart"
-        apps:iconPadding="0dp"
-        apps:iconSize="43dp"
+
+        apps:layout_anchor="@id/postTopBar"
+        apps:layout_anchorGravity="bottom|center_vertical"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/postMenuIcon"
+        android:layout_width="79dp"
+        android:layout_height="59dp"
+        android:elevation="10dp"
+        android:layout_marginStart="11dp"
+        android:padding="11dp"
+        android:src="@drawable/post_menu_vector_icon"
 
         apps:layout_anchor="@id/postTopBar"
         apps:layout_anchorGravity="bottom|center_vertical"/>
