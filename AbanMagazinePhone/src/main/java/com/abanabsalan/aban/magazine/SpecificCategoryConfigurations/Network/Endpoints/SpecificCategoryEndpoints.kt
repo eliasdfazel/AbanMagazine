@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/4/20 11:25 AM
- * Last modified 7/4/20 11:05 AM
+ * Created by Elias Fazel on 7/10/20 12:53 PM
+ * Last modified 7/10/20 11:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,13 +10,14 @@
 
 package com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints
 
+import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.Network.GeneralEndpoints
 
 data class SpecificCategoryEndpointsFactory (
     /**
      * Number Of Page In List Of All Posts
      **/
-    var numberOfPageInPostsList: Int = 1,
+    var numberOfPageInPostsList: Int = PageCounter.PageNumberToLoad,
     /**
      * Amount Of Posts Per Each Page
      **/

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/7/20 1:28 PM
- * Last modified 7/7/20 1:23 PM
+ * Created by Elias Fazel on 7/10/20 12:53 PM
+ * Last modified 7/10/20 12:53 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -23,11 +24,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUserInterface
+import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startFeaturedPostsLoadMoreListener
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
+import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startSpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
+import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
@@ -72,7 +76,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
 
-        homePageViewBinding.featuredPostsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        val specificCategoryLinearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        homePageViewBinding.featuredPostsRecyclerView.layoutManager = specificCategoryLinearLayoutManager
 
         homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
 
@@ -90,14 +95,33 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
 
-                if (it.isNotEmpty()) {
+                if (!it.isNullOrEmpty()) {
 
                     homePageViewBinding.featuredPostsTextView.visibility = View.VISIBLE
 
-                    specificCategoryAdapter.specificCategoryPostsItemData.clear()
-                    specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
+                    if (specificCategoryAdapter.specificCategoryPostsItemData.isEmpty()) {
 
-                    homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
+                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
+
+                        homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
+
+                        Handler().postDelayed({
+                            PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
+
+                            startSpecificCategoryRetrieval(applicationContext, homePageLiveData, PageCounter.PageNumberToLoad)
+                        }, 777)
+
+                    } else {
+
+                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
+
+                        specificCategoryAdapter.notifyDataSetChanged()
+
+                    }
+
+                } else {
+
+
 
                 }
 
@@ -160,13 +184,11 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             })
 
+            startFeaturedPostsLoadMoreListener(homePageLiveData, specificCategoryAdapter)
+
+
+
         }
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
 
     }
 

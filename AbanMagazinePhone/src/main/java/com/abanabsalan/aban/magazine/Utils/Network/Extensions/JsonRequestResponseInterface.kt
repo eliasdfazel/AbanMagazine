@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 2:41 PM
- * Last modified 7/2/20 2:28 PM
+ * Created by Elias Fazel on 7/10/20 12:53 PM
+ * Last modified 7/10/20 12:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,5 +24,13 @@ interface JsonRequestResponseInterface {
 
     }
 
-    fun jsonRequestResponseFailureHandler(jsonError: String?)
+    fun jsonRequestResponseFailureHandler(jsonError: String?) {
+        Log.d(this@JsonRequestResponseInterface.javaClass.simpleName, jsonError.toString())
+
+    }
+
+    fun jsonRequestResponseFailureHandler(networkError: Int?) {
+        Log.d(this@JsonRequestResponseInterface.javaClass.simpleName, networkError.toString())
+
+    }
 }
