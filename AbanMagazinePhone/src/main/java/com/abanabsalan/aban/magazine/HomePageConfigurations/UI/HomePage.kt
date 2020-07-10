@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 1:10 PM
- * Last modified 7/10/20 1:06 PM
+ * Created by Elias Fazel on 7/10/20 2:27 PM
+ * Last modified 7/10/20 2:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,6 +32,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPo
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
@@ -126,6 +128,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                 } else {
 
                     homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
+
+                    Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
 
                 }
 

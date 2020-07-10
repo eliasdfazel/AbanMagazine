@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 4:39 PM
- * Last modified 7/5/20 4:36 PM
+ * Created by Elias Fazel on 7/10/20 2:27 PM
+ * Last modified 7/10/20 2:25 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,11 +49,24 @@ fun displayY(context: Context): Int {
 
 fun statusBarHeight(context: Context) : Int {
 
-    var result = 0
+    var statusBarHeight = 0
+
     val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
     if (resourceId > 0) {
-        result = context.resources.getDimensionPixelSize(resourceId)
+        statusBarHeight = context.resources.getDimensionPixelSize(resourceId)
     }
 
-    return result
+    return statusBarHeight
+}
+
+fun navigationBarHeight(context: Context) : Int {
+
+    var navigationBarHeight = 0
+
+    val resourceIdNavigationBar: Int = context.resources.getIdentifier("navigation_bar_height", "dimen", "android")
+    if (resourceIdNavigationBar > 0) {
+        navigationBarHeight = context.resources.getDimensionPixelSize(resourceIdNavigationBar)
+    }
+
+    return navigationBarHeight
 }
