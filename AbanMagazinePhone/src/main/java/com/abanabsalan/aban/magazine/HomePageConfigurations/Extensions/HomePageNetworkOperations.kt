@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 12:53 PM
- * Last modified 7/10/20 12:53 PM
+ * Created by Elias Fazel on 7/10/20 1:10 PM
+ * Last modified 7/10/20 1:04 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
@@ -28,6 +29,7 @@ import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestRespons
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkSettingCallback
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
+import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import javax.net.ssl.HttpsURLConnection
@@ -36,7 +38,7 @@ fun HomePage.startNetworkOperations() {
 
     if (networkCheckpoint.networkConnection()) {
 
-        startSpecificCategoryRetrieval(applicationContext, homePageLiveData, PageCounter.PageNumberToLoad)
+        startSpecificCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
 
         val newestPostsRetrieval: NewestPostsRetrieval = NewestPostsRetrieval(applicationContext)
         newestPostsRetrieval.start(
@@ -123,7 +125,9 @@ fun HomePage.startNetworkOperations() {
 
 }
 
-fun startSpecificCategoryRetrieval(context: Context, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
+fun startSpecificCategoryRetrieval(context: Context, homePageViewBinding: HomePageViewBinding, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
+
+    homePageViewBinding.featuredPostsLoadingView.visibility = View.VISIBLE
 
     val specificCategoryRetrieval: SpecificCategoryRetrieval = SpecificCategoryRetrieval(context)
     specificCategoryRetrieval.start(

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 12:53 PM
- * Last modified 7/10/20 12:21 PM
+ * Created by Elias Fazel on 7/10/20 1:10 PM
+ * Last modified 7/10/20 1:03 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ fun HomePage.startFeaturedPostsLoadMoreListener(homePageLiveData: HomePageLiveDa
 
                     PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
 
-                    startSpecificCategoryRetrieval(applicationContext, homePageLiveData, PageCounter.PageNumberToLoad)
+                    startSpecificCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
 
                 }
                 RecyclerView.SCROLL_STATE_IDLE -> {

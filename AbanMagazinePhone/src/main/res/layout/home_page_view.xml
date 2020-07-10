@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/9/20 11:42 AM
-  ~ Last modified 7/9/20 11:41 AM
+  ~ Created by Elias Fazel on 7/10/20 1:10 PM
+  ~ Last modified 7/10/20 1:09 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="11dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginVertical="9dp"
                 android:paddingHorizontal="7dp"
                 android:gravity="center_vertical"
                 android:text="@string/featuredPostsText"
@@ -81,6 +81,19 @@
                 android:fadingEdgeLength="17dp"
 
                 apps:layout_constraintTop_toBottomOf="@id/featuredPostsTextView"/>
+
+            <net.geeksempire.loadingspin.SpinKitView
+                android:id="@+id/featuredPostsLoadingView"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="11dp"
+
+                apps:layout_constraintEnd_toEndOf="@id/featuredPostsTextView"
+                apps:layout_constraintTop_toTopOf="@id/featuredPostsTextView"
+                apps:layout_constraintBottom_toBottomOf="@id/featuredPostsTextView"
+
+                apps:SpinKit_Style="Pulse"
+                apps:SpinKit_Color="@color/light_pink"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/newestPostsTextView"
@@ -125,8 +138,8 @@
 
             <net.geeksempire.loadingspin.SpinKitView
                 android:id="@+id/loadingView"
-                android:layout_width="71dp"
-                android:layout_height="71dp"
+                android:layout_width="79dp"
+                android:layout_height="79dp"
                 android:padding="13dp"
                 android:rotation="45"
                 android:background="@android:color/transparent"

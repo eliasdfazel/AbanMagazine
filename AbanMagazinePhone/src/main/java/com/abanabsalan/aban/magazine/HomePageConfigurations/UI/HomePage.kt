@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 12:53 PM
- * Last modified 7/10/20 12:53 PM
+ * Created by Elias Fazel on 7/10/20 1:10 PM
+ * Last modified 7/10/20 1:06 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -108,8 +108,10 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                         Handler().postDelayed({
                             PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
 
-                            startSpecificCategoryRetrieval(applicationContext, homePageLiveData, PageCounter.PageNumberToLoad)
+                            startSpecificCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
                         }, 777)
+
+                        homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
                     } else {
 
@@ -117,11 +119,13 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                         specificCategoryAdapter.notifyDataSetChanged()
 
+                        homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
+
                     }
 
                 } else {
 
-
+                    homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
                 }
 
