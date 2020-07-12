@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 1:10 PM
- * Last modified 7/10/20 1:04 PM
+ * Created by Elias Fazel on 7/12/20 12:18 PM
+ * Last modified 7/12/20 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,7 @@ import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Oper
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkSettingCallback
+import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
@@ -38,8 +39,10 @@ fun HomePage.startNetworkOperations() {
 
     if (networkCheckpoint.networkConnection()) {
 
-        startSpecificCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+        /*Load Featured Posts*/
+        startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
 
+        /*Load Newest Posts*/
         val newestPostsRetrieval: NewestPostsRetrieval = NewestPostsRetrieval(applicationContext)
         newestPostsRetrieval.start(
             PostsEndpointsFactory(
@@ -64,6 +67,7 @@ fun HomePage.startNetworkOperations() {
 
             })
 
+        /*Load Categories*/
         val categoriesRetrieval: CategoriesRetrieval = CategoriesRetrieval(applicationContext)
         categoriesRetrieval.start(
             CategoriesEndpointsFactory(
@@ -71,7 +75,6 @@ fun HomePage.startNetworkOperations() {
                 amountOfCategoriesToGet = 100,
                 sortByType = "count"
             ),
-
             object : JsonRequestResponseInterface {
 
                 override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
@@ -125,7 +128,10 @@ fun HomePage.startNetworkOperations() {
 
 }
 
-fun startSpecificCategoryRetrieval(context: Context, homePageViewBinding: HomePageViewBinding, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
+/**
+ * Load All Posts From Featured Post Category
+ **/
+fun startFeaturedPostCategoryRetrieval(context: Context, homePageViewBinding: HomePageViewBinding, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
 
     homePageViewBinding.featuredPostsLoadingView.visibility = View.VISIBLE
 
@@ -134,7 +140,8 @@ fun startSpecificCategoryRetrieval(context: Context, homePageViewBinding: HomePa
         SpecificCategoryEndpointsFactory(
             numberOfPageInPostsList,
             sortByType = "id",
-            IdOfCategoryToGetPosts = 150 // Featured Posts
+            IdOfCategoryToGetPosts = 150, // Featured Posts
+            amountOfPostsToGet = (columnCount(context, 190) * 2)
         ),
         object : JsonRequestResponseInterface {
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 2:27 PM
- * Last modified 7/10/20 2:14 PM
+ * Created by Elias Fazel on 7/12/20 12:18 PM
+ * Last modified 7/12/20 12:18 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,9 +25,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUserInterface
+import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startFeaturedPostCategoryRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startFeaturedPostsLoadMoreListener
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
-import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startSpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
@@ -95,6 +95,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             setupUserInterface()
 
+            /*Load Featured Posts*/
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
 
                 if (!it.isNullOrEmpty()) {
@@ -110,7 +111,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                         Handler().postDelayed({
                             PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
 
-                            startSpecificCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+                            startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
                         }, 777)
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
@@ -137,6 +138,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             })
 
+            /*Load Newest Posts*/
             homePageLiveData.newestPostsLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
@@ -154,6 +156,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             })
 
+            /*Load Categories*/
             homePageLiveData.categoriesLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
@@ -178,6 +181,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
             })
 
+            /*Progress Loading View*/
             homePageLiveData.controlLoadingView.observe(this@HomePage, Observer {
 
                 if (it) {
@@ -193,8 +197,6 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
             })
 
             startFeaturedPostsLoadMoreListener(homePageLiveData, specificCategoryAdapter)
-
-
 
         }
 
