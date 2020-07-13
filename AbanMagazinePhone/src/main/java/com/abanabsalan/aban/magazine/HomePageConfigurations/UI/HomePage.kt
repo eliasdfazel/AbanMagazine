@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/12/20 12:18 PM
- * Last modified 7/12/20 12:18 PM
+ * Created by Elias Fazel on 7/13/20 11:05 AM
+ * Last modified 7/13/20 11:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,10 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
-import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.setupUserInterface
-import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startFeaturedPostCategoryRetrieval
-import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startFeaturedPostsLoadMoreListener
-import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.startNetworkOperations
+import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
@@ -199,6 +196,13 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
             startFeaturedPostsLoadMoreListener(homePageLiveData, specificCategoryAdapter)
 
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        internetCheckpoint()
 
     }
 

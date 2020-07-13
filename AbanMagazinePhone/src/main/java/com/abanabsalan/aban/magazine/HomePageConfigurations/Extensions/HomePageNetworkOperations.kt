@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/12/20 12:18 PM
- * Last modified 7/12/20 9:24 AM
+ * Created by Elias Fazel on 7/13/20 11:05 AM
+ * Last modified 7/13/20 11:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -98,6 +98,43 @@ fun HomePage.startNetworkOperations() {
         SnackbarBuilder(applicationContext).show (
             rootView = homePageViewBinding.rootView,
             messageText= getString(R.string.noInternetConnectionText),
+            messageDuration = Snackbar.LENGTH_INDEFINITE,
+            actionButtonText = R.string.turnOnText,
+            snackbarActionHandlerInterface = object : SnackbarActionHandlerInterface {
+
+                override fun onActionButtonClicked(snackbar: Snackbar) {
+                    super.onActionButtonClicked(snackbar)
+
+                    if (!networkCheckpoint.networkConnection()) {
+
+                        startActivityForResult(
+                            Intent(Settings.ACTION_WIFI_SETTINGS)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                            NetworkSettingCallback.WifiSetting
+                        )
+
+                    } else {
+
+                        snackbar.dismiss()
+
+                    }
+
+                }
+
+            }
+        )
+
+    }
+
+}
+
+fun HomePage.internetCheckpoint() {
+
+    if (!networkCheckpoint.networkConnection()) {
+
+        SnackbarBuilder(applicationContext).show(
+            rootView = homePageViewBinding.rootView,
+            messageText = getString(R.string.noInternetConnectionText),
             messageDuration = Snackbar.LENGTH_INDEFINITE,
             actionButtonText = R.string.turnOnText,
             snackbarActionHandlerInterface = object : SnackbarActionHandlerInterface {
