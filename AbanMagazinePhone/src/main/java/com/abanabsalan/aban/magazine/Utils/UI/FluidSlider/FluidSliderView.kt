@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 10:52 AM
- * Last modified 7/13/20 10:52 AM
+ * Created by Elias Fazel on 7/13/20 1:51 PM
+ * Last modified 7/13/20 1:47 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -52,7 +52,7 @@ class FluidSlider @JvmOverloads constructor(
     }
 
     private companion object {
-        const val BAR_CORNER_RADIUS = 2
+        const val BAR_CORNER_RADIUS = 51
         const val BAR_VERTICAL_OFFSET = 1.5f
         const val BAR_INNER_HORIZONTAL_OFFSET = 0
 
@@ -211,7 +211,10 @@ class FluidSlider @JvmOverloads constructor(
     inner class OutlineProvider : ViewOutlineProvider() {
         override fun getOutline(v: View?, outline: Outline?) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                val rect = Rect(rectBar.left.toInt(), rectBar.top.toInt(), rectBar.right.toInt(), rectBar.bottom.toInt())
+                val rect = Rect(rectBar.left.toInt(),
+                    rectBar.top.toInt(),
+                    rectBar.right.toInt(),
+                    rectBar.bottom.toInt())
                 outline?.setRoundRect(rect, barCornerRadius)
             }
         }
