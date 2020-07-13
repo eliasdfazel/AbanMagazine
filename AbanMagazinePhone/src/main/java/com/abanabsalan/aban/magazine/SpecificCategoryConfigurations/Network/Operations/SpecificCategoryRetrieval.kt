@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 12:53 PM
- * Last modified 7/10/20 12:45 PM
+ * Created by Elias Fazel on 7/13/20 11:53 AM
+ * Last modified 7/13/20 11:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,7 +30,7 @@ object EnqueueEndPointQuery {
     const val JSON_REQUEST_RETRIES = (3)
 }
 
-class SpecificCategoryRetrieval (private val context: Context){
+class SpecificCategoryRetrieval (private val context: Context) {
 
     fun start(specificCategoryEndpointsFactory: SpecificCategoryEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {

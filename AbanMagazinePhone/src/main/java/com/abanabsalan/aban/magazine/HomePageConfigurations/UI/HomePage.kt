@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 11:05 AM
- * Last modified 7/13/20 11:05 AM
+ * Created by Elias Fazel on 7/13/20 11:53 AM
+ * Last modified 7/13/20 11:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -115,9 +115,11 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                     } else {
 
+                        val previousDataCount: Int = specificCategoryAdapter.specificCategoryPostsItemData.size
+
                         specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
 
-                        specificCategoryAdapter.notifyDataSetChanged()
+                        specificCategoryAdapter.notifyItemRangeInserted(previousDataCount, (specificCategoryAdapter.specificCategoryPostsItemData.size - 1))
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
