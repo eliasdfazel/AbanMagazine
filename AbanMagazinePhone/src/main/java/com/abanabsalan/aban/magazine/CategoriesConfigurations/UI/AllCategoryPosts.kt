@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/12/20 12:18 PM
- * Last modified 7/12/20 11:45 AM
+ * Created by Elias Fazel on 7/13/20 1:23 PM
+ * Last modified 7/13/20 1:21 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.Categor
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoryPostsLiveData
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.AllCategoryPostsRetrieval
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.Adapter.AllCategoryPostsAdapter
+import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -47,6 +48,8 @@ class AllCategoryPosts : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         allCategoryPostsBinding = AllCategoryPostsBinding.inflate(layoutInflater)
         setContentView(allCategoryPostsBinding.root)
+
+        setupUserInterface()
 
         val categoryLink: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryLink)
         val categoryId: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryId)
