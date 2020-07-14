@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 1:04 PM
- * Last modified 7/13/20 1:03 PM
+ * Created by Elias Fazel on 7/14/20 10:55 AM
+ * Last modified 7/14/20 10:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPosts
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
+import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
@@ -96,6 +97,18 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .transform(CenterInside(), RoundedCorners(23))
             .into(allCategoryPostsViewHolder.shareIcon)
+
+
+        allCategoryPostsViewHolder.rootViewItem.setOnClickListener {
+
+            PostView.show(
+                context = context,
+                postFeaturedImage = postsItemData[position].postFeaturedImage,
+                postTitle = postsItemData[position].postTitle,
+                postContent = postsItemData[position].postContent
+            )
+
+        }
 
     }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/14/20 10:45 AM
- * Last modified 7/14/20 10:45 AM
+ * Created by Elias Fazel on 7/14/20 10:55 AM
+ * Last modified 7/14/20 10:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -495,6 +495,7 @@ class FluidSlider @JvmOverloads constructor(
                              bottomStartSpreadFactor: Float = BOTTOM_START_SPREAD_FACTOR,
                              bottomEndSpreadFactor: Float = BOTTOM_END_SPREAD_FACTOR,
                              handleRate: Float = METABALL_HANDLER_FACTOR) {
+
         val radius1 = circle1.width() / 2.0f
         val radius2 = circle2.width() / 2.0f
 
