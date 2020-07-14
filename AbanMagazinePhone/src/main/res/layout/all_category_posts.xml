@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/14/20 10:45 AM
-  ~ Last modified 7/14/20 10:36 AM
+  ~ Created by Elias Fazel on 7/14/20 11:13 AM
+  ~ Last modified 7/14/20 11:00 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -51,6 +51,8 @@
         apps:bubble_color="@color/default_color_game_light"
         apps:bubble_text_color="@color/light"
         apps:initial_position="0"
+        apps:start_text=""
+        apps:end_text=""
         apps:text_size="17sp"
         apps:size="normal"
 
