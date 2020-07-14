@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/14/20 11:13 AM
-  ~ Last modified 7/14/20 11:00 AM
+  ~ Created by Elias Fazel on 7/14/20 12:40 PM
+  ~ Last modified 7/14/20 12:34 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -14,8 +14,6 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="3dp"
-    android:layout_marginVertical="3dp"
 
     apps:layout_constraintDimensionRatio="1:1">
 
@@ -32,30 +30,77 @@
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/allCategoryPostsRecyclerView"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="7dp"
-        android:scrollbars="none" />
 
-    <com.abanabsalan.aban.magazine.Utils.UI.FluidSlider.FluidSlider
-        android:id="@+id/pageFluidSlider"
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingTop="51dp">
+
+            <com.abanabsalan.aban.magazine.Utils.UI.TypeWritter.TypeWriterTextView
+                android:id="@+id/toolbarDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="5dp"
+                android:gravity="center_vertical"
+                android:justificationMode="inter_word"
+                android:textSize="13sp"
+                android:textColor="@color/light"
+                android:fontFamily="@font/persian_sans"
+                android:background="@color/default_color_game"
+
+                apps:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allCategoryPostsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="11dp"
+                android:scrollbars="none"
+
+                apps:layout_constraintTop_toBottomOf="@id/toolbarDescription"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/categoryPostsListToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="51dp"
-        android:layout_marginHorizontal="13dp"
+        android:layout_height="57dp"
+        android:background="@drawable/category_posts_list_toolbar_background"
 
-        apps:bar_color="@color/default_color_game"
-        apps:bar_text_color="@color/light"
-        apps:bubble_color="@color/default_color_game_light"
-        apps:bubble_text_color="@color/light"
-        apps:initial_position="0"
-        apps:start_text=""
-        apps:end_text=""
-        apps:text_size="17sp"
-        apps:size="normal"
+        apps:layout_constraintTop_toTopOf="parent">
 
-        apps:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/toolbarLogo"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:padding="7dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/official_business_logo"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="25dp"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="23sp"
+            android:textColor="@color/light"
+            android:textStyle="bold"
+            android:fontFamily="@font/persian_sans"/>
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

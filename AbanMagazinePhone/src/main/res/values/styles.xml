@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/12/20 12:18 PM
-  ~ Last modified 7/12/20 10:59 AM
+  ~ Created by Elias Fazel on 7/14/20 12:40 PM
+  ~ Last modified 7/14/20 11:37 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -44,11 +44,14 @@
 
     <style name="GeeksEmpire.Material.CategoryPosts" parent="GeeksEmpire.Material">
 
-        <item name="android:statusBarColor">@color/default_color_light</item>
-        <item name="android:navigationBarColor">@color/default_color_light</item>
+        <item name="android:statusBarColor">@color/default_color_game</item>
+        <item name="android:navigationBarColor">@color/light</item>
 
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
 
         <item name="android:windowBackground">@color/light</item>
 

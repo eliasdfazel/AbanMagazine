@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 1:23 PM
- * Last modified 7/13/20 1:21 PM
+ * Created by Elias Fazel on 7/14/20 12:40 PM
+ * Last modified 7/14/20 12:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,14 +49,14 @@ class AllCategoryPosts : AppCompatActivity() {
         allCategoryPostsBinding = AllCategoryPostsBinding.inflate(layoutInflater)
         setContentView(allCategoryPostsBinding.root)
 
-        setupUserInterface()
-
         val categoryLink: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryLink)
         val categoryId: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryId)
 
         val categoryName: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryName)
 
         val categoryDescription: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryDescription)
+
+        setupUserInterface(categoryName, categoryDescription)
 
         allCategoryPostsBinding.allCategoryPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 379), RecyclerView.VERTICAL, false)
 
