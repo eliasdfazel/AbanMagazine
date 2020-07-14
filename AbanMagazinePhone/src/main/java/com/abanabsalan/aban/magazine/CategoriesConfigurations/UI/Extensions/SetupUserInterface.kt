@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 1:51 PM
- * Last modified 7/13/20 1:29 PM
+ * Created by Elias Fazel on 7/14/20 10:45 AM
+ * Last modified 7/14/20 10:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,8 @@ import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPost
 
 fun AllCategoryPosts.setupUserInterface() {
 
-    allCategoryPostsBinding.pageFluidSlider.outlineProvider = allCategoryPostsBinding.pageFluidSlider.OutlineProvider()
+    allCategoryPostsBinding.pageFluidSlider.startText = ""
+    allCategoryPostsBinding.pageFluidSlider.endText = ""
 
     allCategoryPostsBinding.pageFluidSlider.positionListener = { sliderPosition ->
         allCategoryPostsBinding.pageFluidSlider.bubbleText = "${0 + (7  * sliderPosition).toInt()}"

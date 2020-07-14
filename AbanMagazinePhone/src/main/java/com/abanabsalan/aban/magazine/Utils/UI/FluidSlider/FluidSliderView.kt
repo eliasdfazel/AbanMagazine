@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 1:51 PM
- * Last modified 7/13/20 1:47 PM
+ * Created by Elias Fazel on 7/14/20 10:45 AM
+ * Last modified 7/14/20 10:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -54,7 +54,7 @@ class FluidSlider @JvmOverloads constructor(
     private companion object {
         const val BAR_CORNER_RADIUS = 51
         const val BAR_VERTICAL_OFFSET = 1.5f
-        const val BAR_INNER_HORIZONTAL_OFFSET = 0
+        const val BAR_INNER_HORIZONTAL_OFFSET = 50
 
         const val SLIDER_WIDTH = 4
         const val SLIDER_HEIGHT = 1 + BAR_VERTICAL_OFFSET
