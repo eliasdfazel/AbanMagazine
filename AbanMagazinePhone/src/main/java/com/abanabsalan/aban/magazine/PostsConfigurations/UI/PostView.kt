@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 2:51 PM
+ * Created by Elias Fazel on 7/18/20 9:40 AM
+ * Last modified 7/18/20 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,11 +11,11 @@
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI
 
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +41,9 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
     companion object {
 
-        fun show(context: Context, postFeaturedImage: String, postTitle: String, postContent: String) {
+        fun show(context: AppCompatActivity,
+                 featuredImageSharedElement: AppCompatImageView,
+                 postFeaturedImage: String, postTitle: String, postContent: String) {
 
             Intent(context, PostView::class.java).apply {
                 putExtra(PostsDataParameters.PostParameters.PostFeaturedImage, postFeaturedImage)
@@ -51,7 +53,10 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(this@apply,
-                    ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, R.anim.fade_out).toBundle())
+                    ActivityOptions.makeSceneTransitionAnimation(context,
+                        featuredImageSharedElement,
+                        context.getString(R.string.featuredImageTransitionName))
+                        .toBundle())
             }
 
         }

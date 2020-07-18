@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 3:47 PM
+ * Created by Elias Fazel on 7/18/20 9:40 AM
+ * Last modified 7/18/20 9:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
@@ -93,6 +94,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
 
             PostView.show(
                 context = context,
+                featuredImageSharedElement = specificCategoryViewHolder.postFeatureImageView as AppCompatImageView,
                 postFeaturedImage = specificCategoryPostsItemData[position].postFeaturedImage,
                 postTitle = specificCategoryPostsItemData[position].postTitle,
                 postContent = specificCategoryPostsItemData[position].postContent
