@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/18/20 9:40 AM
-  ~ Last modified 7/18/20 9:16 AM
+  ~ Created by Elias Fazel on 7/18/20 9:46 AM
+  ~ Last modified 7/18/20 9:44 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -29,6 +29,9 @@
         <item name="android:windowTranslucentNavigation">false</item>
 
         <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
 
     </style>
 
