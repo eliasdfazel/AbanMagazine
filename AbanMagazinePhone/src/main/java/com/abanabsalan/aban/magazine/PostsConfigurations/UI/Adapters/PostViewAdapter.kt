@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 4:39 PM
- * Last modified 7/5/20 4:39 PM
+ * Created by Elias Fazel on 7/18/20 11:03 AM
+ * Last modified 7/18/20 11:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,10 +19,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostItemData
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewIFrameAdapterViewHolder
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewImageAdapterViewHolder
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewParagraphAdapterViewHolder
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.PostViewTextLinkAdapterViewHolder
+import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.*
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
@@ -38,7 +35,6 @@ import com.bumptech.glide.request.target.Target
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
-
 class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val singlePostItemsData: ArrayList<SinglePostItemData> = ArrayList<SinglePostItemData>()
@@ -52,6 +48,14 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                 PostViewParagraphAdapterViewHolder(
                     LayoutInflater.from(postViewContext)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
+                )
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
+
+                PostViewSubTitleAdapterViewHolder(
+                    LayoutInflater.from(postViewContext)
+                        .inflate(R.layout.post_view_content_item_sub_title, viewGroup, false)
                 )
 
             }
@@ -114,6 +118,21 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                     (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText)
 
                     (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setOnClickListener {
+
+
+
+                    }
+
+                }
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
+
+                singlePostItemsData[position].postItemSubTitle?.let {
+
+                    (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.text = Html.fromHtml(it.subTitleText)
+
+                    (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setOnClickListener {
 
 
 

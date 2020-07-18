@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 2:38 PM
+ * Created by Elias Fazel on 7/18/20 11:03 AM
+ * Last modified 7/18/20 10:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,9 +45,10 @@ class PostsDataParameters {
 
     object PostItemsViewParameters {
         const val PostParagraph: Int = 0
-        const val PostTextLink: Int = 1
-        const val PostImage: Int = 2
-        const val PostIFrame: Int = 3
+        const val PostSubTitle: Int = 1
+        const val PostTextLink: Int = 2
+        const val PostImage: Int = 3
+        const val PostIFrame: Int = 4
     }
 }
 
@@ -60,12 +61,14 @@ data class PostsItemData (var postLink: String,
                           var postPublishDate: String)
 
 data class PostItemParagraph(var paragraphText: String)
+data class PostItemSubTitle(var subTitleText: String)
 data class PostItemImage(var imageLink: String)
 data class PostItemTextLink(var linkText: String)
 data class PostItemIFrame(var iFrameContent: String)
 
 data class SinglePostItemData (var dataType: Int,
                                var postItemParagraph: PostItemParagraph?,
+                               val postItemSubTitle: PostItemSubTitle?,
                                var postItemImage: PostItemImage?,
                                var postItemTextLink: PostItemTextLink?,
                                var postItemIFrame: PostItemIFrame?)

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 3:39 PM
+ * Created by Elias Fazel on 7/18/20 11:03 AM
+ * Last modified 7/18/20 11:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,6 +42,20 @@ class PostsLiveData : ViewModel() {
                         PostItemParagraph(element.text()),
                         null,
                         null,
+                        null,
+                        null
+                    )
+                )
+
+            } else if (element.`is`("h4")) {
+                Log.d(this@PostsLiveData.javaClass.simpleName, "SubTitle Headline 4 ${element}")
+
+                singlePostItemsData.add(
+                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostSubTitle,
+                        null,
+                        PostItemSubTitle(element.text()),
+                        null,
+                        null,
                         null
                     )
                 )
@@ -51,6 +65,7 @@ class PostsLiveData : ViewModel() {
 
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostTextLink,
+                        null,
                         null,
                         null,
                         PostItemTextLink("${element}"),
@@ -64,6 +79,7 @@ class PostsLiveData : ViewModel() {
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostImage,
                         null,
+                        null,
                         PostItemImage(element.attr("src").replace(" ", "")),
                         null,
                         null
@@ -75,6 +91,7 @@ class PostsLiveData : ViewModel() {
 
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostIFrame,
+                        null,
                         null,
                         null,
                         null,
