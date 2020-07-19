@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/18/20 11:03 AM
- * Last modified 7/18/20 11:01 AM
+ * Created by Elias Fazel on 7/19/20 2:34 PM
+ * Last modified 7/19/20 2:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,8 +17,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import java.net.URL
+import java.nio.charset.Charset
 
 class PostsLiveData : ViewModel() {
 
@@ -43,6 +46,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
+                        null,
                         null
                     )
                 )
@@ -54,6 +58,7 @@ class PostsLiveData : ViewModel() {
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostSubTitle,
                         null,
                         PostItemSubTitle(element.text()),
+                        null,
                         null,
                         null,
                         null
@@ -69,6 +74,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         PostItemTextLink("${element}"),
+                        null,
                         null
                     )
                 )
@@ -81,6 +87,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         PostItemImage(element.attr("src").replace(" ", "")),
+                        null,
                         null,
                         null
                     )
@@ -95,11 +102,46 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
-                        PostItemIFrame("${element}")
+                        PostItemIFrame("${element}"),
+                        null
                     )
                 )
 
-            }
+            } else if (element.`is`("blockquote")) {
+                Log.d(this@PostsLiveData.javaClass.simpleName, "Block Quote ${element}")
+
+                if (element.select("blockquote").attr("class").contains(PostsDataParameters.PostItemsBlockQuoteType.BlockQuoteInstagram)) {
+
+                    val instagramEmbeddedId: String = element.select("blockquote")
+                        .attr("data-instgrm-permalink")
+                        .replace("/?utm_source=ig_embed&utm_campaign=loading", "")
+
+                    val instagramEmbeddedRequestLink: String = "https://api.instagram.com/oembed/?url=${instagramEmbeddedId}"
+
+                    val instagramPostData = URL(instagramEmbeddedRequestLink).readText(Charset.defaultCharset())
+                    val rawJsonInstagramPost = JSONObject(instagramPostData)
+
+                    singlePostItemsData.add(
+                        SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            PostItemBlockQuoteInstagram(
+                                instagramUsername = rawJsonInstagramPost.getString("author_name"),
+                                instagramUserAddress = rawJsonInstagramPost.getString("author_url"),
+                                instagramPostAddress = instagramEmbeddedId,
+                                instagramPostImage = "",
+                                instagramPostTitle = ""
+                            )
+                        )
+                    )
+                }
+
+
+
+        }
 
         }
 

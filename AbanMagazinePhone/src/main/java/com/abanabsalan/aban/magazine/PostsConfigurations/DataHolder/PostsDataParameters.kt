@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/18/20 11:03 AM
- * Last modified 7/18/20 10:43 AM
+ * Created by Elias Fazel on 7/19/20 2:34 PM
+ * Last modified 7/19/20 2:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,6 +49,15 @@ class PostsDataParameters {
         const val PostTextLink: Int = 2
         const val PostImage: Int = 3
         const val PostIFrame: Int = 4
+        const val PostBlockQuoteInstagram: Int = 5
+        const val PostBlockQuoteTwitter: Int = 6
+        const val PostBlockQuoteFacebook: Int = 7
+    }
+
+    object PostItemsBlockQuoteType {
+        const val BlockQuoteInstagram: String = "instagram"
+        const val BlockQuoteTwitter: String = "twitter"
+        const val BlockQuoteFacebook: String = "facebook"
     }
 }
 
@@ -65,10 +74,12 @@ data class PostItemSubTitle(var subTitleText: String)
 data class PostItemImage(var imageLink: String)
 data class PostItemTextLink(var linkText: String)
 data class PostItemIFrame(var iFrameContent: String)
+data class PostItemBlockQuoteInstagram(var instagramUsername: String, var instagramUserAddress: String, var instagramPostAddress: String, var instagramPostImage: String, var instagramPostTitle: String)
 
 data class SinglePostItemData (var dataType: Int,
                                var postItemParagraph: PostItemParagraph?,
                                val postItemSubTitle: PostItemSubTitle?,
                                var postItemImage: PostItemImage?,
                                var postItemTextLink: PostItemTextLink?,
-                               var postItemIFrame: PostItemIFrame?)
+                               var postItemIFrame: PostItemIFrame?,
+                               var postItemBlockQuoteInstagram: PostItemBlockQuoteInstagram?)
