@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/2/20 4:39 PM
- * Last modified 7/2/20 4:39 PM
+ * Created by Elias Fazel on 7/19/20 5:58 PM
+ * Last modified 7/19/20 5:56 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -87,7 +87,7 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
                     Handler().postDelayed(Runnable {
                         Glide.with(appCompatActivity)
                             .asGif()
-                            .diskCacheStrategy(DiskCacheStrategy.DATA)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .load(R.drawable.no_internet_connection)
                             .into(offlineIndicator.offlineWait)
 

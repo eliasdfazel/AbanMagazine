@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/18/20 9:40 AM
- * Last modified 7/18/20 9:35 AM
+ * Created by Elias Fazel on 7/19/20 5:58 PM
+ * Last modified 7/19/20 5:56 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,7 +67,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
         Glide.with(context)
             .load(specificCategoryPostsItemData[position].postFeaturedImage)
             .apply(requestOptions)
-            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .listener(object : RequestListener<Drawable> {
 
                 override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {

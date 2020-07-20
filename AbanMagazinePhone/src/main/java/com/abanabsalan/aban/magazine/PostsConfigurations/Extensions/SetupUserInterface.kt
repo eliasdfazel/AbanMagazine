@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 10:03 AM
- * Last modified 7/10/20 9:03 AM
+ * Created by Elias Fazel on 7/19/20 5:58 PM
+ * Last modified 7/19/20 5:57 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -115,7 +115,7 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
     Glide.with(this@setupUserInterface)
         .load(featureImageLink)
-        .diskCacheStrategy(DiskCacheStrategy.DATA)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
         .listener(object : RequestListener<Drawable> {
 
             override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
@@ -161,4 +161,5 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
         })
         .submit()
+
 }

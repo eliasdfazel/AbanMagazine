@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:40 PM
- * Last modified 7/19/20 4:05 PM
+ * Created by Elias Fazel on 7/19/20 5:58 PM
+ * Last modified 7/19/20 5:56 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -164,7 +164,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                         .load(it.imageLink)
                         .apply(requestOptions)
                         .transform(CenterInside(),RoundedCorners(11))
-                        .diskCacheStrategy(DiskCacheStrategy.DATA)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .listener(object : RequestListener<Drawable> {
 
                             override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
@@ -239,7 +239,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                         .load(it.instagramPostImage)
                         .apply(requestOptions)
                         .transform(CenterInside(),RoundedCorners(11))
-                        .diskCacheStrategy(DiskCacheStrategy.DATA)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into((viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostImage)
 
                     (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostUsername.text = "@" + Html.fromHtml(it.instagramUsername)
