@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:58 PM
- * Last modified 7/19/20 5:57 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 12:36 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,6 +45,7 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
     animatable.start()
 
     Glide.with(applicationContext)
+        .asDrawable()
         .load(animatable as Drawable)
         .into(postsViewUiBinding.postMenuIcon)
 
@@ -114,6 +115,7 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
     }
 
     Glide.with(this@setupUserInterface)
+        .asDrawable()
         .load(featureImageLink)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .listener(object : RequestListener<Drawable> {

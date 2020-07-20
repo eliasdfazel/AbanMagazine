@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:58 PM
- * Last modified 7/19/20 5:56 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 1:37 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -160,30 +160,60 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                     val requestOptions = RequestOptions()
                         .error(drawableError)
 
-                    Glide.with(postViewContext)
-                        .load(it.imageLink)
-                        .apply(requestOptions)
-                        .transform(CenterInside(),RoundedCorners(11))
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(object : RequestListener<Drawable> {
+                    if (it.imageLink.contains(".gif")) {
 
-                            override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        Glide.with(postViewContext)
+                            .asGif()
+                            .load(it.imageLink)
+                            .apply(requestOptions)
+                            .transform(CenterCrop(), RoundedCorners(11))
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into((viewHolder as PostViewImageAdapterViewHolder).postImage)
 
-                                return false
-                            }
+                    } else {
 
-                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        Glide.with(postViewContext)
+                            .asDrawable()
+                            .load(it.imageLink)
+                            .apply(requestOptions)
+                            .transform(CenterCrop(),RoundedCorners(11))
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .listener(object : RequestListener<Drawable> {
 
-                                postViewContext.runOnUiThread {
-                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.setImageDrawable(resource)
-                                    (viewHolder as PostViewImageAdapterViewHolder).postImageLoading.visibility = View.GONE
+                                override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                                    return false
                                 }
 
-                                return false
+                                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                                    postViewContext.runOnUiThread {
+                                        (viewHolder as PostViewImageAdapterViewHolder).postImage.setImageDrawable(resource)
+                                        (viewHolder as PostViewImageAdapterViewHolder).postImageLoading.visibility = View.GONE
+                                    }
+
+                                    return false
+                                }
+
+                            })
+                            .submit()
+
+                    }
+
+                    (viewHolder as PostViewImageAdapterViewHolder).rootViewItem.setOnClickListener { view ->
+
+                        it.targetLink?.also { targetLink ->
+
+                            Intent().apply {
+                                data = Uri.parse(targetLink)
+                                action = Intent.ACTION_VIEW
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                postViewContext.startActivity(this@apply)
                             }
 
-                        })
-                        .submit()
+                        }
+
+                    }
 
                 }
 
@@ -236,9 +266,10 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                         .error(drawableError)
 
                     Glide.with(postViewContext)
+                        .asDrawable()
                         .load(it.instagramPostImage)
                         .apply(requestOptions)
-                        .transform(CenterInside(),RoundedCorners(11))
+                        .transform(CenterCrop(),RoundedCorners(11))
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into((viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostImage)
 

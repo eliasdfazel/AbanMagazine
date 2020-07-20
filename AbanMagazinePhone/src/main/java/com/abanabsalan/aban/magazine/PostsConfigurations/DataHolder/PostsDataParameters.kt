@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 2:34 PM
- * Last modified 7/19/20 2:34 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 1:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -71,7 +71,7 @@ data class PostsItemData (var postLink: String,
 
 data class PostItemParagraph(var paragraphText: String)
 data class PostItemSubTitle(var subTitleText: String)
-data class PostItemImage(var imageLink: String)
+data class PostItemImage(var imageLink: String, var targetLink: String?)
 data class PostItemTextLink(var linkText: String)
 data class PostItemIFrame(var iFrameContent: String)
 data class PostItemBlockQuoteInstagram(var instagramUsername: String, var instagramUserAddress: String, var instagramPostAddress: String, var instagramPostImage: String, var instagramPostTitle: String)

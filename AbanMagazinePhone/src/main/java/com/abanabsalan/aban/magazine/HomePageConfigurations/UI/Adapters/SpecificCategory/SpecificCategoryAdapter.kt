@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:58 PM
- * Last modified 7/19/20 5:56 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 12:36 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -65,6 +65,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
             .error(drawableError)
 
         Glide.with(context)
+            .asDrawable()
             .load(specificCategoryPostsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)

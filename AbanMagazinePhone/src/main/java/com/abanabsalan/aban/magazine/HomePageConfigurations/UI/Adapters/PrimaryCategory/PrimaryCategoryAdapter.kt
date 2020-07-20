@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 7:51 PM
- * Last modified 7/19/20 7:18 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 1:37 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,7 +24,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class PrimaryCategoryAdapter (private val context: HomePage, private val themeLightDark: Int): RecyclerView.Adapter<PrimaryCategoryViewHolder>() {
@@ -58,11 +58,10 @@ class PrimaryCategoryAdapter (private val context: HomePage, private val themeLi
 
         primaryCategoryViewHolder.categoryNameView.text = Html.fromHtml(categoriesItemData[position].categoryName)
 
-        println(">>>>>>>>>>>> " + "${CategoriesDataParameters.CategoryParameters.CategoryFeaturedImageBaseLink}${categoriesItemData[position].categoryId}")
-
         Glide.with(context)
+            .asDrawable()
             .load("${CategoriesDataParameters.CategoryParameters.CategoryFeaturedImageBaseLink}${categoriesItemData[position].categoryId}")
-            .transform(CenterInside(), RoundedCorners(DpToInteger(context, 19)))
+            .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 19)))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(primaryCategoryViewHolder.categoryFeaturedImage)
 

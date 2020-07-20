@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:58 PM
- * Last modified 7/19/20 5:56 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 1:37 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -67,6 +67,7 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
             .error(drawableError)
 
         Glide.with(context)
+            .asDrawable()
             .load(postsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -96,7 +97,7 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
             .asGif()
             .load(R.raw.share_animation)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .transform(CenterInside(), RoundedCorners(23))
+            .transform(CenterCrop(), RoundedCorners(23))
             .into(allCategoryPostsViewHolder.shareIcon)
 
 

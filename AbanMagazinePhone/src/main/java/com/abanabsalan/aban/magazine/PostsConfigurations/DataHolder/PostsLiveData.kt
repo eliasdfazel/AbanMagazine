@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:40 PM
- * Last modified 7/19/20 5:40 PM
+ * Created by Elias Fazel on 7/20/20 1:37 PM
+ * Last modified 7/20/20 1:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -119,11 +119,19 @@ class PostsLiveData : ViewModel() {
             } else if (element.`is`("img")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src").replace(" ", "")}")
 
+                val targetLink: String? = try {
+                    element.parent().select("a").first().attr("abs:href")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+
+                    null
+                }
+
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostImage,
                         null,
                         null,
-                        PostItemImage(element.attr("src").replace(" ", "")),
+                        PostItemImage(element.attr("src").replace(" ", ""), targetLink),
                         null,
                         null,
                         null
