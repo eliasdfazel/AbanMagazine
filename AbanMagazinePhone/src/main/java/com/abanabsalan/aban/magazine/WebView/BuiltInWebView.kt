@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 4:39 PM
- * Last modified 7/5/20 4:39 PM
+ * Created by Elias Fazel on 7/19/20 5:40 PM
+ * Last modified 7/19/20 4:15 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,5 +40,11 @@ class BuiltInWebView : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        this@BuiltInWebView.finish()
     }
 }

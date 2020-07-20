@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 2:34 PM
- * Last modified 7/19/20 1:39 PM
+ * Created by Elias Fazel on 7/19/20 5:40 PM
+ * Last modified 7/19/20 4:05 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -228,8 +229,32 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                 singlePostItemsData[position].postItemBlockQuoteInstagram?.let {
 
-                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder)
+                    val drawableError: Drawable? = postViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(postViewContext.getColor(R.color.red))
 
+                    val requestOptions = RequestOptions()
+                        .error(drawableError)
+
+                    Glide.with(postViewContext)
+                        .load(it.instagramPostImage)
+                        .apply(requestOptions)
+                        .transform(CenterInside(),RoundedCorners(11))
+                        .diskCacheStrategy(DiskCacheStrategy.DATA)
+                        .into((viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostImage)
+
+                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostUsername.text = "@" + Html.fromHtml(it.instagramUsername)
+                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostTitle.text = Html.fromHtml(it.instagramPostTitle)
+
+                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).rootViewItem.setOnClickListener { view ->
+
+                        Intent().apply {
+                            action = Intent.ACTION_VIEW
+                            data = Uri.parse(it.instagramPostAddress)
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            postViewContext.startActivity(this@apply)
+                        }
+
+                    }
 
                 }
 

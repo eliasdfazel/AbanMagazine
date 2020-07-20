@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/19/20 2:34 PM
-  ~ Last modified 7/18/20 11:20 AM
+  ~ Created by Elias Fazel on 7/19/20 5:40 PM
+  ~ Last modified 7/19/20 5:38 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -15,28 +15,24 @@
     android:id="@+id/rootViewItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/light"
-    tools:context=".HomePageConfigurations.UI.HomePage">
+    android:layout_marginVertical="7dp"
+    android:layout_marginHorizontal="15sp"
+    android:paddingVertical="17dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/posts_embedded_item_background"
 
-    <net.geeksempire.loadingspin.SpinKitView
-        android:id="@+id/postImageLoading"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
+    apps:layout_constraintStart_toStartOf="parent"
+    apps:layout_constraintEnd_toEndOf="parent"
+    apps:layout_constraintDimensionRatio="1:1"
 
-        apps:SpinKit_Style="Pulse"
-        apps:SpinKit_Color="@color/default_color_game_transparent"
-
-        apps:layout_constraintTop_toTopOf="parent"
-        apps:layout_constraintBottom_toBottomOf="parent"
-        apps:layout_constraintStart_toStartOf="parent"
-        apps:layout_constraintEnd_toEndOf="parent"/>
+    tools:context=".PostsConfigurations.UI.PostView">
 
     <net.geekstools.imageview.customshapes.ShapesImage
-        android:id="@+id/postImage"
-        android:layout_width="match_parent"
+        android:id="@+id/instagramPostImage"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
 
-        android:layout_margin="19dp"
+        android:layout_margin="1dp"
         android:scaleType="centerCrop"
 
         apps:shape="rounded"
@@ -44,5 +40,35 @@
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/instagramPostUsername"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:textSize="15sp"
+        android:textColor="@color/default_color_game_light"
+        android:textStyle="bold"
+        android:justificationMode="inter_word"
+        android:linksClickable="true"
+        android:autoLink="all"
+
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"
+        apps:layout_constraintTop_toBottomOf="@id/instagramPostImage"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/instagramPostTitle"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="3dp"
+        android:textSize="13sp"
+        android:textColor="@color/dark"
+        android:linksClickable="true"
+        android:autoLink="all"
+        android:justificationMode="inter_word"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"
+        apps:layout_constraintTop_toBottomOf="@id/instagramPostUsername"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

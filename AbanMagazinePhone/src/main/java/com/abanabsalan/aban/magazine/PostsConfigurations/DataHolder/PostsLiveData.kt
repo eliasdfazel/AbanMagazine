@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 2:34 PM
- * Last modified 7/19/20 2:34 PM
+ * Created by Elias Fazel on 7/19/20 5:40 PM
+ * Last modified 7/19/20 5:40 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,9 +35,46 @@ class PostsLiveData : ViewModel() {
 
         val postContent: Document = Jsoup.parse(rawPostContent)
 
-        postContent.allElements.forEachIndexed { index, element ->
+        postContent.select("blockquote").empty()
 
-            if (element.`is`("p")) {
+        val allHtmlElement = postContent.allElements
+
+        allHtmlElement.forEachIndexed { index, element ->
+
+            if (element.`is`("blockquote")) {
+                Log.d(this@PostsLiveData.javaClass.simpleName, "Block Quote ${element}")
+
+                if (element.select("blockquote").attr("class").contains(PostsDataParameters.PostItemsBlockQuoteType.BlockQuoteInstagram)) {
+
+                    val instagramEmbeddedId: String = element.select("blockquote")
+                        .attr("data-instgrm-permalink")
+                        .replace("/?utm_source=ig_embed&utm_campaign=loading", "")
+
+                    val instagramEmbeddedRequestLink: String = "https://api.instagram.com/oembed/?url=${instagramEmbeddedId}"
+
+                    val instagramPostData = URL(instagramEmbeddedRequestLink).readText(Charset.defaultCharset())
+                    val rawJsonInstagramPost = JSONObject(instagramPostData)
+
+                    singlePostItemsData.add(
+                        SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            PostItemBlockQuoteInstagram(
+                                instagramUsername = rawJsonInstagramPost.getString("author_name"),
+                                instagramUserAddress = rawJsonInstagramPost.getString("author_url"),
+                                instagramPostAddress = instagramEmbeddedId,
+                                instagramPostImage = rawJsonInstagramPost.getString("thumbnail_url"),
+                                instagramPostTitle = rawJsonInstagramPost.getString("title")
+                            )
+                        )
+                    )
+
+                }
+
+            } else if (element.`is`("p")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Paragraph ${element}")
 
                 singlePostItemsData.add(
@@ -107,41 +144,7 @@ class PostsLiveData : ViewModel() {
                     )
                 )
 
-            } else if (element.`is`("blockquote")) {
-                Log.d(this@PostsLiveData.javaClass.simpleName, "Block Quote ${element}")
-
-                if (element.select("blockquote").attr("class").contains(PostsDataParameters.PostItemsBlockQuoteType.BlockQuoteInstagram)) {
-
-                    val instagramEmbeddedId: String = element.select("blockquote")
-                        .attr("data-instgrm-permalink")
-                        .replace("/?utm_source=ig_embed&utm_campaign=loading", "")
-
-                    val instagramEmbeddedRequestLink: String = "https://api.instagram.com/oembed/?url=${instagramEmbeddedId}"
-
-                    val instagramPostData = URL(instagramEmbeddedRequestLink).readText(Charset.defaultCharset())
-                    val rawJsonInstagramPost = JSONObject(instagramPostData)
-
-                    singlePostItemsData.add(
-                        SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            PostItemBlockQuoteInstagram(
-                                instagramUsername = rawJsonInstagramPost.getString("author_name"),
-                                instagramUserAddress = rawJsonInstagramPost.getString("author_url"),
-                                instagramPostAddress = instagramEmbeddedId,
-                                instagramPostImage = "",
-                                instagramPostTitle = ""
-                            )
-                        )
-                    )
-                }
-
-
-
-        }
+            }
 
         }
 
