@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/3/20 1:48 PM
-  ~ Last modified 7/3/20 1:20 PM
+  ~ Created by Elias Fazel on 7/19/20 7:51 PM
+  ~ Last modified 7/19/20 6:59 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -14,7 +14,7 @@
     <item android:id="@+id/secondaryCategoriesItemBackground">
         <shape>
             <corners android:radius="13dp"/>
-            <solid android:color="@color/yellow"/>
+            <solid android:color="@color/light"/>
         </shape>
     </item>
 

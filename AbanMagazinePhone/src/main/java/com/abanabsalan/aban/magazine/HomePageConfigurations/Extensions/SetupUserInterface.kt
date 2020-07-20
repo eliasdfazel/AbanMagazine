@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 2:27 PM
- * Last modified 7/10/20 2:25 PM
+ * Created by Elias Fazel on 7/19/20 7:51 PM
+ * Last modified 7/19/20 6:46 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,6 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
-
 
 fun HomePage.setupUserInterface() {
 

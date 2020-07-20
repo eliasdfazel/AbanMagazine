@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 10:20 AM
- * Last modified 7/3/20 9:55 AM
+ * Created by Elias Fazel on 7/19/20 7:51 PM
+ * Last modified 7/19/20 6:57 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,6 +34,8 @@ class CategoriesDataParameters {
         const val CategoryDescription: String = "CategoryDescription"
 
         const val CategoryParentId: String = "CategoryParentId"
+
+        const val CategoryFeaturedImageBaseLink: String = "https://bit.ly/AbanAbsalan"
     }
 
     object CategoryItemsViewParameters {
