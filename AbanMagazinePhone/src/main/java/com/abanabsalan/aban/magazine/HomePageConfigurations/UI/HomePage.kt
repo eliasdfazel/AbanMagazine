@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/13/20 11:53 AM
- * Last modified 7/13/20 11:52 AM
+ * Created by Elias Fazel on 7/20/20 3:26 PM
+ * Last modified 7/20/20 2:23 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,6 +29,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPo
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
+import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
@@ -62,6 +63,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         super.onCreate(savedInstanceState)
         homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
+
+        PopupPreferencesController(this@HomePage, homePageViewBinding.preferencePopupInclude)
 
         (application as AbanMagazinePhoneApplication)
             .dependencyGraph

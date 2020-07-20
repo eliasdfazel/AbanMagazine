@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:20 PM
- * Last modified 7/3/20 2:20 PM
+ * Created by Elias Fazel on 7/20/20 3:26 PM
+ * Last modified 7/20/20 3:24 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -32,6 +32,11 @@ class OverallTheme (private val context: Context) {
     fun checkThemeLightDark() : Int {
 
         return readPreferences.readPreference(".Theme", "OverallTheme", ThemeType.ThemeLight)
+    }
+
+    fun saveThemeLightDark(themeType: Int) {
+
+        savePreferences.savePreference(".Theme", "OverallTheme", themeType)
     }
 
 }

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/10/20 2:27 PM
-  ~ Last modified 7/10/20 2:22 PM
+  ~ Created by Elias Fazel on 7/20/20 3:26 PM
+  ~ Last modified 7/20/20 2:36 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -257,5 +257,16 @@
             apps:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        layout="@layout/preferences_popup_ui_view"
+
+        android:id="@+id/preferencePopupInclude"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+
+        apps:layout_constraintTop_toBottomOf="@id/homepageTopBar"
+        apps:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

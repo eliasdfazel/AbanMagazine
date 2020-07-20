@@ -2,20 +2,26 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/19/20 11:10 PM
-  ~ Last modified 7/19/20 11:08 PM
+  ~ Created by Elias Fazel on 7/20/20 3:26 PM
+  ~ Last modified 7/20/20 3:05 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootView"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
-    tools:context=".Preferences.PreferencesController">
+    android:background="@android:color/transparent">
+
+    <net.geeksempire.blurry.effect.view.RealtimeBlurView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        apps:realtimeBlurRadius="13dp"
+        apps:realtimeOverlayColor="@color/default_color_light_transparent" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/postNestedScrollView"
@@ -31,11 +37,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingVertical="1dp"
             android:background="@android:color/transparent">
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/toggleTheme"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
 
+                apps:lottie_rawRes="@raw/toggle_theme"
+
+                apps:layout_constraintTop_toTopOf="parent"
+                apps:layout_constraintBottom_toBottomOf="parent"
+                apps:layout_constraintStart_toStartOf="parent"
+                apps:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
