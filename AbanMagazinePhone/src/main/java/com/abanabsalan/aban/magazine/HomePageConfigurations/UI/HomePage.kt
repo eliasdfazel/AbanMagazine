@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 8:15 PM
- * Last modified 7/20/20 8:15 PM
+ * Created by Elias Fazel on 7/20/20 9:15 PM
+ * Last modified 7/20/20 9:12 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -165,19 +165,32 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                 if (it.isNotEmpty()) {
 
-                    val primaryCategoriesData = it.slice(IntRange(0, (columnCount(applicationContext, 115) - 1)))
+                    if ((columnCount(applicationContext, 115) > it.size)) {
 
-                    primaryCategoryAdapter.categoriesItemData.clear()
-                    primaryCategoryAdapter.categoriesItemData.addAll(primaryCategoriesData)
+                        primaryCategoryAdapter.categoriesItemData.clear()
+                        primaryCategoryAdapter.categoriesItemData.addAll(it)
 
-                    homePageViewBinding.primaryCategoriesRecyclerView.adapter = primaryCategoryAdapter
+                        homePageViewBinding.primaryCategoriesRecyclerView.adapter = primaryCategoryAdapter
 
-                    val secondaryCategoriesData = it.slice(IntRange(columnCount(applicationContext, 115), (it.size - 1)))
+                        homePageViewBinding.secondaryCategoriesRecyclerView.visibility = View.GONE
 
-                    secondaryCategoryAdapter.categoriesItemData.clear()
-                    secondaryCategoryAdapter.categoriesItemData.addAll(secondaryCategoriesData)
+                    } else {
 
-                    homePageViewBinding.secondaryCategoriesRecyclerView.adapter = secondaryCategoryAdapter
+                        val primaryCategoriesData = it.slice(IntRange(0, (columnCount(applicationContext, 115) - 1)))
+
+                        primaryCategoryAdapter.categoriesItemData.clear()
+                        primaryCategoryAdapter.categoriesItemData.addAll(primaryCategoriesData)
+
+                        homePageViewBinding.primaryCategoriesRecyclerView.adapter = primaryCategoryAdapter
+
+                        val secondaryCategoriesData = it.slice(IntRange(columnCount(applicationContext, 115), (it.size - 1)))
+
+                        secondaryCategoryAdapter.categoriesItemData.clear()
+                        secondaryCategoryAdapter.categoriesItemData.addAll(secondaryCategoriesData)
+
+                        homePageViewBinding.secondaryCategoriesRecyclerView.adapter = secondaryCategoryAdapter
+
+                    }
 
                 }
 
