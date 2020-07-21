@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 3:26 PM
- * Last modified 7/20/20 2:23 PM
+ * Created by Elias Fazel on 7/20/20 6:21 PM
+ * Last modified 7/20/20 6:13 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -225,10 +225,18 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
     override fun onBackPressed() {
 
-        startActivity(Intent(Intent.ACTION_MAIN).apply {
-            this.addCategory(Intent.CATEGORY_HOME)
-            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }, ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+        if (homePageViewBinding.preferencePopupInclude.root.isShown) {
+
+            hidePopupPreferences()
+
+        } else {
+
+            startActivity(Intent(Intent.ACTION_MAIN).apply {
+                this.addCategory(Intent.CATEGORY_HOME)
+                this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }, ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+
+        }
 
     }
 
