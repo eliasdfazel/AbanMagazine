@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 12:36 PM
+ * Created by Elias Fazel on 7/20/20 8:15 PM
+ * Last modified 7/20/20 8:15 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory
 
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -29,7 +31,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
-class SpecificCategoryAdapter (private val context: HomePage, private val themeLightDark: Int): RecyclerView.Adapter<SpecificCategoryViewHolder>() {
+class SpecificCategoryAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<SpecificCategoryViewHolder>() {
 
     val specificCategoryPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
@@ -45,15 +47,31 @@ class SpecificCategoryAdapter (private val context: HomePage, private val themeL
 
     override fun onBindViewHolder(specificCategoryViewHolder: SpecificCategoryViewHolder, position: Int) {
 
-        when (themeLightDark) {
+        when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
+                val specificCategoryItemBackground: LayerDrawable = context.getDrawable(R.drawable.specific_category_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = specificCategoryItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.light))
 
+                specificCategoryViewHolder.rootViewItem.background = specificCategoryItemBackground
+
+                specificCategoryViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
+                specificCategoryViewHolder.postTitleView.setShadowLayer(specificCategoryViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
+                specificCategoryViewHolder.postExcerptView.setTextColor(context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
+                val specificCategoryItemBackground: LayerDrawable = context.getDrawable(R.drawable.specific_category_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = specificCategoryItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.dark))
 
+                specificCategoryViewHolder.rootViewItem.background = specificCategoryItemBackground
+
+                specificCategoryViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
+                specificCategoryViewHolder.postTitleView.setShadowLayer(specificCategoryViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
+                specificCategoryViewHolder.postExcerptView.setTextColor(context.getColor(R.color.light))
 
             }
         }

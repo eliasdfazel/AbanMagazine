@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 6:21 PM
- * Last modified 7/20/20 6:13 PM
+ * Created by Elias Fazel on 7/20/20 8:15 PM
+ * Last modified 7/20/20 8:15 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,8 @@ import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import javax.inject.Inject
 
@@ -83,13 +85,13 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
 
-        val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+        val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme)
 
-        val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+        val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme)
 
-        val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+        val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme)
 
-        val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme.checkThemeLightDark())
+        val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme)
 
         homePageViewBinding.root.post {
 
@@ -195,6 +197,32 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                     homePageViewBinding.loadingView.visibility = View.INVISIBLE
 
                 }
+
+            })
+
+            /*Change Theme*/
+            homePageLiveData.toggleTheme.observe(this@HomePage, Observer {
+
+                var delayTheme: Long = 3333
+
+                when(it) {
+                    ThemeType.ThemeLight -> {
+                        delayTheme = 3000
+                    }
+                    ThemeType.ThemeDark -> {
+                        delayTheme = 1133
+                    }
+                }
+
+                Handler().postDelayed({
+
+                    specificCategoryAdapter.notifyDataSetChanged()
+
+                    newestPostsAdapter.notifyDataSetChanged()
+
+                    toggleLightDarkThemeHomePage(this@HomePage)
+
+                }, delayTheme)
 
             })
 

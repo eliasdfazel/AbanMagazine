@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 6:40 PM
- * Last modified 7/20/20 6:38 PM
+ * Created by Elias Fazel on 7/20/20 8:15 PM
+ * Last modified 7/20/20 7:20 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,6 +29,9 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
 
             homePage.homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(homePage.getColor(R.color.default_color_light_transparent))
 
+            homePage.homePageViewBinding.featuredPostsTextView.setTextColor(homePage.getColor(R.color.darker))
+            homePage.homePageViewBinding.newestPostsTextView.setTextColor(homePage.getColor(R.color.darker))
+
         }
         ThemeType.ThemeDark -> {
 
@@ -42,6 +45,9 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
             homePage.homePageViewBinding.blurViewBottomBar.setOverlayColor(homePage.getColor(R.color.default_color_dark_transparent))
 
             homePage.homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(homePage.getColor(R.color.default_color_dark_transparent))
+
+            homePage.homePageViewBinding.featuredPostsTextView.setTextColor(homePage.getColor(R.color.lighter))
+            homePage.homePageViewBinding.newestPostsTextView.setTextColor(homePage.getColor(R.color.lighter))
 
         }
     }

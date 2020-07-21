@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 6:40 PM
- * Last modified 7/20/20 6:37 PM
+ * Created by Elias Fazel on 7/20/20 8:15 PM
+ * Last modified 7/20/20 8:15 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,12 +10,11 @@
 
 package com.abanabsalan.aban.magazine.Preferences
 
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
-import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewBinding
 
 class PopupPreferencesController (private val context: AppCompatActivity, private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
@@ -86,18 +85,21 @@ class PopupPreferencesController (private val context: AppCompatActivity, privat
 
             }
 
-            Handler().postDelayed({
-
-                when (context) {
-                    is HomePage -> {
-
-                        toggleLightDarkThemeHomePage(context as HomePage)
-
-                    }
+            when(context) {
+                is HomePage -> {
+                    (context as HomePage).homePageLiveData.toggleTheme.postValue(overallTheme.checkThemeLightDark())
                 }
+            }
 
-            }, 2468)
+        }
 
+        preferencesPopupUiViewBinding.root.setOnClickListener {
+
+            when(context) {
+                is HomePage -> {
+                    (context as HomePage).hidePopupPreferences()
+                }
+            }
 
         }
 

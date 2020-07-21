@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/5/20 3:47 PM
-  ~ Last modified 7/5/20 2:15 PM
+  ~ Created by Elias Fazel on 7/20/20 8:15 PM
+  ~ Last modified 7/20/20 7:51 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -11,7 +11,8 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item>
+    <item
+        android:id="@+id/temporaryBackground">
         <shape>
             <corners
                 android:bottomLeftRadius="3dp"
@@ -26,6 +27,7 @@
     </item>
 
     <item
+        android:id="@+id/temporaryForeground"
         android:top="0dp"
         android:bottom="5dp"
         android:start="0dp"

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/20/20 6:21 PM
-  ~ Last modified 7/20/20 5:17 PM
+  ~ Created by Elias Fazel on 7/20/20 8:15 PM
+  ~ Last modified 7/20/20 7:35 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -200,6 +200,7 @@
             android:text="@string/searchText"
             android:textSize="12sp"
             android:textColor="@color/default_color"
+            android:visibility="invisible"
 
             apps:layout_constraintTop_toTopOf="@id/officialLogo"
             apps:layout_constraintBottom_toBottomOf="@id/officialLogo"

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/5/20 3:47 PM
- * Last modified 7/5/20 1:12 PM
+ * Created by Elias Fazel on 7/20/20 8:15 PM
+ * Last modified 7/20/20 6:44 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,6 +39,10 @@ class HomePageLiveData : ViewModel() {
 
     val controlLoadingView: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
+    }
+
+    val toggleTheme: MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>()
     }
 
     fun prepareRawDataToRenderForNewestPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {

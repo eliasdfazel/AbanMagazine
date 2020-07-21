@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 12:36 PM
+ * Created by Elias Fazel on 7/20/20 8:15 PM
+ * Last modified 7/20/20 8:10 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts
 
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -29,7 +31,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
-class NewestPostsAdapter (private val context: HomePage, private val themeLightDark: Int): RecyclerView.Adapter<NewestPostsViewHolder>() {
+class NewestPostsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<NewestPostsViewHolder>() {
 
     val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
@@ -45,15 +47,31 @@ class NewestPostsAdapter (private val context: HomePage, private val themeLightD
 
     override fun onBindViewHolder(newestPostsViewHolder: NewestPostsViewHolder, position: Int) {
 
-        when (themeLightDark) {
+        when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
+                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.light))
+                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
 
+                newestPostsViewHolder.rootViewItem.background = newestPostsItemBackground
+
+                newestPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
+                newestPostsViewHolder.postTitleView.setShadowLayer(newestPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
+                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.dark))
+                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
 
+                newestPostsViewHolder.rootViewItem.background = newestPostsItemBackground
+
+                newestPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
+                newestPostsViewHolder.postTitleView.setShadowLayer(newestPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
 
             }
         }
