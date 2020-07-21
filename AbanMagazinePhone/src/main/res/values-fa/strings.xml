@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 7/20/20 8:48 PM
+  ~ Last modified 7/20/20 8:33 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<resources>
+
+    <string name="app_name">آبان</string>
+
+    <string name="preferencesText">تنظیمات</string>
+    <string name="searchText">جستجو</string>
+
+    <string name="featuredPostsText">پست های ویژه</string>
+    <string name="newestPostsText">جدیدترین ها</string>
+    <string name="forYouPostsText">پیشنهاد برای شما</string>
+
+    <string name="noMoreContent">مطلب دیگری یافت نشد</string>
+    <string name="turnOnText">روشن کردن</string>
+
+    <string name="noInternetConnectionText">" ⚠ دسترسی به اینترنت مقدور نیست "</string>
+
+</resources>

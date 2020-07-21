@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 6:21 PM
- * Last modified 7/20/20 6:21 PM
+ * Created by Elias Fazel on 7/20/20 8:48 PM
+ * Last modified 7/20/20 8:41 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -52,6 +52,9 @@ fun HomePage.setupUserInterface() {
 
             homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(getColor(R.color.default_color_light_transparent))
 
+            homePageViewBinding.featuredPostsTextView.setTextColor(getColor(R.color.darker))
+            homePageViewBinding.newestPostsTextView.setTextColor(getColor(R.color.darker))
+
         }
         ThemeType.ThemeDark -> {
 
@@ -65,6 +68,9 @@ fun HomePage.setupUserInterface() {
             homePageViewBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_dark_transparent))
 
             homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(getColor(R.color.default_color_dark_transparent))
+
+            homePageViewBinding.featuredPostsTextView.setTextColor(getColor(R.color.lighter))
+            homePageViewBinding.newestPostsTextView.setTextColor(getColor(R.color.lighter))
 
         }
     }

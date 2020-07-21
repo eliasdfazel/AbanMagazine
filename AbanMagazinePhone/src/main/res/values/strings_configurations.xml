@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/18/20 9:40 AM
-  ~ Last modified 7/18/20 9:20 AM
+  ~ Created by Elias Fazel on 7/20/20 8:48 PM
+  ~ Last modified 7/20/20 8:27 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -10,6 +10,6 @@
 
 <resources>
 
-    <string name="featuredImageTransitionName">featuredImageTransitionName</string>
+    <string name="featuredImageTransitionName" translatable="false">featuredImageTransitionName</string>
 
 </resources>
