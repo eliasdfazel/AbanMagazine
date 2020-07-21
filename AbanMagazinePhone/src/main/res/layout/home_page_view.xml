@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/20/20 8:58 PM
-  ~ Last modified 7/20/20 8:58 PM
+  ~ Created by Elias Fazel on 7/20/20 9:46 PM
+  ~ Last modified 7/20/20 9:45 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -214,26 +214,25 @@
             apps:rippleColor="@color/default_color_game_light"
             apps:backgroundTint="@android:color/transparent" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/optionMenus"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center"
+            android:gravity="center_vertical|end"
             android:textAllCaps="false"
-            android:text="@string/preferencesText"
-            android:textSize="12sp"
-            android:textColor="@color/default_color"
+            android:contentDescription="@string/preferencesText"
+
+            apps:lottie_rawRes="@raw/lady_settings_light"
+            apps:lottie_autoPlay="true"
+            apps:lottie_repeatMode="restart"
+            apps:lottie_repeatCount="3"
 
             apps:layout_constraintTop_toTopOf="@id/officialLogo"
             apps:layout_constraintBottom_toBottomOf="@id/officialLogo"
             apps:layout_constraintEnd_toEndOf="parent"
 
             apps:layout_constraintWidth_percent="0.3"
-            apps:layout_constraintHeight_percent="0.61"
-
-            apps:cornerRadius="51dp"
-            apps:rippleColor="@color/default_color_game_light"
-            apps:backgroundTint="@android:color/transparent" />
+            apps:layout_constraintHeight_percent="0.61" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

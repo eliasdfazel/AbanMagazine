@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 8:48 PM
- * Last modified 7/20/20 8:41 PM
+ * Created by Elias Fazel on 7/20/20 9:46 PM
+ * Last modified 7/20/20 9:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -55,6 +55,8 @@ fun HomePage.setupUserInterface() {
             homePageViewBinding.featuredPostsTextView.setTextColor(getColor(R.color.darker))
             homePageViewBinding.newestPostsTextView.setTextColor(getColor(R.color.darker))
 
+            homePageViewBinding.optionMenus.setAnimation(R.raw.lady_settings_light)
+
         }
         ThemeType.ThemeDark -> {
 
@@ -71,6 +73,8 @@ fun HomePage.setupUserInterface() {
 
             homePageViewBinding.featuredPostsTextView.setTextColor(getColor(R.color.lighter))
             homePageViewBinding.newestPostsTextView.setTextColor(getColor(R.color.lighter))
+
+            homePageViewBinding.optionMenus.setAnimation(R.raw.lady_settings_dark)
 
         }
     }
