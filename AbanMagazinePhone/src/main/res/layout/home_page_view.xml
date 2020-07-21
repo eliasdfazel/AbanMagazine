@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/20/20 9:46 PM
-  ~ Last modified 7/20/20 9:45 PM
+  ~ Created by Elias Fazel on 7/20/20 9:53 PM
+  ~ Last modified 7/20/20 9:53 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -223,7 +223,6 @@
             android:contentDescription="@string/preferencesText"
 
             apps:lottie_rawRes="@raw/lady_settings_light"
-            apps:lottie_autoPlay="true"
             apps:lottie_repeatMode="restart"
             apps:lottie_repeatCount="3"
 

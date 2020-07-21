@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 9:46 PM
- * Last modified 7/20/20 9:45 PM
+ * Created by Elias Fazel on 7/20/20 9:53 PM
+ * Last modified 7/20/20 9:53 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -78,6 +78,8 @@ fun HomePage.setupUserInterface() {
 
         }
     }
+
+    homePageViewBinding.optionMenus.playAnimation()
 
     setupPopupPreferencesClick()
 
