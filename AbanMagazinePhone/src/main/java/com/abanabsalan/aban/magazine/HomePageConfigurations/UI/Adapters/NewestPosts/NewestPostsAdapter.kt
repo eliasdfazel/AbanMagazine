@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 8:15 PM
- * Last modified 7/20/20 8:10 PM
+ * Created by Elias Fazel on 7/22/20 9:25 PM
+ * Last modified 7/22/20 9:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,6 +43,40 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
     override fun getItemCount(): Int {
 
         return newestPostsItemData.size
+    }
+
+    override fun onBindViewHolder(newestPostsViewHolder: NewestPostsViewHolder, position: Int, dataPayloads: MutableList<Any>) {
+        super.onBindViewHolder(newestPostsViewHolder, position, dataPayloads)
+
+        when (overallTheme.checkThemeLightDark()) {
+            ThemeType.ThemeLight -> {
+
+                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.light))
+                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
+
+                newestPostsViewHolder.rootViewItem.background = newestPostsItemBackground
+
+                newestPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
+                newestPostsViewHolder.postTitleView.setShadowLayer(newestPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
+
+            }
+            ThemeType.ThemeDark -> {
+
+                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.dark))
+                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
+
+                newestPostsViewHolder.rootViewItem.background = newestPostsItemBackground
+
+                newestPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
+                newestPostsViewHolder.postTitleView.setShadowLayer(newestPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
+
+            }
+        }
+
     }
 
     override fun onBindViewHolder(newestPostsViewHolder: NewestPostsViewHolder, position: Int) {

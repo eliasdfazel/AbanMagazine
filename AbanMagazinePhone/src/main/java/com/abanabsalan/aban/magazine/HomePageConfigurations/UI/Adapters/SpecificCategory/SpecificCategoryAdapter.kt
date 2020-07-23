@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 8:15 PM
- * Last modified 7/20/20 8:15 PM
+ * Created by Elias Fazel on 7/22/20 9:25 PM
+ * Last modified 7/22/20 9:06 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,6 +43,40 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
     override fun getItemCount(): Int {
 
         return specificCategoryPostsItemData.size
+    }
+
+    override fun onBindViewHolder(specificCategoryViewHolder: SpecificCategoryViewHolder, position: Int, dataPayloads: MutableList<Any>) {
+        super.onBindViewHolder(specificCategoryViewHolder, position, dataPayloads)
+
+        when (overallTheme.checkThemeLightDark()) {
+            ThemeType.ThemeLight -> {
+
+                val specificCategoryItemBackground: LayerDrawable = context.getDrawable(R.drawable.specific_category_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = specificCategoryItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.light))
+
+                specificCategoryViewHolder.rootViewItem.background = specificCategoryItemBackground
+
+                specificCategoryViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
+                specificCategoryViewHolder.postTitleView.setShadowLayer(specificCategoryViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
+                specificCategoryViewHolder.postExcerptView.setTextColor(context.getColor(R.color.dark))
+
+            }
+            ThemeType.ThemeDark -> {
+
+                val specificCategoryItemBackground: LayerDrawable = context.getDrawable(R.drawable.specific_category_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = specificCategoryItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.dark))
+
+                specificCategoryViewHolder.rootViewItem.background = specificCategoryItemBackground
+
+                specificCategoryViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
+                specificCategoryViewHolder.postTitleView.setShadowLayer(specificCategoryViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
+                specificCategoryViewHolder.postExcerptView.setTextColor(context.getColor(R.color.light))
+
+            }
+        }
+
     }
 
     override fun onBindViewHolder(specificCategoryViewHolder: SpecificCategoryViewHolder, position: Int) {

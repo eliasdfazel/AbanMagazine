@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/20/20 9:53 PM
-  ~ Last modified 7/20/20 9:53 PM
+  ~ Created by Elias Fazel on 7/22/20 9:25 PM
+  ~ Last modified 7/22/20 9:24 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -218,8 +218,6 @@
             android:id="@+id/optionMenus"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center_vertical|end"
-            android:textAllCaps="false"
             android:contentDescription="@string/preferencesText"
 
             apps:lottie_rawRes="@raw/lady_settings_light"
