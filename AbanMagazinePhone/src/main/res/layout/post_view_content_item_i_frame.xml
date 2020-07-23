@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/19/20 5:40 PM
-  ~ Last modified 7/19/20 3:45 PM
+  ~ Created by Elias Fazel on 7/22/20 10:45 PM
+  ~ Last modified 7/22/20 10:35 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@
     android:id="@+id/rootViewItem"
     android:layout_width="match_parent"
     android:layout_height="333dp"
-    android:background="@color/light"
+    android:background="@android:color/transparent"
     tools:context=".PostsConfigurations.UI.PostView">
 
     <WebView

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/18/20 9:40 AM
- * Last modified 7/18/20 9:40 AM
+ * Created by Elias Fazel on 7/22/20 10:45 PM
+ * Last modified 7/22/20 10:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.UI
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
@@ -24,8 +25,11 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataPar
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
+import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemePostView
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
 import com.google.android.material.appbar.AppBarLayout
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
@@ -35,6 +39,10 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
+    }
+
+    val postsLiveData: PostsLiveData by lazy {
+        ViewModelProvider(this@PostView).get(PostsLiveData::class.java)
     }
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
@@ -68,6 +76,8 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
 
+        PopupPreferencesController(this@PostView, postsViewUiBinding.preferencePopupInclude)
+
         val featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
         val postTitle = intent.getStringExtra(PostsDataParameters.PostParameters.PostTitle)
 
@@ -80,8 +90,6 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
 
         setupUserInterface(postTitle, featureImageLink)
 
-        val postsLiveData = ViewModelProvider(this@PostView).get(PostsLiveData::class.java)
-
         postsLiveData.singleSinglePostLiveItemData.observe(this@PostView, Observer {
 
             if (it.isNotEmpty()) {
@@ -92,6 +100,31 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
                 postsViewUiBinding.postRecyclerView.adapter = postViewAdapter
 
             }
+
+        })
+
+        /*Change Theme*/
+        postsLiveData.toggleTheme.observe(this@PostView, Observer {
+
+            var delayTheme: Long = 3333
+
+            when(it) {
+                ThemeType.ThemeLight -> {
+                    delayTheme = 3000
+                }
+                ThemeType.ThemeDark -> {
+                    delayTheme = 1133
+                }
+            }
+
+            Handler().postDelayed({
+
+                postViewAdapter.notifyItemRangeChanged(0, postViewAdapter.itemCount, null)
+
+
+                toggleLightDarkThemePostView(this@PostView)
+
+            }, delayTheme)
 
         })
 

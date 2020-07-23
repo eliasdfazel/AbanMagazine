@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 1:37 PM
+ * Created by Elias Fazel on 7/22/20 10:45 PM
+ * Last modified 7/22/20 10:43 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,12 +23,14 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.*
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -116,11 +118,90 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
         return singlePostItemsData.size
     }
 
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int, dataPayloads: MutableList<Any>) {
+        super.onBindViewHolder(viewHolder, position, dataPayloads)
+
+        when (singlePostItemsData[position].dataType) {
+
+            PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
+
+                (viewHolder as PostViewParagraphAdapterViewHolder)
+
+                viewHolder.postParagraph.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight -> {
+                        postViewContext.getColor(R.color.dark)
+                    }
+                    ThemeType.ThemeDark -> {
+                        postViewContext.getColor(R.color.light)
+                    }
+                    else -> {
+                        postViewContext.getColor(R.color.dark)
+                    }
+                })
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
+
+                (viewHolder as PostViewSubTitleAdapterViewHolder)
+
+                viewHolder.postSubTitle.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight -> {
+                        postViewContext.getColor(R.color.darker)
+                    }
+                    ThemeType.ThemeDark -> {
+                        postViewContext.getColor(R.color.lighter)
+                    }
+                    else -> {
+                        postViewContext.getColor(R.color.darker)
+                    }
+                })
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostImage -> {
+
+                (viewHolder as PostViewImageAdapterViewHolder)
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
+
+                (viewHolder as PostViewTextLinkAdapterViewHolder)
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
+
+                (viewHolder as PostViewIFrameAdapterViewHolder)
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram -> {
+
+                (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder)
+
+            }
+            else -> {
+
+            }
+
+        }
+
+    }
+
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
 
         when (singlePostItemsData[position].dataType) {
 
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
+
+                (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight -> {
+                        postViewContext.getColor(R.color.dark)
+                    }
+                    ThemeType.ThemeDark -> {
+                        postViewContext.getColor(R.color.light)
+                    }
+                    else -> {
+                        postViewContext.getColor(R.color.dark)
+                    }
+                })
 
                 singlePostItemsData[position].postItemParagraph?.let {
 
@@ -136,6 +217,18 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
             }
             PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
+
+                (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight -> {
+                        postViewContext.getColor(R.color.darker)
+                    }
+                    ThemeType.ThemeDark -> {
+                        postViewContext.getColor(R.color.lighter)
+                    }
+                    else -> {
+                        postViewContext.getColor(R.color.darker)
+                    }
+                })
 
                 singlePostItemsData[position].postItemSubTitle?.let {
 
@@ -269,7 +362,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                         .asDrawable()
                         .load(it.instagramPostImage)
                         .apply(requestOptions)
-                        .transform(CenterCrop(),RoundedCorners(11))
+                        .transform(CenterInside(),RoundedCorners(11))
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into((viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostImage)
 

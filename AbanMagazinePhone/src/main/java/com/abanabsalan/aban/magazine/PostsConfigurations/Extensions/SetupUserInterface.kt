@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 12:36 PM
+ * Created by Elias Fazel on 7/22/20 10:45 PM
+ * Last modified 7/22/20 10:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.Extensions
 
+import android.animation.Animator
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Animatable
@@ -19,7 +20,9 @@ import android.text.Html
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.WindowManager
+import android.view.animation.AccelerateInterpolator
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
@@ -28,6 +31,8 @@ import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.isColorDark
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
+import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
+import com.abanabsalan.aban.magazine.Utils.UI.Display.displayY
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -35,6 +40,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import kotlin.math.hypot
 
 fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
@@ -54,12 +60,22 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
             window.navigationBarColor = getColor(R.color.light)
 
+            postsViewUiBinding.rootView.setBackgroundColor(getColor(R.color.light))
+
+            postsViewUiBinding.postTitle.setTextColor(getColor(R.color.darker))
+
+            postsViewUiBinding.postRecyclerView.setBackgroundColor(getColor(R.color.light))
 
         }
         ThemeType.ThemeDark -> {
 
             window.navigationBarColor = getColor(R.color.dark)
 
+            postsViewUiBinding.rootView.setBackgroundColor(getColor(R.color.dark))
+
+            postsViewUiBinding.postTitle.setTextColor(getColor(R.color.lighter))
+
+            postsViewUiBinding.postRecyclerView.setBackgroundColor(getColor(R.color.dark))
 
         }
     }
@@ -163,5 +179,96 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
         })
         .submit()
+
+    setupPopupPreferencesClick()
+
+}
+
+fun PostView.setupPopupPreferencesClick() {
+
+    postsViewUiBinding.postMenuButton.setOnClickListener {
+
+
+        if (postsViewUiBinding.preferencePopupInclude.root.isShown) {
+
+            hidePopupPreferences()
+
+        } else {
+
+
+            showPopupPreferences()
+
+        }
+
+    }
+
+}
+
+fun PostView.showPopupPreferences() {
+
+    val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
+
+    val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(postsViewUiBinding.preferencePopupInclude.root,
+        (postsViewUiBinding.postMenuButton.x.toInt() + (postsViewUiBinding.postMenuButton.width / 2)),
+        (postsViewUiBinding.postMenuButton.y.toInt() - (postsViewUiBinding.postMenuButton.height)),
+        (postsViewUiBinding.postMenuButton.height.toFloat() / 2),
+        finalRadius.toFloat())
+
+    circularReveal.duration = 1111
+    circularReveal.interpolator = AccelerateInterpolator()
+
+    postsViewUiBinding.preferencePopupInclude.root.visibility = View.VISIBLE
+    circularReveal.start()
+    circularReveal.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            postsViewUiBinding.preferencePopupInclude.root.visibility = View.VISIBLE
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+
+        }
+    })
+
+}
+
+fun PostView.hidePopupPreferences() {
+
+    val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
+
+    val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(postsViewUiBinding.preferencePopupInclude.root,
+        (postsViewUiBinding.postMenuButton.x.toInt() + (postsViewUiBinding.postMenuButton.width / 2)),
+        (postsViewUiBinding.postMenuButton.y.toInt() - (postsViewUiBinding.postMenuButton.height)),
+        finalRadius.toFloat(),
+        (postsViewUiBinding.postMenuButton.height.toFloat() / 2))
+
+    circularReveal.duration = 1111
+    circularReveal.interpolator = AccelerateInterpolator()
+
+    circularReveal.start()
+    circularReveal.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            postsViewUiBinding.preferencePopupInclude.root.visibility = View.INVISIBLE
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+
+        }
+    })
 
 }

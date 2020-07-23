@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 9:46 PM
- * Last modified 7/20/20 9:45 PM
+ * Created by Elias Fazel on 7/22/20 10:45 PM
+ * Last modified 7/22/20 10:29 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.Utils.UI.Theme
 
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
 
 fun toggleLightDarkThemeHomePage(homePage: HomePage) {
@@ -52,6 +53,35 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
             homePage.homePageViewBinding.newestPostsTextView.setTextColor(homePage.getColor(R.color.lighter))
 
             homePage.homePageViewBinding.optionMenus.setAnimation(R.raw.lady_settings_dark)
+
+        }
+    }
+
+}
+
+fun toggleLightDarkThemePostView(postView: PostView) {
+
+    when (postView.overallTheme.checkThemeLightDark()) {
+        ThemeType.ThemeLight -> {
+
+            postView.window.navigationBarColor = postView.getColor(R.color.light)
+
+            postView.postsViewUiBinding.rootView.setBackgroundColor(postView.getColor(R.color.light))
+
+            postView.postsViewUiBinding.postTitle.setTextColor(postView.getColor(R.color.darker))
+
+            postView.postsViewUiBinding.postRecyclerView.setBackgroundColor(postView.getColor(R.color.light))
+
+        }
+        ThemeType.ThemeDark -> {
+
+            postView.window.navigationBarColor = postView.getColor(R.color.dark)
+
+            postView.postsViewUiBinding.rootView.setBackgroundColor(postView.getColor(R.color.dark))
+
+            postView.postsViewUiBinding.postTitle.setTextColor(postView.getColor(R.color.lighter))
+
+            postView.postsViewUiBinding.postRecyclerView.setBackgroundColor(postView.getColor(R.color.dark))
 
         }
     }

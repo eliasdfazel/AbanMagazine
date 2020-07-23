@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 1:34 PM
+ * Created by Elias Fazel on 7/22/20 10:45 PM
+ * Last modified 7/22/20 9:51 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,10 @@ class PostsLiveData : ViewModel() {
 
     val singleSinglePostLiveItemData: MutableLiveData<ArrayList<SinglePostItemData>> by lazy {
         MutableLiveData<ArrayList<SinglePostItemData>>()
+    }
+
+    val toggleTheme: MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>()
     }
 
     fun prepareRawDataToRenderForSinglePost(rawPostContent: String) = CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
