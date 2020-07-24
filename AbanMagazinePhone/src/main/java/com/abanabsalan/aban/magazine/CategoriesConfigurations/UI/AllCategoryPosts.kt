@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/14/20 12:40 PM
- * Last modified 7/14/20 12:14 PM
+ * Created by Elias Fazel on 7/24/20 12:54 AM
+ * Last modified 7/23/20 11:02 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,7 +60,7 @@ class AllCategoryPosts : AppCompatActivity() {
 
         allCategoryPostsBinding.allCategoryPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 379), RecyclerView.VERTICAL, false)
 
-        val allCategoryPostsAdapter: AllCategoryPostsAdapter = AllCategoryPostsAdapter(this@AllCategoryPosts, overallTheme.checkThemeLightDark())
+        val allCategoryPostsAdapter: AllCategoryPostsAdapter = AllCategoryPostsAdapter(this@AllCategoryPosts, overallTheme)
 
         categoryPostsLiveData.allCategoryPosts.observe(this@AllCategoryPosts, Observer {
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/23/20 10:58 PM
- * Last modified 7/23/20 10:02 PM
+ * Created by Elias Fazel on 7/24/20 12:54 AM
+ * Last modified 7/24/20 12:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,7 +53,7 @@ class NewestPostsRetrieval (private val context: Context) {
             }, Response.ErrorListener {
                 Log.d("JsonObjectRequestError", it?.networkResponse?.statusCode.toString())
 
-                jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it.toString())
+                jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it?.networkResponse?.statusCode)
 
             })
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/14/20 12:40 PM
- * Last modified 7/14/20 12:27 PM
+ * Created by Elias Fazel on 7/24/20 12:54 AM
+ * Last modified 7/23/20 11:25 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,10 +12,29 @@ package com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.Extensions
 
 import android.text.Html
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPosts
+import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 
 fun AllCategoryPosts.setupUserInterface(categoryName: String, categoryDescription: String) {
 
     allCategoryPostsBinding.toolbarTitle.text = Html.fromHtml(categoryName)
     allCategoryPostsBinding.toolbarDescription.setAnimatedInputText(Html.fromHtml(categoryDescription))
+
+    when (overallTheme.checkThemeLightDark()) {
+        ThemeType.ThemeLight -> {
+
+            window.navigationBarColor = getColor(R.color.light)
+
+            allCategoryPostsBinding.rootView.setBackgroundColor(getColor(R.color.light))
+
+        }
+        ThemeType.ThemeDark -> {
+
+            window.navigationBarColor = getColor(R.color.dark)
+
+            allCategoryPostsBinding.rootView.setBackgroundColor(getColor(R.color.dark))
+
+        }
+    }
 
 }

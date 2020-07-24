@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 1:37 PM
+ * Created by Elias Fazel on 7/24/20 12:54 AM
+ * Last modified 7/24/20 12:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.Adapter
 
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,19 +20,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPosts
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
-class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private val themeLightDark: Int): RecyclerView.Adapter<AllCategoryPostsViewHolder>() {
+class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private val overallTheme: OverallTheme): RecyclerView.Adapter<AllCategoryPostsViewHolder>() {
 
     val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
@@ -45,17 +48,71 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
         return postsItemData.size
     }
 
-    override fun onBindViewHolder(allCategoryPostsViewHolder: AllCategoryPostsViewHolder, position: Int) {
+    override fun onBindViewHolder(allCategoryPostsViewHolder: AllCategoryPostsViewHolder, position: Int, dataPayloads: MutableList<Any>) {
+        super.onBindViewHolder(allCategoryPostsViewHolder, position, dataPayloads)
 
-        when (themeLightDark) {
+        when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
+                val categoryPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.category_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.light))
+                categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
 
+                allCategoryPostsViewHolder.rootViewItem.background = categoryPostsItemBackground
+
+                allCategoryPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
+
+                allCategoryPostsViewHolder.postExcerptView.setTextColor(context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
+                val categoryPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.category_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.dark))
+                categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
 
+                allCategoryPostsViewHolder.rootViewItem.background = categoryPostsItemBackground
+
+                allCategoryPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
+
+                allCategoryPostsViewHolder.postExcerptView.setTextColor(context.getColor(R.color.light))
+
+            }
+        }
+
+    }
+
+    override fun onBindViewHolder(allCategoryPostsViewHolder: AllCategoryPostsViewHolder, position: Int) {
+
+        when (overallTheme.checkThemeLightDark()) {
+            ThemeType.ThemeLight -> {
+
+                val categoryPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.category_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.light))
+                categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
+
+                allCategoryPostsViewHolder.rootViewItem.background = categoryPostsItemBackground
+
+                allCategoryPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
+
+                allCategoryPostsViewHolder.postExcerptView.setTextColor(context.getColor(R.color.dark))
+
+            }
+            ThemeType.ThemeDark -> {
+
+                val categoryPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.category_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.dark))
+                categoryPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
+
+                allCategoryPostsViewHolder.rootViewItem.background = categoryPostsItemBackground
+
+                allCategoryPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
+
+                allCategoryPostsViewHolder.postExcerptView.setTextColor(context.getColor(R.color.light))
 
             }
         }
@@ -97,7 +154,7 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
             .asGif()
             .load(R.raw.share_animation)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .transform(CenterCrop(), RoundedCorners(23))
+            .transform(CenterInside(), RoundedCorners(23))
             .into(allCategoryPostsViewHolder.shareIcon)
 
 
@@ -110,6 +167,17 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
                 postTitle = postsItemData[position].postTitle,
                 postContent = postsItemData[position].postContent
             )
+
+        }
+
+        allCategoryPostsViewHolder.shareIcon.setOnClickListener {
+
+            SharePost(appCompatActivity = context)
+                .invoke(
+                    sharePostTitle = Html.fromHtml(postsItemData[position].postTitle).toString(),
+                    sharePostExcerpt = Html.fromHtml(postsItemData[position].postExcerpt).toString(),
+                    sharePostLink = postsItemData[position].postLink
+                )
 
         }
 

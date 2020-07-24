@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/28/20 3:54 PM
- * Last modified 6/28/20 2:52 PM
+ * Created by Elias Fazel on 7/24/20 12:54 AM
+ * Last modified 7/24/20 12:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,9 @@ package com.abanabsalan.aban.magazine.Utils.BlogContent
 
 class Language {
 
+    /**
+     * False For RTL Language
+     **/
     fun checkRtl(aString: String): Boolean {
 
         return if (aString.isNotBlank() && aString.isNotEmpty()) {
