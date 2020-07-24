@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 10:45 PM
- * Last modified 7/22/20 10:45 PM
+ * Created by Elias Fazel on 7/23/20 10:58 PM
+ * Last modified 7/23/20 10:51 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.Observer
@@ -35,7 +36,7 @@ import com.google.android.material.appbar.AppBarLayout
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 
-class PostView : AppCompatActivity(), GestureListenerInterface {
+class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnOffsetChangedListener {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
@@ -44,6 +45,8 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
     val postsLiveData: PostsLiveData by lazy {
         ViewModelProvider(this@PostView).get(PostsLiveData::class.java)
     }
+
+    private var postTopBarIsExpanded = true
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
@@ -135,13 +138,15 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
     override fun onResume() {
         super.onResume()
 
-        postsViewUiBinding.postTopBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+        postsViewUiBinding.postTopBar.addOnOffsetChangedListener(this@PostView)
 
-        })
     }
 
     override fun onPause() {
         super.onPause()
+
+        postsViewUiBinding.postTopBar.removeOnOffsetChangedListener(this@PostView)
+
     }
 
     override fun onBackPressed() {
@@ -154,6 +159,27 @@ class PostView : AppCompatActivity(), GestureListenerInterface {
     override fun onSwipeGesture(gestureConstants: GestureConstants, downMotionEvent: MotionEvent, moveMotionEvent: MotionEvent, initVelocityX: Float, initVelocityY: Float) {
         super.onSwipeGesture(gestureConstants, downMotionEvent, moveMotionEvent, initVelocityX, initVelocityY)
 
+
+    }
+
+    override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+        postTopBarIsExpanded = (verticalOffset == 0)
+
+        if (postTopBarIsExpanded) {
+            if (postsViewUiBinding.postMenuButton.isShown) {
+                postsViewUiBinding.postMenuButton.visibility = View.INVISIBLE
+            }
+            if (postsViewUiBinding.postMenuIcon.isShown) {
+                postsViewUiBinding.postMenuIcon.visibility = View.INVISIBLE
+            }
+        } else {
+            if (!postsViewUiBinding.postMenuButton.isShown) {
+                postsViewUiBinding.postMenuButton.visibility = View.VISIBLE
+            }
+            if (!postsViewUiBinding.postMenuIcon.isShown) {
+                postsViewUiBinding.postMenuIcon.visibility = View.VISIBLE
+            }
+        }
 
     }
 }

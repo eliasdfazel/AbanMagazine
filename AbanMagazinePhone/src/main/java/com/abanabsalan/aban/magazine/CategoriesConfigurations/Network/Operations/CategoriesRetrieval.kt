@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/7/20 1:28 PM
- * Last modified 7/7/20 1:28 PM
+ * Created by Elias Fazel on 7/23/20 10:58 PM
+ * Last modified 7/23/20 10:02 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -51,7 +51,7 @@ class CategoriesRetrieval (private val context: Context){
                 }
 
             }, Response.ErrorListener {
-                Log.d("JsonObjectRequestError", it.toString())
+                Log.d("JsonObjectRequestError", it?.networkResponse?.statusCode.toString())
 
                 jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it.toString())
 
