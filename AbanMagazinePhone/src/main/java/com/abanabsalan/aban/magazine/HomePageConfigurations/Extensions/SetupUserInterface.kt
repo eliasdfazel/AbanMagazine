@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 9:53 PM
- * Last modified 7/20/20 9:53 PM
+ * Created by Elias Fazel on 7/23/20 9:56 PM
+ * Last modified 7/23/20 9:50 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,14 @@ fun HomePage.setupUserInterface() {
     homePageViewBinding.homepageScrollingContentView.setPadding(0,
         homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext),
         0, 0)
+
+    homePageViewBinding.optionMenus.playAnimation()
+
+    setupPopupPreferencesClick()
+
+}
+
+fun HomePage.setupTheme() {
 
     when (overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {
@@ -78,10 +86,6 @@ fun HomePage.setupUserInterface() {
 
         }
     }
-
-    homePageViewBinding.optionMenus.playAnimation()
-
-    setupPopupPreferencesClick()
 
 }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 9:25 PM
- * Last modified 7/22/20 9:07 PM
+ * Created by Elias Fazel on 7/23/20 9:56 PM
+ * Last modified 7/23/20 9:50 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -247,6 +247,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
     override fun onResume() {
         super.onResume()
+
+        setupTheme()
 
         internetCheckpoint()
 
