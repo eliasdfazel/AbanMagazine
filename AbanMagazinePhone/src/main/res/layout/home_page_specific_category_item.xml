@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/18/20 9:40 AM
-  ~ Last modified 7/18/20 9:20 AM
+  ~ Created by Elias Fazel on 7/24/20 1:19 AM
+  ~ Last modified 7/24/20 1:00 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -36,7 +36,7 @@
         android:id="@+id/postTitleView"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:paddingHorizontal="3dp"
+        android:paddingHorizontal="7dp"
         android:paddingVertical="1dp"
         android:gravity="center_vertical"
         android:lines="2"
@@ -54,7 +54,7 @@
         android:id="@+id/postExcerptView"
         android:layout_width="match_parent"
         android:layout_height="101dp"
-        android:paddingHorizontal="5dp"
+        android:paddingHorizontal="7dp"
         android:paddingVertical="3dp"
         android:lines="4"
         android:ellipsize="end"
