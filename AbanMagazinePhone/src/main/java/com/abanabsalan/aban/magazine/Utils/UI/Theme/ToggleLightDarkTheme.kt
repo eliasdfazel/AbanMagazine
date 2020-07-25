@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 3:35 AM
- * Last modified 7/25/20 3:31 AM
+ * Created by Elias Fazel on 7/25/20 3:55 AM
+ * Last modified 7/25/20 3:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,8 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
 
 fun toggleLightDarkThemeHomePage(homePage: HomePage) {
+
+    OverallTheme.LastActivity = homePage.javaClass.simpleName
 
     when (homePage.overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {
@@ -60,6 +62,8 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
 }
 
 fun toggleLightDarkThemePostView(postView: PostView) {
+
+    OverallTheme.LastActivity = postView.javaClass.simpleName
 
     when (postView.overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {

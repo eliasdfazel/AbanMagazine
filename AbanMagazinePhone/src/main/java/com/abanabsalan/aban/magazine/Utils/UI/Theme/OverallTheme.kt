@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 3:26 PM
- * Last modified 7/20/20 3:24 PM
+ * Created by Elias Fazel on 7/25/20 3:55 AM
+ * Last modified 7/25/20 3:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,10 @@ object ThemeType {
 }
 
 class OverallTheme (private val context: Context) {
+
+    companion object {
+        var LastActivity: String? = null
+    }
 
     private val savePreferences: SavePreferences = SavePreferences(context)
     private val readPreferences: ReadPreferences = ReadPreferences(context)

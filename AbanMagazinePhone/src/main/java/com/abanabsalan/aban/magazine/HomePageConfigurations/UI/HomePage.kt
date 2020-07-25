@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 12:40 AM
- * Last modified 7/25/20 12:40 AM
+ * Created by Elias Fazel on 7/25/20 3:55 AM
+ * Last modified 7/25/20 3:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -271,7 +271,15 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
     override fun onResume() {
         super.onResume()
 
-        homePageLiveData.toggleTheme.postValue(false)
+        if (OverallTheme.LastActivity != null) {
+            if (OverallTheme.LastActivity != this@HomePage.javaClass.simpleName) {
+                homePageLiveData.toggleTheme.postValue(true)
+            } else {
+                homePageLiveData.toggleTheme.postValue(false)
+            }
+        } else {
+            homePageLiveData.toggleTheme.postValue(false)
+        }
 
         internetCheckpoint()
 

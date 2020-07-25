@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 12:40 AM
- * Last modified 7/25/20 12:30 AM
+ * Created by Elias Fazel on 7/25/20 3:55 AM
+ * Last modified 7/25/20 3:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
+import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
@@ -162,8 +163,16 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
     override fun onBackPressed() {
 
-        this@PostView.finish()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        if (postsViewUiBinding.preferencePopupInclude.root.isShown) {
+
+            hidePopupPreferences()
+
+        } else {
+
+            this@PostView.finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+        }
 
     }
 
