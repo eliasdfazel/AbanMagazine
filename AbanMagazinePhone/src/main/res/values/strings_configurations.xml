@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/20/20 8:48 PM
-  ~ Last modified 7/20/20 8:27 PM
+  ~ Created by Elias Fazel on 7/24/20 9:19 PM
+  ~ Last modified 7/24/20 7:55 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -11,5 +11,12 @@
 <resources>
 
     <string name="featuredImageTransitionName" translatable="false">featuredImageTransitionName</string>
+
+    <string name="websiteLink" translatable="false">https://www.AbanAbsalan.com</string>
+
+    <string name="instagramLink" translatable="false">https://www.instagram.com/abanabsalan/</string>
+    <string name="twitterLink" translatable="false">https://www.twitter.com/abanabsalan/</string>
+    <string name="pinterestLink" translatable="false">https://www.pinterest.com/abanabsalan</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCZ8fcnF3OlTw_UcbxC4OaUw</string>
 
 </resources>

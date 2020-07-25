@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 7:09 PM
- * Last modified 7/24/20 7:07 PM
+ * Created by Elias Fazel on 7/24/20 9:19 PM
+ * Last modified 7/24/20 7:55 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -96,6 +97,12 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         homePageViewBinding.root.post {
 
             setupUserInterface()
+
+            homePageViewBinding.officialLogo.setOnClickListener {
+
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.websiteLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+            }
 
             /*Load Featured Posts*/
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {

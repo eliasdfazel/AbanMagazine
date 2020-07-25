@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 7:09 PM
- * Last modified 7/24/20 7:06 PM
+ * Created by Elias Fazel on 7/24/20 9:19 PM
+ * Last modified 7/24/20 8:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,16 +10,22 @@
 
 package com.abanabsalan.aban.magazine.Preferences
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewBinding
 
-class PopupPreferencesController (private val context: AppCompatActivity, private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
+class PopupPreferencesController (private val context: AppCompatActivity,
+                                  private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
 
     private val overallTheme: OverallTheme by lazy {
         OverallTheme(context)
@@ -28,6 +34,8 @@ class PopupPreferencesController (private val context: AppCompatActivity, privat
     init {
 
         initialThemeToggleAction()
+
+        socialMediaAction()
 
     }
 
@@ -108,6 +116,38 @@ class PopupPreferencesController (private val context: AppCompatActivity, privat
                     (context as PostView).hidePopupPreferences()
                 }
             }
+
+        }
+
+    }
+
+    private fun socialMediaAction() {
+
+        val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
+        instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
+        preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
+
+        preferencesPopupUiViewBinding.instagramView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.instagramLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.twitterView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.twitterLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.pinterestView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.pinterestLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.youtubeView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.youtubeLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
 
         }
 

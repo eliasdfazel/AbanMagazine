@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/20/20 8:15 PM
-  ~ Last modified 7/20/20 7:45 PM
+  ~ Created by Elias Fazel on 7/24/20 9:19 PM
+  ~ Last modified 7/24/20 9:17 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -28,12 +28,102 @@
         android:id="@+id/toggleTheme"
         android:layout_width="159dp"
         android:layout_height="159dp"
+        android:layout_margin="13dp"
 
         apps:lottie_rawRes="@raw/toggle_theme"
 
         apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settingsView"
+        android:layout_width="83dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="11dp"
+        android:layout_margin="13dp"
+        android:contentDescription="@string/preferencesText"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:visibility="invisible"
+
+        apps:cornerRadius="51dp"
+        apps:elevation="23dp"
+        apps:icon="@drawable/setting_icon"
+        apps:iconSize="37sp"
+        apps:iconGravity="textStart"
+        apps:iconPadding="0dp"
+        apps:rippleColor="@color/cyberGreen"
+        apps:backgroundTint="@color/default_color_transparent"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupView"
+        android:layout_width="83dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="11dp"
+        android:layout_margin="13dp"
+        android:contentDescription="@string/signupText"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:visibility="invisible"
+
+        apps:cornerRadius="51dp"
+        apps:elevation="23dp"
+        apps:icon="@drawable/ic_sign_up_icon"
+        apps:iconSize="37sp"
+        apps:iconGravity="textStart"
+        apps:iconPadding="0dp"
+        apps:rippleColor="@color/cyberGreen"
+        apps:backgroundTint="@color/default_color_transparent"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/instagramView"
+        android:layout_width="159dp"
+        android:layout_height="159dp"
+        android:layout_marginVertical="13dp"
+        android:src="@drawable/instagram_icon"
+
         apps:layout_constraintBottom_toBottomOf="parent"
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/twitterView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/twitter_icon"
+
+        apps:layout_constraintBottom_toTopOf="@id/instagramView"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/youtubeView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/youtube_icon"
+
+        apps:layout_constraintBottom_toTopOf="@id/instagramView"
+        apps:layout_constraintEnd_toEndOf="@id/instagramView"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/pinterestView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/pinterest_icon"
+
+        apps:layout_constraintBottom_toTopOf="@id/instagramView"
+        apps:layout_constraintStart_toStartOf="@id/instagramView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
