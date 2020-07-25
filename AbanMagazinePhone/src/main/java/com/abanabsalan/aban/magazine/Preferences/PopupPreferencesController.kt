@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 9:19 PM
- * Last modified 7/24/20 8:08 PM
+ * Created by Elias Fazel on 7/25/20 2:56 AM
+ * Last modified 7/25/20 2:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -148,6 +148,38 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         preferencesPopupUiViewBinding.youtubeView.setOnClickListener {
 
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.youtubeLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.rateView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.playStoreLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.shareView.setOnClickListener {
+
+            val shareText: String = "مجله آبان | بوستان مد و استایل" +
+                    "\n" +
+                    "مجله اینترنتی تخصصی مد و استایل" +
+                    "\n" + "\n" +
+                    "نصب برنامه" +
+                    "\n" +
+                    "${context.getString(R.string.playStoreLink)}" +
+                    "\n" + "\n" +
+                    "https://www.AbanAbsalan.com" +
+                    "\n" +
+                    "#AbanAbsalan" +
+                    "\n" +
+                    "#آبان_آبسالان" +
+                    ""
+
+            val shareIntent: Intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, shareText)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(shareIntent)
 
         }
 

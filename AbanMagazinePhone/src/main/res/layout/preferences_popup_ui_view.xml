@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/24/20 9:19 PM
-  ~ Last modified 7/24/20 9:17 PM
+  ~ Created by Elias Fazel on 7/25/20 2:56 AM
+  ~ Last modified 7/25/20 2:43 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -77,7 +77,7 @@
 
         apps:cornerRadius="51dp"
         apps:elevation="23dp"
-        apps:icon="@drawable/ic_sign_up_icon"
+        apps:icon="@drawable/sign_up_icon"
         apps:iconSize="37sp"
         apps:iconGravity="textStart"
         apps:iconPadding="0dp"
@@ -125,5 +125,55 @@
 
         apps:layout_constraintBottom_toTopOf="@id/instagramView"
         apps:layout_constraintStart_toStartOf="@id/instagramView"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/shareView"
+        android:layout_width="83dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="11dp"
+        android:layout_margin="13dp"
+        android:contentDescription="@string/shareText"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:visibility="visible"
+
+        apps:cornerRadius="51dp"
+        apps:elevation="23dp"
+        apps:icon="@drawable/share_icon"
+        apps:iconSize="37sp"
+        apps:iconGravity="textStart"
+        apps:iconPadding="0dp"
+        apps:rippleColor="@color/cyberGreen"
+        apps:backgroundTint="@color/default_color_transparent"
+
+        apps:layout_constraintBottom_toBottomOf="@id/instagramView"
+        apps:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/rateView"
+        android:layout_width="83dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="11dp"
+        android:layout_margin="13dp"
+        android:contentDescription="@string/rateText"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:visibility="visible"
+
+        apps:cornerRadius="51dp"
+        apps:elevation="23dp"
+        apps:icon="@drawable/rate_icon"
+        apps:iconSize="37sp"
+        apps:iconGravity="textStart"
+        apps:iconPadding="0dp"
+        apps:rippleColor="@color/cyberGreen"
+        apps:backgroundTint="@color/default_color_transparent"
+
+        apps:layout_constraintBottom_toBottomOf="@id/instagramView"
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

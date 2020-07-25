@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/24/20 9:19 PM
-  ~ Last modified 7/24/20 9:17 PM
+  ~ Created by Elias Fazel on 7/25/20 2:56 AM
+  ~ Last modified 7/25/20 2:24 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -15,6 +15,9 @@
 
     <string name="preferencesText">تنظیمات</string>
     <string name="signupText">ثبت نام</string>
+    <string name="rateText">امتیاز پنج ستاره بدهید</string>
+    <string name="shareText">برنامه ما را با دوستان خود به اشتراک بگذارید</string>
+
     <string name="searchText">جستجو</string>
 
     <string name="featuredPostsText">پست های ویژه</string>
