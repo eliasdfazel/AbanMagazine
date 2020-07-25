@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 10:45 PM
- * Last modified 7/22/20 10:06 PM
+ * Created by Elias Fazel on 7/24/20 7:09 PM
+ * Last modified 7/24/20 7:06 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -89,7 +89,7 @@ class PopupPreferencesController (private val context: AppCompatActivity, privat
 
             when(context) {
                 is HomePage -> {
-                    (context as HomePage).homePageLiveData.toggleTheme.postValue(overallTheme.checkThemeLightDark())
+                    (context as HomePage).homePageLiveData.toggleTheme.postValue(true)
                 }
                 is PostView -> {
                     (context as PostView).postsLiveData.toggleTheme.postValue(overallTheme.checkThemeLightDark())

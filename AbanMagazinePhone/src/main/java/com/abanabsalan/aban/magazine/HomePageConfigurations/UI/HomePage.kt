@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/23/20 9:56 PM
- * Last modified 7/23/20 9:50 PM
+ * Created by Elias Fazel on 7/24/20 7:09 PM
+ * Last modified 7/24/20 7:07 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -218,7 +218,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                 var delayTheme: Long = 3333
 
-                when(it) {
+                when(overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
                         delayTheme = 3000
                     }
@@ -229,11 +229,19 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                 Handler().postDelayed({
 
-                    specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
+                    if (it) {
 
-                    newestPostsAdapter.notifyItemRangeChanged(0, newestPostsAdapter.itemCount, null)
+                        specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
 
-                    toggleLightDarkThemeHomePage(this@HomePage)
+                        newestPostsAdapter.notifyItemRangeChanged(0, newestPostsAdapter.itemCount, null)
+
+                        toggleLightDarkThemeHomePage(this@HomePage)
+
+                    } else {
+
+                        toggleLightDarkThemeHomePage(this@HomePage)
+
+                    }
 
                 }, delayTheme)
 
@@ -248,7 +256,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
     override fun onResume() {
         super.onResume()
 
-        setupTheme()
+        homePageLiveData.toggleTheme.postValue(false)
 
         internetCheckpoint()
 

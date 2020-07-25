@@ -3,7 +3,7 @@
   ~ Copyright © 2020 By Geeks Empire.
   ~
   ~ Created by Elias Fazel on 7/24/20 7:09 PM
-  ~ Last modified 7/14/20 12:40 PM
+  ~ Last modified 7/19/20 5:40 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -13,22 +13,21 @@
 
     <item>
         <shape>
-            <gradient
-                android:endColor="@color/dark"
-                android:centerColor="@color/dark"
-                android:startColor="@android:color/transparent"
-                android:centerY="0.17"
-                android:angle="90" />
+            <corners
+                android:radius="7dp"/>
+            <solid android:color="@color/default_color_transparent"/>
         </shape>
     </item>
 
     <item
-        android:top="0dp"
+        android:top="5dp"
         android:bottom="5dp"
-        android:start="0dp"
-        android:end="0dp">
+        android:start="5dp"
+        android:end="5dp">
         <shape>
-            <solid android:color="@color/default_color_game"/>
+            <corners
+                android:radius="7dp" />
+            <solid android:color="@color/light_transparent"/>
         </shape>
     </item>
 

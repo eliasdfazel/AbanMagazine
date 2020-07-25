@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/10/20 2:27 PM
- * Last modified 7/10/20 2:25 PM
+ * Created by Elias Fazel on 7/24/20 7:09 PM
+ * Last modified 7/24/20 6:39 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,14 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 
 fun columnCount(context: Context, itemWidth: Int): Int {
-    return (displayX(context) / DpToPixel(context, itemWidth.toFloat())).toInt()
+
+    var spanCount = (displayX(context) / DpToPixel(context, itemWidth.toFloat())).toInt()
+
+    if (spanCount < 1) {
+        spanCount = 1
+    }
+
+    return spanCount
 }
 
 fun DpToPixel(context: Context, dp: Float): Float {
