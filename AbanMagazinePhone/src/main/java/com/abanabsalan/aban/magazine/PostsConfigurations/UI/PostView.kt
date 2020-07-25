@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/23/20 10:58 PM
- * Last modified 7/23/20 10:51 PM
+ * Created by Elias Fazel on 7/25/20 12:40 AM
+ * Last modified 7/25/20 12:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,6 +28,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.setupUserInt
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemePostView
@@ -44,6 +45,10 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
     val postsLiveData: PostsLiveData by lazy {
         ViewModelProvider(this@PostView).get(PostsLiveData::class.java)
+    }
+
+    val adsConfiguration: AdsConfiguration by lazy {
+        AdsConfiguration(this@PostView)
     }
 
     private var postTopBarIsExpanded = true
@@ -78,6 +83,8 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
         super.onCreate(savedInstanceState)
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
+
+        adsConfiguration.initialize()
 
         PopupPreferencesController(this@PostView, postsViewUiBinding.preferencePopupInclude)
 
@@ -137,6 +144,10 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
     override fun onResume() {
         super.onResume()
+
+        if (adsConfiguration.interstitialAd.isLoaded) {
+            adsConfiguration.interstitialAd.show()
+        }
 
         postsViewUiBinding.postTopBar.addOnOffsetChangedListener(this@PostView)
 

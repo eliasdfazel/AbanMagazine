@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 9:19 PM
- * Last modified 7/24/20 7:55 PM
+ * Created by Elias Fazel on 7/25/20 12:40 AM
+ * Last modified 7/25/20 12:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.Specific
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
+import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
@@ -57,6 +58,10 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         ViewModelProvider(this@HomePage).get(HomePageLiveData::class.java)
     }
 
+    val adsConfiguration: AdsConfiguration by lazy {
+        AdsConfiguration(this@HomePage)
+    }
+
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
 
@@ -66,6 +71,8 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         super.onCreate(savedInstanceState)
         homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
+
+        adsConfiguration.initialize()
 
         PopupPreferencesController(this@HomePage, homePageViewBinding.preferencePopupInclude)
 
@@ -234,9 +241,9 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
                     }
                 }
 
-                Handler().postDelayed({
+                if (it) {
 
-                    if (it) {
+                    Handler().postDelayed({
 
                         specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
 
@@ -244,13 +251,14 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
                         toggleLightDarkThemeHomePage(this@HomePage)
 
-                    } else {
+                    }, delayTheme)
 
-                        toggleLightDarkThemeHomePage(this@HomePage)
+                } else {
 
-                    }
+                    toggleLightDarkThemeHomePage(this@HomePage)
 
-                }, delayTheme)
+                }
+
 
             })
 
