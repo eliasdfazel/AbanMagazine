@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 10:45 PM
- * Last modified 7/22/20 10:29 PM
+ * Created by Elias Fazel on 7/25/20 3:35 AM
+ * Last modified 7/25/20 3:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -72,6 +72,8 @@ fun toggleLightDarkThemePostView(postView: PostView) {
 
             postView.postsViewUiBinding.postRecyclerView.setBackgroundColor(postView.getColor(R.color.light))
 
+            postView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(postView.getColor(R.color.light_transparent))
+
         }
         ThemeType.ThemeDark -> {
 
@@ -82,6 +84,8 @@ fun toggleLightDarkThemePostView(postView: PostView) {
             postView.postsViewUiBinding.postTitle.setTextColor(postView.getColor(R.color.lighter))
 
             postView.postsViewUiBinding.postRecyclerView.setBackgroundColor(postView.getColor(R.color.dark))
+
+            postView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(postView.getColor(R.color.dark_transparent))
 
         }
     }

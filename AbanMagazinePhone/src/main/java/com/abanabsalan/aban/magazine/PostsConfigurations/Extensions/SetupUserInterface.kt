@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 10:45 PM
- * Last modified 7/22/20 10:45 PM
+ * Created by Elias Fazel on 7/25/20 3:35 AM
+ * Last modified 7/25/20 3:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -66,6 +66,7 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
             postsViewUiBinding.postRecyclerView.setBackgroundColor(getColor(R.color.light))
 
+            postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(getColor(R.color.light_transparent))
         }
         ThemeType.ThemeDark -> {
 
@@ -76,6 +77,8 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
             postsViewUiBinding.postTitle.setTextColor(getColor(R.color.lighter))
 
             postsViewUiBinding.postRecyclerView.setBackgroundColor(getColor(R.color.dark))
+
+            postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(getColor(R.color.dark_transparent))
 
         }
     }
