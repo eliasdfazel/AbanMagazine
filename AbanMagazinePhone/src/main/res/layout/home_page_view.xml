@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/25/20 12:41 AM
-  ~ Last modified 7/25/20 12:41 AM
+  ~ Created by Elias Fazel on 7/25/20 1:49 AM
+  ~ Last modified 7/25/20 1:43 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -103,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="1dp"
+                android:visibility="invisible"
 
                 ads:adSize="SMART_BANNER"
                 ads:adUnitId="@string/homePageBanner"

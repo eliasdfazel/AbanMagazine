@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 12:40 AM
- * Last modified 7/25/20 12:35 AM
+ * Created by Elias Fazel on 7/25/20 1:49 AM
+ * Last modified 7/25/20 1:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.Utils.Ads
 
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
@@ -65,8 +66,8 @@ class AdsConfiguration (private val context: AppCompatActivity) {
 
             }
 
-            override fun onAdFailedToLoad(error: Int) {
-                super.onAdFailedToLoad(error)
+            override fun onAdFailedToLoad(errorCode: Int) {
+                super.onAdFailedToLoad(errorCode)
 
                 interstitialAd.loadAd(adRequest)
 
@@ -82,15 +83,45 @@ class AdsConfiguration (private val context: AppCompatActivity) {
 
     private fun bannerAdsLoadShow() {
 
+        val adRequest = AdRequest.Builder().build()
+
         when(context) {
             is HomePage -> {
-                val adRequest = AdRequest.Builder().build()
 
                 (context).homePageViewBinding.bannerAdView.loadAd(adRequest)
 
+                (context).homePageViewBinding.bannerAdView.adListener = object: AdListener() {
+                    override fun onAdLoaded() {
+
+                        (context).homePageViewBinding.bannerAdView.visibility = View.VISIBLE
+                    }
+
+                    override fun onAdFailedToLoad(errorCode : Int) {
+
+                        (context).homePageViewBinding.bannerAdView.loadAd(adRequest)
+
+                    }
+
+                    override fun onAdOpened() {
+
+                    }
+
+                    override fun onAdClicked() {
+
+                    }
+
+                    override fun onAdLeftApplication() {
+
+                    }
+
+                    override fun onAdClosed() {
+
+                    }
+                }
+
             }
             is PostView -> {
-                interstitialAd.adUnitId = context.getString(R.string.postViewInterstitial)
+
             }
         }
 
