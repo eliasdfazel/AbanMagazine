@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 7:35 PM
- * Last modified 7/25/20 7:07 PM
+ * Created by Elias Fazel on 7/25/20 8:13 PM
+ * Last modified 7/25/20 8:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase
 
 import androidx.room.*
+import io.reactivex.Flowable
 
 @Dao
 interface PostsDataDAO {
@@ -28,6 +29,11 @@ interface PostsDataDAO {
 
 
     @Query("SELECT * FROM PostsOfflineDatabase ORDER BY PostId ASC")
-    suspend fun getAllPostsDataSuspend(): List<PostsDataModel>
+    suspend fun getAllPostsData(): Flowable<List<PostsDataModel>>
 
+    @Query("SELECT * FROM PostsOfflineDatabase WHERE PostCategories LIKE :postCategories")
+    fun loadPostsDataByCategory(postCategories: String?): Flowable<List<PostsDataModel>>
+
+    @Query("SELECT * FROM PostsOfflineDatabase WHERE PostTags LIKE :postTags")
+    fun loadPostsDataByTag(postTags: String?): Flowable<List<PostsDataModel>>
 }
