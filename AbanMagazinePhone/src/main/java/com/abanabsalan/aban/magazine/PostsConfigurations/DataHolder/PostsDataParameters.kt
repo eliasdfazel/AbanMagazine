@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 7:35 PM
- * Last modified 7/25/20 7:22 PM
+ * Created by Elias Fazel on 7/25/20 8:15 PM
+ * Last modified 7/25/20 8:15 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -61,6 +61,7 @@ class PostsDataParameters {
         const val BlockQuoteTwitter: String = "twitter"
         const val BlockQuoteFacebook: String = "facebook"
     }
+
 }
 
 data class PostsItemData (var postLink: String,
