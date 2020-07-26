@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 6/26/20 6:24 PM
+ * Created by Elias Fazel on 7/25/20 7:35 PM
+ * Last modified 7/25/20 7:11 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.VectorDrawable
+import java.io.ByteArrayOutputStream
 
 fun drawableToBitmap(drawable: Drawable): Bitmap {
 
@@ -73,4 +74,14 @@ fun drawableToBitmap(drawable: Drawable): Bitmap {
             bitmap
         }
     }
+}
+
+fun drawableToByteArray(drawable: Drawable) : ByteArray{
+
+    val byteArrayOutputStream = ByteArrayOutputStream()
+
+    val bitmap = (drawable as BitmapDrawable).bitmap
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+
+    return byteArrayOutputStream.toByteArray()
 }

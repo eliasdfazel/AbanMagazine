@@ -1,8 +1,8 @@
-/*
+ /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 1:37 PM
- * Last modified 7/20/20 1:34 PM
+ * Created by Elias Fazel on 7/25/20 7:35 PM
+ * Last modified 7/25/20 7:22 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,8 @@ class PostsDataParameters {
         const val PostExcerpt: String = "excerpt"
         const val PostCommentsLink: String = "replies"
 
+        const val PostCategories: String = "categories"
+        const val PostTags: String = "tags"
 
         const val PostDate: String = "date_gmt"
         const val Rendered: String = "rendered"
@@ -67,7 +69,9 @@ data class PostsItemData (var postLink: String,
                           var postTitle: String,
                           var postContent: String,
                           var postExcerpt: String,
-                          var postPublishDate: String)
+                          var postPublishDate: String,
+                          var postCategories: String,
+                          var postTags: String)
 
 data class PostItemParagraph(var paragraphText: String)
 data class PostItemSubTitle(var subTitleText: String)

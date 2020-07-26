@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 7:09 PM
- * Last modified 7/24/20 7:05 PM
+ * Created by Elias Fazel on 7/25/20 7:35 PM
+ * Last modified 7/25/20 7:24 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -65,7 +65,9 @@ class HomePageLiveData : ViewModel() {
                 postTitle = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostTitle).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postContent = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
-                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate)
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
+                postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(",")
             ))
 
         }
@@ -118,7 +120,9 @@ class HomePageLiveData : ViewModel() {
                 postTitle = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostTitle).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postContent = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
-                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate)
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
+                postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(",")
             ))
 
         }

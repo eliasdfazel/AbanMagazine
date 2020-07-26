@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/12/20 12:18 PM
- * Last modified 7/12/20 11:06 AM
+ * Created by Elias Fazel on 7/25/20 7:35 PM
+ * Last modified 7/25/20 7:25 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,7 +45,9 @@ class CategoryPostsLiveData : ViewModel() {
                     PostsDataParameters.JsonDataStructure.Rendered),
                 postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(
                     PostsDataParameters.JsonDataStructure.Rendered),
-                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate)
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
+                postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(",")
             ))
 
         }
