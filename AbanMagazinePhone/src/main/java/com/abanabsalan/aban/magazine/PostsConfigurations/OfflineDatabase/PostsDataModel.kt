@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 8:13 PM
- * Last modified 7/25/20 7:45 PM
+ * Created by Elias Fazel on 7/25/20 8:50 PM
+ * Last modified 7/25/20 8:49 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,7 +24,6 @@ data class PostsDataModel(
         @NonNull @ColumnInfo(typeAffinity = ColumnInfo.BLOB, name = "FeaturedImage") var FeaturedImage: ByteArray,
         @NonNull @ColumnInfo(typeAffinity = ColumnInfo.TEXT, name = "PostTitle") var PostTitle: String,
         @NonNull @ColumnInfo(typeAffinity = ColumnInfo.TEXT, name = "PostExcerpt") var PostExcerpt: String,
-        @NonNull @ColumnInfo(typeAffinity = ColumnInfo.TEXT, name = "PostContent") var PostContent: String,
 
         /**
          * CSV Of Categories
