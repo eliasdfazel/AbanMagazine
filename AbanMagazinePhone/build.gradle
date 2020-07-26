@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 12:40 AM
- * Last modified 7/24/20 11:58 PM
+ * Created by Elias Fazel on 7/25/20 9:50 PM
+ * Last modified 7/25/20 9:22 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -143,6 +143,8 @@ dependencies {
 
 
     implementation 'org.jsoup:jsoup:1.13.1'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 
 
     implementation 'com.google.dagger:dagger:2.27'
