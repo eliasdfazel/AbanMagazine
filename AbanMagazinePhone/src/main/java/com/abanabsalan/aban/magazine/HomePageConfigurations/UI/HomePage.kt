@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 3:55 AM
- * Last modified 7/25/20 3:49 AM
+ * Created by Elias Fazel on 7/26/20 7:07 PM
+ * Last modified 7/26/20 6:42 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
+import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
@@ -42,6 +43,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import com.google.firebase.messaging.FirebaseMessaging
 import javax.inject.Inject
 
 class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
@@ -71,6 +73,15 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         super.onCreate(savedInstanceState)
         homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
+
+
+        if (BuildConfig.VERSION_NAME.contains("BETA")) {
+            FirebaseMessaging.getInstance()
+                .subscribeToTopic("BETA")
+                .addOnSuccessListener {
+
+                }
+        }
 
         adsConfiguration.initialize()
 
