@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 9:51 PM
- * Last modified 7/25/20 9:50 PM
+ * Created by Elias Fazel on 7/26/20 6:26 PM
+ * Last modified 7/26/20 6:23 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,7 +35,8 @@ data class PostsDataModel(
         @NonNull @ColumnInfo(typeAffinity = ColumnInfo.TEXT, name = "PostTags") var PostTags: String,
 
         /**
-         * 1 For When Favorited
+         * English - Persian
          **/
-        @NonNull @ColumnInfo(typeAffinity = ColumnInfo.INTEGER, name = "PostFavorited") var PostFavorited: Int
+        @NonNull @ColumnInfo(typeAffinity = ColumnInfo.INTEGER, name = "PostFavorited") var PostFavorited: Int,
+        @NonNull @ColumnInfo(typeAffinity = ColumnInfo.TEXT, name = "PostLanguage") var PostLanguage: Int
 )
