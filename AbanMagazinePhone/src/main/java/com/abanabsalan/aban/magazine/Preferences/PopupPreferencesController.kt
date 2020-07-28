@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/27/20 10:21 PM
- * Last modified 7/27/20 10:21 PM
+ * Created by Elias Fazel on 7/27/20 10:56 PM
+ * Last modified 7/27/20 10:52 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,10 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class PopupPreferencesController (private val context: AppCompatActivity,
                                   private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
@@ -207,6 +211,16 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
         preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
 
+        Glide.with(context)
+            .asGif()
+            .load(R.raw.share_animation)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .transform(CenterInside(), RoundedCorners(23))
+            .into(preferencesPopupUiViewBinding.shareView)
+
+        preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 40)
+        preferencesPopupUiViewBinding.rateView.playAnimation()
+
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.instagramLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
@@ -233,6 +247,8 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateView.setOnClickListener {
 
+            preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 45)
+            preferencesPopupUiViewBinding.rateView.playAnimation()
             /*
             * Change Icon To Save As Favorite
             * */

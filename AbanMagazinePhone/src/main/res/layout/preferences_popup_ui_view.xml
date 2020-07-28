@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/27/20 10:21 PM
-  ~ Last modified 7/27/20 9:55 PM
+  ~ Created by Elias Fazel on 7/27/20 10:56 PM
+  ~ Last modified 7/27/20 10:52 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -38,8 +38,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsView"
-        android:layout_width="83dp"
-        android:layout_height="59dp"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
         android:layout_marginStart="11dp"
         android:layout_margin="13dp"
         android:contentDescription="@string/preferencesText"
@@ -58,14 +58,15 @@
         apps:rippleColor="@color/cyberGreen"
         apps:backgroundTint="@color/default_color_transparent"
 
-        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintTop_toTopOf="@id/toggleTheme"
+        apps:layout_constraintBottom_toBottomOf="@id/toggleTheme"
         apps:layout_constraintEnd_toEndOf="parent"/>
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signupView"
-        android:layout_width="83dp"
-        android:layout_height="59dp"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
         android:layout_marginStart="11dp"
         android:layout_margin="13dp"
         android:contentDescription="@string/signupText"
@@ -84,7 +85,8 @@
         apps:rippleColor="@color/cyberGreen"
         apps:backgroundTint="@color/default_color_transparent"
 
-        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintTop_toTopOf="@id/toggleTheme"
+        apps:layout_constraintBottom_toBottomOf="@id/toggleTheme"
         apps:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -126,10 +128,10 @@
         apps:layout_constraintBottom_toTopOf="@id/instagramView"
         apps:layout_constraintStart_toStartOf="@id/instagramView"/>
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/shareView"
-        android:layout_width="83dp"
-        android:layout_height="59dp"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
         android:layout_marginHorizontal="13dp"
         android:contentDescription="@string/shareText"
         android:insetLeft="0dp"
@@ -138,22 +140,14 @@
         android:insetBottom="0dp"
         android:visibility="visible"
 
-        apps:cornerRadius="51dp"
-        apps:elevation="23dp"
-        apps:icon="@drawable/share_icon"
-        apps:iconSize="37sp"
-        apps:iconGravity="textStart"
-        apps:iconPadding="0dp"
-        apps:rippleColor="@color/cyberGreen"
-        apps:backgroundTint="@color/default_color_transparent"
-
+        apps:layout_constraintTop_toTopOf="@id/instagramView"
         apps:layout_constraintBottom_toBottomOf="@id/instagramView"
         apps:layout_constraintStart_toStartOf="parent"/>
 
-    <com.google.android.material.button.MaterialButton
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/rateView"
-        android:layout_width="83dp"
-        android:layout_height="59dp"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
         android:layout_marginHorizontal="13dp"
         android:contentDescription="@string/rateText"
         android:insetLeft="0dp"
@@ -162,15 +156,9 @@
         android:insetBottom="0dp"
         android:visibility="visible"
 
-        apps:cornerRadius="51dp"
-        apps:elevation="23dp"
-        apps:icon="@drawable/rate_icon"
-        apps:iconSize="37sp"
-        apps:iconGravity="textStart"
-        apps:iconPadding="0dp"
-        apps:rippleColor="@color/cyberGreen"
-        apps:backgroundTint="@color/default_color_transparent"
+        apps:lottie_rawRes="@raw/favorite_it_animation"
 
+        apps:layout_constraintTop_toTopOf="@id/instagramView"
         apps:layout_constraintBottom_toBottomOf="@id/instagramView"
         apps:layout_constraintEnd_toEndOf="parent"/>
 
