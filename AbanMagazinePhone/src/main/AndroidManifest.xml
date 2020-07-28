@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/25/20 12:40 AM
-  ~ Last modified 7/24/20 11:45 PM
+  ~ Created by Elias Fazel on 7/27/20 10:21 PM
+  ~ Last modified 7/27/20 10:16 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -22,7 +22,7 @@
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:appCategory="news"
-        android:label="@string/app_name"
+        android:label="@string/applicationName"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:largeHeap="true"
@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:label="@string/app_name"
+            android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsPictureInPicture="true"
@@ -71,7 +71,7 @@
             android:name=".HomePageConfigurations.UI.HomePage"/>
 
         <activity
-            android:label="@string/app_name"
+            android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsPictureInPicture="true"
@@ -80,7 +80,7 @@
             android:name=".PostsConfigurations.UI.PostView"/>
 
         <activity
-            android:label="@string/app_name"
+            android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsPictureInPicture="true"
@@ -90,7 +90,7 @@
             android:name=".CategoriesConfigurations.UI.AllCategoryPosts"/>
 
         <activity
-            android:label="@string/app_name"
+            android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/GeeksEmpire.Material.WebView"

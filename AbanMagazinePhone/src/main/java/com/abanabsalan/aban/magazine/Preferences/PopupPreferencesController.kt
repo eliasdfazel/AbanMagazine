@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 2:56 AM
- * Last modified 7/25/20 2:56 AM
+ * Created by Elias Fazel on 7/27/20 10:21 PM
+ * Last modified 7/27/20 10:21 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,12 +12,14 @@ package com.abanabsalan.aban.magazine.Preferences
 
 import android.content.Intent
 import android.net.Uri
+import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -33,9 +35,23 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
     init {
 
-        initialThemeToggleAction()
+        when (context) {
+            is HomePage -> {
 
-        socialMediaAction()
+                initialThemeToggleAction()
+
+                socialMediaActionHomePage()
+
+            }
+            is PostView -> {
+
+                initialThemeToggleAction()
+
+                socialMediaActionPostView()
+
+            }
+        }
+
 
     }
 
@@ -121,7 +137,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
     }
 
-    private fun socialMediaAction() {
+    private fun socialMediaActionHomePage() {
 
         val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
         instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
@@ -180,6 +196,56 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context.startActivity(shareIntent)
+
+        }
+
+    }
+
+    private fun socialMediaActionPostView() {
+
+        val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
+        instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
+        preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
+
+        preferencesPopupUiViewBinding.instagramView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.instagramLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.twitterView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.twitterLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.pinterestView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.pinterestLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.youtubeView.setOnClickListener {
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.youtubeLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+
+        }
+
+        preferencesPopupUiViewBinding.rateView.setOnClickListener {
+
+            /*
+            * Change Icon To Save As Favorite
+            * */
+
+        }
+
+        preferencesPopupUiViewBinding.shareView.setOnClickListener {
+
+            SharePost(context).invoke(
+                sharePostTitle = Html.fromHtml((context as PostView).postTitle?:context.getString(R.string.applicationName)).toString(),
+                sharePostExcerpt = Html.fromHtml((context as PostView).postExcerpt.toString()).toString(),
+                sharePostLink = (context as PostView).postLink?:context.getString(R.string.playStoreLink)
+            )
 
         }
 

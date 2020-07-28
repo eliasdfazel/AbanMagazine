@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 9:25 PM
- * Last modified 7/22/20 9:08 PM
+ * Created by Elias Fazel on 7/27/20 10:21 PM
+ * Last modified 7/27/20 10:18 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -149,7 +149,9 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
                 featuredImageSharedElement = newestPostsViewHolder.postFeatureImageView as AppCompatImageView,
                 postFeaturedImage = newestPostsItemData[position].postFeaturedImage,
                 postTitle = newestPostsItemData[position].postTitle,
-                postContent = newestPostsItemData[position].postContent
+                postContent = newestPostsItemData[position].postContent,
+                postExcerpt = newestPostsItemData[position].postExcerpt,
+                postLink = newestPostsItemData[position].postLink
             )
 
         }

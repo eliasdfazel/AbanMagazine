@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 3:55 AM
- * Last modified 7/25/20 3:54 AM
+ * Created by Elias Fazel on 7/27/20 10:21 PM
+ * Last modified 7/27/20 10:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -54,19 +54,29 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
     private var postTopBarIsExpanded = true
 
+    var featureImageLink: String? = null
+    var postTitle: String? = null
+    var postExcerpt: String? = null
+    var postLink: String? = null
+
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
     companion object {
 
         fun show(context: AppCompatActivity,
                  featuredImageSharedElement: AppCompatImageView,
-                 postFeaturedImage: String, postTitle: String, postContent: String) {
+                 postFeaturedImage: String, postTitle: String, postContent: String,
+                postExcerpt: String, postLink: String) {
 
             Intent(context, PostView::class.java).apply {
+
                 putExtra(PostsDataParameters.PostParameters.PostFeaturedImage, postFeaturedImage)
 
                 putExtra(PostsDataParameters.PostParameters.PostTitle, postTitle)
                 putExtra(PostsDataParameters.PostParameters.PostContent, postContent)
+
+                putExtra(PostsDataParameters.PostParameters.PostExcerpt, postExcerpt)
+                putExtra(PostsDataParameters.PostParameters.PostLink, postLink)
 
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(this@apply,
@@ -74,6 +84,7 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
                         featuredImageSharedElement,
                         context.getString(R.string.featuredImageTransitionName))
                         .toBundle())
+
             }
 
         }
@@ -89,8 +100,11 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
         PopupPreferencesController(this@PostView, postsViewUiBinding.preferencePopupInclude)
 
-        val featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
-        val postTitle = intent.getStringExtra(PostsDataParameters.PostParameters.PostTitle)
+        featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
+
+        postTitle = intent.getStringExtra(PostsDataParameters.PostParameters.PostTitle)
+        postExcerpt = intent.getStringExtra(PostsDataParameters.PostParameters.PostExcerpt)
+        postLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostLink)
 
         val rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
 
@@ -99,7 +113,9 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
         val postViewAdapter: PostViewAdapter = PostViewAdapter(this@PostView)
 
-        setupUserInterface(postTitle, featureImageLink)
+        if (!postTitle.isNullOrEmpty() && !featureImageLink.isNullOrEmpty()) {
+            setupUserInterface(postTitle!!, featureImageLink!!)
+        }
 
         postsLiveData.singleSinglePostLiveItemData.observe(this@PostView, Observer {
 

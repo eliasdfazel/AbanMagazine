@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 9:25 PM
- * Last modified 7/22/20 9:06 PM
+ * Created by Elias Fazel on 7/27/20 10:21 PM
+ * Last modified 7/27/20 10:18 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -150,7 +150,9 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
                 featuredImageSharedElement = specificCategoryViewHolder.postFeatureImageView as AppCompatImageView,
                 postFeaturedImage = specificCategoryPostsItemData[position].postFeaturedImage,
                 postTitle = specificCategoryPostsItemData[position].postTitle,
-                postContent = specificCategoryPostsItemData[position].postContent
+                postContent = specificCategoryPostsItemData[position].postContent,
+                postExcerpt = specificCategoryPostsItemData[position].postExcerpt,
+                postLink = specificCategoryPostsItemData[position].postLink
             )
 
         }

@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/25/20 2:56 AM
-  ~ Last modified 7/25/20 2:23 AM
+  ~ Created by Elias Fazel on 7/27/20 10:21 PM
+  ~ Last modified 7/27/20 10:16 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -10,7 +10,7 @@
 
 <resources>
 
-    <string name="app_name">Aban Magazine</string>
+    <string name="applicationName">Aban Magazine</string>
 
     <string name="preferencesText">Preferences</string>
     <string name="signupText">Sign Up</string>
