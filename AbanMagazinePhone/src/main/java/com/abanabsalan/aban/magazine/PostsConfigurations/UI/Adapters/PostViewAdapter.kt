@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 10:45 PM
- * Last modified 7/22/20 10:43 PM
+ * Created by Elias Fazel on 7/27/20 9:32 PM
+ * Last modified 7/27/20 9:29 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -269,7 +269,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                             .asDrawable()
                             .load(it.imageLink)
                             .apply(requestOptions)
-                            .transform(CenterCrop(),RoundedCorners(11))
+                            .transform(RoundedCorners(11))
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .listener(object : RequestListener<Drawable> {
 
@@ -362,7 +362,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                         .asDrawable()
                         .load(it.instagramPostImage)
                         .apply(requestOptions)
-                        .transform(CenterInside(),RoundedCorners(11))
+                        .transform(CenterInside(), RoundedCorners(11))
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into((viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostImage)
 

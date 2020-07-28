@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/22/20 10:45 PM
- * Last modified 7/22/20 9:51 PM
+ * Created by Elias Fazel on 7/27/20 9:32 PM
+ * Last modified 7/27/20 9:31 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,34 +48,40 @@ class PostsLiveData : ViewModel() {
             if (element.`is`("blockquote")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Block Quote ${element}")
 
-                if (element.select("blockquote").attr("class").contains(PostsDataParameters.PostItemsBlockQuoteType.BlockQuoteInstagram)) {
+                try {
 
-                    val instagramEmbeddedId: String = element.select("blockquote")
-                        .attr("data-instgrm-permalink")
-                        .replace("/?utm_source=ig_embed&utm_campaign=loading", "")
+                    if (element.select("blockquote").attr("class").contains(PostsDataParameters.PostItemsBlockQuoteType.BlockQuoteInstagram)) {
 
-                    val instagramEmbeddedRequestLink: String = "https://api.instagram.com/oembed/?url=${instagramEmbeddedId}"
+                        val instagramEmbeddedId: String = element.select("blockquote")
+                            .attr("data-instgrm-permalink")
+                            .replace("/?utm_source=ig_embed&utm_campaign=loading", "")
 
-                    val instagramPostData = URL(instagramEmbeddedRequestLink).readText(Charset.defaultCharset())
-                    val rawJsonInstagramPost = JSONObject(instagramPostData)
+                        val instagramEmbeddedRequestLink: String = "https://api.instagram.com/oembed/?url=${instagramEmbeddedId}"
 
-                    singlePostItemsData.add(
-                        SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            PostItemBlockQuoteInstagram(
-                                instagramUsername = rawJsonInstagramPost.getString("author_name"),
-                                instagramUserAddress = rawJsonInstagramPost.getString("author_url"),
-                                instagramPostAddress = instagramEmbeddedId,
-                                instagramPostImage = rawJsonInstagramPost.getString("thumbnail_url"),
-                                instagramPostTitle = rawJsonInstagramPost.getString("title")
+                        val instagramPostData = URL(instagramEmbeddedRequestLink).readText(Charset.defaultCharset())
+                        val rawJsonInstagramPost = JSONObject(instagramPostData)
+
+                        singlePostItemsData.add(
+                            SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                PostItemBlockQuoteInstagram(
+                                    instagramUsername = rawJsonInstagramPost.getString("author_name"),
+                                    instagramUserAddress = rawJsonInstagramPost.getString("author_url"),
+                                    instagramPostAddress = instagramEmbeddedId,
+                                    instagramPostImage = rawJsonInstagramPost.getString("thumbnail_url"),
+                                    instagramPostTitle = rawJsonInstagramPost.getString("title")
+                                )
                             )
                         )
-                    )
 
+                    }
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
 
             } else if (element.`is`("p")) {
