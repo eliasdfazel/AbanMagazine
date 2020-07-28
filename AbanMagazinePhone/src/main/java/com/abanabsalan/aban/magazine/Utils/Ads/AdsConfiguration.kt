@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/27/20 9:32 PM
- * Last modified 7/27/20 9:09 PM
+ * Created by Elias Fazel on 7/27/20 11:11 PM
+ * Last modified 7/27/20 11:10 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -74,7 +74,7 @@ class AdsConfiguration (private val context: AppCompatActivity) {
 
             }
 
-            override fun onAdFailedToLoad(errorCode: Int) {
+            override fun onAdFailedToLoad(errorCode: LoadAdError) {
                 super.onAdFailedToLoad(errorCode)
 
                 interstitialAd.loadAd(adRequest)
