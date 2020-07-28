@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/27/20 10:56 PM
-  ~ Last modified 7/27/20 10:52 PM
+  ~ Created by Elias Fazel on 7/27/20 11:07 PM
+  ~ Last modified 7/27/20 11:07 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -138,7 +138,7 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        android:visibility="visible"
+        android:visibility="invisible"
 
         apps:layout_constraintTop_toTopOf="@id/instagramView"
         apps:layout_constraintBottom_toBottomOf="@id/instagramView"
@@ -154,7 +154,7 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        android:visibility="visible"
+        android:visibility="invisible"
 
         apps:lottie_rawRes="@raw/favorite_it_animation"
 
