@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 1:45 AM
- * Last modified 7/31/20 1:32 AM
+ * Created by Elias Fazel on 7/31/20 2:06 AM
+ * Last modified 7/31/20 2:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -217,7 +217,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 .transform(CenterInside(), RoundedCorners(23))
                 .into(preferencesPopupUiViewBinding.shareView)
 
-        }, 531)
+        }, 1000)
 
         preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 40)
         preferencesPopupUiViewBinding.rateView.playAnimation()
