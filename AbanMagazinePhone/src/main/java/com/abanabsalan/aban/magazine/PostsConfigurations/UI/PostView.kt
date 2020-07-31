@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/27/20 10:21 PM
- * Last modified 7/27/20 10:14 PM
+ * Created by Elias Fazel on 7/31/20 5:54 AM
+ * Last modified 7/31/20 5:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -54,6 +54,7 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
     private var postTopBarIsExpanded = true
 
+    var postId: String? = null
     var featureImageLink: String? = null
     var postTitle: String? = null
     var postExcerpt: String? = null
@@ -65,10 +66,13 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
         fun show(context: AppCompatActivity,
                  featuredImageSharedElement: AppCompatImageView,
+                 postId: String,
                  postFeaturedImage: String, postTitle: String, postContent: String,
-                postExcerpt: String, postLink: String) {
+                 postExcerpt: String, postLink: String) {
 
             Intent(context, PostView::class.java).apply {
+
+                putExtra(PostsDataParameters.PostParameters.PostId, postId)
 
                 putExtra(PostsDataParameters.PostParameters.PostFeaturedImage, postFeaturedImage)
 
@@ -98,7 +102,7 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
         adsConfiguration.initialize()
 
-        PopupPreferencesController(this@PostView, postsViewUiBinding.preferencePopupInclude)
+        postId = intent.getStringExtra(PostsDataParameters.PostParameters.PostId)
 
         featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
 
@@ -107,6 +111,9 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
         postLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostLink)
 
         val rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
+
+        PopupPreferencesController(this@PostView, postsViewUiBinding.preferencePopupInclude)
+            .initializeForPostView(postId)
 
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager

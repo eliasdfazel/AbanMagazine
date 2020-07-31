@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/31/20 2:06 AM
-  ~ Last modified 7/31/20 1:59 AM
+  ~ Created by Elias Fazel on 7/31/20 5:54 AM
+  ~ Last modified 7/31/20 4:04 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -141,11 +141,11 @@
         apps:layout_constraintEnd_toStartOf="@id/instagramView"/>
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/rateView"
+        android:id="@+id/rateFavoriteView"
         android:layout_width="99dp"
         android:layout_height="99dp"
         android:layout_marginHorizontal="13dp"
-        android:visibility="invisible"
+        android:visibility="visible"
 
         apps:lottie_rawRes="@raw/favorite_it_animation"
 

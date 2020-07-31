@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/27/20 10:21 PM
- * Last modified 7/27/20 10:17 PM
+ * Created by Elias Fazel on 7/31/20 5:54 AM
+ * Last modified 7/31/20 3:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -163,6 +163,7 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
             PostView.show(
                 context = context,
                 featuredImageSharedElement = allCategoryPostsViewHolder.postFeatureImageView as AppCompatImageView,
+                postId = postsItemData[position].postId,
                 postFeaturedImage = postsItemData[position].postFeaturedImage,
                 postTitle = postsItemData[position].postTitle,
                 postContent = postsItemData[position].postContent,

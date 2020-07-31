@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 2:06 AM
- * Last modified 7/31/20 2:06 AM
+ * Created by Elias Fazel on 7/31/20 5:54 AM
+ * Last modified 7/31/20 5:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,11 +14,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.text.Html
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
+import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Favorites.FavoriteInterface
+import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Favorites.FavoriteIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
@@ -30,6 +33,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import kotlinx.coroutines.Job
 
 class PopupPreferencesController (private val context: AppCompatActivity,
                                   private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
@@ -38,25 +42,12 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         OverallTheme(context)
     }
 
-    init {
+    /* Home */
+    fun initializeForHomePage() {
 
-        when (context) {
-            is HomePage -> {
+        initialThemeToggleAction()
 
-                initialThemeToggleAction()
-
-                socialMediaActionHomePage()
-
-            }
-            is PostView -> {
-
-                initialThemeToggleAction()
-
-                socialMediaActionPostView()
-
-            }
-        }
-
+        socialMediaActionHomePage()
 
     }
 
@@ -172,7 +163,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         }
 
-        preferencesPopupUiViewBinding.rateView.setOnClickListener {
+        preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.playStoreLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
 
@@ -206,7 +197,18 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
     }
 
-    private fun socialMediaActionPostView() {
+    /* Posts */
+    fun initializeForPostView(postId: String?) {
+
+        initialThemeToggleAction()
+
+        socialMediaActionPostView(postId)
+
+    }
+
+    private fun socialMediaActionPostView(postId: String?) {
+
+        val favoriteIt: FavoriteIt = FavoriteIt(context)
 
         Handler().postDelayed({
 
@@ -217,10 +219,23 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 .transform(CenterInside(), RoundedCorners(23))
                 .into(preferencesPopupUiViewBinding.shareView)
 
-        }, 1000)
+        }, 531)
 
-        preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 40)
-        preferencesPopupUiViewBinding.rateView.playAnimation()
+        postId?.let {
+
+            if (favoriteIt.isFavorited(postId)) {
+
+                preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
+                preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+
+            } else {
+
+                preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 40)
+                preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+
+            }
+
+        }
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
@@ -246,14 +261,47 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         }
 
-        preferencesPopupUiViewBinding.rateView.setOnClickListener {
+        preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 45)
-            preferencesPopupUiViewBinding.rateView.playAnimation()
+            favoriteIt.favoriteInterface =  object : FavoriteInterface {
 
-            /*
-            * Change Icon To Save As Favorite
-            * */
+                override fun favoritedIt() : Job {
+                    Log.d(FavoriteIt.PreferenceName, "${postId} Favorited")
+
+                    preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
+                    preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+
+                    //Start Room Database Process
+
+                    return super.favoritedIt()
+                }
+
+                override fun unfavoritedIt() : Job {
+                    Log.d(FavoriteIt.PreferenceName, "${postId} Unfavorited")
+
+                    preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 40)
+                    preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+
+                    //Start Room Database Process
+
+                    return super.unfavoritedIt()
+                }
+
+            }
+
+            postId?.let {
+
+                if (favoriteIt.isFavorited(postId)) {
+
+                    favoriteIt.deleteFavorite(it)
+
+                } else {
+
+                    favoriteIt.saveAsFavorite(it)
+
+                }
+
+            }
 
         }
 
