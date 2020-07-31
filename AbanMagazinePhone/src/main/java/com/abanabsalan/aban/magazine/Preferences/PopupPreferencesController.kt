@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/27/20 10:56 PM
- * Last modified 7/27/20 10:52 PM
+ * Created by Elias Fazel on 7/31/20 1:45 AM
+ * Last modified 7/31/20 1:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.Preferences
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
 import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -207,16 +208,16 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
     private fun socialMediaActionPostView() {
 
-        val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
-        instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
-        preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
+        Handler().postDelayed({
 
-        Glide.with(context)
-            .asGif()
-            .load(R.raw.share_animation)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .transform(CenterInside(), RoundedCorners(23))
-            .into(preferencesPopupUiViewBinding.shareView)
+            Glide.with(context)
+                .asGif()
+                .load(R.raw.share_animation)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(CenterInside(), RoundedCorners(23))
+                .into(preferencesPopupUiViewBinding.shareView)
+
+        }, 531)
 
         preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 40)
         preferencesPopupUiViewBinding.rateView.playAnimation()
@@ -249,6 +250,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
             preferencesPopupUiViewBinding.rateView.setMinAndMaxFrame(0, 45)
             preferencesPopupUiViewBinding.rateView.playAnimation()
+
             /*
             * Change Icon To Save As Favorite
             * */

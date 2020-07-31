@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/26/20 7:07 PM
- * Last modified 7/26/20 6:42 PM
+ * Created by Elias Fazel on 7/31/20 1:45 AM
+ * Last modified 7/31/20 1:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -281,6 +281,10 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
     override fun onResume() {
         super.onResume()
+
+        if (adsConfiguration.interstitialAd.isLoaded) {
+            adsConfiguration.interstitialAd.show()
+        }
 
         if (OverallTheme.LastActivity != null) {
             if (OverallTheme.LastActivity != this@HomePage.javaClass.simpleName) {
