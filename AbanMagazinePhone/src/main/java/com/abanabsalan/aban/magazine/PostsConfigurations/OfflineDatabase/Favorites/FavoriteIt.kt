@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 5:54 AM
- * Last modified 7/31/20 5:53 AM
+ * Created by Elias Fazel on 7/31/20 6:01 AM
+ * Last modified 7/31/20 6:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,6 +56,12 @@ class FavoriteIt (private val context: Context) {
         val readPreferences: ReadPreferences = ReadPreferences(context)
 
         return readPreferences.readPreference(FavoriteIt.PreferenceName, postId, false)
+
+    }
+
+    fun getAllFavoritedPosts(): MutableMap<String, *>? {
+
+        return context.getSharedPreferences(FavoriteIt.PreferenceName, Context.MODE_PRIVATE).all
 
     }
 
