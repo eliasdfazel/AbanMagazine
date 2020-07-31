@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/19/20 10:54 PM
-  ~ Last modified 7/19/20 10:24 PM
+  ~ Created by Elias Fazel on 7/31/20 8:14 AM
+  ~ Last modified 7/31/20 7:55 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -63,6 +63,19 @@
     </style>
 
     <style name="GeeksEmpire.Material.PostView" parent="GeeksEmpire.Material">
+
+        <item name="android:navigationBarColor">@color/light</item>
+        <item name="android:statusBarColor">@color/light</item>
+
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.FavoritesPostView" parent="GeeksEmpire.Material">
 
         <item name="android:navigationBarColor">@color/light</item>
         <item name="android:statusBarColor">@color/light</item>

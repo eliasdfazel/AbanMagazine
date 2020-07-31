@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/27/20 10:21 PM
-  ~ Last modified 7/27/20 10:16 PM
+  ~ Created by Elias Fazel on 7/31/20 8:14 AM
+  ~ Last modified 7/31/20 7:55 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -78,6 +78,15 @@
             android:resizeableActivity="true"
             android:theme="@style/GeeksEmpire.Material.PostView"
             android:name=".PostsConfigurations.UI.PostView"/>
+
+        <activity
+            android:label="@string/applicationName"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsPictureInPicture="true"
+            android:resizeableActivity="true"
+            android:theme="@style/GeeksEmpire.Material.FavoritesPostView"
+            android:name=".PostsConfigurations.Favorites.UI.FavoritesPostsView"/>
 
         <activity
             android:label="@string/applicationName"

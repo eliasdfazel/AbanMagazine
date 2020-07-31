@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 7:38 AM
- * Last modified 7/31/20 7:16 AM
+ * Created by Elias Fazel on 7/31/20 8:14 AM
+ * Last modified 7/31/20 7:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Favorites
+package com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils
 
 import android.content.Context
 import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
@@ -35,7 +35,7 @@ class FavoriteIt (private val context: Context) {
 
         val savePreferences: SavePreferences = SavePreferences(context)
 
-        savePreferences.savePreference(FavoriteIt.PreferenceName, postId, true)
+        savePreferences.savePreference(PreferenceName, postId, true)
 
         favoriteInterface.favoritedIt()
 
@@ -45,7 +45,7 @@ class FavoriteIt (private val context: Context) {
 
         val savePreferences: SavePreferences = SavePreferences(context)
 
-        savePreferences.savePreference(FavoriteIt.PreferenceName, postId, false)
+        savePreferences.savePreference(PreferenceName, postId, false)
 
         favoriteInterface.unfavoritedIt()
 
@@ -55,13 +55,13 @@ class FavoriteIt (private val context: Context) {
 
         val readPreferences: ReadPreferences = ReadPreferences(context)
 
-        return readPreferences.readPreference(FavoriteIt.PreferenceName, postId, false)
+        return readPreferences.readPreference(PreferenceName, postId, false)
 
     }
 
     fun getAllFavoritedPosts(): MutableMap<String, *>? {
 
-        return context.getSharedPreferences(FavoriteIt.PreferenceName, Context.MODE_PRIVATE).all
+        return context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE).all
 
     }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/27/20 9:32 PM
- * Last modified 7/27/20 9:31 PM
+ * Created by Elias Fazel on 7/31/20 8:14 AM
+ * Last modified 7/31/20 8:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,10 @@ class PostsLiveData : ViewModel() {
 
     val singleSinglePostLiveItemData: MutableLiveData<ArrayList<SinglePostItemData>> by lazy {
         MutableLiveData<ArrayList<SinglePostItemData>>()
+    }
+
+    val allFavoritedPosts: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+        MutableLiveData<ArrayList<PostsItemData>>()
     }
 
     val toggleTheme: MutableLiveData<Int> by lazy {

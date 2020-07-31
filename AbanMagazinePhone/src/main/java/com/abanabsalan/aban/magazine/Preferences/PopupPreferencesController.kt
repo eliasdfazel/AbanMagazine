@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 7:38 AM
- * Last modified 7/31/20 7:16 AM
+ * Created by Elias Fazel on 7/31/20 8:14 AM
+ * Last modified 7/31/20 7:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,8 +20,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.FavoriteInterface
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteInterface
+import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
@@ -208,7 +208,10 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
     private fun socialMediaActionPostView(postId: String?) {
 
-        val favoriteIt: FavoriteIt = FavoriteIt(context)
+        val favoriteIt: FavoriteIt =
+            FavoriteIt(
+                context
+            )
 
         Handler().postDelayed({
 
@@ -263,7 +266,8 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            favoriteIt.favoriteInterface =  object : FavoriteInterface {
+            favoriteIt.favoriteInterface =  object :
+                FavoriteInterface {
 
                 override fun favoritedIt() : Job {
                     Log.d(FavoriteIt.PreferenceName, "${postId} Favorited")
