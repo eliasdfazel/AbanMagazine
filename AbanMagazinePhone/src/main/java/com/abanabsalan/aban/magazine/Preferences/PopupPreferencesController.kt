@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 8:14 AM
- * Last modified 7/31/20 7:45 AM
+ * Created by Elias Fazel on 7/31/20 8:59 PM
+ * Last modified 7/31/20 8:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -228,13 +228,13 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
             if (favoriteIt.isFavorited(postId)) {
 
+                preferencesPopupUiViewBinding.rateFavoriteView.setAnimation(R.raw.favorite_it_animation)
                 preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
                 preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
 
             } else {
 
-                preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 40)
-                preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+                preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.unfavorite_it_icon))
 
             }
 
@@ -272,6 +272,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 override fun favoritedIt() : Job {
                     Log.d(FavoriteIt.PreferenceName, "${postId} Favorited")
 
+                    preferencesPopupUiViewBinding.rateFavoriteView.setAnimation(R.raw.favorite_it_animation)
                     preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
                     preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
 
@@ -283,8 +284,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 override fun unfavoritedIt() : Job {
                     Log.d(FavoriteIt.PreferenceName, "${postId} Unfavorited")
 
-                    preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 40)
-                    preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+                    preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.unfavorite_it_icon))
 
                     //Start Room Database Process
 
