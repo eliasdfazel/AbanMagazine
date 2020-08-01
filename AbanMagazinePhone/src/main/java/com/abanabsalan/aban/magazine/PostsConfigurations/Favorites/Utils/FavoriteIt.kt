@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 8:14 AM
- * Last modified 7/31/20 7:45 AM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,8 @@ class FavoriteIt (private val context: Context) {
 
     companion object {
         const val PreferenceName: String = ".FavoriteIt"
+
+        var FavoriteDataChanged: Boolean = false
     }
 
     lateinit var favoriteInterface: FavoriteInterface
@@ -45,7 +47,7 @@ class FavoriteIt (private val context: Context) {
 
         val savePreferences: SavePreferences = SavePreferences(context)
 
-        savePreferences.savePreference(PreferenceName, postId, false)
+        savePreferences.removePrefrenceItem(PreferenceName, postId)
 
         favoriteInterface.unfavoritedIt()
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 8:59 PM
- * Last modified 7/31/20 8:45 PM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:54 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -294,6 +294,8 @@ class PopupPreferencesController (private val context: AppCompatActivity,
             }
 
             postId?.let {
+
+                FavoriteIt.FavoriteDataChanged = true
 
                 if (favoriteIt.isFavorited(postId)) {
 

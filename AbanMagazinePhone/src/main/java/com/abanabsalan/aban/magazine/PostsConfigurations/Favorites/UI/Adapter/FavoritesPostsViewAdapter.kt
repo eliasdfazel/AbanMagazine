@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:55 PM
- * Last modified 7/31/20 9:46 PM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:52 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,14 +25,11 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 
 class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, private val overallTheme: OverallTheme) : RecyclerView.Adapter<FavoritesPostsViewViewHolder>() {
 
@@ -40,7 +37,7 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FavoritesPostsViewViewHolder {
 
-        return FavoritesPostsViewViewHolder(LayoutInflater.from(context).inflate(R.layout.all_category_posts_item, viewGroup, false))
+        return FavoritesPostsViewViewHolder(LayoutInflater.from(context).inflate(R.layout.favorites_posts_item, viewGroup, false))
     }
 
     override fun getItemCount(): Int {
@@ -136,24 +133,8 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
             .load(postsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .listener(object : RequestListener<Drawable> {
-
-                override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-
-                    return false
-                }
-
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-
-                    context.runOnUiThread {
-                        favoritesPostsViewViewHolder.postFeatureImageView.setImageDrawable(resource)
-                    }
-
-                    return false
-                }
-
-            })
-            .submit()
+            .transform(CenterCrop(), RoundedCorners(23))
+            .into(favoritesPostsViewViewHolder.postFeatureImageView)
 
         favoritesPostsViewViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle)
         favoritesPostsViewViewHolder.postExcerptView.text = Html.fromHtml(postsItemData[position].postExcerpt)

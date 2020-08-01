@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:42 PM
- * Last modified 7/31/20 9:42 PM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:52 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Network.Oper
 
 import android.content.Context
 import android.util.Log
-import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.FavoritedPostsEndpoints
+import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Network.Endpoints.FavoritedPostsEndpoints
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -35,10 +35,13 @@ class FavoritesPostsRetrieval (private val context: Context) {
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
 
         val favoritedPostsEndpoints: FavoritedPostsEndpoints = FavoritedPostsEndpoints()
+        val endpointLink = favoritedPostsEndpoints.getFavoritedPostsEndpoints(allFavoritedPostsIds)
+
+        println(">>>>>>>>>>> " + endpointLink)
 
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET,
-            favoritedPostsEndpoints.getFavoritedPostsEndpoints(allFavoritedPostsIds),
+            endpointLink,
             null,
             Response.Listener<JSONArray?> { response ->
                 Log.d("JsonObjectRequest ${this@FavoritesPostsRetrieval.javaClass.simpleName}", response.toString())

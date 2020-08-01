@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/25/20 1:49 AM
-  ~ Last modified 7/25/20 1:43 AM
+  ~ Created by Elias Fazel on 7/31/20 11:57 PM
+  ~ Last modified 7/31/20 10:23 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -266,6 +266,17 @@
             apps:realtimeOverlayColor="@color/default_color_light_transparent"
 
             apps:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/favoritedPostsView"
+            android:layout_width="133dp"
+            android:layout_height="0dp"
+            android:src="@drawable/favorite_it_icon"
+            android:visibility="invisible"
+
+            apps:layout_constraintTop_toTopOf="parent"
+            apps:layout_constraintBottom_toTopOf="@id/blurViewBottomBar"
+            apps:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/31/20 8:14 AM
-  ~ Last modified 7/18/20 9:40 AM
+  ~ Created by Elias Fazel on 7/31/20 11:57 PM
+  ~ Last modified 7/31/20 11:17 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -25,13 +25,12 @@
     <net.geekstools.imageview.customshapes.ShapesImage
         android:id="@+id/postFeatureImageView"
         android:layout_width="match_parent"
-        android:layout_height="137dp"
+        android:layout_height="151dp"
         android:transitionName="@string/featuredImageTransitionName"
         android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
         android:background="@android:color/transparent"
 
-        apps:shapeDrawable="@drawable/up_round_rectangle_shape"
+        apps:shapeDrawable="@drawable/favorite_frame_vector_icon"
 
         apps:layout_constraintTop_toTopOf="parent"/>
 

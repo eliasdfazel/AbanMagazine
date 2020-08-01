@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/3/20 2:19 PM
- * Last modified 7/3/20 2:16 PM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:27 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -71,4 +71,10 @@ class SavePreferences (private val context: Context) {
         editorSharedPreferences.apply()
     }
 
+    fun removePrefrenceItem(PreferenceName: String?, KEY: String?) {
+        val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
+        val editorSharedPreferences = sharedPreferences.edit()
+        editorSharedPreferences.remove(KEY)
+        editorSharedPreferences.apply()
+    }
 }

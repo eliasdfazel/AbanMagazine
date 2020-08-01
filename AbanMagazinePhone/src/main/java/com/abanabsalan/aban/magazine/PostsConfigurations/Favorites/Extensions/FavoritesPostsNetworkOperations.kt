@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:42 PM
- * Last modified 7/31/20 9:32 PM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:52 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,7 +36,6 @@ fun FavoritesPostsView.favoritesPostsNetworkOperations() {
                 override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                     super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-
                     favoritesPostsLiveData.prepareRawDataToRenderForAllFavoritedPosts(rawDataJsonArray)
 
                 }
@@ -51,6 +50,8 @@ fun FavoritesPostsView.favoritesPostsNetworkOperations() {
     } else {
 
         Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
+
+        this@favoritesPostsNetworkOperations.finish()
 
     }
 

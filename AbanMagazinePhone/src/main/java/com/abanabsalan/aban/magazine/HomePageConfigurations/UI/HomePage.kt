@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 7:38 AM
- * Last modified 7/31/20 7:38 AM
+ * Created by Elias Fazel on 7/31/20 11:57 PM
+ * Last modified 7/31/20 11:31 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,6 +31,8 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPo
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
+import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.FavoritesPostsView
+import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
@@ -60,6 +62,10 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         ViewModelProvider(this@HomePage).get(HomePageLiveData::class.java)
     }
 
+    val favoriteIt: FavoriteIt by lazy {
+        FavoriteIt(applicationContext)
+    }
+
     val adsConfiguration: AdsConfiguration by lazy {
         AdsConfiguration(this@HomePage)
     }
@@ -85,6 +91,7 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         adsConfiguration.initialize()
 
         PopupPreferencesController(this@HomePage, homePageViewBinding.preferencePopupInclude)
+            .initializeForHomePage()
 
         (application as AbanMagazinePhoneApplication)
             .dependencyGraph
@@ -296,6 +303,32 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
         }
 
         internetCheckpoint()
+
+        if (!favoriteIt.getAllFavoritedPosts().isNullOrEmpty()) {
+
+            homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
+
+            homePageViewBinding.favoritedPostsView.setOnClickListener {
+
+                val activityOptions = ActivityOptions.makeScaleUpAnimation(
+                    it,
+                    it.x.toInt(),
+                    it.y.toInt(),
+                    it.width,
+                    it.height
+                )
+
+                Intent(applicationContext, FavoritesPostsView::class.java).apply {
+                    startActivity(this@apply, activityOptions.toBundle())
+                }
+
+            }
+
+        } else {
+
+            homePageViewBinding.favoritedPostsView.visibility = View.INVISIBLE
+
+        }
 
     }
 
