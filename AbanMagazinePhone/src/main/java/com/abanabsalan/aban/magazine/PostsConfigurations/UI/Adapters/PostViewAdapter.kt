@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:42 PM
- * Last modified 7/31/20 9:42 PM
+ * Created by Elias Fazel on 8/1/20 5:13 AM
+ * Last modified 8/1/20 5:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,13 +10,16 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.Html
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostItemData
@@ -184,6 +187,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
 
         when (singlePostItemsData[position].dataType) {
@@ -292,7 +296,42 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                     }
 
-                    (viewHolder as PostViewImageAdapterViewHolder).rootViewItem.setOnClickListener { view ->
+                    if (it.targetLink.isNullOrBlank()) {
+
+                        (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener { view ->
+
+                            Intent(postViewContext, BuiltInWebView::class.java).apply {
+                                putExtra("Link", it.imageLink)
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                postViewContext.startActivity(this@apply)
+                            }
+
+                        }
+
+                        (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnTouchListener { view, motionEvent ->
+
+                            when (motionEvent.action) {
+                                MotionEvent.ACTION_DOWN -> {
+
+                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.scaleType = ImageView.ScaleType.FIT_CENTER
+
+                                }
+                                MotionEvent.ACTION_UP -> {
+
+                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.scaleType = ImageView.ScaleType.CENTER_CROP
+
+                                }
+                                MotionEvent.ACTION_CANCEL -> {
+
+                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.scaleType = ImageView.ScaleType.CENTER_CROP
+
+                                }
+                            }
+
+                            false
+                        }
+
+                    } else {
 
                         it.targetLink?.also { targetLink ->
 
