@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/31/20 11:57 PM
-  ~ Last modified 7/31/20 10:23 PM
+  ~ Created by Elias Fazel on 8/1/20 2:47 AM
+  ~ Last modified 8/1/20 2:47 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -31,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:paddingBottom="177dp">
+
+            android:paddingBottom="157dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/primaryCategoriesRecyclerView"
@@ -175,11 +176,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homepageTopBar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="77dp"
 
-        apps:layout_constraintTop_toTopOf="parent"
-
-        apps:layout_constraintHeight_percent="0.083" >
+        apps:layout_constraintTop_toTopOf="parent">
 
         <net.geeksempire.blurry.effect.view.RealtimeBlurView
             android:id="@+id/blurViewTopBar"
@@ -250,12 +249,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homepageBottomBar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="137dp"
         android:background="@android:color/transparent"
 
-        apps:layout_constraintBottom_toBottomOf="parent"
-
-        apps:layout_constraintHeight_percent="0.17">
+        apps:layout_constraintBottom_toBottomOf="parent">
 
         <net.geeksempire.blurry.effect.view.RealtimeBlurView
             android:id="@+id/blurViewBottomBar"
@@ -269,10 +266,14 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoritedPostsView"
-            android:layout_width="133dp"
+            android:layout_width="113dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="11dp"
+            android:layout_marginEnd="11dp"
+            android:padding="11dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/favorite_it_icon"
-            android:visibility="invisible"
+            android:visibility="visible"
 
             apps:layout_constraintTop_toTopOf="parent"
             apps:layout_constraintBottom_toTopOf="@id/blurViewBottomBar"

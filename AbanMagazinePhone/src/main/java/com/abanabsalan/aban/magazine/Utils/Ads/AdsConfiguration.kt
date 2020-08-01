@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 8:14 AM
- * Last modified 7/31/20 8:10 AM
+ * Created by Elias Fazel on 8/1/20 2:47 AM
+ * Last modified 8/1/20 2:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,41 +10,35 @@
 
 package com.abanabsalan.aban.magazine.Utils.Ads
 
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
 import com.abanabsalan.aban.magazine.R
 import com.google.android.gms.ads.*
 
-class AdsConfiguration (private val context: AppCompatActivity) {
+class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
-    val interstitialAd: InterstitialAd = InterstitialAd(context)
+    val interstitialAd: InterstitialAd = InterstitialAd(appCompatActivity)
 
     fun initialize() {
 
-        if (!BuildConfig.DEBUG) {
+        MobileAds.initialize(appCompatActivity) { initializationStatus ->
 
-            MobileAds.initialize(context) { initializationStatus ->
+            interstitialAdsLoadShow()
 
-
-                interstitialAdsLoadShow()
-
-                bannerAdsLoadShow()
-
-
-            }
-
-            val testDeviceIds =
-                listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A")
-            val configuration = RequestConfiguration.Builder()
-                .setTestDeviceIds(testDeviceIds)
-                .build()
-            MobileAds.setRequestConfiguration(configuration)
+            bannerAdsLoadShow()
 
         }
+
+        val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A")
+
+        val configuration = RequestConfiguration.Builder()
+            .setTestDeviceIds(testDeviceIds)
+            .build()
+        MobileAds.setRequestConfiguration(configuration)
 
     }
 
@@ -54,15 +48,21 @@ class AdsConfiguration (private val context: AppCompatActivity) {
 
         interstitialAd.setImmersiveMode(true)
 
-        when(context) {
+        when(appCompatActivity) {
             is HomePage -> {
-                interstitialAd.adUnitId = context.getString(R.string.homePageInterstitial)
+                Log.d(this@AdsConfiguration.javaClass.simpleName, "Home Page Requesting Ads")
+
+                interstitialAd.adUnitId = appCompatActivity.getString(R.string.homePageInterstitial)
             }
             is PostView -> {
-                interstitialAd.adUnitId = context.getString(R.string.postViewInterstitial)
+                Log.d(this@AdsConfiguration.javaClass.simpleName, "Post View Requesting Ads")
+
+                interstitialAd.adUnitId = appCompatActivity.getString(R.string.postViewInterstitial)
             }
             is FavoritesPostsView -> {
-                interstitialAd.adUnitId = context.getString(R.string.favoritesPostsViewInterstitial)
+                Log.d(this@AdsConfiguration.javaClass.simpleName, "Favorites Posts View Requesting Ads")
+
+                interstitialAd.adUnitId = appCompatActivity.getString(R.string.favoritesPostsViewInterstitial)
             }
         }
 
@@ -72,7 +72,7 @@ class AdsConfiguration (private val context: AppCompatActivity) {
             override fun onAdLoaded() {
                 super.onAdLoaded()
 
-                if (!context.isFinishing) {
+                if (!appCompatActivity.isFinishing) {
                     interstitialAd.show()
                 }
 
@@ -97,20 +97,20 @@ class AdsConfiguration (private val context: AppCompatActivity) {
 
         val adRequest = AdRequest.Builder().build()
 
-        when(context) {
+        when(appCompatActivity) {
             is HomePage -> {
 
-                (context).homePageViewBinding.bannerAdView.loadAd(adRequest)
+                (appCompatActivity).homePageViewBinding.bannerAdView.loadAd(adRequest)
 
-                (context).homePageViewBinding.bannerAdView.adListener = object: AdListener() {
+                (appCompatActivity).homePageViewBinding.bannerAdView.adListener = object: AdListener() {
                     override fun onAdLoaded() {
 
-                        (context).homePageViewBinding.bannerAdView.visibility = View.VISIBLE
+                        (appCompatActivity).homePageViewBinding.bannerAdView.visibility = View.VISIBLE
                     }
 
                     override fun onAdFailedToLoad(errorCode : Int) {
 
-                        (context).homePageViewBinding.bannerAdView.loadAd(adRequest)
+                        (appCompatActivity).homePageViewBinding.bannerAdView.loadAd(adRequest)
 
                     }
 

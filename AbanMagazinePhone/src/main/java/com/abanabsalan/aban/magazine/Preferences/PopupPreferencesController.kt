@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 11:57 PM
- * Last modified 7/31/20 11:54 PM
+ * Created by Elias Fazel on 8/1/20 2:47 AM
+ * Last modified 8/1/20 2:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Handler
 import android.text.Html
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
@@ -138,6 +139,9 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
         instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
         preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
+
+        preferencesPopupUiViewBinding.rateFavoriteView.visibility = View.INVISIBLE
+        preferencesPopupUiViewBinding.shareView.visibility = View.INVISIBLE
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
