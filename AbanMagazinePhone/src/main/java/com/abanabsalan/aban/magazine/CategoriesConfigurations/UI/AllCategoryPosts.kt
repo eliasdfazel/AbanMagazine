@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 12:54 AM
- * Last modified 7/23/20 11:02 PM
+ * Created by Elias Fazel on 7/31/20 9:42 PM
+ * Last modified 7/31/20 9:38 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,17 +18,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesDataParameters
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoryPostsLiveData
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.AllCategoryPostsRetrieval
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.Adapter.AllCategoryPostsAdapter
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
+import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.databinding.AllCategoryPostsBinding
+import javax.inject.Inject
 
-class AllCategoryPosts : AppCompatActivity() {
+class AllCategoryPosts : AppCompatActivity(), NetworkConnectionListenerInterface {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
@@ -42,6 +46,12 @@ class AllCategoryPosts : AppCompatActivity() {
         AllCategoryPostsRetrieval(applicationContext)
     }
 
+    var categoryLink: String? = null
+    var categoryId: String? = null
+
+    @Inject
+    lateinit var networkConnectionListener: NetworkConnectionListener
+
     lateinit var allCategoryPostsBinding: AllCategoryPostsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +59,16 @@ class AllCategoryPosts : AppCompatActivity() {
         allCategoryPostsBinding = AllCategoryPostsBinding.inflate(layoutInflater)
         setContentView(allCategoryPostsBinding.root)
 
-        val categoryLink: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryLink)
-        val categoryId: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryId)
+        (application as AbanMagazinePhoneApplication)
+            .dependencyGraph
+            .subDependencyGraph()
+            .create(this@AllCategoryPosts, allCategoryPostsBinding.rootView)
+            .inject(this@AllCategoryPosts)
+
+        networkConnectionListener.networkConnectionListenerInterface = this@AllCategoryPosts
+
+        categoryLink = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryLink)
+        categoryId = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryId)
 
         val categoryName: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryName)
 
@@ -89,10 +107,34 @@ class AllCategoryPosts : AppCompatActivity() {
 
         })
 
-        allCategoryPostsRetrieval.start(
-            categoryPostsLiveData,
-            categoryId.toInt()
-        )
+
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        networkConnectionListener.unregisterDefaultNetworkCallback()
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+    override fun networkAvailable() {
+
+        categoryId?.let {
+            allCategoryPostsRetrieval.start(
+                categoryPostsLiveData,
+                it.toInt()
+            )
+        }
+
+    }
+
+    override fun networkLost() {
+
+    }
+
 }
