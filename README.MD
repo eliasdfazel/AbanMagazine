@@ -1,6 +1,4 @@
-# Aban Magazine (Initial)
-
-A Wordpress Website Client With Magazine User Interface & Experience
+# Aban Magazine 
 
 ✨ Go to Utils ➡ Network ➡ Change Value Of GeneralEndpointsAddress to Your Wordpress Website 👍
 
