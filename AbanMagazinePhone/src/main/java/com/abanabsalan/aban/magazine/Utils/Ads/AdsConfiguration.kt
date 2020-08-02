@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/1/20 2:47 AM
- * Last modified 8/1/20 2:47 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.FavoritesPostsView
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.google.android.gms.ads.*
 
@@ -54,7 +54,7 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
                 interstitialAd.adUnitId = appCompatActivity.getString(R.string.homePageInterstitial)
             }
-            is PostView -> {
+            is SinglePostView -> {
                 Log.d(this@AdsConfiguration.javaClass.simpleName, "Post View Requesting Ads")
 
                 interstitialAd.adUnitId = appCompatActivity.getString(R.string.postViewInterstitial)
@@ -132,7 +132,7 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
                 }
 
             }
-            is PostView -> {
+            is SinglePostView -> {
 
             }
         }

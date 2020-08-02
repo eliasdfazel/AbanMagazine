@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 5:54 AM
- * Last modified 7/31/20 3:55 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPosts
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -160,7 +160,7 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
 
         allCategoryPostsViewHolder.rootViewItem.setOnClickListener {
 
-            PostView.show(
+            SinglePostView.show(
                 context = context,
                 featuredImageSharedElement = allCategoryPostsViewHolder.postFeatureImageView as AppCompatImageView,
                 postId = postsItemData[position].postId,

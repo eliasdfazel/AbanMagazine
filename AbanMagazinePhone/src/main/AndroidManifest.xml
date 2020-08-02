@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/31/20 8:14 AM
-  ~ Last modified 7/31/20 7:55 AM
+  ~ Created by Elias Fazel on 8/2/20 4:02 AM
+  ~ Last modified 8/2/20 4:00 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -77,7 +77,7 @@
             android:supportsPictureInPicture="true"
             android:resizeableActivity="true"
             android:theme="@style/GeeksEmpire.Material.PostView"
-            android:name=".PostsConfigurations.UI.PostView"/>
+            android:name="com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView"/>
 
         <activity
             android:label="@string/applicationName"

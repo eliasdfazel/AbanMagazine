@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/25/20 2:00 PM
- * Last modified 6/25/20 2:00 PM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders
+package com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.ViewHolders
 
 import android.view.View
 import android.widget.TextView

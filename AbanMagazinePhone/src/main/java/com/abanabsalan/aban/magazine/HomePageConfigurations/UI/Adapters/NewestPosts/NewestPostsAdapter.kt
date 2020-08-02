@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 5:54 AM
- * Last modified 7/31/20 3:56 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -144,7 +144,7 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
 
         newestPostsViewHolder.rootViewItem.setOnClickListener {
 
-            PostView.show(
+            SinglePostView.show(
                 context = context,
                 featuredImageSharedElement = newestPostsViewHolder.postFeatureImageView as AppCompatImageView,
                 postId = newestPostsItemData[position].postId,

@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 3:35 AM
- * Last modified 7/25/20 3:28 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Extensions
+package com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions
 
 import android.animation.Animator
 import android.content.res.ColorStateList
@@ -24,7 +24,7 @@ import android.view.ViewAnimationUtils
 import android.view.WindowManager
 import android.view.animation.AccelerateInterpolator
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
@@ -42,7 +42,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlin.math.hypot
 
-fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
+fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
     window.statusBarColor = Color.TRANSPARENT
@@ -187,7 +187,7 @@ fun PostView.setupUserInterface(postTitle: String, featureImageLink: String) {
 
 }
 
-fun PostView.setupPopupPreferencesClick() {
+fun SinglePostView.setupPopupPreferencesClick() {
 
     postsViewUiBinding.postMenuButton.setOnClickListener {
 
@@ -207,7 +207,7 @@ fun PostView.setupPopupPreferencesClick() {
 
 }
 
-fun PostView.showPopupPreferences() {
+fun SinglePostView.showPopupPreferences() {
 
     val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
 
@@ -242,7 +242,7 @@ fun PostView.showPopupPreferences() {
 
 }
 
-fun PostView.hidePopupPreferences() {
+fun SinglePostView.hidePopupPreferences() {
 
     val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
 

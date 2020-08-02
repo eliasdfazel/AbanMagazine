@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 5:54 AM
- * Last modified 7/31/20 5:43 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.UI
+package com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -24,9 +24,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
-import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
-import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.setupUserInterface
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.PostViewAdapter
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.setupUserInterface
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
@@ -38,18 +38,18 @@ import com.google.android.material.appbar.AppBarLayout
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 
-class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnOffsetChangedListener {
+class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnOffsetChangedListener {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
     }
 
     val postsLiveData: PostsLiveData by lazy {
-        ViewModelProvider(this@PostView).get(PostsLiveData::class.java)
+        ViewModelProvider(this@SinglePostView).get(PostsLiveData::class.java)
     }
 
     val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@PostView)
+        AdsConfiguration(this@SinglePostView)
     }
 
     private var postTopBarIsExpanded = true
@@ -70,7 +70,7 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
                  postFeaturedImage: String, postTitle: String, postContent: String,
                  postExcerpt: String, postLink: String) {
 
-            Intent(context, PostView::class.java).apply {
+            Intent(context, SinglePostView::class.java).apply {
 
                 putExtra(PostsDataParameters.PostParameters.PostId, postId)
 
@@ -112,33 +112,33 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
         val rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
 
-        PopupPreferencesController(this@PostView, postsViewUiBinding.preferencePopupInclude)
+        PopupPreferencesController(this@SinglePostView, postsViewUiBinding.preferencePopupInclude)
             .initializeForPostView(postId)
 
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager
 
-        val postViewAdapter: PostViewAdapter = PostViewAdapter(this@PostView)
+        val singlePostViewAdapter: SinglePostViewAdapter = SinglePostViewAdapter(this@SinglePostView)
 
         if (!postTitle.isNullOrEmpty() && !featureImageLink.isNullOrEmpty()) {
             setupUserInterface(postTitle!!, featureImageLink!!)
         }
 
-        postsLiveData.singleSinglePostLiveItemData.observe(this@PostView, Observer {
+        postsLiveData.singleSinglePostLiveItemData.observe(this@SinglePostView, Observer {
 
             if (it.isNotEmpty()) {
 
-                postViewAdapter.singlePostItemsData.clear()
+                singlePostViewAdapter.singlePostItemsData.clear()
 
-                postViewAdapter.singlePostItemsData.addAll(it)
-                postsViewUiBinding.postRecyclerView.adapter = postViewAdapter
+                singlePostViewAdapter.singlePostItemsData.addAll(it)
+                postsViewUiBinding.postRecyclerView.adapter = singlePostViewAdapter
 
             }
 
         })
 
         /*Change Theme*/
-        postsLiveData.toggleTheme.observe(this@PostView, Observer {
+        postsLiveData.toggleTheme.observe(this@SinglePostView, Observer {
 
             var delayTheme: Long = 3333
 
@@ -153,10 +153,10 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
             Handler().postDelayed({
 
-                postViewAdapter.notifyItemRangeChanged(0, postViewAdapter.itemCount, null)
+                singlePostViewAdapter.notifyItemRangeChanged(0, singlePostViewAdapter.itemCount, null)
 
 
-                toggleLightDarkThemePostView(this@PostView)
+                toggleLightDarkThemePostView(this@SinglePostView)
 
             }, delayTheme)
 
@@ -173,14 +173,14 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
             adsConfiguration.interstitialAd.show()
         }
 
-        postsViewUiBinding.postTopBar.addOnOffsetChangedListener(this@PostView)
+        postsViewUiBinding.postTopBar.addOnOffsetChangedListener(this@SinglePostView)
 
     }
 
     override fun onPause() {
         super.onPause()
 
-        postsViewUiBinding.postTopBar.removeOnOffsetChangedListener(this@PostView)
+        postsViewUiBinding.postTopBar.removeOnOffsetChangedListener(this@SinglePostView)
 
     }
 
@@ -192,7 +192,7 @@ class PostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnO
 
         } else {
 
-            this@PostView.finish()
+            this@SinglePostView.finish()
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
         }

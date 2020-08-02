@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/1/20 2:47 AM
- * Last modified 8/1/20 2:26 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,10 +20,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.PostsConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
@@ -112,8 +112,8 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 is HomePage -> {
                     (context as HomePage).homePageLiveData.toggleTheme.postValue(true)
                 }
-                is PostView -> {
-                    (context as PostView).postsLiveData.toggleTheme.postValue(overallTheme.checkThemeLightDark())
+                is SinglePostView -> {
+                    (context as SinglePostView).postsLiveData.toggleTheme.postValue(overallTheme.checkThemeLightDark())
                 }
             }
 
@@ -125,8 +125,8 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                 is HomePage -> {
                     (context as HomePage).hidePopupPreferences()
                 }
-                is PostView -> {
-                    (context as PostView).hidePopupPreferences()
+                is SinglePostView -> {
+                    (context as SinglePostView).hidePopupPreferences()
                 }
             }
 
@@ -318,9 +318,9 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         preferencesPopupUiViewBinding.shareView.setOnClickListener {
 
             SharePost(context).invoke(
-                sharePostTitle = Html.fromHtml((context as PostView).postTitle?:context.getString(R.string.applicationName)).toString(),
-                sharePostExcerpt = Html.fromHtml((context as PostView).postExcerpt.toString()).toString(),
-                sharePostLink = (context as PostView).postLink?:context.getString(R.string.playStoreLink)
+                sharePostTitle = Html.fromHtml((context as SinglePostView).postTitle?:context.getString(R.string.applicationName)).toString(),
+                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString()).toString(),
+                sharePostLink = (context as SinglePostView).postLink?:context.getString(R.string.playStoreLink)
             )
 
         }

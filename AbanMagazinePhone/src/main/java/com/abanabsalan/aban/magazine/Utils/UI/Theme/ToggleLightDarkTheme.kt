@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 3:55 AM
- * Last modified 7/25/20 3:49 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,7 @@
 package com.abanabsalan.aban.magazine.Utils.UI.Theme
 
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 
 fun toggleLightDarkThemeHomePage(homePage: HomePage) {
@@ -61,35 +61,35 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
 
 }
 
-fun toggleLightDarkThemePostView(postView: PostView) {
+fun toggleLightDarkThemePostView(singlePostView: SinglePostView) {
 
-    OverallTheme.LastActivity = postView.javaClass.simpleName
+    OverallTheme.LastActivity = singlePostView.javaClass.simpleName
 
-    when (postView.overallTheme.checkThemeLightDark()) {
+    when (singlePostView.overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {
 
-            postView.window.navigationBarColor = postView.getColor(R.color.light)
+            singlePostView.window.navigationBarColor = singlePostView.getColor(R.color.light)
 
-            postView.postsViewUiBinding.rootView.setBackgroundColor(postView.getColor(R.color.light))
+            singlePostView.postsViewUiBinding.rootView.setBackgroundColor(singlePostView.getColor(R.color.light))
 
-            postView.postsViewUiBinding.postTitle.setTextColor(postView.getColor(R.color.darker))
+            singlePostView.postsViewUiBinding.postTitle.setTextColor(singlePostView.getColor(R.color.darker))
 
-            postView.postsViewUiBinding.postRecyclerView.setBackgroundColor(postView.getColor(R.color.light))
+            singlePostView.postsViewUiBinding.postRecyclerView.setBackgroundColor(singlePostView.getColor(R.color.light))
 
-            postView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(postView.getColor(R.color.light_transparent))
+            singlePostView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(singlePostView.getColor(R.color.light_transparent))
 
         }
         ThemeType.ThemeDark -> {
 
-            postView.window.navigationBarColor = postView.getColor(R.color.dark)
+            singlePostView.window.navigationBarColor = singlePostView.getColor(R.color.dark)
 
-            postView.postsViewUiBinding.rootView.setBackgroundColor(postView.getColor(R.color.dark))
+            singlePostView.postsViewUiBinding.rootView.setBackgroundColor(singlePostView.getColor(R.color.dark))
 
-            postView.postsViewUiBinding.postTitle.setTextColor(postView.getColor(R.color.lighter))
+            singlePostView.postsViewUiBinding.postTitle.setTextColor(singlePostView.getColor(R.color.lighter))
 
-            postView.postsViewUiBinding.postRecyclerView.setBackgroundColor(postView.getColor(R.color.dark))
+            singlePostView.postsViewUiBinding.postRecyclerView.setBackgroundColor(singlePostView.getColor(R.color.dark))
 
-            postView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(postView.getColor(R.color.dark_transparent))
+            singlePostView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(singlePostView.getColor(R.color.dark_transparent))
 
         }
     }

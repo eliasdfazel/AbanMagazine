@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/1/20 5:52 AM
- * Last modified 8/1/20 5:52 AM
+ * Created by Elias Fazel on 8/2/20 4:02 AM
+ * Last modified 8/2/20 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters
+package com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -21,8 +21,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostItemData
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.Adapters.ViewHolders.*
-import com.abanabsalan.aban.magazine.PostsConfigurations.UI.PostView
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.ViewHolders.*
+import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcess
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcessAction
 import com.abanabsalan.aban.magazine.R
@@ -40,7 +40,7 @@ import com.bumptech.glide.request.target.Target
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
-class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val singlePostItemsData: ArrayList<SinglePostItemData> = ArrayList<SinglePostItemData>()
 
@@ -51,7 +51,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
                 )
 
@@ -59,7 +59,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
 
                 PostViewSubTitleAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_sub_title, viewGroup, false)
                 )
 
@@ -67,7 +67,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
                 PostViewImageAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_image, viewGroup, false)
                 )
 
@@ -75,7 +75,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
                 PostViewTextLinkAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_text_link, viewGroup, false)
                 )
 
@@ -83,7 +83,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
 
                 PostViewIFrameAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_i_frame, viewGroup, false)
                 )
 
@@ -91,7 +91,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram -> {
 
                 PostViewBlockQuoteInstagramAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_block_quote_instagram, viewGroup, false)
                 )
 
@@ -99,7 +99,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             else -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(postViewContext)
+                    LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
                 )
 
@@ -129,15 +129,15 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                 (viewHolder as PostViewParagraphAdapterViewHolder)
 
-                viewHolder.postParagraph.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                viewHolder.postParagraph.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        postViewContext.getColor(R.color.dark)
+                        singlePostViewContext.getColor(R.color.dark)
                     }
                     ThemeType.ThemeDark -> {
-                        postViewContext.getColor(R.color.light)
+                        singlePostViewContext.getColor(R.color.light)
                     }
                     else -> {
-                        postViewContext.getColor(R.color.dark)
+                        singlePostViewContext.getColor(R.color.dark)
                     }
                 })
 
@@ -146,15 +146,15 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                 (viewHolder as PostViewSubTitleAdapterViewHolder)
 
-                viewHolder.postSubTitle.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                viewHolder.postSubTitle.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        postViewContext.getColor(R.color.darker)
+                        singlePostViewContext.getColor(R.color.darker)
                     }
                     ThemeType.ThemeDark -> {
-                        postViewContext.getColor(R.color.lighter)
+                        singlePostViewContext.getColor(R.color.lighter)
                     }
                     else -> {
-                        postViewContext.getColor(R.color.darker)
+                        singlePostViewContext.getColor(R.color.darker)
                     }
                 })
 
@@ -194,15 +194,15 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
-                (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        postViewContext.getColor(R.color.dark)
+                        singlePostViewContext.getColor(R.color.dark)
                     }
                     ThemeType.ThemeDark -> {
-                        postViewContext.getColor(R.color.light)
+                        singlePostViewContext.getColor(R.color.light)
                     }
                     else -> {
-                        postViewContext.getColor(R.color.dark)
+                        singlePostViewContext.getColor(R.color.dark)
                     }
                 })
 
@@ -221,15 +221,15 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
             }
             PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
 
-                (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setTextColor(when (postViewContext.overallTheme.checkThemeLightDark()) {
+                (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        postViewContext.getColor(R.color.darker)
+                        singlePostViewContext.getColor(R.color.darker)
                     }
                     ThemeType.ThemeDark -> {
-                        postViewContext.getColor(R.color.lighter)
+                        singlePostViewContext.getColor(R.color.lighter)
                     }
                     else -> {
-                        postViewContext.getColor(R.color.darker)
+                        singlePostViewContext.getColor(R.color.darker)
                     }
                 })
 
@@ -250,15 +250,15 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                 singlePostItemsData[position].postItemImage?.let {
 
-                    val drawableError: Drawable? = postViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
-                    drawableError?.setTint(postViewContext.getColor(R.color.red))
+                    val drawableError: Drawable? = singlePostViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(singlePostViewContext.getColor(R.color.red))
 
                     val requestOptions = RequestOptions()
                         .error(drawableError)
 
                     if (it.imageLink.contains(".gif")) {
 
-                        Glide.with(postViewContext)
+                        Glide.with(singlePostViewContext)
                             .asGif()
                             .load(it.imageLink)
                             .apply(requestOptions)
@@ -268,7 +268,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                     } else {
 
-                        Glide.with(postViewContext)
+                        Glide.with(singlePostViewContext)
                             .asDrawable()
                             .load(it.imageLink)
                             .apply(requestOptions)
@@ -283,7 +283,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
-                                    postViewContext.runOnUiThread {
+                                    singlePostViewContext.runOnUiThread {
                                         (viewHolder as PostViewImageAdapterViewHolder).postImage.setImageDrawable(resource)
                                         (viewHolder as PostViewImageAdapterViewHolder).postImageLoading.visibility = View.GONE
                                     }
@@ -304,10 +304,10 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                                 override fun onImageViewClick() {
                                     super.onImageViewClick()
 
-                                    Intent(postViewContext, BuiltInWebView::class.java).apply {
+                                    Intent(singlePostViewContext, BuiltInWebView::class.java).apply {
                                         putExtra("Link", it.imageLink)
                                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        postViewContext.startActivity(this@apply)
+                                        singlePostViewContext.startActivity(this@apply)
                                     }
 
                                 }
@@ -355,7 +355,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                                 data = Uri.parse(targetLink)
                                 action = Intent.ACTION_VIEW
                                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                postViewContext.startActivity(this@apply)
+                                singlePostViewContext.startActivity(this@apply)
                             }
 
                         }
@@ -377,10 +377,10 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                         linkContent.select("a").first().attr("abs:href")?.let { aLink ->
 
-                            Intent(postViewContext, BuiltInWebView::class.java).apply {
+                            Intent(singlePostViewContext, BuiltInWebView::class.java).apply {
                                 putExtra("Link", aLink)
                                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                postViewContext.startActivity(this@apply)
+                                singlePostViewContext.startActivity(this@apply)
                             }
 
                         }
@@ -406,13 +406,13 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
 
                 singlePostItemsData[position].postItemBlockQuoteInstagram?.let {
 
-                    val drawableError: Drawable? = postViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
-                    drawableError?.setTint(postViewContext.getColor(R.color.red))
+                    val drawableError: Drawable? = singlePostViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(singlePostViewContext.getColor(R.color.red))
 
                     val requestOptions = RequestOptions()
                         .error(drawableError)
 
-                    Glide.with(postViewContext)
+                    Glide.with(singlePostViewContext)
                         .asDrawable()
                         .load(it.instagramPostImage)
                         .apply(requestOptions)
@@ -429,7 +429,7 @@ class PostViewAdapter (private val postViewContext: PostView) : RecyclerView.Ada
                             action = Intent.ACTION_VIEW
                             data = Uri.parse(it.instagramPostAddress)
                             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            postViewContext.startActivity(this@apply)
+                            singlePostViewContext.startActivity(this@apply)
                         }
 
                     }
