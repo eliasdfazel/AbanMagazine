@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/1/20 5:52 AM
- * Last modified 8/1/20 5:50 AM
+ * Created by Elias Fazel on 8/2/20 5:50 AM
+ * Last modified 8/2/20 5:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,26 +13,64 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Utils
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.facebook.rebound.SimpleSpringListener
 import com.facebook.rebound.Spring
 import com.facebook.rebound.SpringConfig
 import com.facebook.rebound.SpringSystem
 
 interface ImageResizingProcessAction {
-    fun onImageViewClick() {}
+    fun onImageViewReverted() {}
 }
 
-class ImageResizingProcess (private val animationImage: ImageView){
+class ImageResizingProcess (private val animationImage: ImageView, private val controlView: LottieAnimationView){
 
-    val tensionValue = 975.0
-    val frictionValue = 21.0
+    var tensionValue = 975.0
+    var frictionValue = 21.0
 
-    val delayHandler: Handler = Handler()
-    lateinit var delayRunnable: Runnable
+    var revertDelay: Long = 3975
+
+    var recyclerView: RecyclerView? = null
+
+    private var allowAnimation: Boolean = true
 
     @SuppressLint("ClickableViewAccessibility")
     fun start(imageResizingProcessAction: ImageResizingProcessAction) {
+
+        recyclerView?.onFlingListener = object : RecyclerView.OnFlingListener() {
+
+            override fun onFling(velocityX: Int, velocityY: Int): Boolean {
+
+                allowAnimation = false
+
+                return false
+            }
+
+        }
+
+        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                allowAnimation = when (newState) {
+                    RecyclerView.SCROLL_STATE_IDLE -> {
+
+                        true
+
+                    }
+                    else -> {
+
+                        false
+
+                    }
+                }
+            }
+
+        })
 
         val springSystem = SpringSystem.create()
         val spring = springSystem.createSpring()
@@ -49,6 +87,18 @@ class ImageResizingProcess (private val animationImage: ImageView){
             }
 
             override fun onSpringEndStateChange(spring: Spring?) {
+
+                controlView.visibility = if (controlView.isShown) {
+
+                    View.INVISIBLE
+
+                } else {
+
+                    View.VISIBLE.also {
+                        controlView.playAnimation()
+                    }
+
+                }
 
             }
 
@@ -69,33 +119,36 @@ class ImageResizingProcess (private val animationImage: ImageView){
 
             when (motionEvent?.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    spring.endValue = (0.13)
 
-                    animationImage.scaleType = ImageView.ScaleType.FIT_CENTER
+                    if (allowAnimation) {
 
-                    delayRunnable = Runnable {
+                        spring.endValue = (0.37)
 
-                        imageResizingProcessAction.onImageViewClick()
+                        animationImage.scaleType = ImageView.ScaleType.FIT_CENTER
+
+                        Handler().postDelayed({
+
+                            spring.endValue = (0.0)
+
+                            animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
+
+                            imageResizingProcessAction.onImageViewReverted()
+
+                        }, revertDelay)
 
                     }
 
-                    delayHandler.postDelayed(delayRunnable, 3333)
-
                 }
                 MotionEvent.ACTION_UP -> {
-                    delayHandler.removeCallbacks(delayRunnable)
-
-                    spring.endValue = (0.0)
-
-                    animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
 
                 }
                 MotionEvent.ACTION_CANCEL -> {
-                    delayHandler.removeCallbacks(delayRunnable)
 
                     spring.endValue = (0.0)
 
                     animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
+
+                    imageResizingProcessAction.onImageViewReverted()
 
                 }
             }

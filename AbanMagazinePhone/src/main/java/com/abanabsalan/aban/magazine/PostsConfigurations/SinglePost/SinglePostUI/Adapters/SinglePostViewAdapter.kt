@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 4:02 AM
- * Last modified 8/2/20 4:00 AM
+ * Created by Elias Fazel on 8/2/20 5:50 AM
+ * Last modified 8/2/20 5:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -298,54 +298,24 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                     if (it.targetLink.isNullOrBlank()) {
 
-                        ImageResizingProcess((viewHolder as PostViewImageAdapterViewHolder).postImage)
+                        ImageResizingProcess((viewHolder as PostViewImageAdapterViewHolder).postImage, (viewHolder as PostViewImageAdapterViewHolder).showFullScreen)
                             .start(object : ImageResizingProcessAction {
 
-                                override fun onImageViewClick() {
-                                    super.onImageViewClick()
-
-                                    Intent(singlePostViewContext, BuiltInWebView::class.java).apply {
-                                        putExtra("Link", it.imageLink)
-                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        singlePostViewContext.startActivity(this@apply)
-                                    }
-
+                                override fun onImageViewReverted() {
+                                    super.onImageViewReverted()
                                 }
 
                             })
 
-//                        (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener { view ->
-//
-//                            Intent(postViewContext, BuiltInWebView::class.java).apply {
-//                                putExtra("Link", it.imageLink)
-//                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                                postViewContext.startActivity(this@apply)
-//                            }
-//
-//                        }
-//
-//                        (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnTouchListener { view, motionEvent ->
-//
-//                            when (motionEvent.action) {
-//                                MotionEvent.ACTION_DOWN -> {
-//
-//                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.scaleType = ImageView.ScaleType.FIT_CENTER
-//
-//                                }
-//                                MotionEvent.ACTION_UP -> {
-//
-//                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.scaleType = ImageView.ScaleType.CENTER_CROP
-//
-//                                }
-//                                MotionEvent.ACTION_CANCEL -> {
-//
-//                                    (viewHolder as PostViewImageAdapterViewHolder).postImage.scaleType = ImageView.ScaleType.CENTER_CROP
-//
-//                                }
-//                            }
-//
-//                            false
-//                        }
+                        (viewHolder as PostViewImageAdapterViewHolder).showFullScreen.setOnClickListener { view ->
+
+                            Intent(singlePostViewContext, BuiltInWebView::class.java).apply {
+                                putExtra("Link", it.imageLink)
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                singlePostViewContext.startActivity(this@apply)
+                            }
+
+                        }
 
                     } else {
 
