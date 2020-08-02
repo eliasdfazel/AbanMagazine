@@ -1,4 +1,4 @@
-# Aban Magazine (Initial)
+# Aban Magazine 
 
 ✨ Go to Utils ➡ Network ➡ Change Value Of GeneralEndpointsAddress to Your Wordpress Website 👍
 
