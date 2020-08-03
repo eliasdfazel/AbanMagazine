@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 10:38 PM
- * Last modified 8/2/20 10:34 PM
+ * Created by Elias Fazel on 8/3/20 12:27 AM
+ * Last modified 8/2/20 11:50 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,10 +14,7 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.webkit.WebResourceRequest
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
@@ -86,7 +83,8 @@ class BuiltInWebView : AppCompatActivity() {
             browserViewBinding.webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
             browserViewBinding.webView.setInitialScale(0)
             browserViewBinding.webView.webViewClient = BuiltInWebViewClient()
-            browserViewBinding.webView.addJavascriptInterface(WebInterface(applicationContext), "WebInterface")
+            browserViewBinding.webView.webChromeClient = BuiltInChromeWebViewClient()
+            browserViewBinding.webView.addJavascriptInterface(WebInterface(this@BuiltInWebView), "Android")
             browserViewBinding.webView.loadUrl(linkToLoad)
 
         } else {
@@ -108,12 +106,18 @@ class BuiltInWebView : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    inner class BuiltInWebViewClient() : WebViewClient() {
+    inner class BuiltInWebViewClient : WebViewClient() {
 
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
             view?.loadUrl(request?.url?.toString())
-            return true
+
+            return false
         }
 
     }
+
+    inner class BuiltInChromeWebViewClient : WebChromeClient() {
+
+    }
+
 }
