@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/1/20 2:47 AM
-  ~ Last modified 8/1/20 2:47 AM
+  ~ Created by Elias Fazel on 8/3/20 7:19 AM
+  ~ Last modified 8/3/20 6:48 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -291,5 +291,13 @@
 
         apps:layout_constraintTop_toBottomOf="@id/homepageTopBar"
         apps:layout_constraintBottom_toBottomOf="parent"/>
+
+    <include
+        layout="@layout/refresh_contents_view"
+
+        android:id="@+id/refreshContentsInclude"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

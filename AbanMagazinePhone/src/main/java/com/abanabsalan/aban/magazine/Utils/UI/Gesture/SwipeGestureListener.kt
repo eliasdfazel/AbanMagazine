@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 6/26/20 7:05 PM
- * Last modified 5/24/20 7:51 PM
+ * Created by Elias Fazel on 8/3/20 7:19 AM
+ * Last modified 8/3/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import kotlin.math.abs
 
-class SwipeGestureListener(private val context: Context,
+class SwipeGestureListener (private val context: Context,
                            private val gestureListenerInterface: GestureListenerInterface) : SimpleOnGestureListener() {
 
 

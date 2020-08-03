@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/23/20 9:56 PM
- * Last modified 7/23/20 9:50 PM
+ * Created by Elias Fazel on 8/3/20 7:19 AM
+ * Last modified 8/3/20 7:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,16 +11,14 @@
 package com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions
 
 import android.animation.Animator
+import android.os.Handler
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
-import com.abanabsalan.aban.magazine.Utils.UI.Display.displayY
-import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
-import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
+import com.abanabsalan.aban.magazine.Utils.UI.Display.*
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import kotlin.math.hypot
 
@@ -175,5 +173,83 @@ fun HomePage.hidePopupPreferences() {
 
         }
     })
+
+}
+
+fun HomePage.setupRefreshView() {
+
+    homePageViewBinding.refreshContentsInclude.refreshAnimationView.playAnimation()
+
+    val finalRadiusShow = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
+
+    val circularRevealShow: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.refreshContentsInclude.root,
+        displayX(applicationContext) / 2,
+        0,
+        DpToInteger(applicationContext, 7).toFloat(),
+        finalRadiusShow.toFloat())
+
+    circularRevealShow.duration = 777
+    circularRevealShow.interpolator = AccelerateInterpolator()
+
+    homePageViewBinding.refreshContentsInclude.root.visibility = View.VISIBLE
+    circularRevealShow.start()
+    circularRevealShow.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            homePageViewBinding.refreshContentsInclude.root.visibility = View.VISIBLE
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+
+        }
+    })
+
+    Handler().postDelayed({
+
+        val finalRadiusHide = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
+
+        val circularRevealHide: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.refreshContentsInclude.root,
+            displayX(applicationContext) / 2,
+            0,
+            finalRadiusHide.toFloat(),
+            DpToInteger(applicationContext, 7).toFloat())
+
+        circularRevealHide.duration = 777
+        circularRevealHide.interpolator = AccelerateInterpolator()
+
+        circularRevealHide.start()
+        circularRevealHide.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                homePageViewBinding.refreshContentsInclude.root.visibility = View.INVISIBLE
+
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+
+            }
+        })
+
+    }, (1000 * 60/*One Minute*/) * 1)
+
+    Handler().postDelayed({
+
+        updateDelay = true
+
+    }, (1000 * 60/*One Minute*/) * 15)
 
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 11:57 PM
- * Last modified 7/31/20 11:31 PM
+ * Created by Elias Fazel on 8/3/20 7:19 AM
+ * Last modified 8/3/20 6:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,9 +15,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,9 +49,13 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import com.google.firebase.messaging.FirebaseMessaging
+import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
+import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerConstants
+import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
+import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.SwipeGestureListener
 import javax.inject.Inject
 
-class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
+class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectionListenerInterface {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
@@ -69,6 +76,13 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
     val adsConfiguration: AdsConfiguration by lazy {
         AdsConfiguration(this@HomePage)
     }
+
+    private val swipeGestureListener: SwipeGestureListener by lazy {
+        SwipeGestureListener(applicationContext, this@HomePage)
+    }
+
+    var scrollViewAtTop: Boolean = false
+    var updateDelay: Boolean = true
 
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
@@ -285,6 +299,22 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        homePageViewBinding.nestedScrollView.setOnScrollChangeListener { nestedScrollView: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+
+            if (scrollY == 0) {
+                scrollViewAtTop = true
+            } else if (scrollY > 0) {
+                scrollViewAtTop = false
+            }
+
+        }
+
+
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -359,6 +389,44 @@ class HomePage : AppCompatActivity(), NetworkConnectionListenerInterface {
 
         }
 
+    }
+
+    override fun onSwipeGesture(gestureConstants: GestureConstants, downMotionEvent: MotionEvent, moveMotionEvent: MotionEvent, initVelocityX: Float, initVelocityY: Float) {
+        super.onSwipeGesture(gestureConstants, downMotionEvent, moveMotionEvent, initVelocityX, initVelocityY)
+
+        when (gestureConstants) {
+            is GestureConstants.SwipeVertical -> {
+                when (gestureConstants.verticallDirection) {
+                    GestureListenerConstants.SWIPE_DOWN -> {
+
+                        if (scrollViewAtTop && updateDelay) {
+                            Log.d(this@HomePage.javaClass.simpleName, "Updating Content")
+
+                            updateDelay = false
+
+                            setupRefreshView()
+
+                            startNetworkOperations()
+
+                        } else {
+
+                            Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    override fun dispatchTouchEvent(motionEvent: MotionEvent?): Boolean {
+        motionEvent?.let {
+            swipeGestureListener.onTouchEvent(it)
+        }
+
+        return super.dispatchTouchEvent(motionEvent)
     }
 
     override fun networkAvailable() {
