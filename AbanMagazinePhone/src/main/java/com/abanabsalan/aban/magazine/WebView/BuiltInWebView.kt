@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 2:54 AM
- * Last modified 8/3/20 2:54 AM
+ * Created by Elias Fazel on 8/3/20 3:40 AM
+ * Last modified 8/3/20 3:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.WebView
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
@@ -20,6 +21,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -70,9 +72,14 @@ class BuiltInWebView : AppCompatActivity() {
             }
         }
 
-        browserViewBinding.root.setPadding(0, statusBarHeight(applicationContext) , 0, 0)
+        browserViewBinding.root.setPadding(0, statusBarHeight(applicationContext) , 0, navigationBarHeight(applicationContext))
 
-        val linkToLoad = intent.getStringExtra(Intent.EXTRA_TEXT)
+        val dominantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color))
+        val vibrantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color_game))
+
+        window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
+
+        val linkToLoad = intent.getStringExtra(Intent.EXTRA_TEXT)?:intent.dataString
 
         if (linkToLoad != null) {
 
