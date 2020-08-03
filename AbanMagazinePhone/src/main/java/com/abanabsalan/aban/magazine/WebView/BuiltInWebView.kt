@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 12:27 AM
- * Last modified 8/2/20 11:50 PM
+ * Created by Elias Fazel on 8/3/20 2:54 AM
+ * Last modified 8/3/20 2:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,10 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
@@ -79,8 +82,6 @@ class BuiltInWebView : AppCompatActivity() {
             browserViewBinding.webView.settings.setSupportZoom(true)
             browserViewBinding.webView.settings.useWideViewPort = true
             browserViewBinding.webView.settings.loadWithOverviewMode = true
-            browserViewBinding.webView.settings.setAppCacheEnabled(true)
-            browserViewBinding.webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
             browserViewBinding.webView.setInitialScale(0)
             browserViewBinding.webView.webViewClient = BuiltInWebViewClient()
             browserViewBinding.webView.webChromeClient = BuiltInChromeWebViewClient()
