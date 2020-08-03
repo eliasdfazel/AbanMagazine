@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 5:50 AM
- * Last modified 8/2/20 5:50 AM
+ * Created by Elias Fazel on 8/2/20 10:38 PM
+ * Last modified 8/2/20 10:11 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,12 +21,13 @@ import com.facebook.rebound.SimpleSpringListener
 import com.facebook.rebound.Spring
 import com.facebook.rebound.SpringConfig
 import com.facebook.rebound.SpringSystem
+import com.google.android.material.button.MaterialButton
 
 interface ImageResizingProcessAction {
     fun onImageViewReverted() {}
 }
 
-class ImageResizingProcess (private val animationImage: ImageView, private val controlView: LottieAnimationView){
+class ImageResizingProcess (private val animationImage: ImageView, private val controlView: LottieAnimationView, private val informationView: MaterialButton){
 
     var tensionValue = 975.0
     var frictionValue = 21.0
@@ -97,6 +98,16 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
                     View.VISIBLE.also {
                         controlView.playAnimation()
                     }
+
+                }
+
+                informationView.visibility = if (informationView.isShown) {
+
+                    View.INVISIBLE
+
+                } else {
+
+                    View.VISIBLE
 
                 }
 

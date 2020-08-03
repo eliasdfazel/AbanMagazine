@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 5:50 AM
- * Last modified 8/2/20 5:50 AM
+ * Created by Elias Fazel on 8/2/20 10:38 PM
+ * Last modified 8/2/20 10:13 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.post_view_content_item_image.view.*
 import net.geeksempire.loadingspin.SpinKitView
 import net.geekstools.imageview.customshapes.ShapesImage
@@ -22,5 +23,6 @@ class PostViewImageAdapterViewHolder (view: View) : RecyclerView.ViewHolder(view
     val rootViewItem: ConstraintLayout = view.rootViewItem
     val postImage: ShapesImage = view.postImage
     val showFullScreen: LottieAnimationView = view.showFullScreen
+    val showFullScreenInformation: MaterialButton = view.showFullScreenInformation
     val postImageLoading: SpinKitView = view.postImageLoading
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 5:50 AM
- * Last modified 8/2/20 5:07 AM
+ * Created by Elias Fazel on 8/2/20 10:38 PM
+ * Last modified 8/2/20 10:25 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,6 +39,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+
 
 class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -248,6 +249,22 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             }
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
+                (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight ->{
+
+                        singlePostViewContext.getColor(R.color.dark)
+
+                    }
+                    ThemeType.ThemeDark -> {
+
+                        singlePostViewContext.getColor(R.color.light)
+
+                    }
+                    else -> {
+                        singlePostViewContext.getColor(R.color.dark)
+                    }
+                })
+
                 singlePostItemsData[position].postItemImage?.let {
 
                     val drawableError: Drawable? = singlePostViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
@@ -298,7 +315,9 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                     if (it.targetLink.isNullOrBlank()) {
 
-                        ImageResizingProcess((viewHolder as PostViewImageAdapterViewHolder).postImage, (viewHolder as PostViewImageAdapterViewHolder).showFullScreen)
+                        ImageResizingProcess((viewHolder as PostViewImageAdapterViewHolder).postImage,
+                            (viewHolder as PostViewImageAdapterViewHolder).showFullScreen,
+                            (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation)
                             .start(object : ImageResizingProcessAction {
 
                                 override fun onImageViewReverted() {
@@ -309,11 +328,13 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreen.setOnClickListener { view ->
 
-                            Intent(singlePostViewContext, BuiltInWebView::class.java).apply {
-                                putExtra("Link", it.imageLink)
-                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                singlePostViewContext.startActivity(this@apply)
-                            }
+                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = it.imageLink)
+
+                        }
+
+                        (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setOnClickListener { view ->
+
+                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = it.imageLink)
 
                         }
 
@@ -321,12 +342,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         it.targetLink?.also { targetLink ->
 
-                            Intent().apply {
-                                data = Uri.parse(targetLink)
-                                action = Intent.ACTION_VIEW
-                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                singlePostViewContext.startActivity(this@apply)
-                            }
+                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = targetLink)
 
                         }
 
@@ -347,11 +363,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         linkContent.select("a").first().attr("abs:href")?.let { aLink ->
 
-                            Intent(singlePostViewContext, BuiltInWebView::class.java).apply {
-                                putExtra("Link", aLink)
-                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                singlePostViewContext.startActivity(this@apply)
-                            }
+                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = aLink)
 
                         }
 

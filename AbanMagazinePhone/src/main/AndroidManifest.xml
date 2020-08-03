@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/2/20 4:02 AM
-  ~ Last modified 8/2/20 4:00 AM
+  ~ Created by Elias Fazel on 8/2/20 10:38 PM
+  ~ Last modified 8/2/20 8:55 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -103,7 +103,13 @@
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/GeeksEmpire.Material.WebView"
-            android:name=".WebView.BuiltInWebView" />
+            android:name=".WebView.BuiltInWebView" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:icon="@mipmap/ic_launcher"

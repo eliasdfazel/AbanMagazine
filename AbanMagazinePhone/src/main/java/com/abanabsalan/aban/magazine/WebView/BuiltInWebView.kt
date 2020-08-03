@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/1/20 5:52 AM
- * Last modified 8/1/20 5:31 AM
+ * Created by Elias Fazel on 8/2/20 10:38 PM
+ * Last modified 8/2/20 10:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,8 +10,12 @@
 
 package com.abanabsalan.aban.magazine.WebView
 
+import android.app.ActivityOptions
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +32,21 @@ class BuiltInWebView : AppCompatActivity() {
     }
 
     lateinit var browserViewBinding: BrowserViewBinding
+
+    companion object {
+
+        fun show(context: Context,
+                 linkToLoad: String) {
+
+            Intent(context, BuiltInWebView::class.java).apply {
+                putExtra(Intent.EXTRA_TEXT, linkToLoad)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.slide_in_right, R.anim.fade_out).toBundle())
+            }
+
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +72,9 @@ class BuiltInWebView : AppCompatActivity() {
 
         browserViewBinding.root.setPadding(0, statusBarHeight(applicationContext) , 0, 0)
 
-        val linkToLoad = intent.getStringExtra("Link")
+        val linkToLoad = intent.getStringExtra(Intent.EXTRA_TEXT)
 
         if (linkToLoad != null) {
-
-
 
             browserViewBinding.webView.settings.javaScriptEnabled = true
             browserViewBinding.webView.settings.builtInZoomControls = true
@@ -65,6 +82,8 @@ class BuiltInWebView : AppCompatActivity() {
             browserViewBinding.webView.settings.setSupportZoom(true)
             browserViewBinding.webView.settings.useWideViewPort = true
             browserViewBinding.webView.settings.loadWithOverviewMode = true
+            browserViewBinding.webView.settings.setAppCacheEnabled(true)
+            browserViewBinding.webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
             browserViewBinding.webView.setInitialScale(0)
             browserViewBinding.webView.webViewClient = BuiltInWebViewClient()
             browserViewBinding.webView.addJavascriptInterface(WebInterface(applicationContext), "WebInterface")
@@ -82,6 +101,11 @@ class BuiltInWebView : AppCompatActivity() {
         super.onPause()
 
         this@BuiltInWebView.finish()
+        overridePendingTransition(R.anim.fade_in, android.R.anim.slide_out_right)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     inner class BuiltInWebViewClient() : WebViewClient() {
