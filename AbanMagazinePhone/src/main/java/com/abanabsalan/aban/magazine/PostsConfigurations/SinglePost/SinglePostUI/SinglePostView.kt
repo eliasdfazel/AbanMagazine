@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 4:02 AM
- * Last modified 8/2/20 4:00 AM
+ * Created by Elias Fazel on 8/3/20 5:56 AM
+ * Last modified 8/3/20 5:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -59,6 +59,9 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
     var postTitle: String? = null
     var postExcerpt: String? = null
     var postLink: String? = null
+
+    var dominantColor: Int? = null
+    var vibrantColor: Int? = null
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
 

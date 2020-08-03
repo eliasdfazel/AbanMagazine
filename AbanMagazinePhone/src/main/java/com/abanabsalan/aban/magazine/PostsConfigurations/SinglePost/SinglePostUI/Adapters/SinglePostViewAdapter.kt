@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 10:38 PM
- * Last modified 8/2/20 10:25 PM
+ * Created by Elias Fazel on 8/3/20 5:56 AM
+ * Last modified 8/3/20 5:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -328,13 +328,23 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreen.setOnClickListener { view ->
 
-                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = it.imageLink)
+                            BuiltInWebView.show(
+                                context = singlePostViewContext,
+                                linkToLoad = it.imageLink,
+                                gradientColorOne = singlePostViewContext.dominantColor,
+                                gradientColorTwo = singlePostViewContext.vibrantColor
+                            )
 
                         }
 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setOnClickListener { view ->
 
-                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = it.imageLink)
+                            BuiltInWebView.show(
+                                context = singlePostViewContext,
+                                linkToLoad = it.imageLink,
+                                gradientColorOne = singlePostViewContext.dominantColor,
+                                gradientColorTwo = singlePostViewContext.vibrantColor
+                            )
 
                         }
 
@@ -342,7 +352,12 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         it.targetLink?.also { targetLink ->
 
-                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = targetLink)
+                            BuiltInWebView.show(
+                                context = singlePostViewContext,
+                                linkToLoad = targetLink,
+                                gradientColorOne = singlePostViewContext.dominantColor,
+                                gradientColorTwo = singlePostViewContext.vibrantColor
+                            )
 
                         }
 
@@ -363,7 +378,12 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         linkContent.select("a").first().attr("abs:href")?.let { aLink ->
 
-                            BuiltInWebView.show(context = singlePostViewContext, linkToLoad = aLink)
+                            BuiltInWebView.show(
+                                context = singlePostViewContext,
+                                linkToLoad = aLink,
+                                gradientColorOne = singlePostViewContext.dominantColor,
+                                gradientColorTwo = singlePostViewContext.vibrantColor
+                            )
 
                         }
 

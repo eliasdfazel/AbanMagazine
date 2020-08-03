@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 4:02 AM
- * Last modified 8/2/20 4:00 AM
+ * Created by Elias Fazel on 8/3/20 5:56 AM
+ * Last modified 8/3/20 5:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -152,18 +152,18 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
 
                     resource?.let {
 
-                        val dominantColor = extractDominantColor(applicationContext, it)
-                        val vibrantColor = extractVibrantColor(applicationContext, it)
+                        dominantColor = extractDominantColor(applicationContext, it)
+                        vibrantColor = extractVibrantColor(applicationContext, it)
 
-                        window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
+                        window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor!!, dominantColor!!).toIntArray()))
 
                         postsViewUiBinding.collapsingPostTopBar.contentScrim = GradientDrawable(
-                            GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray())
+                            GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor!!, dominantColor!!).toIntArray())
 
-                        postsViewUiBinding.postMenuButton.backgroundTintList = ColorStateList.valueOf(vibrantColor)
-                        postsViewUiBinding.postMenuButton.rippleColor = ColorStateList.valueOf(dominantColor)
+                        postsViewUiBinding.postMenuButton.backgroundTintList = ColorStateList.valueOf(vibrantColor!!)
+                        postsViewUiBinding.postMenuButton.rippleColor = ColorStateList.valueOf(dominantColor!!)
 
-                        if (isColorDark(dominantColor) && isColorDark(vibrantColor)) {
+                        if (isColorDark(dominantColor!!) && isColorDark(vibrantColor!!)) {
                             Log.d(this@setupUserInterface.javaClass.simpleName, "Dark Extracted Colors")
 
                             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR

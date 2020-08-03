@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/3/20 3:40 AM
-  ~ Last modified 8/3/20 3:08 AM
+  ~ Created by Elias Fazel on 8/3/20 5:56 AM
+  ~ Last modified 8/3/20 5:42 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -99,11 +99,23 @@
             android:name=".CategoriesConfigurations.UI.AllCategoryPosts"/>
 
         <activity
+            android:exported="false"
             android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/GeeksEmpire.Material.WebView"
-            android:name=".WebView.BuiltInWebView" >
+            android:name=".WebView.BuiltInWebView" />
+
+        <activity
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:theme="@style/GeeksEmpire.Material.Preferences"
+            android:name=".Preferences.PreferencesController" />
+
+        <activity
+            android:noHistory="true"
+            android:theme="@style/GeeksEmpire.Material.Mediate"
+            android:name=".Utils.Data.MediateClass">
             <intent-filter
                 android:autoVerify="true"
                 android:label="@string/applicationName">
@@ -119,7 +131,7 @@
                 <data
                     android:host="abanabsalan.com"
                     android:scheme="https"/>
-                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https//...." com.abanabsalan.aban.magazine -->
+                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https://...." com.abanabsalan.aban.magazine -->
             </intent-filter>
             <intent-filter
                 android:autoVerify="true"
@@ -132,16 +144,40 @@
                 <data
                     android:host="abanabsalan.com"
                     android:scheme="https"/>
-                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https//www...." com.abanabsalan.aban.magazine -->
+                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https://www...." com.abanabsalan.aban.magazine -->
+            </intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/applicationName">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="www.abanabsalan.ir"
+                    android:scheme="https"/>
+
+                <data
+                    android:host="abanabsalan.com"
+                    android:scheme="https"/>
+                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https://...." com.abanabsalan.aban.magazine -->
+            </intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/applicationName">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="abanabsalan.ir"
+                    android:scheme="https"/>
+                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https://www...." com.abanabsalan.aban.magazine -->
             </intent-filter>
         </activity>
 
-        <activity
-            android:icon="@mipmap/ic_launcher"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:theme="@style/GeeksEmpire.Material.Preferences"
-            android:name=".Preferences.PreferencesController" />
-        
         <service
             android:name=".Utils.RemoteTask.CloudNotificationHandler">
             <intent-filter>
