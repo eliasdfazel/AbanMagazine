@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 7:19 AM
- * Last modified 8/3/20 7:11 AM
+ * Created by Elias Fazel on 8/3/20 7:22 AM
+ * Last modified 8/3/20 7:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -231,7 +231,7 @@ fun HomePage.setupRefreshView() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                homePageViewBinding.refreshContentsInclude.root.visibility = View.INVISIBLE
+                homePageViewBinding.refreshContentsInclude.root.visibility = View.GONE
 
             }
 
