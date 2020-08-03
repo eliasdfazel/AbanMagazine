@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 7:22 AM
- * Last modified 8/3/20 7:20 AM
+ * Created by Elias Fazel on 8/3/20 7:48 AM
+ * Last modified 8/3/20 7:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -178,8 +178,6 @@ fun HomePage.hidePopupPreferences() {
 
 fun HomePage.setupRefreshView() {
 
-    homePageViewBinding.refreshContentsInclude.refreshAnimationView.playAnimation()
-
     val finalRadiusShow = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
 
     val circularRevealShow: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.refreshContentsInclude.root,
@@ -200,6 +198,8 @@ fun HomePage.setupRefreshView() {
 
         override fun onAnimationEnd(animation: Animator?) {
             homePageViewBinding.refreshContentsInclude.root.visibility = View.VISIBLE
+
+            homePageViewBinding.refreshContentsInclude.refreshAnimationView.playAnimation()
         }
 
         override fun onAnimationCancel(animation: Animator?) {
