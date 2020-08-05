@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 4:02 AM
- * Last modified 8/2/20 4:00 AM
+ * Created by Elias Fazel on 8/5/20 4:45 AM
+ * Last modified 8/5/20 4:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -168,7 +168,8 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
                 postTitle = postsItemData[position].postTitle,
                 postContent = postsItemData[position].postContent,
                 postExcerpt = postsItemData[position].postExcerpt,
-                postLink = postsItemData[position].postLink
+                postLink = postsItemData[position].postLink,
+                relatedPostStringJson = postsItemData[position].relatedPostsContent
             )
 
         }

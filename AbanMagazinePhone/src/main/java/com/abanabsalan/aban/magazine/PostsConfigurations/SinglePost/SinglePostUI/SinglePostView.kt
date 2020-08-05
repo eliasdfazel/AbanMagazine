@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 5:56 AM
- * Last modified 8/3/20 5:56 AM
+ * Created by Elias Fazel on 8/5/20 4:45 AM
+ * Last modified 8/5/20 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,7 @@ import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
 import com.google.android.material.appbar.AppBarLayout
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
+import org.json.JSONArray
 
 class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnOffsetChangedListener {
 
@@ -60,6 +61,10 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
     var postExcerpt: String? = null
     var postLink: String? = null
 
+    var rawPostContent: String? = null
+
+    var relatedPostContent: String? = null
+
     var dominantColor: Int? = null
     var vibrantColor: Int? = null
 
@@ -71,7 +76,8 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
                  featuredImageSharedElement: AppCompatImageView,
                  postId: String,
                  postFeaturedImage: String, postTitle: String, postContent: String,
-                 postExcerpt: String, postLink: String) {
+                 postExcerpt: String, postLink: String,
+                 relatedPostStringJson: String?) {
 
             Intent(context, SinglePostView::class.java).apply {
 
@@ -85,7 +91,10 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
                 putExtra(PostsDataParameters.PostParameters.PostExcerpt, postExcerpt)
                 putExtra(PostsDataParameters.PostParameters.PostLink, postLink)
 
+                putExtra(PostsDataParameters.PostParameters.RelatedPosts, relatedPostStringJson)
+
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
                 context.startActivity(this@apply,
                     ActivityOptions.makeSceneTransitionAnimation(context,
                         featuredImageSharedElement,
@@ -113,7 +122,9 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         postExcerpt = intent.getStringExtra(PostsDataParameters.PostParameters.PostExcerpt)
         postLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostLink)
 
-        val rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
+        rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
+
+        relatedPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.RelatedPosts)
 
         PopupPreferencesController(this@SinglePostView, postsViewUiBinding.preferencePopupInclude)
             .initializeForPostView(postId)
@@ -135,6 +146,16 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
                 singlePostViewAdapter.singlePostItemsData.addAll(it)
                 postsViewUiBinding.postRecyclerView.adapter = singlePostViewAdapter
+
+            }
+
+        })
+
+        postsLiveData.relatedPostsLiveItemData.observe(this@SinglePostView, Observer {
+
+            if (it.isNotEmpty()) {
+
+
 
             }
 
@@ -165,8 +186,13 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
         })
 
-        postsLiveData.prepareRawDataToRenderForSinglePost(rawPostContent)
+        rawPostContent?.let { rawPostContent ->
+            postsLiveData.prepareRawDataToRenderForSinglePost(rawPostContent)
+        }
 
+        relatedPostContent?.let { relatedPostContent ->
+            postsLiveData.prepareRawDataToRenderForRelatedPosts(JSONArray(relatedPostContent))
+        }
     }
 
     override fun onResume() {

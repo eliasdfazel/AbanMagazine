@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 8:15 PM
- * Last modified 7/25/20 8:15 PM
+ * Created by Elias Fazel on 8/5/20 4:45 AM
+ * Last modified 8/5/20 4:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,6 +30,8 @@ class PostsDataParameters {
         const val Rendered: String = "rendered"
         const val ExtraLinks: String = "_links"
         const val HrefLinks: String = "href"
+
+        const val RelatedPosts: String = "jetpack-related-posts"
     }
 
     object PostParameters {
@@ -43,6 +45,17 @@ class PostsDataParameters {
         const val PostCommentsLink: String = "PostCommentsLink"
 
         const val PostPublishDate: String = "PostPublishDate"
+
+        const val RelatedPosts: String = "RelatedPosts"
+    }
+
+    object RelatedPostsJsonStructure {
+        const val RelatedPostLink: String = "url"
+        const val RelatedPostTitle: String = "title"
+        const val RelatedPostExcerpt: String = "excerpt"
+
+        const val RelatedPostFeaturedImage: String = "img"
+        const val RelatedPostFeaturedImageLink: String = "src"
     }
 
     object PostItemsViewParameters {
@@ -72,7 +85,14 @@ data class PostsItemData (var postLink: String,
                           var postExcerpt: String,
                           var postPublishDate: String,
                           var postCategories: String,
-                          var postTags: String)
+                          var postTags: String,
+                          var relatedPostsContent: String)
+
+ data class RelatedPostsItemData (var relatedPostLink: String,
+                           var relatedPostId: String,
+                           var relatedPostFeaturedImage: String,
+                           var relatedPostTitle: String,
+                           var relatedPostExcerpt: String)
 
 data class PostItemParagraph(var paragraphText: String)
 data class PostItemSubTitle(var subTitleText: String)

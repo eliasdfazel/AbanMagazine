@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:42 PM
- * Last modified 7/31/20 9:32 PM
+ * Created by Elias Fazel on 8/5/20 4:45 AM
+ * Last modified 8/5/20 4:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,10 +13,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.json.JSONArray
 import org.json.JSONObject
 import org.jsoup.Jsoup
@@ -32,6 +29,10 @@ class PostsLiveData : ViewModel() {
 
     val allFavoritedPosts: MutableLiveData<ArrayList<PostsItemData>> by lazy {
         MutableLiveData<ArrayList<PostsItemData>>()
+    }
+
+    val relatedPostsLiveItemData: MutableLiveData<ArrayList<RelatedPostsItemData>> by lazy {
+        MutableLiveData<ArrayList<RelatedPostsItemData>>()
     }
 
     val toggleTheme: MutableLiveData<Int> by lazy {
@@ -181,8 +182,7 @@ class PostsLiveData : ViewModel() {
 
         for (i in 0 until rawDataJsonArray.length()) {
             val postJsonObject = rawDataJsonArray.getJSONObject(i)
-            Log.d("${this@PostsLiveData.javaClass.simpleName} PrepareRawDataToRenderForAllCategoryPosts", postJsonObject.getString(
-                PostsDataParameters.JsonDataStructure.PostId))
+            Log.d("${this@PostsLiveData.javaClass.simpleName} PrepareRawDataToRenderForAllCategoryPosts", postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
             specificCategoryPostsItemData.add(PostsItemData(
                 postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
@@ -196,12 +196,31 @@ class PostsLiveData : ViewModel() {
                     PostsDataParameters.JsonDataStructure.Rendered),
                 postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
                 postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
-                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(",")
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(","),
+                relatedPostsContent = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.RelatedPosts).toString()
             ))
 
         }
 
         allFavoritedPosts.postValue(specificCategoryPostsItemData)
+
+    }
+
+    fun prepareRawDataToRenderForRelatedPosts(rawRelatedDataJsonArray: JSONArray) = CoroutineScope(Dispatchers.IO).async {
+
+        val relatedPostItemsData: ArrayList<RelatedPostsItemData> = ArrayList<RelatedPostsItemData>()
+
+        for (i in 0 until rawRelatedDataJsonArray.length()) {
+            val postJsonObject = rawRelatedDataJsonArray.getJSONObject(i)
+            Log.d("${this@PostsLiveData.javaClass.simpleName} PrepareRawDataToRenderForRelatedPosts", postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
+
+//            relatedPostItemsData.add(RelatedPostsItemData(
+//
+//            ))
+
+        }
+
+        relatedPostsLiveItemData.postValue(relatedPostItemsData)
 
     }
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:46 AM
- * Last modified 8/5/20 3:46 AM
+ * Created by Elias Fazel on 8/5/20 4:45 AM
+ * Last modified 8/5/20 4:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -157,7 +157,9 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
                 postTitle = postsItemData[position].postTitle,
                 postContent = postsItemData[position].postContent,
                 postExcerpt = postsItemData[position].postExcerpt,
-                postLink = postsItemData[position].postLink
+                postLink = postsItemData[position].postLink,
+                relatedPostStringJson = postsItemData[position].relatedPostsContent
+
             )
 
         }
