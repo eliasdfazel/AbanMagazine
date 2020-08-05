@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/5/20 2:33 AM
-  ~ Last modified 8/5/20 1:46 AM
+  ~ Created by Elias Fazel on 8/5/20 3:46 AM
+  ~ Last modified 8/5/20 3:46 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -90,7 +90,7 @@
             android:supportsPictureInPicture="true"
             android:resizeableActivity="true"
             android:theme="@style/GeeksEmpire.Material.FavoritesPostView"
-            android:name=".PostsConfigurations.Favorites.UI.FavoritesPostsView"/>
+            android:name=".PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView"/>
 
         <activity
             android:label="@string/applicationName"

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 4:02 AM
- * Last modified 8/2/20 4:02 AM
+ * Created by Elias Fazel on 8/5/20 3:46 AM
+ * Last modified 8/5/20 3:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,8 +20,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteInterface
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteInterface
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost

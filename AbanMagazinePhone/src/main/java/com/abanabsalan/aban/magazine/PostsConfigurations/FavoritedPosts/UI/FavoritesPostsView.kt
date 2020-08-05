@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 11:57 PM
- * Last modified 7/31/20 11:56 PM
+ * Created by Elias Fazel on 8/5/20 3:46 AM
+ * Last modified 8/5/20 3:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI
+package com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI
 
 import android.os.Bundle
 import android.view.View
@@ -20,10 +20,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Extensions.favoritesPostsNetworkOperations
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Extensions.setupUserInterface
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.Adapter.FavoritesPostsViewAdapter
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.favoritesPostsNetworkOperations
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.setupUserInterface
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.Adapter.FavoritesPostsViewAdapter
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener

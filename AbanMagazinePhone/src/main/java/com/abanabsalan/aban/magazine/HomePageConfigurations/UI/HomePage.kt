@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:42 AM
- * Last modified 8/5/20 3:39 AM
+ * Created by Elias Fazel on 8/5/20 3:46 AM
+ * Last modified 8/5/20 3:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,8 +35,8 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPo
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.FavoritesPostsView
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:42 PM
- * Last modified 7/31/20 9:37 PM
+ * Created by Elias Fazel on 8/5/20 3:46 AM
+ * Last modified 8/5/20 3:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPosts
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.FavoritesPostsView
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.Utils.DependencyInjections.Modules.Network.NetworkConnectionModule
 import com.abanabsalan.aban.magazine.Utils.DependencyInjections.Scopes.ActivityScope
 import dagger.BindsInstance

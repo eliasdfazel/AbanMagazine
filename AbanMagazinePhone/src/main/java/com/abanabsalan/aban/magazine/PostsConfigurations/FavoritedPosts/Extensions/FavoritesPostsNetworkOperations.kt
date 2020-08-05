@@ -1,20 +1,20 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 11:57 PM
- * Last modified 7/31/20 11:52 PM
+ * Created by Elias Fazel on 8/5/20 3:46 AM
+ * Last modified 8/5/20 3:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Extensions
+package com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions
 
 import android.util.Log
 import android.widget.Toast
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Network.Operations.FavoritesPostsRetrieval
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.FavoritesPostsView
-import com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.Utils.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Network.Operations.FavoritesPostsRetrieval
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
+import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import org.json.JSONArray

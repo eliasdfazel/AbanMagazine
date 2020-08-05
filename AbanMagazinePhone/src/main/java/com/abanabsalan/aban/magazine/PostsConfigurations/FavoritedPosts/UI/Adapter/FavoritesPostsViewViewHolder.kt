@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:55 PM
- * Last modified 7/31/20 9:42 PM
+ * Created by Elias Fazel on 8/5/20 3:46 AM
+ * Last modified 8/5/20 3:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.PostsConfigurations.Favorites.UI.Adapter
+package com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.Adapter
 
 import android.view.View
 import android.widget.ImageView
