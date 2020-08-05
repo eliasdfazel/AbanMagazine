@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/3/20 12:27 AM
-  ~ Last modified 8/2/20 11:20 PM
+  ~ Created by Elias Fazel on 8/5/20 5:29 AM
+  ~ Last modified 8/5/20 4:53 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -149,6 +149,31 @@
                 android:background="@android:color/transparent"
 
                 apps:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/relatedPostsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginVertical="11dp"
+                android:paddingHorizontal="7dp"
+                android:gravity="center_vertical"
+                android:text="@string/relatedPosts"
+                android:textSize="23sp"
+                android:textColor="@color/darker"
+                android:fontFamily="@font/persian_sans"
+                android:visibility="invisible"
+
+                apps:layout_constraintTop_toBottomOf="@id/postRecyclerView"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/relatedPostsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:scrollbars="none"
+
+                apps:layout_constraintTop_toBottomOf="@id/relatedPostsTextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

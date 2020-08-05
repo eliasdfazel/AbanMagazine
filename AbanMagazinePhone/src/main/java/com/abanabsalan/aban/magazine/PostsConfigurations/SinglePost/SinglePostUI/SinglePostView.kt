@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 4:45 AM
- * Last modified 8/5/20 4:45 AM
+ * Created by Elias Fazel on 8/5/20 5:29 AM
+ * Last modified 8/5/20 5:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,16 +20,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
+import com.abanabsalan.aban.magazine.PostsConfigurations.RelatedPosts.UI.RelatedPostsAdapter
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
+import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemePostView
@@ -132,12 +135,19 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         postsViewUiBinding.postRecyclerView.layoutManager = linearLayoutManager
 
+        postsViewUiBinding.relatedPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
+
         val singlePostViewAdapter: SinglePostViewAdapter = SinglePostViewAdapter(this@SinglePostView)
+
+        val relatedPostsAdapter = RelatedPostsAdapter(this@SinglePostView, overallTheme)
 
         if (!postTitle.isNullOrEmpty() && !featureImageLink.isNullOrEmpty()) {
             setupUserInterface(postTitle!!, featureImageLink!!)
+        } else {
+            this@SinglePostView.finish()
         }
 
+        /*Post Content*/
         postsLiveData.singleSinglePostLiveItemData.observe(this@SinglePostView, Observer {
 
             if (it.isNotEmpty()) {
@@ -151,11 +161,15 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
         })
 
+        /*Related Posts*/
         postsLiveData.relatedPostsLiveItemData.observe(this@SinglePostView, Observer {
 
             if (it.isNotEmpty()) {
 
+                relatedPostsAdapter.singlePostItemsData.clear()
 
+                relatedPostsAdapter.singlePostItemsData.addAll(it)
+                postsViewUiBinding.postRecyclerView.adapter = singlePostViewAdapter
 
             }
 

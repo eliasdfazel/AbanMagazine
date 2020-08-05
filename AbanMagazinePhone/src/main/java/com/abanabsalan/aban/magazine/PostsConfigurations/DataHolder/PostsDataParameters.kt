@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 4:45 AM
- * Last modified 8/5/20 4:40 AM
+ * Created by Elias Fazel on 8/5/20 5:29 AM
+ * Last modified 8/5/20 5:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -86,7 +86,7 @@ data class PostsItemData (var postLink: String,
                           var postPublishDate: String,
                           var postCategories: String,
                           var postTags: String,
-                          var relatedPostsContent: String)
+                          var relatedPostsContent: String?)
 
  data class RelatedPostsItemData (var relatedPostLink: String,
                            var relatedPostId: String,
