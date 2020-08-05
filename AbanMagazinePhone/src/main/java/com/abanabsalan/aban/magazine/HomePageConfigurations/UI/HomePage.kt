@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 2:33 AM
- * Last modified 8/5/20 2:33 AM
+ * Created by Elias Fazel on 8/5/20 3:42 AM
+ * Last modified 8/5/20 3:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -419,14 +419,22 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         if (this@HomePage.isInPictureInPictureMode) {
             Log.d(this@HomePage.javaClass.simpleName, "Picture In Picture Mode Entered")
 
+            homePageViewBinding.blurViewBottomBar.visibility = View.GONE
 
-            println(">>>>>>>>>>>> Picture In Picture Mode Entered")
+            homePageViewBinding.preferencePopupInclude.instagramView.visibility = View.GONE
+            homePageViewBinding.preferencePopupInclude.youtubeView.visibility = View.GONE
+            homePageViewBinding.preferencePopupInclude.twitterView.visibility = View.GONE
+            homePageViewBinding.preferencePopupInclude.pinterestView.visibility = View.GONE
 
         } else {
             Log.d(this@HomePage.javaClass.simpleName, "Picture In Picture Mode Exited")
 
-            println(">>>>>>>>>>>> Picture In Picture Mode Exited")
+            homePageViewBinding.blurViewBottomBar.visibility = View.VISIBLE
 
+            homePageViewBinding.preferencePopupInclude.instagramView.visibility = View.VISIBLE
+            homePageViewBinding.preferencePopupInclude.youtubeView.visibility = View.VISIBLE
+            homePageViewBinding.preferencePopupInclude.twitterView.visibility = View.VISIBLE
+            homePageViewBinding.preferencePopupInclude.pinterestView.visibility = View.VISIBLE
 
         }
 
