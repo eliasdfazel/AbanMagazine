@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 7:48 AM
- * Last modified 8/3/20 7:47 AM
+ * Created by Elias Fazel on 8/5/20 2:33 AM
+ * Last modified 8/5/20 1:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,7 +36,11 @@ fun HomePage.setupUserInterface() {
         homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext),
         0, 0)
 
-    homePageViewBinding.optionMenus.playAnimation()
+    Handler().postDelayed({
+
+        homePageViewBinding.optionMenus.playAnimation()
+
+    }, 1357)
 
     setupPopupPreferencesClick()
 

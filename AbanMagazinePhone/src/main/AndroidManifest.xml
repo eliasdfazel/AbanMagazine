@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/3/20 5:56 AM
-  ~ Last modified 8/3/20 5:42 AM
+  ~ Created by Elias Fazel on 8/5/20 2:33 AM
+  ~ Last modified 8/5/20 1:46 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -45,6 +45,10 @@
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="${enableCrashReporting}" />
+
+        <meta-data
+            android:name="firebase_analytics_collection_deactivated"
+            android:value="@bool/FirebaseAnalyticsActivation"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 7:19 AM
- * Last modified 8/3/20 6:56 AM
+ * Created by Elias Fazel on 8/5/20 2:33 AM
+ * Last modified 8/5/20 2:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 
 import android.app.ActivityOptions
+import android.app.PictureInPictureParams
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -360,6 +361,28 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
         }
 
+        if (this@HomePage.isInMultiWindowMode) {
+            Log.d(this@HomePage.javaClass.simpleName, "Multi Window Mode Entered")
+
+            homePageViewBinding.blurViewBottomBar.visibility = View.GONE
+
+            homePageViewBinding.preferencePopupInclude.instagramView.visibility = View.GONE
+            homePageViewBinding.preferencePopupInclude.youtubeView.visibility = View.GONE
+            homePageViewBinding.preferencePopupInclude.twitterView.visibility = View.GONE
+            homePageViewBinding.preferencePopupInclude.pinterestView.visibility = View.GONE
+
+        } else {
+            Log.d(this@HomePage.javaClass.simpleName, "Multi Window Mode Exited")
+
+            homePageViewBinding.blurViewBottomBar.visibility = View.VISIBLE
+
+            homePageViewBinding.preferencePopupInclude.instagramView.visibility = View.VISIBLE
+            homePageViewBinding.preferencePopupInclude.youtubeView.visibility = View.VISIBLE
+            homePageViewBinding.preferencePopupInclude.twitterView.visibility = View.VISIBLE
+            homePageViewBinding.preferencePopupInclude.pinterestView.visibility = View.VISIBLE
+
+        }
+
     }
 
     override fun onPause() {
@@ -389,6 +412,25 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
         }
 
+    }
+
+    override fun enterPictureInPictureMode(pictureInPictureParams: PictureInPictureParams): Boolean {
+
+        if (this@HomePage.isInPictureInPictureMode) {
+            Log.d(this@HomePage.javaClass.simpleName, "Picture In Picture Mode Entered")
+
+
+            println(">>>>>>>>>>>> Picture In Picture Mode Entered")
+
+        } else {
+            Log.d(this@HomePage.javaClass.simpleName, "Picture In Picture Mode Exited")
+
+            println(">>>>>>>>>>>> Picture In Picture Mode Exited")
+
+
+        }
+
+        return super.enterPictureInPictureMode(pictureInPictureParams)
     }
 
     override fun onSwipeGesture(gestureConstants: GestureConstants, downMotionEvent: MotionEvent, moveMotionEvent: MotionEvent, initVelocityX: Float, initVelocityY: Float) {
