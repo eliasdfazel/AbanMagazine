@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 4:45 AM
- * Last modified 8/5/20 4:41 AM
+ * Created by Elias Fazel on 8/6/20 3:33 AM
+ * Last modified 8/6/20 3:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,8 +31,8 @@ class PostsLiveData : ViewModel() {
         MutableLiveData<ArrayList<PostsItemData>>()
     }
 
-    val relatedPostsLiveItemData: MutableLiveData<ArrayList<RelatedPostsItemData>> by lazy {
-        MutableLiveData<ArrayList<RelatedPostsItemData>>()
+    val relatedPostsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+        MutableLiveData<ArrayList<PostsItemData>>()
     }
 
     val toggleTheme: MutableLiveData<Int> by lazy {
@@ -188,12 +188,9 @@ class PostsLiveData : ViewModel() {
                 postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
                 postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId),
                 postFeaturedImage = postJsonObject.getString(PostsDataParameters.JsonDataStructure.FeauturedImage),
-                postTitle = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostTitle).getString(
-                    PostsDataParameters.JsonDataStructure.Rendered),
-                postContent = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(
-                    PostsDataParameters.JsonDataStructure.Rendered),
-                postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(
-                    PostsDataParameters.JsonDataStructure.Rendered),
+                postTitle = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostTitle).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postContent = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
                 postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
                 postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(","),
@@ -206,17 +203,46 @@ class PostsLiveData : ViewModel() {
 
     }
 
+    fun extractRelatedPostIds(rawRelatedDataJsonArray: JSONArray)  = CoroutineScope(Dispatchers.IO).launch {
+
+        val relatedPostBaseLink: StringBuilder = StringBuilder("https://abanabsalan.com/wp-json/wp/v2/posts?")
+
+        for (i in 0 until rawRelatedDataJsonArray.length()) {
+            val postJsonObject = rawRelatedDataJsonArray.getJSONObject(i)
+
+            val postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId)
+
+            relatedPostBaseLink.append("&include[]=${postId}")
+
+        }
+
+        val relatedPosts = URL(relatedPostBaseLink.toString()).readText(Charset.defaultCharset())
+        val relatedPostsDataJsonArray = JSONArray(relatedPosts)
+
+        prepareRawDataToRenderForRelatedPosts(relatedPostsDataJsonArray)
+
+    }
+
     fun prepareRawDataToRenderForRelatedPosts(rawRelatedDataJsonArray: JSONArray) = CoroutineScope(Dispatchers.IO).async {
 
-        val relatedPostItemsData: ArrayList<RelatedPostsItemData> = ArrayList<RelatedPostsItemData>()
+        val relatedPostItemsData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
         for (i in 0 until rawRelatedDataJsonArray.length()) {
             val postJsonObject = rawRelatedDataJsonArray.getJSONObject(i)
             Log.d("${this@PostsLiveData.javaClass.simpleName} PrepareRawDataToRenderForRelatedPosts", postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
-//            relatedPostItemsData.add(RelatedPostsItemData(
-//
-//            ))
+            relatedPostItemsData.add(PostsItemData(
+                postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
+                postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId),
+                postFeaturedImage = postJsonObject.getString(PostsDataParameters.JsonDataStructure.FeauturedImage),
+                postTitle = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostTitle).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postContent = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
+                postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(","),
+                relatedPostsContent = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.RelatedPosts).toString()
+            ))
 
         }
 

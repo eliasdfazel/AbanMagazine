@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/25/20 7:35 PM
- * Last modified 7/25/20 7:24 PM
+ * Created by Elias Fazel on 8/6/20 3:33 AM
+ * Last modified 8/6/20 3:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,7 +67,8 @@ class HomePageLiveData : ViewModel() {
                 postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
                 postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
-                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(",")
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(","),
+                relatedPostsContent = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.RelatedPosts).toString()
             ))
 
         }
@@ -122,7 +123,8 @@ class HomePageLiveData : ViewModel() {
                 postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
                 postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
                 postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
-                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(",")
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(","),
+                relatedPostsContent = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.RelatedPosts).toString()
             ))
 
         }

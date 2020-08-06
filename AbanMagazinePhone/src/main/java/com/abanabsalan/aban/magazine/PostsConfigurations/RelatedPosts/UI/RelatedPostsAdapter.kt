@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 5:29 AM
- * Last modified 8/5/20 5:29 AM
+ * Created by Elias Fazel on 8/6/20 3:33 AM
+ * Last modified 8/6/20 3:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,8 +15,9 @@ import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.RelatedPostsItemData
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -31,7 +32,7 @@ import com.bumptech.glide.request.target.Target
 
 class RelatedPostsAdapter (private val context: SinglePostView, private val overallTheme: OverallTheme): RecyclerView.Adapter<RelatedPostsViewHolder>() {
 
-    val relatedPostsItemData: ArrayList<RelatedPostsItemData> = ArrayList<RelatedPostsItemData>()
+    val relatedPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RelatedPostsViewHolder {
 
@@ -119,7 +120,7 @@ class RelatedPostsAdapter (private val context: SinglePostView, private val over
 
         Glide.with(context)
             .asDrawable()
-            .load(relatedPostsItemData[position].relatedPostFeaturedImage)
+            .load(relatedPostsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .listener(object : RequestListener<Drawable> {
@@ -141,21 +142,21 @@ class RelatedPostsAdapter (private val context: SinglePostView, private val over
             })
             .submit()
 
-        relatedPostsViewHolder.postTitleView.text = Html.fromHtml(relatedPostsItemData[position].relatedPostTitle)
+        relatedPostsViewHolder.postTitleView.text = Html.fromHtml(relatedPostsItemData[position].postTitle)
 
         relatedPostsViewHolder.rootViewItem.setOnClickListener {
 
-//            SinglePostView.show(
-//                context = context,
-//                featuredImageSharedElement = relatedPostsViewHolder.postFeatureImageView as AppCompatImageView,
-//                postId = relatedPostsItemData[position].relatedPostId,
-//                postFeaturedImage = relatedPostsItemData[position].relatedPostFeaturedImage,
-//                postTitle = relatedPostsItemData[position].relatedPostTitle,
-//                postContent = relatedPostsItemData[position].postContent,
-//                postExcerpt = relatedPostsItemData[position].relatedPostExcerpt,
-//                postLink = relatedPostsItemData[position].relatedPostLink,
-//                relatedPostStringJson = null
-//            )
+            SinglePostView.show(
+                context = context,
+                featuredImageSharedElement = relatedPostsViewHolder.postFeatureImageView as AppCompatImageView,
+                postId = relatedPostsItemData[position].postId,
+                postFeaturedImage = relatedPostsItemData[position].postFeaturedImage,
+                postTitle = relatedPostsItemData[position].postTitle,
+                postContent = relatedPostsItemData[position].postContent,
+                postExcerpt = relatedPostsItemData[position].postExcerpt,
+                postLink = relatedPostsItemData[position].postLink,
+                relatedPostStringJson = relatedPostsItemData[position].relatedPostsContent
+            )
 
         }
 

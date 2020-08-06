@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 5:29 AM
- * Last modified 8/5/20 5:02 AM
+ * Created by Elias Fazel on 8/6/20 3:33 AM
+ * Last modified 8/6/20 3:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -166,10 +166,12 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
             if (it.isNotEmpty()) {
 
-                relatedPostsAdapter.singlePostItemsData.clear()
+                postsViewUiBinding.relatedPostsTextView.visibility = View.VISIBLE
 
-                relatedPostsAdapter.singlePostItemsData.addAll(it)
-                postsViewUiBinding.postRecyclerView.adapter = singlePostViewAdapter
+                relatedPostsAdapter.relatedPostsItemData.clear()
+
+                relatedPostsAdapter.relatedPostsItemData.addAll(it)
+                postsViewUiBinding.relatedPostsRecyclerView.adapter = relatedPostsAdapter
 
             }
 
@@ -205,7 +207,7 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         }
 
         relatedPostContent?.let { relatedPostContent ->
-            postsLiveData.prepareRawDataToRenderForRelatedPosts(JSONArray(relatedPostContent))
+            postsLiveData.extractRelatedPostIds(JSONArray(relatedPostContent))
         }
     }
 
