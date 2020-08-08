@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:46 AM
- * Last modified 8/5/20 3:46 AM
+ * Created by Elias Fazel on 8/8/20 2:56 AM
+ * Last modified 8/8/20 2:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,6 @@ import android.net.Uri
 import android.os.Handler
 import android.text.Html
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
@@ -26,6 +25,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.h
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -140,8 +140,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
         preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
 
-        preferencesPopupUiViewBinding.rateFavoriteView.visibility = View.INVISIBLE
-        preferencesPopupUiViewBinding.shareView.visibility = View.INVISIBLE
+        preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.rate_icon))
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
@@ -169,7 +168,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.playStoreLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            InApplicationReviewProcess(context).start()
 
         }
 
