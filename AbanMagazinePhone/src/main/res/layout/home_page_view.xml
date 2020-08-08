@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/8/20 6:23 AM
-  ~ Last modified 8/8/20 6:15 AM
+  ~ Created by Elias Fazel on 8/8/20 7:25 AM
+  ~ Last modified 8/8/20 7:25 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
 
-            android:paddingBottom="157dp">
+            android:paddingBottom="177dp">
 
             <!-- Primary Categories -->
             <androidx.recyclerview.widget.RecyclerView
@@ -102,7 +102,7 @@
                 apps:SpinKit_Color="@color/light_pink"/>
 
             <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/bannerAdView"
+                android:id="@+id/bannerAdViewTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -129,7 +129,7 @@
                 android:fontFamily="@font/persian_sans"
                 android:visibility="invisible"
 
-                apps:layout_constraintTop_toBottomOf="@id/bannerAdView"/>
+                apps:layout_constraintTop_toBottomOf="@id/bannerAdViewTop"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newestPostsRecyclerView"
@@ -170,8 +170,32 @@
 
                 apps:layout_constraintTop_toBottomOf="@id/forYouPostsTextView"/>
 
-            <!-- Instagram Stories Highlights -->
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/bannerAdViewBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="1dp"
+                android:visibility="invisible"
 
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="@string/homePageBannerBottom"
+
+                apps:layout_constraintTop_toBottomOf="@id/recommendedPostsRecyclerView"/>
+
+            <!-- Instagram Stories Highlights -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/instagramStoryHighlightsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:padding="3dp"
+                android:scrollbars="none"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="7dp"
+                android:visibility="invisible"
+
+                apps:layout_constraintTop_toBottomOf="@id/bannerAdViewBottom"/>
 
             <!-- Full Content Loading View -->
             <net.geeksempire.loadingspin.SpinKitView
@@ -186,7 +210,7 @@
                 apps:SpinKit_Style="CubeGrid"
                 apps:SpinKit_Color="@color/default_color"
 
-                apps:layout_constraintTop_toBottomOf="@id/forYouPostsTextView"
+                apps:layout_constraintBottom_toBottomOf="parent"
                 apps:layout_constraintStart_toStartOf="parent"
                 apps:layout_constraintEnd_toEndOf="parent"/>
 

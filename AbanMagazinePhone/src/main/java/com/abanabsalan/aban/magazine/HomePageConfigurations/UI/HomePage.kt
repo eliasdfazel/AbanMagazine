@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:46 AM
- * Last modified 8/5/20 3:46 AM
+ * Created by Elias Fazel on 8/8/20 7:25 AM
+ * Last modified 8/8/20 7:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -125,6 +125,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
         homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
 
+        homePageViewBinding.instagramStoryHighlightsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+
         val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme)
 
         val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme)
@@ -241,6 +243,21 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                 }
 
                 homePageLiveData.controlLoadingView.postValue(false)
+
+            })
+
+            homePageLiveData.instagramStoryHighlightsLiveItemData.observe(this@HomePage, Observer {
+
+                if (it.isNotEmpty()) {
+
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.VISIBLE
+//
+//                    newestPostsAdapter.newestPostsItemData.clear()
+//                    newestPostsAdapter.newestPostsItemData.addAll(it)
+//
+//                    homePageViewBinding.newestPostsRecyclerView.adapter = newestPostsAdapter
+
+                }
 
             })
 

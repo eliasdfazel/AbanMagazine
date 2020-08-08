@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 5:52 AM
- * Last modified 8/8/20 5:45 AM
+ * Created by Elias Fazel on 8/8/20 7:25 AM
+ * Last modified 8/8/20 7:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -105,17 +105,48 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
         when(appCompatActivity) {
             is HomePage -> {
 
-                (appCompatActivity).homePageViewBinding.bannerAdView.loadAd(adRequest)
+                (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
 
-                (appCompatActivity).homePageViewBinding.bannerAdView.adListener = object: AdListener() {
+                (appCompatActivity).homePageViewBinding.bannerAdViewTop.adListener = object: AdListener() {
                     override fun onAdLoaded() {
 
-                        (appCompatActivity).homePageViewBinding.bannerAdView.visibility = View.VISIBLE
+                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.VISIBLE
                     }
 
                     override fun onAdFailedToLoad(errorCode : Int) {
 
-                        (appCompatActivity).homePageViewBinding.bannerAdView.loadAd(adRequest)
+                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
+
+                    }
+
+                    override fun onAdOpened() {
+
+                    }
+
+                    override fun onAdClicked() {
+
+                    }
+
+                    override fun onAdLeftApplication() {
+
+                    }
+
+                    override fun onAdClosed() {
+
+                    }
+                }
+
+                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
+
+                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.adListener = object: AdListener() {
+                    override fun onAdLoaded() {
+
+                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.VISIBLE
+                    }
+
+                    override fun onAdFailedToLoad(errorCode : Int) {
+
+                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
 
                     }
 
