@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/5/20 5:29 AM
-  ~ Last modified 8/5/20 4:52 AM
+  ~ Created by Elias Fazel on 8/8/20 5:52 AM
+  ~ Last modified 8/8/20 5:19 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -31,5 +31,12 @@
     <string name="showFullScreen">نمایش تمام صفحه</string>
 
     <string name="noInternetConnectionText">" ⚠ دسترسی به اینترنت مقدور نیست "</string>
+
+    <string name="inAppUpdateDescription">اطلاعات برای بروزرسانی آمده است</string>
+    <string name="inAppUpdateAction">
+        <![CDATA[
+            کامل کنید!
+        ]]>
+    </string>
 
 </resources>
