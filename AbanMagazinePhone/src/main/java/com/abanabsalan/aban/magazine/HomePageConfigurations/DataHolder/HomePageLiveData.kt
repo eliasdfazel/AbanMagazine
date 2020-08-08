@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:16 AM
- * Last modified 8/8/20 7:16 AM
+ * Created by Elias Fazel on 8/8/20 8:32 AM
+ * Last modified 8/8/20 8:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder
 
+import android.text.Html
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -151,6 +152,15 @@ class HomePageLiveData : ViewModel() {
         allHtmlElement.forEachIndexed { index, element ->
             if (element.`is`("a")) {
                 Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
+
+                val linkContent: Document = Jsoup.parse(element.toString())
+
+                storyHighlightsItemData.add(
+                    StoryHighlightsItemData(
+                        linkToStoryHighlight = "${linkContent.select("a").first().attr("abs:href")}",
+                        storyHighlightsName = Html.fromHtml("${element}").toString(),
+                        storyHighlightsCoverImage = ""
+                    ))
 
             }
         }

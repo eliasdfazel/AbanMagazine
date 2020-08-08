@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:16 AM
- * Last modified 8/8/20 6:41 AM
+ * Created by Elias Fazel on 8/8/20 8:32 AM
+ * Last modified 8/8/20 8:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,5 +17,10 @@ class StoryHighlightsEndpoint {
      * Then Replace This Link.
      **/
     val getInstagramStoryHighlightsEndpoint = "https://abanabsalan.com/wp-json/wp/v2/pages/2712"
+
+    /**
+     *  Append Id Of Instagram Highlights & Change AbanAbsalan Domain Name To Your Domain.
+     **/
+    val getInstagramStoryHighlightsCoverImageBaseLink: String = "https://bit.ly/AbanAbsalanInstagramHighlights"
 
 }

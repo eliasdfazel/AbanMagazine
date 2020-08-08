@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:32 AM
- * Last modified 8/8/20 7:31 AM
+ * Created by Elias Fazel on 8/8/20 8:32 AM
+ * Last modified 8/8/20 8:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,13 @@ import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Net
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 
 class InstagramStoryHighlightsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<InstagramStoryHighlightsViewHolder>() {
 
@@ -25,10 +32,7 @@ class InstagramStoryHighlightsAdapter (private val context: HomePage, private va
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): InstagramStoryHighlightsViewHolder {
 
-        return InstagramStoryHighlightsViewHolder(
-            LayoutInflater.from(context)
-                .inflate(R.layout.home_page_instagram_story_highlights_item, viewGroup, false)
-        )
+        return InstagramStoryHighlightsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_instagram_story_highlights_item, viewGroup, false))
     }
 
     override fun getItemCount(): Int {
@@ -51,26 +55,27 @@ class InstagramStoryHighlightsAdapter (private val context: HomePage, private va
             }
         }
 
-//        instagramStoryHighlightsViewHolder.categoryNameView.text = Html.fromHtml(categoriesItemData[position].categoryName)
-//
-//        Glide.with(context)
-//            .asDrawable()
-//            .load("${CategoriesDataParameters.CategoryParameters.CategoryFeaturedImageBaseLink}${categoriesItemData[position].categoryId}")
-//            .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 13)))
-//            .diskCacheStrategy(DiskCacheStrategy.ALL)
-//            .into(instagramStoryHighlightsViewHolder.categoryFeaturedImage)
-//
-//        instagramStoryHighlightsViewHolder.rootViewItem.setOnClickListener {
-//
-//            Intent(context, AllCategoryPosts::class.java).apply {
-//                putExtra(CategoriesDataParameters.CategoryParameters.CategoryLink, categoriesItemData[position].categoryLink)
-//                putExtra(CategoriesDataParameters.CategoryParameters.CategoryId, categoriesItemData[position].categoryId)
-//                putExtra(CategoriesDataParameters.CategoryParameters.CategoryName, categoriesItemData[position].categoryName)
-//                putExtra(CategoriesDataParameters.CategoryParameters.CategoryDescription, categoriesItemData[position].categoryDescription)
-//                context.startActivity(this@apply)
-//            }
-//
-//        }
+        instagramStoryHighlightsViewHolder.storyHighlightsName.text = (storyHighlightsItemData[position].storyHighlightsName)
+
+        val linkContent: Document = Jsoup.parse(storyHighlightsItemData[position].storyHighlightsName)
+
+        instagramStoryHighlightsViewHolder.rootViewItem.setOnClickListener {
+
+            BuiltInWebView.show(
+                context = context,
+                linkToLoad = storyHighlightsItemData[position].linkToStoryHighlight,
+                gradientColorOne = context.getColor(R.color.instagramOne),
+                gradientColorTwo = context.getColor(R.color.instagramThree)
+            )
+
+        }
+
+        Glide.with(context)
+            .asDrawable()
+            .load("https://drive.google.com/uc?export=view&id=1sw3i4bDSyzFklKE-ZOljC8iRRNo51oVU")
+            .transform(CenterCrop(), CircleCrop())
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(instagramStoryHighlightsViewHolder.storyHighlightsCoverImage)
 
     }
 

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/8/20 7:32 AM
-  ~ Last modified 8/8/20 7:30 AM
+  ~ Created by Elias Fazel on 8/8/20 8:32 AM
+  ~ Last modified 8/8/20 8:13 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,15 +12,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
-    android:layout_width="197dp"
-    android:layout_height="51dp"
-    android:layout_marginHorizontal="3dp">
+    android:layout_width="73dp"
+    android:layout_height="73dp"
+    android:layout_marginHorizontal="5dp">
 
     <net.geekstools.imageview.customshapes.ShapesImage
         android:id="@+id/storyHighlightsCoverImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="3dp"
         android:scaleType="centerCrop"
+        android:background="@drawable/instagram_story_highlights_background"
 
         apps:shapeDrawable="@drawable/circle"/>
 
