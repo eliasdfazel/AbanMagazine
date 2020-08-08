@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/6/20 3:33 AM
- * Last modified 8/6/20 3:24 AM
+ * Created by Elias Fazel on 8/8/20 7:16 AM
+ * Last modified 8/8/20 7:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesDataParameters
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesItemData
+import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.DataHolder.StoryHighlightsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import kotlinx.coroutines.CoroutineScope
@@ -22,6 +23,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import org.json.JSONArray
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 
 class HomePageLiveData : ViewModel() {
 
@@ -35,6 +38,10 @@ class HomePageLiveData : ViewModel() {
 
     val specificCategoryLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
         MutableLiveData<ArrayList<PostsItemData>>()
+    }
+
+    val instagramStoryHighlightsLiveItemData: MutableLiveData<ArrayList<StoryHighlightsItemData>> by lazy {
+        MutableLiveData<ArrayList<StoryHighlightsItemData>>()
     }
 
     val controlLoadingView: MutableLiveData<Boolean> by lazy {
@@ -130,6 +137,25 @@ class HomePageLiveData : ViewModel() {
         }
 
         specificCategoryLiveItemData.postValue(specificCategoryPostsItemData)
+
+    }
+
+    fun prepareRawDataToRenderForInstagramStoryHighlights(rawInstagramStoryHighlights: String) {
+
+        val storyHighlightsItemData: ArrayList<StoryHighlightsItemData> = ArrayList<StoryHighlightsItemData>()
+
+        val storyHighlightsContent: Document = Jsoup.parse(rawInstagramStoryHighlights)
+
+        val allHtmlElement = storyHighlightsContent.allElements
+
+        allHtmlElement.forEachIndexed { index, element ->
+            if (element.`is`("a")) {
+                Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
+
+            }
+        }
+
+        instagramStoryHighlightsLiveItemData.postValue(storyHighlightsItemData)
 
     }
 

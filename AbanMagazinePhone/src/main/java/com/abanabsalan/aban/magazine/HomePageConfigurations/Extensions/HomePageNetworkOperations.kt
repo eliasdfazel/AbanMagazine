@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 5:52 AM
- * Last modified 8/8/20 5:38 AM
+ * Created by Elias Fazel on 8/8/20 7:16 AM
+ * Last modified 8/8/20 7:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,6 +19,8 @@ import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.Operations.StoryHighlightsRetrieval
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.NewestPostsRetrieval
 import com.abanabsalan.aban.magazine.R
@@ -35,6 +37,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
+import org.json.JSONObject
 import javax.net.ssl.HttpsURLConnection
 
 fun HomePage.startNetworkOperations() {
@@ -92,6 +95,27 @@ fun HomePage.startNetworkOperations() {
                 }
 
             })
+
+        /*Load Instagram Story Highlights*/
+        val storyHighlightsRetrieval: StoryHighlightsRetrieval = StoryHighlightsRetrieval(applicationContext)
+        storyHighlightsRetrieval.start(object : JsonRequestResponseInterface {
+
+            override fun jsonRequestResponseSuccessHandler(rawDataJsonObject: JSONObject) {
+                super.jsonRequestResponseSuccessHandler(rawDataJsonObject)
+
+
+                homePageLiveData.prepareRawDataToRenderForInstagramStoryHighlights(
+                    rawDataJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered)
+                )
+
+            }
+
+            override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
+
+            }
+
+        })
 
         /*Invoke In Applicatio Update*/
         InApplicationUpdateProcess(this@startNetworkOperations, homePageViewBinding.rootView)
