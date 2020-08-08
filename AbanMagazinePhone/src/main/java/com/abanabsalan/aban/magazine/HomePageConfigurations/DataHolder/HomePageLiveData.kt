@@ -1,7 +1,7 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:48 AM
+ * Created by Elias Fazel on 8/8/20 8:50 AM
  * Last modified 8/8/20 8:48 AM
  *
  * Licensed Under MIT License.
@@ -156,7 +156,6 @@ class HomePageLiveData : ViewModel() {
                 val linkContent: Document = Jsoup.parse(element.toString())
                 val linkToStoryHighlights = linkContent.select("a").first().attr("abs:href")
 
-                //https://www.instagram.com/stories/highlights/17919798118201819/
                 val linkToStoryHighlightsCoverImage = StoryHighlightsEndpoint.InstagramStoryHighlightsCoverImageBaseLink + linkToStoryHighlights.replace("https://www.instagram.com/stories/highlights/", "").replace("/", "")
 
                 storyHighlightsItemData.add(
