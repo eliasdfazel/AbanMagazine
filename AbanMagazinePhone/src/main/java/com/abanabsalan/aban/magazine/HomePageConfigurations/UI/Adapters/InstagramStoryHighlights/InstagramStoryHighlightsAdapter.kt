@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:32 AM
- * Last modified 8/8/20 8:32 AM
+ * Created by Elias Fazel on 8/8/20 8:48 AM
+ * Last modified 8/8/20 8:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -72,7 +72,7 @@ class InstagramStoryHighlightsAdapter (private val context: HomePage, private va
 
         Glide.with(context)
             .asDrawable()
-            .load("https://drive.google.com/uc?export=view&id=1sw3i4bDSyzFklKE-ZOljC8iRRNo51oVU")
+            .load(storyHighlightsItemData[position].storyHighlightsCoverImage)
             .transform(CenterCrop(), CircleCrop())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(instagramStoryHighlightsViewHolder.storyHighlightsCoverImage)

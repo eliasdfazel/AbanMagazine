@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:32 AM
- * Last modified 8/8/20 8:23 AM
+ * Created by Elias Fazel on 8/8/20 8:48 AM
+ * Last modified 8/8/20 8:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,8 @@ class StoryHighlightsEndpoint {
     /**
      *  Append Id Of Instagram Highlights & Change AbanAbsalan Domain Name To Your Domain.
      **/
-    val getInstagramStoryHighlightsCoverImageBaseLink: String = "https://bit.ly/AbanAbsalanInstagramHighlights"
+    companion object {
+        const val InstagramStoryHighlightsCoverImageBaseLink: String = "https://bit.ly/AbanAbsalanInstagramHighlights"
+    }
 
 }

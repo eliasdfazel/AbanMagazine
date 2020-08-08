@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:32 AM
- * Last modified 8/8/20 8:05 AM
+ * Created by Elias Fazel on 8/8/20 8:48 AM
+ * Last modified 8/8/20 8:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,13 +10,13 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder
 
-import android.text.Html
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesDataParameters
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesItemData
 import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.DataHolder.StoryHighlightsItemData
+import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.Endpoints.StoryHighlightsEndpoint
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import kotlinx.coroutines.CoroutineScope
@@ -154,12 +154,16 @@ class HomePageLiveData : ViewModel() {
                 Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
 
                 val linkContent: Document = Jsoup.parse(element.toString())
+                val linkToStoryHighlights = linkContent.select("a").first().attr("abs:href")
+
+                //https://www.instagram.com/stories/highlights/17919798118201819/
+                val linkToStoryHighlightsCoverImage = StoryHighlightsEndpoint.InstagramStoryHighlightsCoverImageBaseLink + linkToStoryHighlights.replace("https://www.instagram.com/stories/highlights/", "").replace("/", "")
 
                 storyHighlightsItemData.add(
                     StoryHighlightsItemData(
-                        linkToStoryHighlight = "${linkContent.select("a").first().attr("abs:href")}",
-                        storyHighlightsName = Html.fromHtml("${element}").toString(),
-                        storyHighlightsCoverImage = ""
+                        linkToStoryHighlight = linkToStoryHighlights,
+                        storyHighlightsName = element.text(),
+                        storyHighlightsCoverImage = linkToStoryHighlightsCoverImage
                     ))
 
             }
