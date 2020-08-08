@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:25 AM
- * Last modified 8/8/20 7:25 AM
+ * Created by Elias Fazel on 8/8/20 7:32 AM
+ * Last modified 8/8/20 7:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,6 +31,7 @@ import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.InstagramStoryHighlights.InstagramStoryHighlightsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
@@ -134,6 +135,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme)
 
         val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme)
+
+        val instagramStoryHighlightsAdapter: InstagramStoryHighlightsAdapter = InstagramStoryHighlightsAdapter(this@HomePage, overallTheme)
 
         homePageViewBinding.root.post {
 
@@ -251,11 +254,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                 if (it.isNotEmpty()) {
 
                     homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.VISIBLE
-//
-//                    newestPostsAdapter.newestPostsItemData.clear()
-//                    newestPostsAdapter.newestPostsItemData.addAll(it)
-//
-//                    homePageViewBinding.newestPostsRecyclerView.adapter = newestPostsAdapter
+
+                    instagramStoryHighlightsAdapter.storyHighlightsItemData.clear()
+                    instagramStoryHighlightsAdapter.storyHighlightsItemData.addAll(it)
+
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.adapter = instagramStoryHighlightsAdapter
 
                 }
 

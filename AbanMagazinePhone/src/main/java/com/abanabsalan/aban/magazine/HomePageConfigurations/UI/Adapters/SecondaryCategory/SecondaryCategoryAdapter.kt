@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 8:15 PM
- * Last modified 7/20/20 7:16 PM
+ * Created by Elias Fazel on 8/8/20 7:32 AM
+ * Last modified 8/8/20 7:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,10 @@ class SecondaryCategoryAdapter (private val context: HomePage, private val overa
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SecondaryCategoryViewHolder {
 
-        return SecondaryCategoryViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_secondary_categories_item, viewGroup, false))
+        return SecondaryCategoryViewHolder(
+            LayoutInflater.from(context)
+                .inflate(R.layout.home_page_secondary_categories_item, viewGroup, false)
+        )
     }
 
     override fun getItemCount(): Int {

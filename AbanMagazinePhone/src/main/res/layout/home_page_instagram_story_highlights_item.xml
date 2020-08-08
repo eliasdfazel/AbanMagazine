@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/8/20 7:32 AM
+  ~ Last modified 8/8/20 7:30 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootViewItem"
+    android:layout_width="197dp"
+    android:layout_height="51dp"
+    android:layout_marginHorizontal="3dp">
+
+    <net.geekstools.imageview.customshapes.ShapesImage
+        android:id="@+id/storyHighlightsCoverImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+
+        apps:shapeDrawable="@drawable/circle"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/storyHighlightsName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="59dp"
+        android:paddingVertical="3dp"
+        android:gravity="center"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textSize="15sp"
+        android:textColor="@color/light"
+        android:fontFamily="@font/persian_sans"
+        android:shadowColor="@color/darker"
+        android:shadowRadius="19" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
