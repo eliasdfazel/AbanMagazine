@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 10:38 PM
- * Last modified 8/2/20 9:47 PM
+ * Created by Elias Fazel on 8/8/20 1:39 AM
+ * Last modified 8/8/20 1:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpointsFactory
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations.SpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
+import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkSettingCallback
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
@@ -91,6 +92,9 @@ fun HomePage.startNetworkOperations() {
 
             })
 
+        /*Invoke In Application Review*/
+        InApplicationReviewProcess(context = this@startNetworkOperations)
+            .start()
 
     } else {
         Log.d(this@startNetworkOperations.javaClass.simpleName, "No Network Connection")
