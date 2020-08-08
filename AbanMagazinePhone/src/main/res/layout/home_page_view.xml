@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/5/20 2:33 AM
-  ~ Last modified 8/4/20 2:03 AM
+  ~ Created by Elias Fazel on 8/8/20 6:23 AM
+  ~ Last modified 8/8/20 6:15 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -34,6 +34,7 @@
 
             android:paddingBottom="157dp">
 
+            <!-- Primary Categories -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/primaryCategoriesRecyclerView"
                 android:layout_width="match_parent"
@@ -43,6 +44,7 @@
 
                 apps:layout_constraintTop_toTopOf="parent"/>
 
+            <!-- Secondary Categories -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/secondaryCategoriesRecyclerView"
                 android:layout_width="match_parent"
@@ -55,6 +57,7 @@
 
                 apps:layout_constraintTop_toBottomOf="@id/primaryCategoriesRecyclerView"/>
 
+            <!-- Featured -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/featuredPostsTextView"
                 android:layout_width="match_parent"
@@ -111,6 +114,7 @@
 
                 apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
 
+            <!-- Newest -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/newestPostsTextView"
                 android:layout_width="match_parent"
@@ -136,6 +140,7 @@
 
                 apps:layout_constraintTop_toBottomOf="@id/newestPostsTextView"/>
 
+            <!-- Recommended -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/forYouPostsTextView"
                 android:layout_width="match_parent"
@@ -148,10 +153,27 @@
                 android:textSize="23sp"
                 android:textColor="@color/darker"
                 android:fontFamily="@font/persian_sans"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 apps:layout_constraintTop_toBottomOf="@id/newestPostsRecyclerView"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recommendedPostsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:scrollbars="none"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="17dp"
+                android:visibility="gone"
+
+                apps:layout_constraintTop_toBottomOf="@id/forYouPostsTextView"/>
+
+            <!-- Instagram Stories Highlights -->
+
+
+            <!-- Full Content Loading View -->
             <net.geeksempire.loadingspin.SpinKitView
                 android:id="@+id/loadingView"
                 android:layout_width="79dp"
