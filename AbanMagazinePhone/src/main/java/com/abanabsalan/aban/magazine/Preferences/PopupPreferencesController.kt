@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 2:56 AM
- * Last modified 8/8/20 2:56 AM
+ * Created by Elias Fazel on 8/8/20 5:02 AM
+ * Last modified 8/8/20 4:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -141,6 +141,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
 
         preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.rate_icon))
+        preferencesPopupUiViewBinding.shareView.setImageDrawable(context.getDrawable(R.drawable.share_icon))
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
