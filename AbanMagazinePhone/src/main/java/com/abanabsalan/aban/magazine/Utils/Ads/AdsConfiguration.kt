@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:32 AM
- * Last modified 8/8/20 8:32 AM
+ * Created by Elias Fazel on 8/8/20 8:34 AM
+ * Last modified 8/8/20 8:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.Utils.Ads
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
@@ -25,24 +26,20 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
     fun initialize() {
 
-//        if (!BuildConfig.DEBUG) {
+        MobileAds.initialize(appCompatActivity) { initializationStatus ->
 
-            MobileAds.initialize(appCompatActivity) { initializationStatus ->
+            interstitialAdsLoadShow()
 
-                interstitialAdsLoadShow()
+            bannerAdsLoadShow()
 
-                bannerAdsLoadShow()
+        }
 
-            }
+        val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A")
 
-            val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A")
-
-            val configuration = RequestConfiguration.Builder()
-                .setTestDeviceIds(testDeviceIds)
-                .build()
-            MobileAds.setRequestConfiguration(configuration)
-
-//        }
+        val configuration = RequestConfiguration.Builder()
+            .setTestDeviceIds(testDeviceIds)
+            .build()
+        MobileAds.setRequestConfiguration(configuration)
 
     }
 
@@ -104,66 +101,75 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
         when(appCompatActivity) {
             is HomePage -> {
 
-                (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
+                if (BuildConfig.DEBUG) {
 
-                (appCompatActivity).homePageViewBinding.bannerAdViewTop.adListener = object: AdListener() {
-                    override fun onAdLoaded() {
+                    (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.GONE
+                    (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.GONE
 
-                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.VISIBLE
+                } else {
+
+                    (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
+
+                    (appCompatActivity).homePageViewBinding.bannerAdViewTop.adListener = object: AdListener() {
+                        override fun onAdLoaded() {
+
+                            (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.VISIBLE
+                        }
+
+                        override fun onAdFailedToLoad(errorCode : Int) {
+
+                            (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
+
+                        }
+
+                        override fun onAdOpened() {
+
+                        }
+
+                        override fun onAdClicked() {
+
+                        }
+
+                        override fun onAdLeftApplication() {
+
+                        }
+
+                        override fun onAdClosed() {
+
+                        }
                     }
 
-                    override fun onAdFailedToLoad(errorCode : Int) {
+                    (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
 
-                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
+                    (appCompatActivity).homePageViewBinding.bannerAdViewBottom.adListener = object: AdListener() {
+                        override fun onAdLoaded() {
 
+                            (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.VISIBLE
+                        }
+
+                        override fun onAdFailedToLoad(errorCode : Int) {
+
+                            (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
+
+                        }
+
+                        override fun onAdOpened() {
+
+                        }
+
+                        override fun onAdClicked() {
+
+                        }
+
+                        override fun onAdLeftApplication() {
+
+                        }
+
+                        override fun onAdClosed() {
+
+                        }
                     }
 
-                    override fun onAdOpened() {
-
-                    }
-
-                    override fun onAdClicked() {
-
-                    }
-
-                    override fun onAdLeftApplication() {
-
-                    }
-
-                    override fun onAdClosed() {
-
-                    }
-                }
-
-                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
-
-                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.adListener = object: AdListener() {
-                    override fun onAdLoaded() {
-
-                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.VISIBLE
-                    }
-
-                    override fun onAdFailedToLoad(errorCode : Int) {
-
-                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
-
-                    }
-
-                    override fun onAdOpened() {
-
-                    }
-
-                    override fun onAdClicked() {
-
-                    }
-
-                    override fun onAdLeftApplication() {
-
-                    }
-
-                    override fun onAdClosed() {
-
-                    }
                 }
 
             }
