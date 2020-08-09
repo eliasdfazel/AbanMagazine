@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/8/20 8:32 AM
-  ~ Last modified 8/8/20 7:56 AM
+  ~ Created by Elias Fazel on 8/9/20 5:56 AM
+  ~ Last modified 8/9/20 5:53 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -18,7 +18,7 @@
             android:shape="oval">
 
             <gradient
-                android:gradientRadius="50%"
+                android:angle="-45"
                 android:type="linear"
                 android:startColor="@color/instagramOne"
                 android:centerColor="@color/instagramTwo"
