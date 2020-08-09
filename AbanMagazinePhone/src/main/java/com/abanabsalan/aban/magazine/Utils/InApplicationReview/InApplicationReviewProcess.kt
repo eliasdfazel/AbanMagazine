@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 1:39 AM
- * Last modified 8/8/20 1:38 AM
+ * Created by Elias Fazel on 8/9/20 6:10 AM
+ * Last modified 8/9/20 6:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,9 +10,13 @@
 
 package com.abanabsalan.aban.magazine.Utils.InApplicationReview
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.BuildConfig
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.Data.LastUpdateInformation
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.testing.FakeReviewManager
@@ -51,7 +55,16 @@ class InApplicationReviewProcess (private val context: AppCompatActivity) {
 
                         if (it.isSuccessful) {
 
+                            Toast.makeText(context, context.getString(R.string.rateFiveStars), Toast.LENGTH_LONG).show()
+
                         } else {
+
+                            Intent().apply {
+                                action = Intent.ACTION_VIEW
+                                data = Uri.parse(context.getString(R.string.playStoreLink))
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                context.startActivity(this@apply)
+                            }
 
                         }
 
@@ -60,7 +73,12 @@ class InApplicationReviewProcess (private val context: AppCompatActivity) {
                 } else {
                     Log.d(this@InApplicationReviewProcess.javaClass.simpleName, "In Application Review Process Error")
 
-
+                    Intent().apply {
+                        action = Intent.ACTION_VIEW
+                        data = Uri.parse(context.getString(R.string.playStoreLink))
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        context.startActivity(this@apply)
+                    }
 
                 }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 5:02 AM
- * Last modified 8/8/20 4:41 AM
+ * Created by Elias Fazel on 8/9/20 6:10 AM
+ * Last modified 8/9/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -197,6 +197,20 @@ class PopupPreferencesController (private val context: AppCompatActivity,
             }
             context.startActivity(shareIntent)
 
+        }
+
+        preferencesPopupUiViewBinding.rateFavoriteView.setOnLongClickListener {
+
+
+
+            true
+        }
+
+        preferencesPopupUiViewBinding.shareView.setOnLongClickListener {
+
+
+
+            true
         }
 
     }
