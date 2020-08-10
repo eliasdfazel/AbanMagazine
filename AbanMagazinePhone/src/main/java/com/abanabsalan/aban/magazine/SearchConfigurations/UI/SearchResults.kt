@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 5:08 AM
- * Last modified 8/10/20 5:07 AM
+ * Created by Elias Fazel on 8/10/20 5:10 AM
+ * Last modified 8/10/20 5:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,15 +42,11 @@ class SearchResults : AppCompatActivity() {
                 window.statusBarColor = getColor(R.color.dark)
                 window.navigationBarColor = getColor(R.color.dark)
 
-
-
             }
             ThemeType.ThemeLight -> {
 
                 window.statusBarColor = getColor(R.color.light)
                 window.navigationBarColor = getColor(R.color.light)
-
-
 
             }
         }
