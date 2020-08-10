@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:48 AM
- * Last modified 8/8/20 8:36 AM
+ * Created by Elias Fazel on 8/9/20 10:55 PM
+ * Last modified 8/9/20 10:54 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,12 +45,14 @@ class InstagramStoryHighlightsAdapter (private val context: HomePage, private va
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
-
+                instagramStoryHighlightsViewHolder.storyHighlightsName.setTextColor(context.getColor(R.color.darker))
+                instagramStoryHighlightsViewHolder.storyHighlightsName.setShadowLayer(instagramStoryHighlightsViewHolder.storyHighlightsName.shadowRadius,0f,0f,context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
-
+                instagramStoryHighlightsViewHolder.storyHighlightsName.setTextColor(context.getColor(R.color.lighter))
+                instagramStoryHighlightsViewHolder.storyHighlightsName.setShadowLayer(instagramStoryHighlightsViewHolder.storyHighlightsName.shadowRadius,0f,0f,context.getColor(R.color.light))
 
             }
         }
