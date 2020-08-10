@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 12:49 AM
- * Last modified 8/10/20 12:32 AM
+ * Created by Elias Fazel on 8/10/20 2:01 AM
+ * Last modified 8/10/20 1:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SetupSearchViewUI
 import com.abanabsalan.aban.magazine.Utils.UI.Display.*
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import kotlin.math.hypot
@@ -45,6 +46,8 @@ fun HomePage.setupUserInterface() {
 
     setupPopupPreferencesClick()
 
+    setupPopupSearchesClick()
+
 }
 
 fun HomePage.setupTheme() {
@@ -62,6 +65,7 @@ fun HomePage.setupTheme() {
             homePageViewBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_light_transparent))
 
             homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(getColor(R.color.default_color_light_transparent))
+            homePageViewBinding.searchPopupInclude.searchesBlurView.setOverlayColor(getColor(R.color.default_color_light_transparent))
 
             homePageViewBinding.featuredPostsTextView.setTextColor(getColor(R.color.darker))
             homePageViewBinding.newestPostsTextView.setTextColor(getColor(R.color.darker))
@@ -81,6 +85,7 @@ fun HomePage.setupTheme() {
             homePageViewBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_dark_transparent))
 
             homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(getColor(R.color.default_color_dark_transparent))
+            homePageViewBinding.searchPopupInclude.searchesBlurView.setOverlayColor(getColor(R.color.default_color_dark_transparent))
 
             homePageViewBinding.featuredPostsTextView.setTextColor(getColor(R.color.lighter))
             homePageViewBinding.newestPostsTextView.setTextColor(getColor(R.color.lighter))
@@ -256,5 +261,96 @@ fun HomePage.setupRefreshView() {
         updateDelay = true
 
     }, (1000 * 60/*One Minute*/) * 15)
+
+}
+
+fun HomePage.setupPopupSearchesClick() {
+
+    homePageViewBinding.searchView.setOnClickListener {
+
+
+        if (homePageViewBinding.searchPopupInclude.root.isShown) {
+
+            hidePopupSearches()
+
+        } else {
+
+
+            showPopupSearches()
+
+        }
+
+    }
+
+    SetupSearchViewUI(this@setupPopupSearchesClick, homePageViewBinding.searchPopupInclude)
+
+}
+
+fun HomePage.showPopupSearches() {
+
+    val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
+
+    val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.searchPopupInclude.root,
+        (homePageViewBinding.searchView.x.toInt() + (homePageViewBinding.searchView.width / 2)),
+        (homePageViewBinding.searchView.y.toInt() - (homePageViewBinding.searchView.height)),
+        (homePageViewBinding.searchView.height.toFloat() / 2),
+        finalRadius.toFloat())
+
+    circularReveal.duration = 1111
+    circularReveal.interpolator = AccelerateInterpolator()
+
+    homePageViewBinding.searchPopupInclude.root.visibility = View.VISIBLE
+    circularReveal.start()
+    circularReveal.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            homePageViewBinding.searchPopupInclude.root.visibility = View.VISIBLE
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+
+        }
+    })
+
+}
+
+fun HomePage.hidePopupSearches() {
+
+    val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
+
+    val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.searchPopupInclude.root,
+        (homePageViewBinding.searchView.x.toInt() + (homePageViewBinding.searchView.width / 2)),
+        (homePageViewBinding.searchView.y.toInt() - (homePageViewBinding.searchView.height)),
+        finalRadius.toFloat(),
+        (homePageViewBinding.searchView.height.toFloat() / 2))
+
+    circularReveal.duration = 1111
+    circularReveal.interpolator = AccelerateInterpolator()
+
+    circularReveal.start()
+    circularReveal.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            homePageViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+
+        }
+    })
 
 }

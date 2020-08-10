@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/9/20 6:10 AM
-  ~ Last modified 8/9/20 6:09 AM
+  ~ Created by Elias Fazel on 8/10/20 2:01 AM
+  ~ Last modified 8/10/20 1:49 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@
     <string name="rateFiveStars">لطفا امتیاز ۵ ستاره بدهید با سپاس ✨✨✨✨✨</string>
 
     <string name="searchText">جستجو</string>
+    <string name="typeToSearch">برای جستجو بنویسید…</string>
 
     <string name="featuredPostsText">پست های ویژه</string>
     <string name="newestPostsText">جدیدترین ها</string>

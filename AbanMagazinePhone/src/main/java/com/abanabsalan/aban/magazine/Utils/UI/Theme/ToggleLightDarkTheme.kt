@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 4:02 AM
- * Last modified 8/2/20 4:00 AM
+ * Created by Elias Fazel on 8/10/20 2:01 AM
+ * Last modified 8/10/20 1:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,6 +31,7 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
             homePage.homePageViewBinding.blurViewBottomBar.setOverlayColor(homePage.getColor(R.color.default_color_light_transparent))
 
             homePage.homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(homePage.getColor(R.color.default_color_light_transparent))
+            homePage.homePageViewBinding.searchPopupInclude.searchesBlurView.setOverlayColor(homePage.getColor(R.color.default_color_light_transparent))
 
             homePage.homePageViewBinding.featuredPostsTextView.setTextColor(homePage.getColor(R.color.darker))
             homePage.homePageViewBinding.newestPostsTextView.setTextColor(homePage.getColor(R.color.darker))
@@ -50,6 +51,7 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
             homePage.homePageViewBinding.blurViewBottomBar.setOverlayColor(homePage.getColor(R.color.default_color_dark_transparent))
 
             homePage.homePageViewBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(homePage.getColor(R.color.default_color_dark_transparent))
+            homePage.homePageViewBinding.searchPopupInclude.searchesBlurView.setOverlayColor(homePage.getColor(R.color.default_color_dark_transparent))
 
             homePage.homePageViewBinding.featuredPostsTextView.setTextColor(homePage.getColor(R.color.lighter))
             homePage.homePageViewBinding.newestPostsTextView.setTextColor(homePage.getColor(R.color.lighter))

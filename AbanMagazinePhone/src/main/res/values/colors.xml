@@ -2,14 +2,14 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/8/20 8:32 AM
-  ~ Last modified 8/8/20 7:48 AM
+  ~ Created by Elias Fazel on 8/10/20 2:01 AM
+  ~ Last modified 8/10/20 12:51 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="default_color">#237DAE</color>
     <color name="default_color_light">#008dda</color>
@@ -52,6 +52,10 @@
     <color name="instagramOne">#8a3ab9</color>
     <color name="instagramTwo">#fbad50</color>
     <color name="instagramThree">#e95950</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
+        @color/default_color_game
+    </color>
 
     <string-array name="neonColors">
         <item>#40ff84</item>

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/10/20 12:49 AM
-  ~ Last modified 8/10/20 12:40 AM
+  ~ Created by Elias Fazel on 8/10/20 2:01 AM
+  ~ Last modified 8/10/20 2:01 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -25,5 +25,64 @@
         apps:realtimeOverlayColor="@color/default_color_light_transparent" />
 
 
+    <com.google.android.material.textfield.TextInputLayout xmlns:apps="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/textInputSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginVertical="19dp"
+        android:paddingHorizontal="19dp"
+        android:gravity="center_vertical"
+        android:imeOptions="actionSearch"
+        android:hint="@string/typeToSearch"
+        android:textColorHint="@color/default_color_game_light"
+
+        apps:boxBackgroundMode="outline"
+        apps:boxBackgroundColor="@color/dark_transparent_high"
+        apps:boxCornerRadiusTopStart="51dp"
+        apps:boxCornerRadiusTopEnd="51dp"
+        apps:boxCornerRadiusBottomStart="51dp"
+        apps:boxCornerRadiusBottomEnd="51dp"
+        apps:boxStrokeColor="@color/default_color_game_light"
+        apps:boxStrokeWidth="2dp"
+        apps:hintEnabled="true"
+        apps:hintAnimationEnabled="true"
+        apps:hintTextColor="@color/default_color_game_light"
+        apps:errorEnabled="true"
+        apps:errorTextColor="@color/red"
+
+        apps:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText xmlns:apps="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="13dp"
+            android:paddingEnd="59dp"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:lines="1"
+            android:inputType="text"
+            android:textSize="23sp"
+            android:textColor="@color/light"
+            android:textColorHint="@color/light"
+            android:fontFamily="@font/persian_sans"
+            android:cursorVisible="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/searchViewAction"
+        android:layout_width="77dp"
+        android:layout_height="0dp"
+        android:paddingBottom="11dp"
+        android:paddingHorizontal="19dp"
+        android:layout_marginEnd="13dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_search"
+
+        apps:layout_constraintEnd_toEndOf="@id/textInputSearchView"
+        apps:layout_constraintTop_toTopOf="@id/textInputSearchView"
+        apps:layout_constraintBottom_toBottomOf="@id/textInputSearchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
