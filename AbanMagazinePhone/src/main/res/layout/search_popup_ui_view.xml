@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/10/20 12:49 AM
+  ~ Last modified 8/10/20 12:40 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <net.geeksempire.blurry.effect.view.RealtimeBlurView
+        android:id="@+id/searchesBlurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        apps:realtimeBlurRadius="13dp"
+        apps:realtimeOverlayColor="@color/default_color_light_transparent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

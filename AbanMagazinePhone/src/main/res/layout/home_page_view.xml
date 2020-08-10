@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/8/20 8:48 AM
-  ~ Last modified 8/8/20 8:42 AM
+  ~ Created by Elias Fazel on 8/10/20 12:49 AM
+  ~ Last modified 8/10/20 12:47 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -257,27 +257,25 @@
             apps:layout_constraintWidth_percent="0.4"
             apps:layout_constraintHeight_percent="0.66" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:padding="13dp"
             android:gravity="center"
             android:textAllCaps="false"
-            android:text="@string/searchText"
-            android:textSize="12sp"
-            android:textColor="@color/default_color"
-            android:visibility="invisible"
+            android:contentDescription="@string/searchText"
+
+            apps:lottie_rawRes="@raw/search_icon_animation"
+            apps:lottie_repeatMode="restart"
+            apps:lottie_repeatCount="3"
 
             apps:layout_constraintTop_toTopOf="@id/officialLogo"
             apps:layout_constraintBottom_toBottomOf="@id/officialLogo"
             apps:layout_constraintStart_toStartOf="parent"
 
             apps:layout_constraintWidth_percent="0.3"
-            apps:layout_constraintHeight_percent="0.61"
-
-            apps:cornerRadius="51dp"
-            apps:rippleColor="@color/default_color_game_light"
-            apps:backgroundTint="@android:color/transparent" />
+            apps:layout_constraintHeight_percent="0.61" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/optionMenus"
@@ -338,6 +336,17 @@
         layout="@layout/preferences_popup_ui_view"
 
         android:id="@+id/preferencePopupInclude"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+
+        apps:layout_constraintTop_toBottomOf="@id/homepageTopBar"
+        apps:layout_constraintBottom_toBottomOf="parent"/>
+
+    <include
+        layout="@layout/search_popup_ui_view"
+
+        android:id="@+id/searchPopupInclude"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="invisible"

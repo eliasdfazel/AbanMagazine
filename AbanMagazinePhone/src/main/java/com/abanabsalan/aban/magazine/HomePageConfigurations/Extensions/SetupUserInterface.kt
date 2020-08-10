@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 2:33 AM
- * Last modified 8/5/20 1:41 AM
+ * Created by Elias Fazel on 8/10/20 12:49 AM
+ * Last modified 8/10/20 12:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,6 +39,7 @@ fun HomePage.setupUserInterface() {
     Handler().postDelayed({
 
         homePageViewBinding.optionMenus.playAnimation()
+        homePageViewBinding.searchView.playAnimation()
 
     }, 1357)
 
