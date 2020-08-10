@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:16 AM
- * Last modified 8/8/20 7:12 AM
+ * Created by Elias Fazel on 8/9/20 10:52 PM
+ * Last modified 8/9/20 10:30 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -123,7 +123,7 @@ fun HomePage.startNetworkOperations() {
 
         /*Invoke In Application Review*/
         InApplicationReviewProcess(context = this@startNetworkOperations)
-            .start()
+            .start(forceReviewFlow = false)
 
     } else {
         Log.d(this@startNetworkOperations.javaClass.simpleName, "No Network Connection")

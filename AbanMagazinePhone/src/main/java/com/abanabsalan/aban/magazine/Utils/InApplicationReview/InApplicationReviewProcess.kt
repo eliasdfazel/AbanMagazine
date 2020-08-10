@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/9/20 6:10 AM
- * Last modified 8/9/20 6:10 AM
+ * Created by Elias Fazel on 8/9/20 10:52 PM
+ * Last modified 8/9/20 10:52 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,6 @@ package com.abanabsalan.aban.magazine.Utils.InApplicationReview
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.R
@@ -27,11 +26,11 @@ class InApplicationReviewProcess (private val context: AppCompatActivity) {
 
     private val fakeReviewManager = FakeReviewManager(context)
 
-    fun start() {
+    fun start(forceReviewFlow: Boolean) {
 
         val lastUpdateInformation = LastUpdateInformation(context)
 
-        if (lastUpdateInformation.isApplicationUpdated()) {
+        if (lastUpdateInformation.isApplicationUpdated() || forceReviewFlow) {
 
             val requestReviewFlow = if (BuildConfig.DEBUG) {
                 fakeReviewManager.requestReviewFlow()
@@ -39,39 +38,17 @@ class InApplicationReviewProcess (private val context: AppCompatActivity) {
                 reviewManager.requestReviewFlow()
             }
 
-            requestReviewFlow.addOnCompleteListener { request ->
+            requestReviewFlow.addOnSuccessListener { reviewInfo ->
 
-                if (request.isSuccessful) {
-
-                    val reviewInfo = request.result
-
-                    val reviewFlow = if (BuildConfig.DEBUG) {
-                        fakeReviewManager.launchReviewFlow(context, reviewInfo)
-                    } else {
-                        reviewManager.launchReviewFlow(context, reviewInfo)
-                    }
-
-                    reviewFlow.addOnCompleteListener {
-
-                        if (it.isSuccessful) {
-
-                            Toast.makeText(context, context.getString(R.string.rateFiveStars), Toast.LENGTH_LONG).show()
-
-                        } else {
-
-                            Intent().apply {
-                                action = Intent.ACTION_VIEW
-                                data = Uri.parse(context.getString(R.string.playStoreLink))
-                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                context.startActivity(this@apply)
-                            }
-
-                        }
-
-                    }
-
+                val reviewFlow = if (BuildConfig.DEBUG) {
+                    fakeReviewManager.launchReviewFlow(context, reviewInfo)
                 } else {
-                    Log.d(this@InApplicationReviewProcess.javaClass.simpleName, "In Application Review Process Error")
+                    reviewManager.launchReviewFlow(context, reviewInfo)
+                }
+
+                reviewFlow.addOnSuccessListener {
+
+                }.addOnFailureListener {
 
                     Intent().apply {
                         action = Intent.ACTION_VIEW
@@ -80,6 +57,16 @@ class InApplicationReviewProcess (private val context: AppCompatActivity) {
                         context.startActivity(this@apply)
                     }
 
+                }
+
+            }.addOnFailureListener {
+                Log.d(this@InApplicationReviewProcess.javaClass.simpleName, "In Application Review Process Error")
+
+                Intent().apply {
+                    action = Intent.ACTION_VIEW
+                    data = Uri.parse(context.getString(R.string.playStoreLink))
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(this@apply)
                 }
 
             }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/9/20 6:10 AM
- * Last modified 8/9/20 6:04 AM
+ * Created by Elias Fazel on 8/9/20 10:52 PM
+ * Last modified 8/9/20 10:47 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Handler
 import android.text.Html
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
@@ -169,7 +170,8 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            InApplicationReviewProcess(context).start()
+            InApplicationReviewProcess(context)
+                .start(forceReviewFlow = true)
 
         }
 
@@ -201,14 +203,43 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnLongClickListener {
 
+            Toast.makeText(context,
+                context.getString(R.string.rateFiveStars),
+                Toast.LENGTH_LONG).show()
 
+            Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = Uri.parse(context.getString(R.string.playStoreLink))
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this@apply)
+            }
 
             true
         }
 
         preferencesPopupUiViewBinding.shareView.setOnLongClickListener {
 
+            val shareText: String = "مجله آبان | بوستان مد و استایل" +
+                    "\n" +
+                    "مجله اینترنتی تخصصی مد و استایل" +
+                    "\n" + "\n" +
+                    "نصب برنامه" +
+                    "\n" +
+                    "${context.getString(R.string.playStoreLink)}" +
+                    "\n" + "\n" +
+                    "https://www.AbanAbsalan.com" +
+                    "\n" +
+                    "#AbanAbsalan" +
+                    "\n" +
+                    "#آبان_آبسالان" +
+                    ""
 
+            val shareIntent: Intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, shareText)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(shareIntent)
 
             true
         }
