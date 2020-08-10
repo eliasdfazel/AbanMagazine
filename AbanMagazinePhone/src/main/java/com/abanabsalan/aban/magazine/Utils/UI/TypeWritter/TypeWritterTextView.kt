@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/14/20 12:40 PM
- * Last modified 7/14/20 12:36 PM
+ * Created by Elias Fazel on 8/9/20 11:00 PM
+ * Last modified 8/9/20 11:00 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@ import android.os.Handler
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-class TypeWriterTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
+class TypeWriterTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
 
     private var inputText: CharSequence? = null
 
