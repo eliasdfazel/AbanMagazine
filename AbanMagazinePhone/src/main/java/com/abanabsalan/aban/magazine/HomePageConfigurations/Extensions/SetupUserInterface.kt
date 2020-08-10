@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 2:16 AM
- * Last modified 8/10/20 2:12 AM
+ * Created by Elias Fazel on 8/10/20 6:22 AM
+ * Last modified 8/10/20 6:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -118,6 +118,10 @@ fun HomePage.setupPopupPreferencesClick() {
 }
 
 fun HomePage.showPopupPreferences() {
+
+    if (homePageViewBinding.searchPopupInclude.root.isShown) {
+        homePageViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
+    }
 
     val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
 
@@ -290,6 +294,10 @@ fun HomePage.setupPopupSearchesClick() {
 }
 
 fun HomePage.showPopupSearches() {
+
+    if (homePageViewBinding.preferencePopupInclude.root.isShown) {
+        homePageViewBinding.preferencePopupInclude.root.visibility = View.INVISIBLE
+    }
 
     val finalRadius = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
 
