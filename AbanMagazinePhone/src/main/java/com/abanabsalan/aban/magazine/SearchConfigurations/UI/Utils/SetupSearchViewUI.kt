@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 5:08 AM
- * Last modified 8/10/20 4:51 AM
+ * Created by Elias Fazel on 8/10/20 5:22 AM
+ * Last modified 8/10/20 5:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@ package com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupSearches
@@ -23,7 +23,6 @@ import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestRespons
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
 import org.json.JSONArray
-import javax.net.ssl.HttpsURLConnection
 
 class SetupSearchViewUI (private val context: HomePage, private val searchPopupUiViewBinding: SearchPopupUiViewBinding) {
 
@@ -33,6 +32,8 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
         searchPopupUiViewParams.bottomMargin = searchPopupUiViewParams.bottomMargin + navigationBarHeight(context)
         searchPopupUiViewBinding.textInputSearchView.layoutParams = searchPopupUiViewParams
 
+        searchPopupUiViewBinding.searchView.requestFocus()
+
         searchPopupUiViewBinding.root.setOnClickListener {
 
             context.hidePopupSearches()
@@ -41,38 +42,16 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
 
         searchPopupUiViewBinding.searchViewAction.setOnClickListener {
 
-            searchPopupUiViewBinding.textInputSearchView.isErrorEnabled = false
+            if (searchPopupUiViewBinding.searchView.text.isNullOrEmpty()) {
 
-            SearchResultsRetrieval(context, "${searchPopupUiViewBinding.searchView.text}")
-                .start(object : JsonRequestResponseInterface {
 
-                    override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
-                        super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                        Intent().apply {
-                            putExtra(Intent.EXTRA_TEXT, rawDataJsonArray.toString())
+            } else {
 
-                            context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
-                        }
+                invokeSearchingProcess(searchPopupUiViewBinding.searchView.text.toString())
 
-                    }
+            }
 
-                    override fun jsonRequestResponseFailureHandler(networkError: Int?) {
-                        super.jsonRequestResponseFailureHandler(networkError)
-
-                        Log.d("Specific Category Retrieval", networkError.toString())
-
-                        when (networkError) {
-                            HttpsURLConnection.HTTP_BAD_REQUEST -> {/*400*/
-
-                                searchPopupUiViewBinding.textInputSearchView.isErrorEnabled = true
-
-                            }
-                        }
-
-                    }
-
-                })
 
         }
 
@@ -81,34 +60,57 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
 
-                    SearchResultsRetrieval(context, "${textView.text}")
-                        .start(object : JsonRequestResponseInterface {
-
-                            override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
-                                super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
-
-                                Intent().apply {
-                                    putExtra(Intent.EXTRA_TEXT, rawDataJsonArray.toString())
-
-                                    context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
-                                }
-
-                            }
-
-                            override fun jsonRequestResponseFailureHandler(networkError: Int?) {
-                                super.jsonRequestResponseFailureHandler(networkError)
+                    if (textView.text.isNullOrEmpty()) {
 
 
 
-                            }
+                    } else {
 
-                        })
+                        invokeSearchingProcess(textView.text.toString())
+
+                    }
 
                 }
             }
 
             true
         }
+
+    }
+
+    fun invokeSearchingProcess(searchQuery: String) {
+
+        searchPopupUiViewBinding.loadingView.visibility = View.VISIBLE
+        searchPopupUiViewBinding.loadingView.playAnimation()
+
+        searchPopupUiViewBinding.textInputSearchView.error = ""
+        searchPopupUiViewBinding.textInputSearchView.isErrorEnabled = false
+
+        SearchResultsRetrieval(context, "${searchQuery}")
+            .start(object : JsonRequestResponseInterface {
+
+                override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                    super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
+
+                    Intent().apply {
+                        putExtra(Intent.EXTRA_TEXT, rawDataJsonArray.toString())
+
+                        context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
+                    }
+
+                    context.homePageViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
+
+                }
+
+                override fun jsonRequestResponseFailureHandler(networkError: Int?) {
+                    super.jsonRequestResponseFailureHandler(networkError)
+
+                    searchPopupUiViewBinding.textInputSearchView.error = context.getString(R.string.searchError)
+                    searchPopupUiViewBinding.textInputSearchView.isErrorEnabled = true
+
+                }
+
+            })
 
     }
 
