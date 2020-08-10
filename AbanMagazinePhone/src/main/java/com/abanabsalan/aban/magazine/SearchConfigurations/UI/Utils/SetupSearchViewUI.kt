@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 5:22 AM
- * Last modified 8/10/20 5:22 AM
+ * Created by Elias Fazel on 8/10/20 6:09 AM
+ * Last modified 8/10/20 5:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,6 +19,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopup
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Operations.SearchResultsRetrieval
+import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
@@ -92,12 +93,13 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
                 override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                     super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                    Intent().apply {
+                    Intent(context, SearchResults::class.java).apply {
                         putExtra(Intent.EXTRA_TEXT, rawDataJsonArray.toString())
 
                         context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
                     }
 
+                    context.homePageViewBinding.searchPopupInclude.loadingView.pauseAnimation()
                     context.homePageViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
 
                 }
