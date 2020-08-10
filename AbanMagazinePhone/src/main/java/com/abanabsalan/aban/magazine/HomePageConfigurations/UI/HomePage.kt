@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:32 AM
- * Last modified 8/8/20 7:32 AM
+ * Created by Elias Fazel on 8/9/20 11:08 PM
+ * Last modified 8/9/20 11:03 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -300,6 +300,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                         specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
 
                         newestPostsAdapter.notifyItemRangeChanged(0, newestPostsAdapter.itemCount, null)
+
+                        instagramStoryHighlightsAdapter.notifyItemRangeChanged(0, instagramStoryHighlightsAdapter.itemCount, null)
 
                         toggleLightDarkThemeHomePage(this@HomePage)
 
