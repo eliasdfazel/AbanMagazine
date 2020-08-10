@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 2:01 AM
- * Last modified 8/10/20 1:59 AM
+ * Created by Elias Fazel on 8/10/20 2:16 AM
+ * Last modified 8/10/20 2:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,7 +18,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SetupSearchViewUI
+import com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils.SetupSearchViewUI
 import com.abanabsalan.aban.magazine.Utils.UI.Display.*
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import kotlin.math.hypot
@@ -282,7 +282,10 @@ fun HomePage.setupPopupSearchesClick() {
 
     }
 
-    SetupSearchViewUI(this@setupPopupSearchesClick, homePageViewBinding.searchPopupInclude)
+    SetupSearchViewUI(
+        this@setupPopupSearchesClick,
+        homePageViewBinding.searchPopupInclude
+    )
 
 }
 
