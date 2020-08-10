@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 2:16 AM
- * Last modified 8/10/20 2:14 AM
+ * Created by Elias Fazel on 8/10/20 5:08 AM
+ * Last modified 8/10/20 4:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,11 +10,14 @@
 
 package com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.util.Log
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupSearches
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Operations.SearchResultsRetrieval
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
@@ -38,13 +41,19 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
 
         searchPopupUiViewBinding.searchViewAction.setOnClickListener {
 
+            searchPopupUiViewBinding.textInputSearchView.isErrorEnabled = false
+
             SearchResultsRetrieval(context, "${searchPopupUiViewBinding.searchView.text}")
                 .start(object : JsonRequestResponseInterface {
 
                     override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                         super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                        //start new activity and pass string of json array then parse string to jsonArray in SearchResults activity
+                        Intent().apply {
+                            putExtra(Intent.EXTRA_TEXT, rawDataJsonArray.toString())
+
+                            context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
+                        }
 
                     }
 
@@ -56,7 +65,7 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
                         when (networkError) {
                             HttpsURLConnection.HTTP_BAD_REQUEST -> {/*400*/
 
-
+                                searchPopupUiViewBinding.textInputSearchView.isErrorEnabled = true
 
                             }
                         }
@@ -78,7 +87,11 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
                             override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                                 super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
+                                Intent().apply {
+                                    putExtra(Intent.EXTRA_TEXT, rawDataJsonArray.toString())
 
+                                    context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
+                                }
 
                             }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:46 AM
- * Last modified 8/5/20 3:46 AM
+ * Created by Elias Fazel on 8/10/20 5:08 AM
+ * Last modified 8/10/20 5:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,8 +36,6 @@ class FavoritesPostsRetrieval (private val context: Context) {
 
         val favoritedPostsEndpoints: FavoritedPostsEndpoints = FavoritedPostsEndpoints()
         val endpointLink = favoritedPostsEndpoints.getFavoritedPostsEndpoints(allFavoritedPostsIds)
-
-        println(">>>>>>>>>>> " + endpointLink)
 
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET,

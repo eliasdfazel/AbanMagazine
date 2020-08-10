@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 12:49 AM
- * Last modified 8/10/20 12:19 AM
+ * Created by Elias Fazel on 8/10/20 5:08 AM
+ * Last modified 8/10/20 4:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.SearchConfigurations.Network.Operations
 import android.content.Context
 import android.util.Log
 import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Endpoints.SearchEndpoints
+import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Endpoints.SearchEndpointsFactory
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -33,7 +34,9 @@ class SearchResultsRetrieval (private val context: Context, private val searchQu
 
     fun start(jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
 
-        val searchEndpoints: SearchEndpoints = SearchEndpoints(searchQuery)
+        val searchEndpoints: SearchEndpoints = SearchEndpoints(SearchEndpointsFactory(
+            searchQuery = searchQuery
+        ))
 
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET,
