@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/11/20 1:59 AM
- * Last modified 8/11/20 1:57 AM
+ * Created by Elias Fazel on 8/11/20 4:20 AM
+ * Last modified 8/11/20 4:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Operations.SearchResultsRetrieval
 import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
+import com.abanabsalan.aban.magazine.Utils.System.showKeyboard
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -35,7 +36,13 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
         searchPopupUiViewParams.bottomMargin = searchPopupUiViewParams.bottomMargin + navigationBarHeight(context)
         searchPopupUiViewBinding.textInputSearchView.layoutParams = searchPopupUiViewParams
 
-        searchPopupUiViewBinding.searchView.requestFocus()
+        val searchActionViewParams = searchPopupUiViewBinding.searchViewAction.layoutParams as ConstraintLayout.LayoutParams
+        searchActionViewParams.bottomMargin =  searchActionViewParams.bottomMargin + + navigationBarHeight(context)
+        searchPopupUiViewBinding.searchViewAction.layoutParams = searchActionViewParams
+
+        showKeyboard(context, searchPopupUiViewBinding.searchView).also {
+            searchPopupUiViewBinding.searchView.requestFocus()
+        }
 
         searchPopupUiViewBinding.root.setOnClickListener {
 
