@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:34 AM
- * Last modified 8/8/20 8:34 AM
+ * Created by Elias Fazel on 8/11/20 3:29 AM
+ * Last modified 8/11/20 3:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,6 @@ package com.abanabsalan.aban.magazine.Utils.Ads
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
@@ -22,17 +21,15 @@ import com.google.android.gms.ads.*
 
 class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
-    val interstitialAd: InterstitialAd = InterstitialAd(appCompatActivity)
+    var getInterstitialAd: InterstitialAd? = null
 
     fun initialize() {
 
-        MobileAds.initialize(appCompatActivity) { initializationStatus ->
+        MobileAds.initialize(appCompatActivity) { initializationStatus -> }
 
-            interstitialAdsLoadShow()
+        interstitialAdsLoadShow()
 
-            bannerAdsLoadShow()
-
-        }
+        bannerAdsLoadShow()
 
         val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A")
 
@@ -47,6 +44,9 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
         val adRequest = AdRequest.Builder().build()
 
+        val interstitialAd: InterstitialAd = InterstitialAd(appCompatActivity)
+        this@AdsConfiguration.getInterstitialAd = interstitialAd
+
         interstitialAd.setImmersiveMode(true)
 
         when(appCompatActivity) {
@@ -54,16 +54,19 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
                 Log.d(this@AdsConfiguration.javaClass.simpleName, "Home Page Requesting Ads")
 
                 interstitialAd.adUnitId = appCompatActivity.getString(R.string.homePageInterstitial)
+
             }
             is SinglePostView -> {
                 Log.d(this@AdsConfiguration.javaClass.simpleName, "Post View Requesting Ads")
 
                 interstitialAd.adUnitId = appCompatActivity.getString(R.string.postViewInterstitial)
+
             }
             is FavoritesPostsView -> {
                 Log.d(this@AdsConfiguration.javaClass.simpleName, "Favorites Posts View Requesting Ads")
 
                 interstitialAd.adUnitId = appCompatActivity.getString(R.string.favoritesPostsViewInterstitial)
+
             }
         }
 
@@ -101,79 +104,143 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
         when(appCompatActivity) {
             is HomePage -> {
 
-                if (BuildConfig.DEBUG) {
+                (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
 
-                    (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.GONE
-                    (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.GONE
+                (appCompatActivity).homePageViewBinding.bannerAdViewTop.adListener = object: AdListener() {
 
-                } else {
+                    override fun onAdLoaded() {
 
-                    (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
-
-                    (appCompatActivity).homePageViewBinding.bannerAdViewTop.adListener = object: AdListener() {
-                        override fun onAdLoaded() {
-
-                            (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.VISIBLE
-                        }
-
-                        override fun onAdFailedToLoad(errorCode : Int) {
-
-                            (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
-
-                        }
-
-                        override fun onAdOpened() {
-
-                        }
-
-                        override fun onAdClicked() {
-
-                        }
-
-                        override fun onAdLeftApplication() {
-
-                        }
-
-                        override fun onAdClosed() {
-
-                        }
+                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.VISIBLE
                     }
 
-                    (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
+                    override fun onAdFailedToLoad(errorCode : Int) {
 
-                    (appCompatActivity).homePageViewBinding.bannerAdViewBottom.adListener = object: AdListener() {
-                        override fun onAdLoaded() {
+                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.loadAd(adRequest)
 
-                            (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.VISIBLE
-                        }
+                    }
 
-                        override fun onAdFailedToLoad(errorCode : Int) {
+                    override fun onAdOpened() {
 
-                            (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
+                    }
 
-                        }
+                    override fun onAdClicked() {
 
-                        override fun onAdOpened() {
+                    }
 
-                        }
+                    override fun onAdLeftApplication() {
 
-                        override fun onAdClicked() {
+                    }
 
-                        }
+                    override fun onAdClosed() {
 
-                        override fun onAdLeftApplication() {
+                    }
 
-                        }
+                }
 
-                        override fun onAdClosed() {
+                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
 
-                        }
+                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.adListener = object: AdListener() {
+
+                    override fun onAdLoaded() {
+
+                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.VISIBLE
+                    }
+
+                    override fun onAdFailedToLoad(errorCode : Int) {
+
+                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.loadAd(adRequest)
+
+                    }
+
+                    override fun onAdOpened() {
+
+                    }
+
+                    override fun onAdClicked() {
+
+                    }
+
+                    override fun onAdLeftApplication() {
+
+                    }
+
+                    override fun onAdClosed() {
+
                     }
 
                 }
 
             }
             is SinglePostView -> {
+
+                (appCompatActivity).postsViewUiBinding.bannerAdView.loadAd(adRequest)
+
+                (appCompatActivity).postsViewUiBinding.bannerAdView.adListener = object: AdListener() {
+
+                    override fun onAdLoaded() {
+
+                        (appCompatActivity).postsViewUiBinding.bannerAdView.visibility = View.VISIBLE
+                    }
+
+                    override fun onAdFailedToLoad(errorCode : Int) {
+
+                        (appCompatActivity).postsViewUiBinding.bannerAdView.loadAd(adRequest)
+
+                    }
+
+                    override fun onAdOpened() {
+
+                    }
+
+                    override fun onAdClicked() {
+
+                    }
+
+                    override fun onAdLeftApplication() {
+
+                    }
+
+                    override fun onAdClosed() {
+
+                    }
+
+                }
+
+            }
+            is FavoritesPostsView -> {
+
+                (appCompatActivity).favoritePostsBinding.bannerAdView.loadAd(adRequest)
+
+                (appCompatActivity).favoritePostsBinding.bannerAdView.adListener = object: AdListener() {
+
+                    override fun onAdLoaded() {
+
+                        (appCompatActivity).favoritePostsBinding.bannerAdView.visibility = View.VISIBLE
+                    }
+
+                    override fun onAdFailedToLoad(errorCode : Int) {
+
+                        (appCompatActivity).favoritePostsBinding.bannerAdView.loadAd(adRequest)
+
+                    }
+
+                    override fun onAdOpened() {
+
+                    }
+
+                    override fun onAdClicked() {
+
+                    }
+
+                    override fun onAdLeftApplication() {
+
+                    }
+
+                    override fun onAdClosed() {
+
+                    }
+
+                }
 
             }
         }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:46 AM
- * Last modified 8/5/20 3:46 AM
+ * Created by Elias Fazel on 8/11/20 3:29 AM
+ * Last modified 8/11/20 3:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -137,8 +137,10 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
 
         }
 
-        if (adsConfiguration.interstitialAd.isLoaded) {
-            adsConfiguration.interstitialAd.show()
+        adsConfiguration.getInterstitialAd?.let {
+            if (it.isLoaded) {
+                it.show()
+            }
         }
 
     }
