@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 6:09 AM
- * Last modified 8/10/20 5:48 AM
+ * Created by Elias Fazel on 8/11/20 1:59 AM
+ * Last modified 8/11/20 1:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +24,7 @@ import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import org.json.JSONArray
 
 class SetupSearchViewUI (private val context: HomePage, private val searchPopupUiViewBinding: SearchPopupUiViewBinding) {
@@ -113,6 +115,11 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
                 }
 
             })
+
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+        firebaseAnalytics.logEvent(this@SetupSearchViewUI.javaClass.simpleName, Bundle().apply {
+            putString("SearchQuery", searchQuery)
+        })
 
     }
 

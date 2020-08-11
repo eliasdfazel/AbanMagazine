@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/6/20 3:33 AM
- * Last modified 8/6/20 3:31 AM
+ * Created by Elias Fazel on 8/11/20 1:59 AM
+ * Last modified 8/11/20 1:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,6 +38,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemePostView
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
 import com.google.android.material.appbar.AppBarLayout
+import com.google.firebase.analytics.FirebaseAnalytics
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 import org.json.JSONArray
@@ -70,6 +71,10 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
     var dominantColor: Int? = null
     var vibrantColor: Int? = null
+
+    val firebaseAnalytics: FirebaseAnalytics by lazy {
+        FirebaseAnalytics.getInstance(applicationContext)
+    }
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
@@ -209,6 +214,12 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         relatedPostContent?.let { relatedPostContent ->
             postsLiveData.extractRelatedPostIds(JSONArray(relatedPostContent))
         }
+
+        firebaseAnalytics.logEvent(this@SinglePostView.javaClass.simpleName, Bundle().apply {
+            putString("PostId", postId)
+            putString("PostTitle", postTitle)
+        })
+
     }
 
     override fun onResume() {
