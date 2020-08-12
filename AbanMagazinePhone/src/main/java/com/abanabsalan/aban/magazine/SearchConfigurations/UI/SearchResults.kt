@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 6:09 AM
- * Last modified 8/10/20 6:09 AM
+ * Created by Elias Fazel on 8/12/20 1:33 AM
+ * Last modified 8/12/20 1:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.SearchConfigurations.UI
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -49,6 +50,8 @@ class SearchResults : AppCompatActivity() {
                 window.statusBarColor = getColor(R.color.dark)
                 window.navigationBarColor = getColor(R.color.dark)
 
+                window.decorView.systemUiVisibility = 0
+
             }
             ThemeType.ThemeLight -> {
 
@@ -56,6 +59,11 @@ class SearchResults : AppCompatActivity() {
 
                 window.statusBarColor = getColor(R.color.light)
                 window.navigationBarColor = getColor(R.color.light)
+
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                if (Build.VERSION.SDK_INT > 25) {
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
 
             }
         }

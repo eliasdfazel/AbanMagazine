@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/10/20 5:27 AM
-  ~ Last modified 8/2/20 5:50 AM
+  ~ Created by Elias Fazel on 8/12/20 1:33 AM
+  ~ Last modified 8/12/20 1:15 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -31,7 +31,7 @@
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
 
-        apps:shapeDrawable="@drawable/up_round_rectangle_shape"
+        apps:shapeDrawable="@drawable/search_results_frame"
 
         apps:layout_constraintTop_toTopOf="parent"/>
 
