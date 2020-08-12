@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/3/20 5:56 AM
- * Last modified 8/3/20 5:33 AM
+ * Created by Elias Fazel on 8/12/20 1:50 AM
+ * Last modified 8/12/20 1:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,6 +26,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcess
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcessAction
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
@@ -42,6 +43,8 @@ import org.jsoup.nodes.Document
 
 
 class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    val language: Language = Language()
 
     val singlePostItemsData: ArrayList<SinglePostItemData> = ArrayList<SinglePostItemData>()
 
@@ -370,7 +373,11 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 singlePostItemsData[position].postItemTextLink?.let {
 
-                    (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.text = Html.fromHtml(it.linkText)
+                    (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.text = Html.fromHtml(
+                        "<small>${singlePostViewContext.getString(R.string.clickHere)}</small>" +
+                                "<br/>" +
+                                "<big>" + it.linkText + "</big>"
+                    )
 
                     val linkContent: Document = Jsoup.parse(it.linkText)
 
