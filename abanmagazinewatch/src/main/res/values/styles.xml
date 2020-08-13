@@ -1,20 +1,147 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/12/20 5:51 AM
-  ~ Last modified 8/12/20 5:45 AM
+  ~ Created by Elias Fazel on 8/12/20 11:59 PM
+  ~ Last modified 8/10/20 6:09 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
-<resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="GeeksEmpire.Material" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="android:colorPrimary">@color/default_color</item>
+        <item name="android:colorPrimaryDark">@color/default_color_dark</item>
+        <item name="android:colorAccent">@color/default_color_light</item>
+
+        <item name="colorPrimary">@color/default_color</item>
+        <item name="colorPrimaryDark">@color/default_color_dark</item>
+        <item name="colorAccent">@color/default_color_light</item>
+
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.HomePage" parent="GeeksEmpire.Material">
+
+        <item name="android:statusBarColor">@color/default_color_light</item>
+        <item name="android:navigationBarColor">@color/default_color_light</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <item name="android:windowBackground">@color/light</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.SearchResults" parent="@style/GeeksEmpire.Material">
+
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/default_color</item>
+
+        <item name="android:navigationBarColor">@color/default_color</item>
+        <item name="android:statusBarColor">@color/default_color</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.CategoryPosts" parent="GeeksEmpire.Material">
+
+        <item name="android:statusBarColor">@color/default_color_game</item>
+        <item name="android:navigationBarColor">@color/light</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <item name="android:windowBackground">@color/light</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.PostView" parent="GeeksEmpire.Material">
+
+        <item name="android:navigationBarColor">@color/light</item>
+        <item name="android:statusBarColor">@color/light</item>
+
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.FavoritesPostView" parent="GeeksEmpire.Material">
+
+        <item name="android:navigationBarColor">@color/light</item>
+        <item name="android:statusBarColor">@color/light</item>
+
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.WebView" parent="@style/GeeksEmpire.Material">
+
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.Preferences" parent="GeeksEmpire.Material">
+
+        <item name="android:navigationBarColor">@color/light</item>
+        <item name="android:statusBarColor">@color/light</item>
+
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+    </style>
+
+    <style name="GeeksEmpire.Material.Mediate">
+
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+    </style>
+
+    <style name="ContentLoadingProgress">
+        <item name="colorAccent">@color/pink</item>
     </style>
 
 </resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/12/20 11:59 PM
+  ~ Last modified 7/14/20 12:40 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    apps:layout_constraintDimensionRatio="1:1">
+
+    <net.geeksempire.loadingspin.SpinKitView
+        android:id="@+id/loadingView"
+        android:layout_width="123dp"
+        android:layout_height="123dp"
+
+        apps:SpinKit_Style="Wave"
+        apps:SpinKit_Color="@color/default_color_game"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingTop="51dp">
+
+            <com.abanabsalan.aban.magazine.Utils.UI.TypeWritter.TypeWriterTextView
+                android:id="@+id/toolbarDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="5dp"
+                android:gravity="center_vertical"
+                android:justificationMode="inter_word"
+                android:textSize="13sp"
+                android:textColor="@color/light"
+                android:fontFamily="@font/persian_sans"
+                android:background="@color/default_color_game"
+
+                apps:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allCategoryPostsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="11dp"
+                android:scrollbars="none"
+
+                apps:layout_constraintTop_toBottomOf="@id/toolbarDescription"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/categoryPostsListToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@drawable/category_posts_list_toolbar_background"
+
+        apps:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/toolbarLogo"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:padding="7dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/official_business_logo"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="25dp"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="23sp"
+            android:textColor="@color/light"
+            android:textStyle="bold"
+            android:fontFamily="@font/persian_sans"/>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

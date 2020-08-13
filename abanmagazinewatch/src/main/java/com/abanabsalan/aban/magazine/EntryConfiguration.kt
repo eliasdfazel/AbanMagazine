@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/12/20 5:51 AM
- * Last modified 8/12/20 5:45 AM
+ * Created by Elias Fazel on 8/12/20 11:59 PM
+ * Last modified 7/26/20 6:41 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,16 +10,25 @@
 
 package com.abanabsalan.aban.magazine
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
-import android.support.wearable.activity.WearableActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.databinding.EntryConfigurationViewBinding
 
-class EntryConfiguration : WearableActivity() {
+
+class EntryConfiguration : AppCompatActivity() {
+
+    private lateinit var entryConfigurationViewBinding: EntryConfigurationViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.entry_configuration_view)
+        entryConfigurationViewBinding = EntryConfigurationViewBinding.inflate(layoutInflater)
+        setContentView(entryConfigurationViewBinding.root)
 
-        // Enables Always-on
-        setAmbientEnabled()
+        startActivity(Intent(applicationContext, HomePage::class.java),
+            ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+
     }
 }

@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/12/20 11:59 PM
+  ~ Last modified 8/5/20 2:33 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<resources>
+
+    <string name="featuredImageTransitionName" translatable="false">featuredImageTransitionName</string>
+
+    <string name="playStoreLink" translatable="false">https://play.google.com/store/apps/details?id=com.abanabsalan.aban.magazine</string>
+    <string name="websiteLink" translatable="false">https://www.AbanAbsalan.com</string>
+
+    <string name="instagramLink" translatable="false">https://www.instagram.com/abanabsalan/</string>
+    <string name="twitterLink" translatable="false">https://www.twitter.com/abanabsalan/</string>
+    <string name="pinterestLink" translatable="false">https://www.pinterest.com/abanabsalan</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCZ8fcnF3OlTw_UcbxC4OaUw</string>
+
+    <string name="adMobAppId" translatable="false">ca-app-pub-2920235108594210~9707242784</string>
+    
+    <string name="homePageInterstitial" translatable="false">ca-app-pub-2920235108594210/2333925894</string>
+    <string name="homePageBannerTop" translatable="false">ca-app-pub-2920235108594210/9294920064</string>
+    <string name="homePageBannerBottom" translatable="false">ca-app-pub-2920235108594210/4237248089</string>
+
+    <string name="postViewInterstitial" translatable="false">ca-app-pub-2920235108594210/1825717483</string>
+    <string name="postViewBanner" translatable="false">ca-app-pub-2920235108594210/9362368674</string>
+
+    <string name="favoritesPostsViewInterstitial" translatable="false">ca-app-pub-2920235108594210/2138586409</string>
+    <string name="favoritesPostsViewBanner" translatable="false">ca-app-pub-2920235108594210/9256983933</string>
+
+
+</resources>

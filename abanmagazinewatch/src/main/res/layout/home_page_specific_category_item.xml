@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/12/20 11:59 PM
+  ~ Last modified 7/24/20 1:19 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootViewItem"
+    android:layout_width="197dp"
+    android:layout_height="257dp"
+    android:layout_marginVertical="1dp"
+    android:layout_marginHorizontal="7dp"
+    android:elevation="3dp"
+    android:background="@drawable/specific_category_item_background">
+
+    <net.geekstools.imageview.customshapes.ShapesImage
+        android:id="@+id/postFeatureImageView"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:transitionName="@string/featuredImageTransitionName"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+
+        apps:shape="rounded"
+
+        apps:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/postTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:paddingHorizontal="7dp"
+        android:paddingVertical="1dp"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/darker"
+        android:fontFamily="@font/persian_sans"
+        android:shadowColor="@color/dark"
+        android:shadowRadius="3"
+
+        apps:layout_constraintTop_toBottomOf="@id/postFeatureImageView"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/postExcerptView"
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:paddingHorizontal="7dp"
+        android:paddingVertical="3dp"
+        android:lines="4"
+        android:ellipsize="end"
+        android:justificationMode="inter_word"
+        android:textSize="13sp"
+        android:textColor="@color/dark"
+        android:fontFamily="@font/persian_sans"
+
+        apps:layout_constraintTop_toBottomOf="@id/postTitleView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
