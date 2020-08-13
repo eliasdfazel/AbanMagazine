@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/13/20 12:10 AM
-  ~ Last modified 8/12/20 11:59 PM
+  ~ Created by Elias Fazel on 8/13/20 2:15 AM
+  ~ Last modified 8/13/20 2:05 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -99,20 +99,6 @@
                 apps:SpinKit_Style="Pulse"
                 apps:SpinKit_Color="@color/light_pink"/>
 
-            <!-- Banner Ads - Top -->
-            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/bannerAdViewTop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="1dp"
-                android:visibility="invisible"
-
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/homePageBannerTop"
-
-                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
-
             <!-- Newest -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/newestPostsTextView"
@@ -128,7 +114,7 @@
                 android:fontFamily="@font/persian_sans"
                 android:visibility="invisible"
 
-                apps:layout_constraintTop_toBottomOf="@id/bannerAdViewTop"/>
+                apps:layout_constraintTop_toBottomOf="@id/featuredPostsLoadingView"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newestPostsRecyclerView"
@@ -169,20 +155,6 @@
 
                 apps:layout_constraintTop_toBottomOf="@id/forYouPostsTextView"/>
 
-            <!-- Banner Ads - Bottom -->
-            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/bannerAdViewBottom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="1dp"
-                android:visibility="invisible"
-
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/homePageBannerBottom"
-
-                apps:layout_constraintTop_toBottomOf="@id/recommendedPostsRecyclerView"/>
-
             <!-- Instagram Stories Highlights -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/instagramStoryHighlightsRecyclerView"
@@ -196,7 +168,7 @@
                 android:fadingEdgeLength="7dp"
                 android:visibility="invisible"
 
-                apps:layout_constraintTop_toBottomOf="@id/bannerAdViewBottom"/>
+                apps:layout_constraintTop_toBottomOf="@id/recommendedPostsRecyclerView"/>
 
             <!-- Full Content Loading View -->
             <net.geeksempire.loadingspin.SpinKitView

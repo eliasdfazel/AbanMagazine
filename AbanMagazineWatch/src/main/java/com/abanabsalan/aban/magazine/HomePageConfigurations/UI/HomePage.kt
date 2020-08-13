@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 12:10 AM
- * Last modified 8/12/20 11:59 PM
+ * Created by Elias Fazel on 8/13/20 2:15 AM
+ * Last modified 8/13/20 2:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,7 +41,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.Fa
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
-import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
@@ -75,10 +74,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         FavoriteIt(applicationContext)
     }
 
-    val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@HomePage)
-    }
-
     private val swipeGestureListener: SwipeGestureListener by lazy {
         SwipeGestureListener(applicationContext, this@HomePage)
     }
@@ -103,8 +98,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 }
         }
-
-        adsConfiguration.initialize()
 
         PopupPreferencesController(this@HomePage, homePageViewBinding.preferencePopupInclude)
             .initializeForHomePage()
@@ -340,12 +333,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     override fun onResume() {
         super.onResume()
-
-        adsConfiguration.getInterstitialAd?.let {
-            if (it.isLoaded) {
-                it.show()
-            }
-        }
 
         if (OverallTheme.LastActivity != null) {
             if (OverallTheme.LastActivity != this@HomePage.javaClass.simpleName) {

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 12:10 AM
- * Last modified 8/12/20 11:59 PM
+ * Created by Elias Fazel on 8/13/20 2:15 AM
+ * Last modified 8/13/20 2:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,7 +25,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensio
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.Adapter.FavoritesPostsViewAdapter
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
@@ -51,10 +50,6 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
         FavoriteIt(applicationContext)
     }
 
-    val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@FavoritesPostsView)
-    }
-
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
 
@@ -76,8 +71,6 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
         setupUserInterface()
 
         favoritePostsBinding.favoritePostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 379), RecyclerView.VERTICAL, false)
-
-        adsConfiguration.initialize()
 
         favoritesPostsLiveData.allFavoritedPosts.observe(this@FavoritesPostsView, Observer {
 
@@ -135,12 +128,6 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
 
             }
 
-        }
-
-        adsConfiguration.getInterstitialAd?.let {
-            if (it.isLoaded) {
-                it.show()
-            }
         }
 
     }

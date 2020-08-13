@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 12:10 AM
- * Last modified 8/12/20 11:59 PM
+ * Created by Elias Fazel on 8/13/20 2:15 AM
+ * Last modified 8/13/20 2:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,7 +31,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.s
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -51,10 +50,6 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
     val postsLiveData: PostsLiveData by lazy {
         ViewModelProvider(this@SinglePostView).get(PostsLiveData::class.java)
-    }
-
-    val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@SinglePostView)
     }
 
     private var postTopBarIsExpanded = true
@@ -119,8 +114,6 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         super.onCreate(savedInstanceState)
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
-
-        adsConfiguration.initialize()
 
         postId = intent.getStringExtra(PostsDataParameters.PostParameters.PostId)
 
@@ -224,12 +217,6 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
     override fun onResume() {
         super.onResume()
-
-        adsConfiguration.getInterstitialAd?.let {
-            if (it.isLoaded) {
-                it.show()
-            }
-        }
 
         postsViewUiBinding.postTopBar.addOnOffsetChangedListener(this@SinglePostView)
 
