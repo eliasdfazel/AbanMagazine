@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/9/20 10:52 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,7 @@ import com.abanabsalan.aban.magazine.Utils.Network.NetworkSettingCallback
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
-import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import com.abanabsalan.aban.magazine.databinding.HomePageViewWatchBinding
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
@@ -201,7 +201,7 @@ fun HomePage.internetCheckpoint() {
 /**
  * Load All Posts From Featured Post Category
  **/
-fun startFeaturedPostCategoryRetrieval(context: Context, homePageViewBinding: HomePageViewBinding, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
+fun startFeaturedPostCategoryRetrieval(context: Context, homePageViewBinding: HomePageViewWatchBinding, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
 
     homePageViewBinding.featuredPostsLoadingView.visibility = View.VISIBLE
 

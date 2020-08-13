@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 7/12/20 12:18 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.all_category_posts_item.view.*
+import kotlinx.android.synthetic.main.all_category_posts_item_watch.view.*
 import net.geekstools.imageview.customshapes.ShapesImage
 
 class AllCategoryPostsViewHolder (view: View) : RecyclerView.ViewHolder(view) {

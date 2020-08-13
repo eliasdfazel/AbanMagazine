@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/11/20 4:20 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,11 +24,11 @@ import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.System.showKeyboard
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
-import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
+import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewWatchBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import org.json.JSONArray
 
-class SetupSearchViewUI (private val context: HomePage, private val searchPopupUiViewBinding: SearchPopupUiViewBinding) {
+class SetupSearchViewUI (private val context: HomePage, private val searchPopupUiViewBinding: SearchPopupUiViewWatchBinding) {
 
     init {
 

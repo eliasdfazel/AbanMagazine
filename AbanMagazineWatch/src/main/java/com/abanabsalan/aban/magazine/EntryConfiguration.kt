@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:37 AM
- * Last modified 8/13/20 2:37 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,16 +15,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.databinding.EntryConfigurationViewBinding
+import com.abanabsalan.aban.magazine.databinding.EntryConfigurationViewWatchBinding
 
 
 class EntryConfiguration : AppCompatActivity() {
 
-    private lateinit var entryConfigurationViewBinding: EntryConfigurationViewBinding
+    private lateinit var entryConfigurationViewBinding: EntryConfigurationViewWatchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        entryConfigurationViewBinding = EntryConfigurationViewBinding.inflate(layoutInflater)
+        entryConfigurationViewBinding = EntryConfigurationViewWatchBinding.inflate(layoutInflater)
         setContentView(entryConfigurationViewBinding.root)
 
         startActivity(Intent(applicationContext, HomePage::class.java),

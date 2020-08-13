@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/13/20 2:13 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,7 +48,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
-import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import com.abanabsalan.aban.magazine.databinding.HomePageViewWatchBinding
 import com.google.firebase.messaging.FirebaseMessaging
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerConstants
@@ -84,11 +84,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
 
-    lateinit var homePageViewBinding: HomePageViewBinding
+    lateinit var homePageViewBinding: HomePageViewWatchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
+        homePageViewBinding = HomePageViewWatchBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
 
         if (BuildConfig.VERSION_NAME.contains("BETA")) {

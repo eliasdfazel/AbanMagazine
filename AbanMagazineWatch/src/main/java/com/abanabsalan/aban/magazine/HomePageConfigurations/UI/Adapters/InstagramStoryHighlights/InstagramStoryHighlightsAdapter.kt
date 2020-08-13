@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/9/20 10:55 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -32,7 +32,7 @@ class InstagramStoryHighlightsAdapter (private val context: HomePage, private va
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): InstagramStoryHighlightsViewHolder {
 
-        return InstagramStoryHighlightsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_instagram_story_highlights_item, viewGroup, false))
+        return InstagramStoryHighlightsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_instagram_story_highlights_item_watch, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

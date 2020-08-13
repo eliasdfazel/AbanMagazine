@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/2/20 4:02 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.post_view_content_item_paragraph.view.*
+import kotlinx.android.synthetic.main.post_view_content_item_paragraph_watch.view.*
 
 class PostViewParagraphAdapterViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val rootViewItem: ConstraintLayout = view.rootViewItem

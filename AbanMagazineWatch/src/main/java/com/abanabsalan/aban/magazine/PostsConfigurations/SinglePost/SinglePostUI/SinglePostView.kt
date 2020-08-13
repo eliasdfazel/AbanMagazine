@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/13/20 2:11 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,7 +35,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemePostView
-import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
+import com.abanabsalan.aban.magazine.databinding.PostsViewUiWatchBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.analytics.FirebaseAnalytics
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
@@ -71,7 +71,7 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         FirebaseAnalytics.getInstance(applicationContext)
     }
 
-    lateinit var postsViewUiBinding: PostsViewUiBinding
+    lateinit var postsViewUiBinding: PostsViewUiWatchBinding
 
     companion object {
 
@@ -112,7 +112,7 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
+        postsViewUiBinding = PostsViewUiWatchBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
 
         postId = intent.getStringExtra(PostsDataParameters.PostParameters.PostId)

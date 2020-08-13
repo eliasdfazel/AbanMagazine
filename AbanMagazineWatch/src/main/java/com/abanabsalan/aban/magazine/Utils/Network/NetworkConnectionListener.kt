@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 7/19/20 5:58 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.DependencyInjections.Scopes.ActivityScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import kotlinx.android.synthetic.main.offline_indicator.view.*
+import kotlinx.android.synthetic.main.offline_indicator_watch.view.*
 import javax.inject.Inject
 
 interface NetworkConnectionListenerInterface {
@@ -47,7 +47,7 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
     init {
         connectivityManager.registerDefaultNetworkCallback(this@NetworkConnectionListener)
 
-        offlineIndicator = LayoutInflater.from(appCompatActivity).inflate(R.layout.offline_indicator, rootView, false)
+        offlineIndicator = LayoutInflater.from(appCompatActivity).inflate(R.layout.offline_indicator_watch, rootView, false)
     }
 
     override fun onAvailable(network: Network) {

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/5/20 4:45 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,7 +40,7 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): AllCategoryPostsViewHolder {
 
-        return AllCategoryPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.all_category_posts_item, viewGroup, false))
+        return AllCategoryPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.all_category_posts_item_watch, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

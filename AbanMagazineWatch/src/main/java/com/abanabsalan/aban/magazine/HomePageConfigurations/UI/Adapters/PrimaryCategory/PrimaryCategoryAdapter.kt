@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 7/20/20 8:15 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,7 @@ class PrimaryCategoryAdapter (private val context: HomePage, private val overall
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PrimaryCategoryViewHolder {
 
-        return PrimaryCategoryViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_primary_categories_item, viewGroup, false))
+        return PrimaryCategoryViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_primary_categories_item_watch, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

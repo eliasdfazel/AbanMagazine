@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/6/20 4:22 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,7 +36,7 @@ class RelatedPostsAdapter (private val context: SinglePostView, private val over
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RelatedPostsViewHolder {
 
-        return RelatedPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.related_posts_item, viewGroup, false))
+        return RelatedPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.related_posts_item_watch, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

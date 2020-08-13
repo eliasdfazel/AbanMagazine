@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/9/20 10:52 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,7 +30,7 @@ import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationRevi
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
-import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewBinding
+import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewWatchBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -38,7 +38,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kotlinx.coroutines.Job
 
 class PopupPreferencesController (private val context: AppCompatActivity,
-                                  private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
+                                  private val preferencesPopupUiViewBinding: PreferencesPopupUiViewWatchBinding) {
 
     private val overallTheme: OverallTheme by lazy {
         OverallTheme(context)

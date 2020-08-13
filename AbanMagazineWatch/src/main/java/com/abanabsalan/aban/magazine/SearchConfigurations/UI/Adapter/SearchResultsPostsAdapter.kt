@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/10/20 6:09 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,7 +40,7 @@ class SearchResultsPostsAdapter (private val context: SearchResults, private val
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SearchResultsPostsViewHolder {
 
-        return SearchResultsPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.all_search_results_posts_item, viewGroup, false))
+        return SearchResultsPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.all_search_results_posts_item_watch, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

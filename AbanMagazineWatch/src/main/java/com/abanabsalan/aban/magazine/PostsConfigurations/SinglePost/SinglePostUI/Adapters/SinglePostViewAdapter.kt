@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 8/12/20 1:50 AM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 3:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,11 +14,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Bundle
+import android.os.Handler
+import android.os.ResultReceiver
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.wear.widget.ConfirmationOverlay
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.ViewHolders.*
@@ -28,7 +32,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProc
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
-import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -38,9 +41,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.google.android.wearable.intent.RemoteIntent
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-
 
 class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -56,7 +59,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewParagraphAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_paragraph_watch, viewGroup, false)
                 )
 
             }
@@ -64,7 +67,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewSubTitleAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_sub_title, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_sub_title_watch, viewGroup, false)
                 )
 
             }
@@ -72,7 +75,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewImageAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_image, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_image_watch, viewGroup, false)
                 )
 
             }
@@ -80,7 +83,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewTextLinkAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_text_link, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_text_link_watch, viewGroup, false)
                 )
 
             }
@@ -88,7 +91,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewIFrameAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_i_frame, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_i_frame_watch, viewGroup, false)
                 )
 
             }
@@ -96,7 +99,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewBlockQuoteInstagramAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_block_quote_instagram, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_block_quote_instagram_watch, viewGroup, false)
                 )
 
             }
@@ -104,7 +107,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 PostViewParagraphAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
-                        .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
+                        .inflate(R.layout.post_view_content_item_paragraph_watch, viewGroup, false)
                 )
 
             }
@@ -331,23 +334,67 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreen.setOnClickListener { view ->
 
-                            BuiltInWebView.show(
-                                context = singlePostViewContext,
-                                linkToLoad = it.imageLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
-                            )
+                            val resultReceiver = object : ResultReceiver(Handler()) {
+
+                                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+
+                                    if (resultCode == RemoteIntent.RESULT_OK) {
+
+                                        ConfirmationOverlay()
+                                            .setMessage(singlePostViewContext.getString(R.string.checkYourPhone))
+                                            .setDuration(1000 * 1)
+                                            .showOn(singlePostViewContext)
+
+                                    } else if (resultCode == RemoteIntent.RESULT_FAILED) {
+
+                                    } else {
+
+                                    }
+                                }
+                            }
+
+                            val intentPlayStore = Intent(Intent.ACTION_VIEW)
+                                .addCategory(Intent.CATEGORY_BROWSABLE)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .setData(Uri.parse(it.imageLink))
+
+                            RemoteIntent.startRemoteActivity(
+                                singlePostViewContext,
+                                intentPlayStore,
+                                resultReceiver)
 
                         }
 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setOnClickListener { view ->
 
-                            BuiltInWebView.show(
-                                context = singlePostViewContext,
-                                linkToLoad = it.imageLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
-                            )
+                            val resultReceiver = object : ResultReceiver(Handler()) {
+
+                                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+
+                                    if (resultCode == RemoteIntent.RESULT_OK) {
+
+                                        ConfirmationOverlay()
+                                            .setMessage(singlePostViewContext.getString(R.string.checkYourPhone))
+                                            .setDuration(1000 * 1)
+                                            .showOn(singlePostViewContext)
+
+                                    } else if (resultCode == RemoteIntent.RESULT_FAILED) {
+
+                                    } else {
+
+                                    }
+                                }
+                            }
+
+                            val intentPlayStore = Intent(Intent.ACTION_VIEW)
+                                .addCategory(Intent.CATEGORY_BROWSABLE)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .setData(Uri.parse(it.imageLink))
+
+                            RemoteIntent.startRemoteActivity(
+                                singlePostViewContext,
+                                intentPlayStore,
+                                resultReceiver)
 
                         }
 
@@ -355,12 +402,34 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         it.targetLink?.also { targetLink ->
 
-                            BuiltInWebView.show(
-                                context = singlePostViewContext,
-                                linkToLoad = targetLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
-                            )
+                            val resultReceiver = object : ResultReceiver(Handler()) {
+
+                                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+
+                                    if (resultCode == RemoteIntent.RESULT_OK) {
+
+                                        ConfirmationOverlay()
+                                            .setMessage(singlePostViewContext.getString(R.string.checkYourPhone))
+                                            .setDuration(1000 * 1)
+                                            .showOn(singlePostViewContext)
+
+                                    } else if (resultCode == RemoteIntent.RESULT_FAILED) {
+
+                                    } else {
+
+                                    }
+                                }
+                            }
+
+                            val intentPlayStore = Intent(Intent.ACTION_VIEW)
+                                .addCategory(Intent.CATEGORY_BROWSABLE)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .setData(Uri.parse(targetLink))
+
+                            RemoteIntent.startRemoteActivity(
+                                singlePostViewContext,
+                                intentPlayStore,
+                                resultReceiver)
 
                         }
 
@@ -385,12 +454,34 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         linkContent.select("a").first().attr("abs:href")?.let { aLink ->
 
-                            BuiltInWebView.show(
-                                context = singlePostViewContext,
-                                linkToLoad = aLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
-                            )
+                            val resultReceiver = object : ResultReceiver(Handler()) {
+
+                                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+
+                                    if (resultCode == RemoteIntent.RESULT_OK) {
+
+                                        ConfirmationOverlay()
+                                            .setMessage(singlePostViewContext.getString(R.string.checkYourPhone))
+                                            .setDuration(1000 * 1)
+                                            .showOn(singlePostViewContext)
+
+                                    } else if (resultCode == RemoteIntent.RESULT_FAILED) {
+
+                                    } else {
+
+                                    }
+                                }
+                            }
+
+                            val intentPlayStore = Intent(Intent.ACTION_VIEW)
+                                .addCategory(Intent.CATEGORY_BROWSABLE)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .setData(Uri.parse(aLink))
+
+                            RemoteIntent.startRemoteActivity(
+                                singlePostViewContext,
+                                intentPlayStore,
+                                resultReceiver)
 
                         }
 

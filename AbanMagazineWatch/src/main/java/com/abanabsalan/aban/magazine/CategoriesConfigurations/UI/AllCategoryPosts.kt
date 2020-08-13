@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 2:15 AM
- * Last modified 7/31/20 9:42 PM
+ * Created by Elias Fazel on 8/13/20 3:11 AM
+ * Last modified 8/13/20 2:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,7 +29,7 @@ import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
-import com.abanabsalan.aban.magazine.databinding.AllCategoryPostsBinding
+import com.abanabsalan.aban.magazine.databinding.AllCategoryPostsWatchBinding
 import javax.inject.Inject
 
 class AllCategoryPosts : AppCompatActivity(), NetworkConnectionListenerInterface {
@@ -52,11 +52,11 @@ class AllCategoryPosts : AppCompatActivity(), NetworkConnectionListenerInterface
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
 
-    lateinit var allCategoryPostsBinding: AllCategoryPostsBinding
+    lateinit var allCategoryPostsBinding: AllCategoryPostsWatchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        allCategoryPostsBinding = AllCategoryPostsBinding.inflate(layoutInflater)
+        allCategoryPostsBinding = AllCategoryPostsWatchBinding.inflate(layoutInflater)
         setContentView(allCategoryPostsBinding.root)
 
         (application as AbanMagazinePhoneApplication)
