@@ -1,16 +1,17 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/12/20 5:51 AM
- * Last modified 8/12/20 5:44 AM
+ * Created by Elias Fazel on 8/13/20 12:10 AM
+ * Last modified 8/13/20 12:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
-include ':abanmagazinewatch'
+include ':AbanMagazinePhone'
+include ':AbanMagazineWatch'
+
 include ':BlurryEffectLibrary'
 include ':ShapesCustomImageViewLibrary'
 include ':LoadingSpin'
 
-include ':AbanMagazinePhone'
 rootProject.name = "Aban Magazine"

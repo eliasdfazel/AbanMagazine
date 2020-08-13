@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/13/20 12:10 AM
+  ~ Last modified 8/12/20 11:59 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootViewItem"
+    android:layout_width="match_parent"
+    android:layout_height="211dp"
+    android:layout_marginHorizontal="3dp"
+    android:layout_marginVertical="3dp"
+    android:elevation="3dp"
+    android:background="@drawable/newest_posts_item_background"
+
+    apps:layout_constraintDimensionRatio="1:1">
+
+    <net.geekstools.imageview.customshapes.ShapesImage
+        android:id="@+id/postFeatureImageView"
+        android:layout_width="match_parent"
+        android:layout_height="113dp"
+        android:transitionName="@string/featuredImageTransitionName"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+
+        apps:shapeDrawable="@drawable/related_post_feature_image_frame"
+
+        apps:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/postTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:paddingHorizontal="9dp"
+        android:paddingVertical="3dp"
+        android:lines="3"
+        android:ellipsize="end"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:textColor="@color/darker"
+        android:fontFamily="@font/persian_sans"
+        android:shadowColor="@color/dark_transparent"
+        android:shadowRadius="3"
+
+        apps:layout_constraintTop_toBottomOf="@id/postFeatureImageView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

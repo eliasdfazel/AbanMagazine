@@ -1,0 +1,100 @@
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/13/20 12:10 AM
+  ~ Last modified 8/12/20 11:59 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportHeight="512"
+    android:viewportWidth="512"
+    android:width="200dp"
+    android:height="200dp">
+
+  <group
+      android:scaleX="0.79"
+      android:scaleY="0.79"
+      android:pivotX="256"
+      android:pivotY="256">
+
+    <!-- Square -->
+    <path
+        android:pathData="m66,16h108c27.614,0 50,22.386 50,50v108c0,27.614 -22.386,50 -50,50h-108c-27.614,0 -50,-22.386 -50,-50v-108c0,-27.614 22.386,-50 50,-50z"
+        android:fillColor="@color/light_blue"/>
+    <path
+        android:pathData="m338,16h108c27.614,0 50,22.386 50,50v108c0,27.614 -22.386,50 -50,50h-108c-27.614,0 -50,-22.386 -50,-50v-108c0,-27.614 22.386,-50 50,-50z"
+        android:fillColor="@color/light_blue"/>
+    <path
+        android:pathData="m66,288h108c27.614,0 50,22.386 50,50v108c0,27.614 -22.386,50 -50,50h-108c-27.614,0 -50,-22.386 -50,-50v-108c0,-27.614 22.386,-50 50,-50z"
+        android:fillColor="@color/light_blue"/>
+    <path
+        android:pathData="m224,66v108c0,27.61 -22.39,50 -50,50h-40c27.61,0 50,-22.39 50,-50v-108c0,-27.61 -22.39,-50 -50,-50h40c27.61,0 50,22.39 50,50z"
+        android:fillColor="@color/light_blue"/>
+    <path
+        android:pathData="m496,66v108c0,27.61 -22.39,50 -50,50h-40c27.61,0 50,-22.39 50,-50v-108c0,-27.61 -22.39,-50 -50,-50h40c27.61,0 50,22.39 50,50z"
+        android:fillColor="@color/light_blue"/>
+    <path
+        android:pathData="m224,338v108c0,27.61 -22.39,50 -50,50h-40c27.61,0 50,-22.39 50,-50v-108c0,-27.61 -22.39,-50 -50,-50h40c27.61,0 50,22.39 50,50z"
+        android:fillColor="@color/light_blue"/>
+
+    <!-- Square Animated -->
+    <path
+        android:fillColor="@color/light_transparent_high"
+        android:pathData="m174,240h-108c-36.393,0 -66,-29.607 -66,-66v-108c0,-36.393 29.607,-66 66,-66h108c36.393,0 66,29.607 66,66v108c0,36.393 -29.607,66 -66,66zM66,32c-18.748,0 -34,15.252 -34,34v108c0,18.748 15.252,34 34,34h108c18.748,0 34,-15.252 34,-34v-108c0,-18.748 -15.252,-34 -34,-34z"/>
+    <path
+        android:pathData="m174,240h-108c-36.393,0 -66,-29.607 -66,-66v-108c0,-36.393 29.607,-66 66,-66h108c36.393,0 66,29.607 66,66v108c0,36.393 -29.607,66 -66,66zM66,32c-18.748,0 -34,15.252 -34,34v108c0,18.748 15.252,34 34,34h108c18.748,0 34,-15.252 34,-34v-108c0,-18.748 -15.252,-34 -34,-34z"
+        android:name="center_line_square_one"
+        android:strokeWidth="23"
+        android:strokeColor="@color/light_pink"
+        android:trimPathStart="0"
+        android:trimPathEnd="0.45" />
+
+    <path
+        android:fillColor="@color/light_transparent_high"
+        android:pathData="m446,240h-108c-36.393,0 -66,-29.607 -66,-66v-108c0,-36.393 29.607,-66 66,-66h108c36.393,0 66,29.607 66,66v108c0,36.393 -29.607,66 -66,66zM338,32c-18.748,0 -34,15.252 -34,34v108c0,18.748 15.252,34 34,34h108c18.748,0 34,-15.252 34,-34v-108c0,-18.748 -15.252,-34 -34,-34z"/>
+    <path
+        android:pathData="m446,240h-108c-36.393,0 -66,-29.607 -66,-66v-108c0,-36.393 29.607,-66 66,-66h108c36.393,0 66,29.607 66,66v108c0,36.393 -29.607,66 -66,66zM338,32c-18.748,0 -34,15.252 -34,34v108c0,18.748 15.252,34 34,34h108c18.748,0 34,-15.252 34,-34v-108c0,-18.748 -15.252,-34 -34,-34z"
+        android:name="center_line_square_two"
+        android:strokeWidth="23"
+        android:strokeColor="@color/light_pink"
+        android:trimPathStart="0"
+        android:trimPathEnd="0.45"/>
+
+
+    <path
+        android:fillColor="@color/light_transparent_high"
+        android:pathData="m174,512h-108c-36.393,0 -66,-29.607 -66,-66v-108c0,-36.393 29.607,-66 66,-66h108c36.393,0 66,29.607 66,66v108c0,36.393 -29.607,66 -66,66zM66,304c-18.748,0 -34,15.252 -34,34v108c0,18.748 15.252,34 34,34h108c18.748,0 34,-15.252 34,-34v-108c0,-18.748 -15.252,-34 -34,-34z"/>
+    <path
+        android:pathData="m174,512h-108c-36.393,0 -66,-29.607 -66,-66v-108c0,-36.393 29.607,-66 66,-66h108c36.393,0 66,29.607 66,66v108c0,36.393 -29.607,66 -66,66zM66,304c-18.748,0 -34,15.252 -34,34v108c0,18.748 15.252,34 34,34h108c18.748,0 34,-15.252 34,-34v-108c0,-18.748 -15.252,-34 -34,-34z"
+        android:name="center_line_square_three"
+        android:strokeWidth="23"
+        android:strokeColor="@color/light_pink"
+        android:trimPathStart="0"
+        android:trimPathEnd="0.45"/>
+
+    <!-- Circle -->
+    <path
+        android:pathData="m392,288c57.438,0 104,46.562 104,104 0,57.438 -46.562,104 -104,104 -57.438,0 -104,-46.562 -104,-104 0,-57.438 46.562,-104 104,-104z"
+        android:fillColor="@color/light_pink"/>
+    <path
+        android:pathData="m496,392c0,28.72 -11.64,54.72 -30.46,73.54s-44.82,30.46 -73.54,30.46c-6.84,0 -13.53,-0.66 -20,-1.93 20.7,-4.02 39.2,-14.19 53.54,-28.53 18.82,-18.82 30.46,-44.82 30.46,-73.54 0,-50.6 -36.13,-92.75 -84,-102.07 6.47,-1.27 13.16,-1.93 20,-1.93 57.44,0 104,46.56 104,104z"
+        android:fillColor="@color/light_pink"/>
+
+    <!-- Circle Animated -->
+    <path
+        android:fillColor="@color/light_transparent_high"
+        android:pathData="m392,512c-66.168,0 -120,-53.832 -120,-120s53.832,-120 120,-120 120,53.832 120,120 -53.832,120 -120,120zM392,304c-48.523,0 -88,39.477 -88,88s39.477,88 88,88 88,-39.477 88,-88 -39.477,-88 -88,-88z"/>
+    <path
+        android:pathData="m392,512c-66.168,0 -120,-53.832 -120,-120s53.832,-120 120,-120 120,53.832 120,120 -53.832,120 -120,120zM392,304c-48.523,0 -88,39.477 -88,88s39.477,88 88,88 88,-39.477 88,-88 -39.477,-88 -88,-88z"
+        android:name="center_line_circle"
+        android:strokeWidth="23"
+        android:strokeColor="@color/light_blue"
+        android:trimPathStart="1"
+        android:trimPathEnd="0.43"
+        />
+  </group>
+
+</vector>

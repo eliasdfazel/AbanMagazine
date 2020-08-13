@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/13/20 12:10 AM
+  ~ Last modified 8/12/20 11:59 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <net.geeksempire.blurry.effect.view.RealtimeBlurView
+        android:id="@+id/searchesBlurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        apps:realtimeBlurRadius="13dp"
+        apps:realtimeOverlayColor="@color/default_color_light_transparent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/searchViewAction"
+        android:layout_width="77dp"
+        android:layout_height="93dp"
+        android:layout_marginVertical="19dp"
+        android:paddingHorizontal="7dp"
+        android:layout_marginEnd="9dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_search"
+
+        apps:layout_constraintEnd_toEndOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout xmlns:apps="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/textInputSearchView"
+        android:layout_width="0dp"
+        android:layout_height="93dp"
+        android:layout_marginHorizontal="3dp"
+        android:layout_marginVertical="19dp"
+        android:paddingHorizontal="11dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="7dp"
+        android:gravity="center_vertical"
+        android:imeOptions="actionSearch"
+        android:hint="@string/typeToSearch"
+        android:textColorHint="@color/default_color_game_light"
+
+        apps:boxBackgroundMode="outline"
+        apps:boxBackgroundColor="@color/dark_transparent_high"
+        apps:boxCornerRadiusTopStart="51dp"
+        apps:boxCornerRadiusTopEnd="51dp"
+        apps:boxCornerRadiusBottomStart="51dp"
+        apps:boxCornerRadiusBottomEnd="51dp"
+        apps:boxStrokeColor="@color/default_color_game_light"
+        apps:boxStrokeWidth="2dp"
+        apps:hintEnabled="true"
+        apps:hintAnimationEnabled="true"
+        apps:hintTextColor="@color/default_color_game_light"
+        apps:errorEnabled="true"
+        apps:errorTextColor="@color/red"
+
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toStartOf="@id/searchViewAction"
+        apps:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText xmlns:apps="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="29dp"
+            android:paddingEnd="29dp"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:lines="1"
+            android:inputType="text|textAutoComplete"
+            android:textSize="21sp"
+            android:textColor="@color/light"
+            android:textColorHint="@color/light"
+            android:fontFamily="@font/persian_sans"
+            android:cursorVisible="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loadingView"
+        android:layout_width="159dp"
+        android:layout_height="159dp"
+        android:layout_marginBottom="33dp"
+        android:visibility="invisible"
+
+        apps:lottie_rawRes="@raw/searching_loading_animation"
+        apps:lottie_repeatMode="restart"
+        apps:lottie_loop="true"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

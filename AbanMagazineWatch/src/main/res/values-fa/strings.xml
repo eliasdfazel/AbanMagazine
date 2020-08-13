@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/13/20 12:10 AM
+  ~ Last modified 8/12/20 11:59 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<resources>
+
+    <string name="applicationName">آبان</string>
+
+    <string name="preferencesText">تنظیمات</string>
+    <string name="signupText">ثبت نام</string>
+    <string name="rateText">امتیاز پنج ستاره بدهید</string>
+    <string name="shareText">برنامه ما را با دوستان خود به اشتراک بگذارید</string>
+
+    <string name="rateFiveStars">لطفا امتیاز ۵ ستاره بدهید با سپاس ✨✨✨✨✨</string>
+
+    <string name="searchText">جستجو</string>
+    <string name="typeToSearch">برای جستجو بنویسید…</string>
+    <string name="searchError">⚠ اشکال در شبکه</string>
+
+    <string name="featuredPostsText">پست های ویژه</string>
+    <string name="newestPostsText">جدیدترین ها</string>
+    <string name="forYouPostsText">پیشنهاد برای شما</string>
+    <string name="relatedPosts">مطالب مرتبط</string>
+
+    <string name="noMoreContent">مطلب دیگری یافت نشد</string>
+    <string name="turnOnText">روشن کردن</string>
+
+    <string name="clickHere">
+        <![CDATA[
+            اینجا کلیک کنید
+            <br/>
+            👇
+        ]]>
+    </string>
+
+    <string name="showFullScreen">نمایش تمام صفحه</string>
+
+    <string name="noInternetConnectionText">" ⚠ دسترسی به اینترنت مقدور نیست "</string>
+
+    <string name="inAppUpdateDescription">اطلاعات برای بروزرسانی آمده است</string>
+    <string name="inAppUpdateAction">
+        <![CDATA[
+            کامل کنید!
+        ]]>
+    </string>
+
+</resources>

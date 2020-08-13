@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 8/13/20 12:10 AM
+  ~ Last modified 8/12/20 11:59 PM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <net.geeksempire.blurry.effect.view.RealtimeBlurView
+        android:id="@+id/preferencesBlurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        apps:realtimeBlurRadius="13dp"
+        apps:realtimeOverlayColor="@color/default_color_light_transparent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/toggleTheme"
+        android:layout_width="159dp"
+        android:layout_height="159dp"
+        android:layout_margin="13dp"
+
+        apps:lottie_rawRes="@raw/toggle_theme"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settingsView"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="11dp"
+        android:layout_margin="13dp"
+        android:contentDescription="@string/preferencesText"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:visibility="invisible"
+
+        apps:cornerRadius="51dp"
+        apps:elevation="23dp"
+        apps:icon="@drawable/setting_icon"
+        apps:iconSize="37sp"
+        apps:iconGravity="textStart"
+        apps:iconPadding="0dp"
+        apps:rippleColor="@color/cyberGreen"
+        apps:backgroundTint="@color/default_color_transparent"
+
+        apps:layout_constraintTop_toTopOf="@id/toggleTheme"
+        apps:layout_constraintBottom_toBottomOf="@id/toggleTheme"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupView"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="11dp"
+        android:layout_margin="13dp"
+        android:contentDescription="@string/signupText"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:visibility="invisible"
+
+        apps:cornerRadius="51dp"
+        apps:elevation="23dp"
+        apps:icon="@drawable/sign_up_icon"
+        apps:iconSize="37sp"
+        apps:iconGravity="textStart"
+        apps:iconPadding="0dp"
+        apps:rippleColor="@color/cyberGreen"
+        apps:backgroundTint="@color/default_color_transparent"
+
+        apps:layout_constraintTop_toTopOf="@id/toggleTheme"
+        apps:layout_constraintBottom_toBottomOf="@id/toggleTheme"
+        apps:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/instagramView"
+        android:layout_width="159dp"
+        android:layout_height="159dp"
+        android:layout_marginVertical="13dp"
+        android:src="@drawable/instagram_icon"
+
+        apps:layout_constraintBottom_toBottomOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/twitterView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/twitter_icon"
+
+        apps:layout_constraintBottom_toTopOf="@id/instagramView"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/youtubeView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/youtube_icon"
+
+        apps:layout_constraintBottom_toTopOf="@id/instagramView"
+        apps:layout_constraintEnd_toEndOf="@id/instagramView"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/pinterestView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/pinterest_icon"
+
+        apps:layout_constraintBottom_toTopOf="@id/instagramView"
+        apps:layout_constraintStart_toStartOf="@id/instagramView"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/shareView"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
+        android:layout_marginHorizontal="13dp"
+        android:visibility="visible"
+
+        apps:layout_constraintTop_toTopOf="@id/instagramView"
+        apps:layout_constraintBottom_toBottomOf="@id/instagramView"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toStartOf="@id/instagramView"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/rateFavoriteView"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
+        android:layout_marginHorizontal="13dp"
+        android:visibility="visible"
+
+        apps:lottie_rawRes="@raw/favorite_it_animation"
+
+        apps:layout_constraintTop_toTopOf="@id/instagramView"
+        apps:layout_constraintBottom_toBottomOf="@id/instagramView"
+        apps:layout_constraintEnd_toEndOf="parent"
+        apps:layout_constraintStart_toEndOf="@id/instagramView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
