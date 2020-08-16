@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/16/20 5:15 AM
- * Last modified 8/16/20 5:15 AM
+ * Created by Elias Fazel on 8/16/20 5:54 AM
+ * Last modified 8/16/20 5:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,10 +30,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 
 data class PopupShortcutsItems(var shortcutIndex: Int,
                                var shortcutId: String,
@@ -50,6 +47,8 @@ class PopupShortcutsCreator (private val context: AppCompatActivity) {
 
     @RequiresApi(Build.VERSION_CODES.N_MR1)
     fun buildAppShortcut(listOfShortcutsRawData: ArrayList<Any>, shortcutType: String) = CoroutineScope(Dispatchers.IO).async {
+
+        delay(3000)
 
         when (shortcutType) {
             PopupShortcutsCreator.TYPE.Category -> {
