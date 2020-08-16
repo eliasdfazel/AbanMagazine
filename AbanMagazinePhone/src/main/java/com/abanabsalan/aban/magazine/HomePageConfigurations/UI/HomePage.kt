@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/11/20 3:29 AM
- * Last modified 8/11/20 3:10 AM
+ * Created by Elias Fazel on 8/16/20 5:15 AM
+ * Last modified 8/16/20 5:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.app.ActivityOptions
 import android.app.PictureInPictureParams
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -45,6 +46,7 @@ import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
+import com.abanabsalan.aban.magazine.Utils.PopupShortcuts.PopupShortcutsCreator
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -240,6 +242,16 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                         secondaryCategoryAdapter.categoriesItemData.addAll(secondaryCategoriesData)
 
                         homePageViewBinding.secondaryCategoriesRecyclerView.adapter = secondaryCategoryAdapter
+
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+
+                        PopupShortcutsCreator(this@HomePage)
+                            .buildAppShortcut(
+                                it as ArrayList<Any>,
+                                PopupShortcutsCreator.TYPE.Category
+                            )
 
                     }
 
