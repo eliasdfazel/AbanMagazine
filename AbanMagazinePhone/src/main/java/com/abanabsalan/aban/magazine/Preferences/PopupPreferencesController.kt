@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 3:38 AM
- * Last modified 8/21/20 3:38 AM
+ * Created by Elias Fazel on 8/21/20 7:48 AM
+ * Last modified 8/21/20 7:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,6 +28,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -39,8 +40,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kotlinx.coroutines.Job
 
-class PopupPreferencesController (private val context: AppCompatActivity,
-                                  private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding) {
+
+class PopupPreferencesController(
+    private val context: AppCompatActivity,
+    private val preferencesPopupUiViewBinding: PreferencesPopupUiViewBinding
+) {
 
     private val overallTheme: OverallTheme by lazy {
         OverallTheme(context)
@@ -148,25 +152,45 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.instagramLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.instagramLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.twitterView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.twitterLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.twitterLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.pinterestView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.pinterestLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.pinterestLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.youtubeView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.youtubeLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.youtubeLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
@@ -205,9 +229,11 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnLongClickListener {
 
-            Toast.makeText(context,
+            Toast.makeText(
+                context,
                 context.getString(R.string.rateFiveStars),
-                Toast.LENGTH_LONG).show()
+                Toast.LENGTH_LONG
+            ).show()
 
             Intent().apply {
                 action = Intent.ACTION_VIEW
@@ -285,7 +311,11 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
             } else {
 
-                preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.unfavorite_it_icon))
+                preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(
+                    context.getDrawable(
+                        R.drawable.unfavorite_it_icon
+                    )
+                )
 
             }
 
@@ -293,33 +323,67 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.instagramLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.instagramLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.twitterView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.twitterLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.twitterLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.pinterestView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.pinterestLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.pinterestLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.youtubeView.setOnClickListener {
 
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.youtubeLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(context.getString(R.string.youtubeLink))
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
 
         }
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            val userInformation = UserInformation(context)
-
             val firestoreDatabase = FirestoreConfiguration(context).initialize()
+
+            val userInformation = UserInformation(context as SinglePostView, object : UserSignIn {
+
+                override fun signInSuccessful(accountName: String) {
+
+                    //do database operation
+
+                }
+
+                override fun signInDismissed() {
+
+
+
+                }
+
+            })
 
             favoriteIt.favoriteInterface =  object :
                 FavoriteInterface {
@@ -331,6 +395,22 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                     preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
                     preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
 
+                    /*
+                    *
+                    *
+                    * */
+                    if (userInformation.userSignedIn()) {
+
+                        val accountName = userInformation.getUserAccountName()
+                        //do database operation
+
+                    } else {
+
+                        userInformation.startSignInProcess()
+
+                    }
+
+                    userInformation.startSignInProcess()
 
 
                     return super.favoritedIt()
@@ -341,7 +421,10 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
                     preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.unfavorite_it_icon))
 
-                    //Start Room Database Process
+                    /*
+                     *
+                     *
+                     * */
 
                     return super.unfavoritedIt()
                 }
@@ -369,9 +452,15 @@ class PopupPreferencesController (private val context: AppCompatActivity,
         preferencesPopupUiViewBinding.shareView.setOnClickListener {
 
             SharePost(context).invoke(
-                sharePostTitle = Html.fromHtml((context as SinglePostView).postTitle?:context.getString(R.string.applicationName)).toString(),
-                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString()).toString(),
-                sharePostLink = (context as SinglePostView).postLink?:context.getString(R.string.playStoreLink)
+                sharePostTitle = Html.fromHtml(
+                    (context as SinglePostView).postTitle ?: context.getString(
+                        R.string.applicationName
+                    )
+                ).toString(),
+                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString())
+                    .toString(),
+                sharePostLink = (context as SinglePostView).postLink
+                    ?: context.getString(R.string.playStoreLink)
             )
 
         }

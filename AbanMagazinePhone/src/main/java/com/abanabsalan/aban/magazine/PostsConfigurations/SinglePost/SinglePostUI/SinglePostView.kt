@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/11/20 3:29 AM
- * Last modified 8/11/20 3:11 AM
+ * Created by Elias Fazel on 8/21/20 7:48 AM
+ * Last modified 8/21/20 7:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 
+import android.accounts.AccountManager
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
@@ -31,6 +32,8 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.s
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -43,7 +46,7 @@ import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 import org.json.JSONArray
 
-class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnOffsetChangedListener {
+open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayout.OnOffsetChangedListener {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
@@ -71,6 +74,8 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
     var dominantColor: Int? = null
     var vibrantColor: Int? = null
+
+    lateinit var userSignIn: UserSignIn
 
     val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(applicationContext)
@@ -257,6 +262,25 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        data?.let {
+
+            when (requestCode) {
+                UserInformation.AccountPickerRequestCode -> {
+
+                    val accountName: String = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
+
+                    userSignIn.signInSuccessful(accountName)
+
+                }
+            }
+
+        }
+
+    }
+
     override fun onSwipeGesture(gestureConstants: GestureConstants, downMotionEvent: MotionEvent, moveMotionEvent: MotionEvent, initVelocityX: Float, initVelocityY: Float) {
         super.onSwipeGesture(gestureConstants, downMotionEvent, moveMotionEvent, initVelocityX, initVelocityY)
 
@@ -283,4 +307,5 @@ class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBarLayo
         }
 
     }
+
 }
