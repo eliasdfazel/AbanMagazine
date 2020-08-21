@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 7:48 AM
- * Last modified 8/21/20 7:33 AM
+ * Created by Elias Fazel on 8/21/20 7:49 AM
+ * Last modified 8/21/20 7:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -409,9 +409,6 @@ class PopupPreferencesController(
                         userInformation.startSignInProcess()
 
                     }
-
-                    userInformation.startSignInProcess()
-
 
                     return super.favoritedIt()
                 }
