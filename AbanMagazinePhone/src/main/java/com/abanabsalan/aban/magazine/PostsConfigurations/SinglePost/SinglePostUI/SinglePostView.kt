@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:17 AM
- * Last modified 8/21/20 8:15 AM
+ * Created by Elias Fazel on 8/21/20 8:37 AM
+ * Last modified 8/21/20 8:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,8 +41,13 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemePostView
 import com.abanabsalan.aban.magazine.databinding.PostsViewUiBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 import org.json.JSONArray
@@ -81,6 +86,8 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
     private val userInformationIO: UserInformationIO by lazy {
         UserInformationIO(applicationContext)
     }
+
+    val firebaseAuth = Firebase.auth
 
     val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(applicationContext)
@@ -280,6 +287,34 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
                     userInformationIO.saveUserInformation(accountName)
 
                     userSignIn.signInSuccessful(accountName)
+
+                }
+                UserInformation.GoogleSignInRequestCode -> {
+
+                    val googleSignInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    val googleSignInAccount = googleSignInAccountTask.getResult(ApiException::class.java)
+
+                    val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount?.idToken, null)
+                    firebaseAuth.signInWithCredential(authCredential).addOnSuccessListener {
+
+                        val firebaseUser = firebaseAuth.currentUser
+
+                        if (firebaseUser != null) {
+
+                            val accountName: String = firebaseAuth.currentUser.email.toString()
+
+                            userInformationIO.saveUserInformation(accountName)
+
+                            userSignIn.signInSuccessful(accountName)
+
+                        }
+
+                    }.addOnFailureListener {
+
+                    }
+
+                }
+                else -> {
 
                 }
             }

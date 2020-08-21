@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:17 AM
- * Last modified 8/21/20 8:13 AM
+ * Created by Elias Fazel on 8/21/20 8:37 AM
+ * Last modified 8/21/20 8:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,10 @@
 package com.abanabsalan.aban.magazine.Utils.AccountManager
 
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.System.SystemInformation
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.AccountPicker
 import java.util.*
 
@@ -24,6 +27,7 @@ class UserInformation(private val context: SinglePostView, private val userSignI
 
     companion object {
         const val AccountPickerRequestCode = 123
+        const val GoogleSignInRequestCode = 321
     }
 
     fun startSignInProcess() {
@@ -44,7 +48,19 @@ class UserInformation(private val context: SinglePostView, private val userSignI
 
         } else {
 
-            //firebase authentication process
+            if (context.firebaseAuth.currentUser == null) {
+
+                val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(context.getString(R.string.webClientId))
+                    .requestEmail()
+                    .build()
+
+                val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+                googleSignInClient.signInIntent.run {
+                    context.startActivityForResult(this@run, UserInformation.GoogleSignInRequestCode)
+                }
+
+            }
 
         }
 
