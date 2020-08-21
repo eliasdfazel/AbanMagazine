@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 3:05 AM
- * Last modified 8/21/20 2:57 AM
+ * Created by Elias Fazel on 8/21/20 3:38 AM
+ * Last modified 8/21/20 3:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore
 
 import android.content.Context
+import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.Utils.System.SystemInformation
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -32,10 +33,9 @@ class FirestoreConfiguration (private val context: Context) {
 
         firebaseFirestore.firestoreSettings = firebaseFirestoreSettings
 
-        if (systemInformation.getCountryIso().toUpperCase(Locale.getDefault()) == "IR"
-            || systemInformation.getCountryIso() == "Undefined") {
+        if (BuildConfig.DEBUG) {
 
-            firebaseFirestore.disableNetwork().addOnSuccessListener {
+            firebaseFirestore.enableNetwork().addOnSuccessListener {
 
             }.addOnFailureListener {
 
@@ -43,9 +43,22 @@ class FirestoreConfiguration (private val context: Context) {
 
         } else {
 
-            firebaseFirestore.enableNetwork().addOnSuccessListener {
+            if (systemInformation.getCountryIso().toUpperCase(Locale.getDefault()) == "IR"
+                || systemInformation.getCountryIso() == "Undefined") {
 
-            }.addOnFailureListener {
+                firebaseFirestore.disableNetwork().addOnSuccessListener {
+
+                }.addOnFailureListener {
+
+                }
+
+            } else {
+
+                firebaseFirestore.enableNetwork().addOnSuccessListener {
+
+                }.addOnFailureListener {
+
+                }
 
             }
 

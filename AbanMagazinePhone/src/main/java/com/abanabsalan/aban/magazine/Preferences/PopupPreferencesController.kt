@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/9/20 10:52 PM
- * Last modified 8/9/20 10:47 PM
+ * Created by Elias Fazel on 8/21/20 3:38 AM
+ * Last modified 8/21/20 3:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,10 +22,12 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopup
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore.FirestoreConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -315,6 +317,10 @@ class PopupPreferencesController (private val context: AppCompatActivity,
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
+            val userInformation = UserInformation(context)
+
+            val firestoreDatabase = FirestoreConfiguration(context).initialize()
+
             favoriteIt.favoriteInterface =  object :
                 FavoriteInterface {
 
@@ -325,7 +331,7 @@ class PopupPreferencesController (private val context: AppCompatActivity,
                     preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
                     preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
 
-                    //Start Room Database Process
+
 
                     return super.favoritedIt()
                 }
