@@ -2,7 +2,7 @@
  * Copyright © 2020 By Geeks Empire.
  *
  * Created by Elias Fazel on 8/21/20 7:48 AM
- * Last modified 8/21/20 7:47 AM
+ * Last modified 8/21/20 7:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,6 @@
 
 package com.abanabsalan.aban.magazine.Utils.AccountManager
 
-import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
 import com.abanabsalan.aban.magazine.Utils.Preferences.SavePreferences
@@ -34,7 +33,7 @@ class UserInformation(private val context: SinglePostView, private val userSignI
         val systemInformation = SystemInformation(context)
 
         if (systemInformation.getCountryIso().toUpperCase(Locale.getDefault()) == "IR"
-            || systemInformation.getCountryIso() == "Undefined" || BuildConfig.DEBUG) {
+            || systemInformation.getCountryIso() == "Undefined") {
 
             context.userSignIn = userSignIn
 
