@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:37 AM
- * Last modified 8/21/20 8:37 AM
+ * Created by Elias Fazel on 8/21/20 8:38 AM
+ * Last modified 8/21/20 8:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -301,7 +301,7 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
 
                         if (firebaseUser != null) {
 
-                            val accountName: String = firebaseAuth.currentUser.email.toString()
+                            val accountName: String = firebaseUser.email.toString()
 
                             userInformationIO.saveUserInformation(accountName)
 
