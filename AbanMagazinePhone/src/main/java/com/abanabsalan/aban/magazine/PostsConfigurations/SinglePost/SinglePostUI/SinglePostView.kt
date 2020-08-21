@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 7:48 AM
- * Last modified 8/21/20 7:47 AM
+ * Created by Elias Fazel on 8/21/20 8:17 AM
+ * Last modified 8/21/20 8:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
@@ -76,6 +77,10 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
     var vibrantColor: Int? = null
 
     lateinit var userSignIn: UserSignIn
+
+    private val userInformationIO: UserInformationIO by lazy {
+        UserInformationIO(applicationContext)
+    }
 
     val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(applicationContext)
@@ -271,6 +276,8 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
                 UserInformation.AccountPickerRequestCode -> {
 
                     val accountName: String = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
+
+                    userInformationIO.saveUserInformation(accountName)
 
                     userSignIn.signInSuccessful(accountName)
 

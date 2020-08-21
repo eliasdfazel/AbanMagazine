@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 7:49 AM
- * Last modified 8/21/20 7:49 AM
+ * Created by Elias Fazel on 8/21/20 8:17 AM
+ * Last modified 8/21/20 8:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,6 +28,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
@@ -285,10 +286,7 @@ class PopupPreferencesController(
 
     private fun socialMediaActionPostView(postId: String?) {
 
-        val favoriteIt: FavoriteIt =
-            FavoriteIt(
-                context
-            )
+        val favoriteIt: FavoriteIt = FavoriteIt(context)
 
         Handler().postDelayed({
 
@@ -369,11 +367,15 @@ class PopupPreferencesController(
 
             val firestoreDatabase = FirestoreConfiguration(context).initialize()
 
+            val userInformationIO = UserInformationIO(context)
+
             val userInformation = UserInformation(context as SinglePostView, object : UserSignIn {
 
                 override fun signInSuccessful(accountName: String) {
 
+                    userInformationIO.saveUserInformation(accountName)
                     //do database operation
+
 
                 }
 
@@ -385,8 +387,7 @@ class PopupPreferencesController(
 
             })
 
-            favoriteIt.favoriteInterface =  object :
-                FavoriteInterface {
+            favoriteIt.favoriteInterface =  object : FavoriteInterface {
 
                 override fun favoritedIt() : Job {
                     Log.d(FavoriteIt.PreferenceName, "${postId} Favorited")
@@ -396,12 +397,12 @@ class PopupPreferencesController(
                     preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
 
                     /*
-                    *
-                    *
-                    * */
-                    if (userInformation.userSignedIn()) {
+                     *
+                     *
+                     * */
+                    if (userInformationIO.userSignedIn()) {
 
-                        val accountName = userInformation.getUserAccountName()
+                        val accountName = userInformationIO.getUserAccountName()
                         //do database operation
 
                     } else {
