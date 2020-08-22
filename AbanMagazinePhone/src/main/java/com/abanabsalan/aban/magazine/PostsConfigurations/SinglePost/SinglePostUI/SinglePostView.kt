@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:38 AM
- * Last modified 8/21/20 8:38 AM
+ * Created by Elias Fazel on 8/22/20 9:26 AM
+ * Last modified 8/22/20 9:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,6 +36,7 @@ import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
+import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -93,6 +94,12 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         FirebaseAnalytics.getInstance(applicationContext)
     }
 
+    val networkCheckpoint: NetworkCheckpoint by lazy {
+        NetworkCheckpoint(applicationContext)
+    }
+
+    val favoritedPostData: HashMap<String, Any?> = HashMap<String, Any?>()
+
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
     companion object {
@@ -140,16 +147,25 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         adsConfiguration.initialize()
 
         postId = intent.getStringExtra(PostsDataParameters.PostParameters.PostId)
+        favoritedPostData[PostsDataParameters.PostParameters.PostId] = postId
 
         featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
+        favoritedPostData[PostsDataParameters.PostParameters.PostFeaturedImage] = featureImageLink
 
         postTitle = intent.getStringExtra(PostsDataParameters.PostParameters.PostTitle)
+        favoritedPostData[PostsDataParameters.PostParameters.PostTitle] = postTitle
+
         postExcerpt = intent.getStringExtra(PostsDataParameters.PostParameters.PostExcerpt)
+        favoritedPostData[PostsDataParameters.PostParameters.PostExcerpt] = postExcerpt
+
         postLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostLink)
+        favoritedPostData[PostsDataParameters.PostParameters.PostLink] = postLink
 
         rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
+        favoritedPostData[PostsDataParameters.PostParameters.PostContent] = rawPostContent
 
         relatedPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.RelatedPosts)
+        favoritedPostData[PostsDataParameters.PostParameters.RelatedPosts] = relatedPostContent
 
         PopupPreferencesController(this@SinglePostView, postsViewUiBinding.preferencePopupInclude)
             .initializeForPostView(postId)
@@ -282,11 +298,19 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
             when (requestCode) {
                 UserInformation.AccountPickerRequestCode -> {
 
-                    val accountName: String = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
+                    val accountName: String? = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
 
-                    userInformationIO.saveUserInformation(accountName)
+                    if (accountName != null) {
 
-                    userSignIn.signInSuccessful(accountName)
+                        userInformationIO.saveUserInformation(accountName)
+
+                        userSignIn.signInSuccessful(accountName)
+
+                    } else {
+
+                        userSignIn.signInDismissed()
+
+                    }
 
                 }
                 UserInformation.GoogleSignInRequestCode -> {
@@ -310,6 +334,8 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
                         }
 
                     }.addOnFailureListener {
+
+                        userSignIn.signInDismissed()
 
                     }
 

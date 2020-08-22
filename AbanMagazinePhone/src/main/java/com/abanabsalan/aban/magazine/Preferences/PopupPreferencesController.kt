@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:17 AM
- * Last modified 8/21/20 8:16 AM
+ * Created by Elias Fazel on 8/22/20 9:26 AM
+ * Last modified 8/22/20 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -365,7 +365,8 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            val firestoreDatabase = FirestoreConfiguration(context).initialize()
+            val firestoreConfiguration: FirestoreConfiguration = FirestoreConfiguration(context)
+            val firestoreDatabase = firestoreConfiguration.initialize()
 
             val userInformationIO = UserInformationIO(context)
 
@@ -374,8 +375,30 @@ class PopupPreferencesController(
                 override fun signInSuccessful(accountName: String) {
 
                     userInformationIO.saveUserInformation(accountName)
-                    //do database operation
 
+                    /*
+                     * Database Process
+                     */
+                    accountName?.let {
+
+                        postId?.let {
+
+                            val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
+
+                            val databasePath = firestoreConfiguration.favoritedPostedDatabasePath(accountName, postId)
+
+                            firestoreDatabase.document(databasePath).set(favoritedPostData)
+                                .addOnSuccessListener {
+
+
+                                }.addOnFailureListener {
+
+
+                                }
+
+                        }
+
+                    }
 
                 }
 
@@ -396,14 +419,33 @@ class PopupPreferencesController(
                     preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
                     preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
 
-                    /*
-                     *
-                     *
-                     * */
                     if (userInformationIO.userSignedIn()) {
 
+                        /*
+                         * Database Process
+                         */
                         val accountName = userInformationIO.getUserAccountName()
-                        //do database operation
+
+                        accountName?.let {
+
+                            postId?.let {
+
+                                val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
+
+                                val databasePath = firestoreConfiguration.favoritedPostedDatabasePath(accountName, postId)
+
+                                firestoreDatabase.document(databasePath).set(favoritedPostData)
+                                    .addOnSuccessListener {
+
+
+                                    }.addOnFailureListener {
+
+
+                                    }
+
+                            }
+
+                        }
 
                     } else {
 
@@ -420,9 +462,28 @@ class PopupPreferencesController(
                     preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.unfavorite_it_icon))
 
                     /*
-                     *
-                     *
-                     * */
+                    * Database Process
+                    */
+                    val accountName = userInformationIO.getUserAccountName()
+
+                    accountName?.let {
+
+                        postId?.let {
+
+                            val databasePath = firestoreConfiguration.favoritedPostedDatabasePath(accountName, postId)
+
+                            firestoreDatabase.document(databasePath).delete()
+                                .addOnSuccessListener {
+
+
+                                }.addOnFailureListener {
+
+
+                                }
+
+                        }
+
+                    }
 
                     return super.unfavoritedIt()
                 }

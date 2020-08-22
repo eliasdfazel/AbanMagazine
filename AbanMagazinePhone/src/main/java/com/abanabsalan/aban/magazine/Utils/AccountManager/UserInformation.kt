@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:37 AM
- * Last modified 8/21/20 8:37 AM
+ * Created by Elias Fazel on 8/22/20 9:26 AM
+ * Last modified 8/22/20 8:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,18 +26,34 @@ interface UserSignIn {
 class UserInformation(private val context: SinglePostView, private val userSignIn: UserSignIn) {
 
     companion object {
-        const val AccountPickerRequestCode = 123
-        const val GoogleSignInRequestCode = 321
+        const val AccountPickerRequestCode = 101
+        const val GoogleSignInRequestCode = 103
     }
 
     fun startSignInProcess() {
 
         val systemInformation = SystemInformation(context)
 
-        if (systemInformation.getCountryIso().toUpperCase(Locale.getDefault()) == "IR"
-            || systemInformation.getCountryIso() == "Undefined") {
+        context.userSignIn = userSignIn
 
-            context.userSignIn = userSignIn
+        if (context.networkCheckpoint.networkConnectionVpn()) {
+
+            if (context.firebaseAuth.currentUser == null) {
+
+                val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(context.getString(R.string.webClientId))
+                    .requestEmail()
+                    .build()
+
+                val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+                googleSignInClient.signInIntent.run {
+                    context.startActivityForResult(this@run, UserInformation.GoogleSignInRequestCode)
+                }
+
+            }
+
+        } else if (systemInformation.getCountryIso().toUpperCase(Locale.getDefault()) == "IR"
+            || systemInformation.getCountryIso() == "Undefined") {
 
             val accountPickerIntent = AccountPicker.newChooseAccountIntent(
                 AccountPicker.AccountChooserOptions.Builder()
