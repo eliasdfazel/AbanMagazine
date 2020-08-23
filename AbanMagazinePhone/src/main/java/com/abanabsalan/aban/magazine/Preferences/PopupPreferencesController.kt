@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/22/20 9:26 AM
- * Last modified 8/22/20 9:24 AM
+ * Created by Elias Fazel on 8/23/20 6:22 AM
+ * Last modified 8/23/20 6:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -319,6 +319,12 @@ class PopupPreferencesController(
 
         }
 
+        val userInformationIO = UserInformationIO(context)
+
+        val firestoreConfiguration: FirestoreConfiguration = FirestoreConfiguration(context)
+
+        val firestoreDatabase = firestoreConfiguration.initialize()
+
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
             context.startActivity(
@@ -365,10 +371,6 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-            val firestoreConfiguration: FirestoreConfiguration = FirestoreConfiguration(context)
-            val firestoreDatabase = firestoreConfiguration.initialize()
-
-            val userInformationIO = UserInformationIO(context)
 
             val userInformation = UserInformation(context as SinglePostView, object : UserSignIn {
 
@@ -390,9 +392,8 @@ class PopupPreferencesController(
                             firestoreDatabase.document(databasePath).set(favoritedPostData)
                                 .addOnSuccessListener {
 
-
                                 }.addOnFailureListener {
-
+                                    it.printStackTrace()
 
                                 }
 
@@ -439,6 +440,7 @@ class PopupPreferencesController(
 
 
                                     }.addOnFailureListener {
+                                        it.printStackTrace()
 
 
                                     }
