@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/23/20 7:09 AM
- * Last modified 8/23/20 7:08 AM
+ * Created by Elias Fazel on 8/23/20 7:10 AM
+ * Last modified 8/23/20 7:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,6 @@
 package com.abanabsalan.aban.magazine.Utils.IndexingConfiguration
 
 import android.net.Uri
-import com.google.android.gms.tasks.Task
 
 class ApplicationIndexing {
 
@@ -28,31 +27,28 @@ class ApplicationIndexing {
             .setUrl(BASE_URL.buildUpon().appendPath(contentAppIndex).build().toString())
             .build()
 
-        val updateTask: Task<Void> = FirebaseAppIndex.getInstance().update(articleToIndex)
+        FirebaseAppIndex.getInstance().update(articleToIndex)
+            .addOnSuccessListener {
 
-        updateTask.addOnSuccessListener {
 
+            }.addOnFailureListener { e ->
+                e.printStackTrace()
 
-        }.addOnFailureListener { e ->
-            e.printStackTrace()
+            }
 
-        }
-
-        val startTask: Task<Void> = FirebaseUserActions.getInstance()
+        FirebaseUserActions.getInstance()
             .start(
                 getAction(
                     contentAppIndex,
                     BASE_URL.buildUpon().appendPath(contentAppIndex).build().toString()
                 )
-            )
-
-        startTask.addOnSuccessListener {
+            ).addOnSuccessListener {
 
 
-        }.addOnFailureListener { e ->
-            e.printStackTrace()
+            }.addOnFailureListener { e ->
+                e.printStackTrace()
 
-        }
+            }
 
     }
 
