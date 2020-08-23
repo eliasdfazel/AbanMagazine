@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 3:05 AM
- * Last modified 8/21/20 2:53 AM
+ * Created by Elias Fazel on 8/23/20 9:07 AM
+ * Last modified 8/23/20 8:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
 import android.telephony.TelephonyManager
-import com.abanabsalan.aban.magazine.Utils.Data.capitalizeFirstChar
+import com.abanabsalan.aban.magazine.Utils.Extensions.capitalizeFirstChar
 
 class SystemInformation(private val context: Context) {
 

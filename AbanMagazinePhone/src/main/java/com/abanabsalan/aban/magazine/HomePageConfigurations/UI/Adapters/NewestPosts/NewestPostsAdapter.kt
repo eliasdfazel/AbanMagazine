@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 4:45 AM
- * Last modified 8/5/20 4:42 AM
+ * Created by Elias Fazel on 8/23/20 9:07 AM
+ * Last modified 8/23/20 8:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -141,6 +141,14 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
             .submit()
 
         newestPostsViewHolder.postTitleView.text = Html.fromHtml(newestPostsItemData[position].postTitle)
+
+        context.applicationDataIndexing.insert(
+            indexLink = newestPostsItemData[position].postLink,
+            indexId = newestPostsItemData[position].postId,
+            indexTitle = Html.fromHtml(newestPostsItemData[position].postTitle).toString(),
+            indexDescription = Html.fromHtml(newestPostsItemData[position].postExcerpt).toString(),
+            indexImage = newestPostsItemData[position].postFeaturedImage
+        )
 
         newestPostsViewHolder.rootViewItem.setOnClickListener {
 

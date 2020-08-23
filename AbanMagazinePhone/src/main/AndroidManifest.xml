@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/21/20 7:48 AM
-  ~ Last modified 8/21/20 5:23 AM
+  ~ Created by Elias Fazel on 8/23/20 9:07 AM
+  ~ Last modified 8/23/20 8:55 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -197,8 +197,39 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:noHistory="true"
+            android:theme="@style/GeeksEmpire.Material.Mediate"
+            android:name=".Utils.Data.SearchIndexMediateClass">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/applicationName">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="www.abanabsalan.com"
+                    android:pathPrefix="/indexing"
+                    android:scheme="https"/>
+                <!-- adb shell am start -W -a android.intent.action.VIEW -d "https://...." com.abanabsalan.aban.magazine -->
+            </intent-filter>
+        </activity>
+
         <service
-            android:name=".Utils.RemoteTask.CloudNotificationHandler">
+            android:name=".Utils.IndexingConfiguration.ApplicationDataIndexingService"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:permission="com.google.android.gms.permission.APPINDEXING">
+            <intent-filter>
+                <action android:name="com.google.firebase.appindexing.UPDATE_INDEX" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".Utils.RemoteTask.CloudNotificationHandler"
+            android:permission="">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

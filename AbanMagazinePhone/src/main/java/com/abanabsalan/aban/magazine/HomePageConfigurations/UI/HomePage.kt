@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/16/20 5:15 AM
- * Last modified 8/16/20 5:15 AM
+ * Created by Elias Fazel on 8/23/20 9:07 AM
+ * Last modified 8/23/20 7:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,6 +43,7 @@ import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
+import com.abanabsalan.aban.magazine.Utils.IndexingConfiguration.ApplicationDataIndexing
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
@@ -87,6 +88,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     var scrollViewAtTop: Boolean = false
     var updateDelay: Boolean = true
+
+    val applicationDataIndexing: ApplicationDataIndexing = ApplicationDataIndexing()
 
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
