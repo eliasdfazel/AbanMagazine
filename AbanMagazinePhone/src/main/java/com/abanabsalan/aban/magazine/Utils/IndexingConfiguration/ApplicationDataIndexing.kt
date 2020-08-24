@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/24/20 7:30 AM
- * Last modified 8/24/20 7:30 AM
+ * Created by Elias Fazel on 8/24/20 7:41 AM
+ * Last modified 8/24/20 7:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ class ApplicationDataIndexing {
                 FirebaseUserActions.getInstance()
                     .start(getAction(indexTitle, ApplicationDataIndexing.BASE_URI.buildUpon().appendPath(indexTitle).build().toString()))
                     .addOnSuccessListener {
-                        Log.d(this@ApplicationDataIndexing.javaClass.simpleName, " Indexed Successfully | ${articleToIndex.toString()}")
+                        Log.d(this@ApplicationDataIndexing.javaClass.simpleName, " Indexed Action Successfully | ${articleToIndex.toString()}")
 
 
                     }.addOnFailureListener { e ->
