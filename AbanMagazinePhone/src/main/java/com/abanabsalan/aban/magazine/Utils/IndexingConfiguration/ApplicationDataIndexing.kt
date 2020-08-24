@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/23/20 9:07 AM
- * Last modified 8/23/20 9:05 AM
+ * Created by Elias Fazel on 8/24/20 7:30 AM
+ * Last modified 8/24/20 7:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,7 +18,6 @@ import com.google.firebase.appindexing.FirebaseAppIndex
 import com.google.firebase.appindexing.FirebaseUserActions
 import com.google.firebase.appindexing.Indexable
 import com.google.firebase.appindexing.builders.Actions
-import com.google.firebase.appindexing.builders.Indexables
 
 class ApplicationDataIndexing {
 
@@ -28,8 +27,7 @@ class ApplicationDataIndexing {
 
     fun insert(indexLink: String, indexId: String, indexTitle: String, indexImage: String, indexDescription: String) {
 
-        val articleToIndex: Indexable = Indexables.textDigitalDocumentBuilder()
-            .setText(indexTitle)
+        val articleToIndex: Indexable = Indexable.Builder()
             .setName(indexTitle)
             .setImage(indexImage)
             .setDescription(indexDescription)
@@ -38,22 +36,21 @@ class ApplicationDataIndexing {
             .setUrl(ApplicationDataIndexing.BASE_URI.buildUpon().appendPath(indexId).build().toString())
             .build()
 
-        FirebaseUserActions.getInstance()
-            .start(getAction(indexTitle, ApplicationDataIndexing.BASE_URI.buildUpon().appendPath(indexTitle).build().toString()))
-            .addOnSuccessListener {
-                Log.d(this@ApplicationDataIndexing.javaClass.simpleName, " Indexed Successfully | ${articleToIndex.toString()}")
-
-
-            }.addOnFailureListener { e ->
-                e.printStackTrace()
-
-
-            }
-
         FirebaseAppIndex.getInstance().update(articleToIndex)
             .addOnSuccessListener {
                 Log.d(this@ApplicationDataIndexing.javaClass.simpleName, " Indexed Successfully | ${articleToIndex.toString()}")
 
+                FirebaseUserActions.getInstance()
+                    .start(getAction(indexTitle, ApplicationDataIndexing.BASE_URI.buildUpon().appendPath(indexTitle).build().toString()))
+                    .addOnSuccessListener {
+                        Log.d(this@ApplicationDataIndexing.javaClass.simpleName, " Indexed Successfully | ${articleToIndex.toString()}")
+
+
+                    }.addOnFailureListener { e ->
+                        e.printStackTrace()
+
+
+                    }
 
             }.addOnFailureListener { e ->
                 e.printStackTrace()
