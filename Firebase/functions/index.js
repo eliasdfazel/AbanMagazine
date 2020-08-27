@@ -3,6 +3,11 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+});
+
+
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const runtimeOptions = {
@@ -37,33 +42,35 @@ exports.sendNewestPostNotification = functions.runWith(runtimeOptions).https.onR
         var postTitle = newestPostJson['title'].rendered;
         var postSummary = newestPostJson['excerpt'].rendered;
 
-        /*var dataMessage = {
-
+        var message = {
+            notification: {
+              title: postTitle,
+              body: postSummary
+            },
             android: {
-                ttl: (3600 * 1000) * (3), // 3 Hours in Milliseconds
-
-                priority: 'high',
+              notification: {
+                color: postColor
+              }
             },
-
             data: {
-                "PostTile": postTile,
-                "PostSummary": postSummary,
-                "PostColor": postColor
+                title: postTitle,
+                summary: postSummary
             },
-
             topic: 'BETA',
-        };*/
+          };
+          
+          admin.messaging().send(message)
+            .then((response) => {
+              
+                res.status(200).send('Title: ' + postTitle + '<br/>' + 'Summary: ' + postSummary + '<br/>' + 'Color: ' + postColor);
 
-        /*admin.messaging().send(dataMessage).then((response) => {
-            console.log('Successfully Sent', response);
+            })
+            .catch((error) => {
 
-            
-
-        }).catch((error) => {
-            console.log('Error Sending Message', error);
-        });*/
-
-        res.status(200).send('Title: ' + postTitle + '<br/>' + 'Summary: ' + postSummary + '<br/>' + 'Color: ' + postColor);
+                res.status(200).send('Error: ' + error);
+                
+            });
+          
     };
     xmlHttpRequest.send();
 
