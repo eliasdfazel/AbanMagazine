@@ -16,7 +16,12 @@ const runtimeOptions = {
 
 exports.sendNewestPostNotification = functions.runWith(runtimeOptions).https.onRequest((req, res) => {
 
-    const postColor = req.query.postColor;
+    //237DAE
+    var postColor = req.query.postColor;
+
+    if (postColor == null){
+        postColor = '237DAE';
+    }
 
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open('GET', 'https://abanabsalan.com/wp-json/wp/v2/posts?page=1&per_page=1&orderby=date', true);
@@ -40,37 +45,41 @@ exports.sendNewestPostNotification = functions.runWith(runtimeOptions).https.onR
         var newestPostJson = jsonParserResponseText[0];
 
         var postTitle = newestPostJson['title'].rendered;
-        var postSummary = newestPostJson['excerpt'].rendered;
+        var postSummary = newestPostJson['excerpt'].rendered.replace( /(<([^>]+)>)/ig, '');
+        var postFeaturedImage = newestPostJson['jetpack_featured_media_url'];
 
         var message = {
             notification: {
-              title: postTitle,
-              body: postSummary
+                title: postTitle,
+                body: postSummary
             },
             android: {
-              notification: {
-                color: postColor
-              }
+                notification: {
+                    image: '' + postFeaturedImage,
+                    color: '#' + postColor
+                }
             },
             data: {
                 title: postTitle,
-                summary: postSummary
+                summary: postSummary,
+                color: '#' + postColor,
+                image: '' + postFeaturedImage
             },
-            topic: 'BETA',
-          };
-          
-          admin.messaging().send(message)
+            topic: 'NewestPosts'
+        };
+
+        admin.messaging().send(message)
             .then((response) => {
-              
-                res.status(200).send('Title: ' + postTitle + '<br/>' + 'Summary: ' + postSummary + '<br/>' + 'Color: ' + postColor);
+
+                res.status(200).send('Title: ' + postTitle + '<br/>' + 'Summary: ' + postSummary + '<br/>' + 'Color: ' + '#' + postColor + '<br/>' + 'Featured Image: ' + postFeaturedImage);
 
             })
             .catch((error) => {
 
                 res.status(200).send('Error: ' + error);
-                
+
             });
-          
+
     };
     xmlHttpRequest.send();
 

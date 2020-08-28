@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 9:42 PM
- * Last modified 7/31/20 9:38 PM
+ * Created by Elias Fazel on 8/28/20 6:53 AM
+ * Last modified 8/28/20 6:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,6 +30,7 @@ import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInte
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.databinding.AllCategoryPostsBinding
+import com.google.firebase.messaging.FirebaseMessaging
 import javax.inject.Inject
 
 class AllCategoryPosts : AppCompatActivity(), NetworkConnectionListenerInterface {
@@ -107,7 +108,11 @@ class AllCategoryPosts : AppCompatActivity(), NetworkConnectionListenerInterface
 
         })
 
+        FirebaseMessaging.getInstance()
+            .subscribeToTopic("${categoryId}")
+            .addOnSuccessListener {
 
+            }
 
     }
 
