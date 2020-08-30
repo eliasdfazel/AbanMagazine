@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/12/20 1:50 AM
-  ~ Last modified 8/12/20 1:41 AM
+  ~ Created by Elias Fazel on 8/30/20 5:02 AM
+  ~ Last modified 8/30/20 4:49 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -30,6 +30,7 @@
 
     <string name="noMoreContent">No More Content</string>
     <string name="turnOnText">Turn On</string>
+    <string name="grantPermission">Grant</string>
 
     <string name="clickHere">
         <![CDATA[
@@ -41,6 +42,7 @@
 
     <string name="showFullScreen">Show Full Screen</string>
 
+    <string name="permissionMessage">Application Can Not Work Properly Without Permissions</string>
     <string name="noInternetConnectionText">No Internet Connection ⚠</string>
 
     <string name="inAppUpdateDescription">An Update Has Just Been Installed</string>
