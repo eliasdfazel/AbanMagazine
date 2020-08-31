@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 5:29 AM
- * Last modified 8/5/20 4:58 AM
+ * Created by Elias Fazel on 8/31/20 9:54 AM
+ * Last modified 8/31/20 9:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -170,11 +170,13 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
                         if (isColorDark(dominantColor!!) && isColorDark(vibrantColor!!)) {
                             Log.d(this@setupUserInterface.javaClass.simpleName, "Dark Extracted Colors")
 
-                            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                            window.decorView.systemUiVisibility = 0
+
                         } else {
                             Log.d(this@setupUserInterface.javaClass.simpleName, "Light Extracted Colors")
 
-                            window.decorView.systemUiVisibility = 0
+                            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
                         }
 
                     }
