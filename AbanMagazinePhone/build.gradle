@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/1/20 11:23 AM
- * Last modified 9/1/20 11:22 AM
+ * Created by Elias Fazel on 9/1/20 11:24 AM
+ * Last modified 9/1/20 11:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -107,12 +107,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
 
     implementation 'com.google.firebase:firebase-messaging:20.2.4'
-    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.0'
+    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.1'
 
     implementation 'com.google.firebase:firebase-appindexing:19.1.0'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:19.1.0'
 
-    implementation 'com.google.firebase:firebase-firestore-ktx:21.5.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.6.0'
 
     implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
 
@@ -130,7 +130,7 @@ dependencies {
 
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
@@ -179,6 +179,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.13'
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
