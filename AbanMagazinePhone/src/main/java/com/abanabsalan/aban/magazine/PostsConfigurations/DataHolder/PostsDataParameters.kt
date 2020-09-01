@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/6/20 3:33 AM
- * Last modified 8/6/20 3:27 AM
+ * Created by Elias Fazel on 9/1/20 11:16 AM
+ * Last modified 9/1/20 10:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -62,11 +62,12 @@ class PostsDataParameters {
         const val PostParagraph: Int = 0
         const val PostSubTitle: Int = 1
         const val PostTextLink: Int = 2
-        const val PostImage: Int = 3
-        const val PostIFrame: Int = 4
-        const val PostBlockQuoteInstagram: Int = 5
-        const val PostBlockQuoteTwitter: Int = 6
-        const val PostBlockQuoteFacebook: Int = 7
+        const val PostButton: Int = 3
+        const val PostImage: Int = 4
+        const val PostIFrame: Int = 5
+        const val PostBlockQuoteInstagram: Int = 6
+        const val PostBlockQuoteTwitter: Int = 7
+        const val PostBlockQuoteFacebook: Int = 8
     }
 
     object PostItemsBlockQuoteType {
@@ -92,6 +93,7 @@ data class PostItemParagraph(var paragraphText: String)
 data class PostItemSubTitle(var subTitleText: String)
 data class PostItemImage(var imageLink: String, var targetLink: String?)
 data class PostItemTextLink(var linkText: String)
+data class PostItemButton(var linkButton: String, var textButton: String)
 data class PostItemIFrame(var iFrameContent: String)
 data class PostItemBlockQuoteInstagram(var instagramUsername: String, var instagramUserAddress: String, var instagramPostAddress: String, var instagramPostImage: String, var instagramPostTitle: String)
 
@@ -100,5 +102,6 @@ data class SinglePostItemData (var dataType: Int,
                                val postItemSubTitle: PostItemSubTitle?,
                                var postItemImage: PostItemImage?,
                                var postItemTextLink: PostItemTextLink?,
+                               var postItemButton: PostItemButton?,
                                var postItemIFrame: PostItemIFrame?,
                                var postItemBlockQuoteInstagram: PostItemBlockQuoteInstagram?)

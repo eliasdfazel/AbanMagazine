@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/12/20 1:50 AM
- * Last modified 8/12/20 1:46 AM
+ * Created by Elias Fazel on 9/1/20 11:16 AM
+ * Last modified 9/1/20 11:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -81,6 +81,14 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                 PostViewTextLinkAdapterViewHolder(
                     LayoutInflater.from(singlePostViewContext)
                         .inflate(R.layout.post_view_content_item_text_link, viewGroup, false)
+                )
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostButton -> {
+
+                PostViewButtonAdapterViewHolder(
+                    LayoutInflater.from(singlePostViewContext)
+                        .inflate(R.layout.post_view_content_item_button, viewGroup, false)
                 )
 
             }
@@ -171,6 +179,11 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
                 (viewHolder as PostViewTextLinkAdapterViewHolder)
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostButton -> {
+
+
 
             }
             PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
@@ -393,6 +406,23 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                             )
 
                         }
+
+                    }
+
+                }
+
+            }
+            PostsDataParameters.PostItemsViewParameters.PostButton -> {
+
+                singlePostItemsData[position].postItemButton?.let {
+
+                    (viewHolder as PostViewButtonAdapterViewHolder).postButton.text = it.textButton
+
+                    (viewHolder as PostViewButtonAdapterViewHolder).postButton.setOnClickListener { view ->
+
+                        val buttonIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.linkButton))
+                        buttonIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        singlePostViewContext.startActivity(buttonIntent)
 
                     }
 

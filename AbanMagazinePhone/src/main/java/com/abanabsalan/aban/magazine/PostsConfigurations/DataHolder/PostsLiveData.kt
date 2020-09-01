@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/6/20 3:33 AM
- * Last modified 8/6/20 3:28 AM
+ * Created by Elias Fazel on 9/1/20 11:16 AM
+ * Last modified 9/1/20 11:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -74,6 +74,7 @@ class PostsLiveData : ViewModel() {
                                 null,
                                 null,
                                 null,
+                                null,
                                 PostItemBlockQuoteInstagram(
                                     instagramUsername = rawJsonInstagramPost.getString("author_name"),
                                     instagramUserAddress = rawJsonInstagramPost.getString("author_url"),
@@ -100,6 +101,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
+                        null,
                         null
                     )
                 )
@@ -114,6 +116,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
+                        null,
                         null
                     )
                 )
@@ -121,16 +124,35 @@ class PostsLiveData : ViewModel() {
             } else if (element.`is`("a")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Link ${element}")
 
-                singlePostItemsData.add(
-                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostTextLink,
-                        null,
-                        null,
-                        null,
-                        PostItemTextLink("${element}"),
-                        null,
-                        null
+                if (element.id() == "PurchaseButton") {
+
+                    singlePostItemsData.add(
+                        SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostButton,
+                            null,
+                            null,
+                            null,
+                            null,
+                            PostItemButton(element.select("a").first().attr("abs:href"), element.text()),
+                            null,
+                            null
+                        )
                     )
-                )
+
+                } else {
+
+                    singlePostItemsData.add(
+                        SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostTextLink,
+                            null,
+                            null,
+                            null,
+                            PostItemTextLink("${element}"),
+                            null,
+                            null,
+                            null
+                        )
+                    )
+
+                }
 
             } else if (element.`is`("img")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src").replace(" ", "")}")
@@ -150,6 +172,7 @@ class PostsLiveData : ViewModel() {
                         PostItemImage(element.attr("src").replace(" ", ""), targetLink),
                         null,
                         null,
+                        null,
                         null
                     )
                 )
@@ -159,6 +182,7 @@ class PostsLiveData : ViewModel() {
 
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostIFrame,
+                        null,
                         null,
                         null,
                         null,
