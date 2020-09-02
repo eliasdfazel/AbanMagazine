@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/30/20 5:02 AM
- * Last modified 8/30/20 5:02 AM
+ * Created by Elias Fazel on 9/2/20 3:24 AM
+ * Last modified 9/2/20 2:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -93,10 +93,6 @@ class EntryConfiguration : AppCompatActivity() {
             Manifest.permission.GET_ACCOUNTS,
             Manifest.permission.VIBRATE
         )
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            permissionsList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        }
 
         requestPermissions(
             permissionsList.toTypedArray(),

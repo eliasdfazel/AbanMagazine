@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/28/20 6:53 AM
- * Last modified 8/28/20 6:45 AM
+ * Created by Elias Fazel on 9/2/20 3:24 AM
+ * Last modified 9/2/20 2:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -100,6 +100,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         super.onCreate(savedInstanceState)
         homePageViewBinding = HomePageViewBinding.inflate(layoutInflater)
         setContentView(homePageViewBinding.root)
+
+        setupTheme()
 
         if (BuildConfig.VERSION_NAME.contains("BETA")) {
             FirebaseMessaging.getInstance()
