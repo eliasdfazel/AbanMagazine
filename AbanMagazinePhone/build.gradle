@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/1/20 11:24 AM
- * Last modified 9/1/20 11:23 AM
+ * Created by Elias Fazel on 9/2/20 3:30 AM
+ * Last modified 9/2/20 3:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 29
 
-        versionCode 28
+        versionCode 30
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
 
         wearAppUnbundled true
