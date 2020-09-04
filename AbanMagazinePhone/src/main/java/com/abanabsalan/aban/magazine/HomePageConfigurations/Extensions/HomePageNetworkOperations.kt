@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 6:45 AM
- * Last modified 9/4/20 6:45 AM
+ * Created by Elias Fazel on 9/4/20 8:48 AM
+ * Last modified 9/4/20 8:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -103,7 +103,6 @@ fun HomePage.startNetworkOperations() {
 
             override fun jsonRequestResponseSuccessHandler(rawDataJsonObject: JSONObject) {
                 super.jsonRequestResponseSuccessHandler(rawDataJsonObject)
-
 
                 homePageLiveData.prepareRawDataToRenderForProductShowcase(
                     rawDataJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered)

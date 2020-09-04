@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:18 AM
- * Last modified 9/4/20 8:18 AM
+ * Created by Elias Fazel on 9/4/20 8:48 AM
+ * Last modified 9/4/20 8:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,26 +38,26 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
         return productShowcaseItemData.size
     }
 
-    override fun onBindViewHolder(instagramStoryHighlightsViewHolder: ProductShowcaseViewHolder, position: Int) {
+    override fun onBindViewHolder(productShowcaseViewHolder: ProductShowcaseViewHolder, position: Int) {
 
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
-                instagramStoryHighlightsViewHolder.productTitleView.setTextColor(context.getColor(R.color.darker))
-                instagramStoryHighlightsViewHolder.productTitleView.setShadowLayer(instagramStoryHighlightsViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
+                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.darker))
+                productShowcaseViewHolder.productTitleView.setShadowLayer(productShowcaseViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
-                instagramStoryHighlightsViewHolder.productTitleView.setTextColor(context.getColor(R.color.lighter))
-                instagramStoryHighlightsViewHolder.productTitleView.setShadowLayer(instagramStoryHighlightsViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
+                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.lighter))
+                productShowcaseViewHolder.productTitleView.setShadowLayer(productShowcaseViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
 
             }
         }
 
-        instagramStoryHighlightsViewHolder.productTitleView.text = (productShowcaseItemData[position].nameOfProduct)
+        productShowcaseViewHolder.productTitleView.text = (productShowcaseItemData[position].nameOfProduct)
 
-        instagramStoryHighlightsViewHolder.rootViewItem.setOnClickListener {
+        productShowcaseViewHolder.productPurchaseView.setOnClickListener {
 
             BuiltInWebView.show(
                 context = context,
@@ -73,7 +73,7 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
             .load(productShowcaseItemData[position].linkToImageProduct)
             .transform(CenterCrop(), CircleCrop())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(instagramStoryHighlightsViewHolder.productImageView)
+            .into(productShowcaseViewHolder.productImageView)
 
     }
 

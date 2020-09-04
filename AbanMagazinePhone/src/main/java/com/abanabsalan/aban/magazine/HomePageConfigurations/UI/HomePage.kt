@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:30 AM
- * Last modified 9/4/20 8:30 AM
+ * Created by Elias Fazel on 9/4/20 8:48 AM
+ * Last modified 9/4/20 8:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -139,6 +139,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         homePageViewBinding.featuredPostsRecyclerView.layoutManager = specificCategoryLinearLayoutManager
 
         homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
+
+        homePageViewBinding.productShowcaseRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
 
         homePageViewBinding.instagramStoryHighlightsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
 
@@ -278,8 +280,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             homePageLiveData.productShowcaseLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
-
-                    homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.VISIBLE
 
                     productShowcaseAdapter.productShowcaseItemData.clear()
                     productShowcaseAdapter.productShowcaseItemData.addAll(it)
