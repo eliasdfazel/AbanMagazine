@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:53 AM
- * Last modified 9/4/20 8:53 AM
+ * Created by Elias Fazel on 9/4/20 9:04 AM
+ * Last modified 9/4/20 9:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -157,28 +157,12 @@ class HomePageLiveData : ViewModel() {
 
         allHtmlElement.forEachIndexed { index, element ->
 
-            if (element.`is`("a")) {
+            if (element.`is`("p")) {
                 Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
 
-                val linkContent: Document = Jsoup.parse(element.toString())
-
-                var productName = ""
-                var linkToProduct = ""
-                var linkToProductImage = ""
-
-                when (element.id()) {
-                    ProductShowcase.ProductLink -> {
-
-                        productName = element.text()
-                        linkToProduct = linkContent.select("a").first().attr("abs:href")
-
-                    }
-                    ProductShowcase.ProductImage -> {
-
-                        linkToProductImage = linkContent.select("a").first().attr("abs:href")
-
-                    }
-                }
+                val productName = element.getElementById(ProductShowcase.ProductLink).text()
+                val linkToProduct = element.getElementById(ProductShowcase.ProductLink).select("a").first().attr("abs:href")
+                val linkToProductImage = element.getElementById(ProductShowcase.ProductImage).select("a").first().attr("abs:href")
 
                 productShowcaseItemData.add(
                     ProductShowcaseItemData(
