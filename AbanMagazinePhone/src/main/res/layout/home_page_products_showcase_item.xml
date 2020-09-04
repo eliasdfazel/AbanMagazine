@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/4/20 8:18 AM
-  ~ Last modified 9/4/20 8:01 AM
+  ~ Created by Elias Fazel on 9/4/20 10:06 AM
+  ~ Last modified 9/4/20 10:04 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,24 +12,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
-    android:layout_width="197dp"
-    android:layout_height="257dp"
+    android:layout_width="213dp"
+    android:layout_height="wrap_content"
     android:layout_marginVertical="1dp"
     android:layout_marginHorizontal="7dp"
     android:elevation="3dp"
-    android:background="@drawable/specific_category_item_background">
+    android:background="@drawable/product_showcase_item_background">
 
     <net.geekstools.imageview.customshapes.ShapesImage
         android:id="@+id/productImageView"
-        android:layout_width="match_parent"
-        android:layout_height="93dp"
+        android:layout_width="213dp"
+        android:layout_height="213dp"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
 
         apps:shape="rounded"
 
-        apps:layout_constraintTop_toTopOf="parent"/>
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productTitleView"
@@ -37,31 +39,42 @@
         android:layout_height="59dp"
         android:paddingHorizontal="7dp"
         android:paddingVertical="1dp"
-        android:gravity="center_vertical"
-        android:lines="2"
+        android:gravity="center"
         android:ellipsize="end"
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/darker"
         android:fontFamily="@font/persian_sans"
-        android:shadowColor="@color/dark"
+        android:shadowColor="@color/light"
         android:shadowRadius="3"
 
         apps:layout_constraintTop_toBottomOf="@id/productImageView"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/productPurchaseView"
-        android:layout_width="match_parent"
-        android:layout_height="101dp"
-        android:paddingHorizontal="7dp"
-        android:paddingVertical="3dp"
-        android:lines="4"
+        android:layout_width="213dp"
+        android:layout_height="71dp"
+        android:layout_marginHorizontal="7dp"
+        android:gravity="center"
         android:ellipsize="end"
-        android:justificationMode="inter_word"
-        android:textSize="13sp"
-        android:textColor="@color/dark"
+        android:textAllCaps="false"
+        android:text="@string/purchaseText"
+        android:textSize="17sp"
+        android:textColor="@color/light"
+        android:textStyle="bold"
         android:fontFamily="@font/persian_sans"
 
-        apps:layout_constraintTop_toBottomOf="@id/productTitleView"/>
+        apps:elevation="3dp"
+        apps:cornerRadius="51dp"
+        apps:strokeWidth="0dp"
+        apps:icon="@drawable/shopping_bag"
+        apps:iconSize="33dp"
+        apps:iconGravity="textStart"
+        apps:rippleColor="@color/default_color_game_light"
+        apps:backgroundTint="@color/dark_transparent"
+
+        apps:layout_constraintTop_toBottomOf="@id/productTitleView"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
