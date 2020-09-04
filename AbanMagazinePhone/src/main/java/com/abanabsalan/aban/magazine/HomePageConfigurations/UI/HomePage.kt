@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:18 AM
- * Last modified 9/4/20 8:14 AM
+ * Created by Elias Fazel on 9/4/20 8:30 AM
+ * Last modified 9/4/20 8:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -284,7 +284,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     productShowcaseAdapter.productShowcaseItemData.clear()
                     productShowcaseAdapter.productShowcaseItemData.addAll(it)
 
-                    homePageViewBinding.instagramStoryHighlightsRecyclerView.adapter = instagramStoryHighlightsAdapter
+                    homePageViewBinding.productShowcaseRecyclerView.adapter = productShowcaseAdapter
 
                 }
 
@@ -341,6 +341,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                         specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
 
                         newestPostsAdapter.notifyItemRangeChanged(0, newestPostsAdapter.itemCount, null)
+
+                        productShowcaseAdapter.notifyItemRangeChanged(0, productShowcaseAdapter.itemCount, null)
 
                         instagramStoryHighlightsAdapter.notifyItemRangeChanged(0, instagramStoryHighlightsAdapter.itemCount, null)
 

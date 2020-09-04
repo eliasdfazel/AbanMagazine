@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/10/20 12:49 AM
-  ~ Last modified 8/10/20 12:47 AM
+  ~ Created by Elias Fazel on 9/4/20 8:30 AM
+  ~ Last modified 9/4/20 8:28 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -99,6 +99,20 @@
                 apps:SpinKit_Style="Pulse"
                 apps:SpinKit_Color="@color/light_pink"/>
 
+            <!-- Products Showcase -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productShowcaseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="13dp"
+                android:padding="3dp"
+                android:scrollbars="none"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="17dp"
+
+                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
+
             <!-- Banner Ads - Top -->
             <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/bannerAdViewTop"
@@ -111,7 +125,7 @@
                 ads:adSize="SMART_BANNER"
                 ads:adUnitId="@string/homePageBannerTop"
 
-                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
+                apps:layout_constraintTop_toBottomOf="@id/productShowcaseRecyclerView"/>
 
             <!-- Newest -->
             <androidx.appcompat.widget.AppCompatTextView
