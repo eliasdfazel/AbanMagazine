@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/9/20 10:52 PM
- * Last modified 8/9/20 10:30 PM
+ * Created by Elias Fazel on 9/4/20 6:45 AM
+ * Last modified 9/4/20 6:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,7 @@ import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Net
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations.NewestPostsRetrieval
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Operations.ProductShowcaseRetrieval
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpointsFactory
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations.SpecificCategoryRetrieval
@@ -95,6 +96,27 @@ fun HomePage.startNetworkOperations() {
                 }
 
             })
+
+        /*Load Products Showcase*/
+        val productShowcaseRetrieval: ProductShowcaseRetrieval = ProductShowcaseRetrieval(applicationContext)
+        productShowcaseRetrieval.start(object : JsonRequestResponseInterface {
+
+            override fun jsonRequestResponseSuccessHandler(rawDataJsonObject: JSONObject) {
+                super.jsonRequestResponseSuccessHandler(rawDataJsonObject)
+
+
+                homePageLiveData.prepareRawDataToRenderForProductShowcase(
+                    rawDataJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered)
+                )
+
+            }
+
+            override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
+
+            }
+
+        })
 
         /*Load Instagram Story Highlights*/
         val storyHighlightsRetrieval: StoryHighlightsRetrieval = StoryHighlightsRetrieval(applicationContext)
