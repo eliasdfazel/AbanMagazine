@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 8:50 AM
- * Last modified 8/8/20 8:48 AM
+ * Created by Elias Fazel on 9/4/20 6:41 AM
+ * Last modified 9/4/20 6:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,6 +19,8 @@ import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Net
 import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.Endpoints.StoryHighlightsEndpoint
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcase
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -39,6 +41,10 @@ class HomePageLiveData : ViewModel() {
 
     val specificCategoryLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
         MutableLiveData<ArrayList<PostsItemData>>()
+    }
+
+    val productShowcaseLiveItemData: MutableLiveData<ArrayList<ProductShowcaseItemData>> by lazy {
+        MutableLiveData<ArrayList<ProductShowcaseItemData>>()
     }
 
     val instagramStoryHighlightsLiveItemData: MutableLiveData<ArrayList<StoryHighlightsItemData>> by lazy {
@@ -138,6 +144,54 @@ class HomePageLiveData : ViewModel() {
         }
 
         specificCategoryLiveItemData.postValue(specificCategoryPostsItemData)
+
+    }
+
+    fun prepareRawDataToRenderForProductShowcase(rawProductShowcase: String) {
+
+        val productShowcaseItemData: ArrayList<ProductShowcaseItemData> = ArrayList<ProductShowcaseItemData>()
+
+        val productShowcaseContent: Document = Jsoup.parse(rawProductShowcase)
+
+        val allHtmlElement = productShowcaseContent.allElements
+
+        allHtmlElement.forEachIndexed { index, element ->
+
+            if (element.`is`("a")) {
+                Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
+
+                val linkContent: Document = Jsoup.parse(element.toString())
+
+                var productName = ""
+                var linkToProduct = ""
+                var linkToProductImage = ""
+
+                when (element.id()) {
+                    ProductShowcase.ProductLink -> {
+
+                        productName = element.text()
+                        linkToProduct = linkContent.select("a").first().attr("abs:href")
+
+                    }
+                    ProductShowcase.ProductImage -> {
+
+                        linkToProductImage = linkContent.select("a").first().attr("abs:href")
+
+                    }
+                }
+
+                productShowcaseItemData.add(
+                    ProductShowcaseItemData(
+                        nameOfProduct = productName,
+                        linkToProduct = linkToProduct,
+                        linkToImageProduct = linkToProductImage
+                    ))
+
+            }
+
+        }
+
+        productShowcaseLiveItemData.postValue(productShowcaseItemData)
 
     }
 
