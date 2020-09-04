@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/2/20 3:24 AM
- * Last modified 9/2/20 2:57 AM
+ * Created by Elias Fazel on 9/4/20 6:46 AM
+ * Last modified 9/4/20 6:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -269,6 +269,16 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                 }
 
                 homePageLiveData.controlLoadingView.postValue(false)
+
+            })
+
+            homePageLiveData.productShowcaseLiveItemData.observe(this@HomePage, Observer {
+
+                if (it.isNotEmpty()) {
+
+
+
+                }
 
             })
 
