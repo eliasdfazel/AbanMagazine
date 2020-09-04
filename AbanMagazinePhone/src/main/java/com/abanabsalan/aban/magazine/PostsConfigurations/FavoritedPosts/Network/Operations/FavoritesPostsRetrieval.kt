@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 5:08 AM
- * Last modified 8/10/20 5:01 AM
+ * Created by Elias Fazel on 9/4/20 6:49 AM
+ * Last modified 9/4/20 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,13 +16,11 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Network.
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import org.json.JSONArray
 
 object EnqueueEndPointQuery {
     const val JSON_REQUEST_TIMEOUT = (1000 * 3)
@@ -41,7 +39,7 @@ class FavoritesPostsRetrieval (private val context: Context) {
             Request.Method.GET,
             endpointLink,
             null,
-            Response.Listener<JSONArray?> { response ->
+            { response ->
                 Log.d("JsonObjectRequest ${this@FavoritesPostsRetrieval.javaClass.simpleName}", response.toString())
 
                 if (response != null) {
@@ -50,7 +48,7 @@ class FavoritesPostsRetrieval (private val context: Context) {
 
                 }
 
-            }, Response.ErrorListener {
+            }, {
                 Log.d("JsonObjectRequestError", it?.networkResponse?.statusCode.toString())
 
                 jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it?.networkResponse?.statusCode)

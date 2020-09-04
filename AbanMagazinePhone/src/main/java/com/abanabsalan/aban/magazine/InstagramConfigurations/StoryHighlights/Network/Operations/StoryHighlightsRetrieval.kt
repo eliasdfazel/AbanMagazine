@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:16 AM
- * Last modified 8/8/20 7:16 AM
+ * Created by Elias Fazel on 9/4/20 6:49 AM
+ * Last modified 9/4/20 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,13 +16,11 @@ import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Net
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import org.json.JSONObject
 
 object EnqueueEndPointQuery {
     const val JSON_REQUEST_TIMEOUT = (1000 * 3)
@@ -38,7 +36,7 @@ class StoryHighlightsRetrieval (private val context: Context) {
             Request.Method.GET,
             storyHighlightsEndpoint.getInstagramStoryHighlightsEndpoint,
             null,
-            Response.Listener<JSONObject?> { response ->
+            { response ->
                 Log.d("JsonObjectRequest ${this@StoryHighlightsRetrieval.javaClass.simpleName}", response.toString())
 
                 if (response != null) {
@@ -47,7 +45,7 @@ class StoryHighlightsRetrieval (private val context: Context) {
 
                 }
 
-            }, Response.ErrorListener {
+            }, {
                 Log.d("JsonObjectRequestError", it?.networkResponse?.statusCode.toString())
 
                 jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it?.networkResponse?.statusCode)
