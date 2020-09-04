@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 6:46 AM
- * Last modified 9/4/20 6:46 AM
+ * Created by Elias Fazel on 9/4/20 8:18 AM
+ * Last modified 9/4/20 8:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,6 +35,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.InstagramStoryHighlights.InstagramStoryHighlightsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.ProductShowcase.ProductShowcaseAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
@@ -148,6 +149,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme)
 
         val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme)
+
+        val productShowcaseAdapter: ProductShowcaseAdapter = ProductShowcaseAdapter(this@HomePage, overallTheme)
 
         val instagramStoryHighlightsAdapter: InstagramStoryHighlightsAdapter = InstagramStoryHighlightsAdapter(this@HomePage, overallTheme)
 
@@ -276,7 +279,12 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 if (it.isNotEmpty()) {
 
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.VISIBLE
 
+                    productShowcaseAdapter.productShowcaseItemData.clear()
+                    productShowcaseAdapter.productShowcaseItemData.addAll(it)
+
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.adapter = instagramStoryHighlightsAdapter
 
                 }
 
