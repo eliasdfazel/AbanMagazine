@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 10:06 AM
- * Last modified 9/4/20 10:04 AM
+ * Created by Elias Fazel on 9/4/20 10:14 AM
+ * Last modified 9/4/20 10:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -100,8 +100,8 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
             BuiltInWebView.show(
                 context = context,
                 linkToLoad = productShowcaseItemData[position].linkToProduct,
-                gradientColorOne = context.getColor(R.color.instagramOne),
-                gradientColorTwo = context.getColor(R.color.instagramThree)
+                gradientColorOne = context.getColor(R.color.default_color_dark),
+                gradientColorTwo = context.getColor(R.color.default_color_game_dark)
             )
 
         }
