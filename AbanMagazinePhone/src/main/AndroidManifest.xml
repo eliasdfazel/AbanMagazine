@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/30/20 5:02 AM
-  ~ Last modified 8/30/20 4:43 AM
+  ~ Created by Elias Fazel on 9/6/20 4:03 AM
+  ~ Last modified 9/6/20 3:04 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -36,6 +36,7 @@
         android:supportsPictureInPicture="true"
         android:resizeableActivity="true"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
         <meta-data
