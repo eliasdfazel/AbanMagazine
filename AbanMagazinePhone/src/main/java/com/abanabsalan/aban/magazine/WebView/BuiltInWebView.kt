@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/6/20 4:03 AM
- * Last modified 9/6/20 4:01 AM
+ * Created by Elias Fazel on 9/6/20 7:07 AM
+ * Last modified 9/6/20 7:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,8 +14,11 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.view.View
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.R
@@ -80,15 +83,17 @@ class BuiltInWebView : AppCompatActivity() {
         val dominantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color))
         val vibrantColor = intent.getIntExtra("GradientColorTwo", getColor(R.color.default_color_game))
 
-        val gradientBackground = GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray())
-
-        window.setBackgroundDrawable(gradientBackground)
+        window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
 
         val linkToLoad = intent.getStringExtra(Intent.EXTRA_TEXT)
 
         if (linkToLoad != null) {
 
-//            browserViewBinding.webViewProgressBar.indeterminateDrawable = gradientBackground
+            val progressBarLayerList = getDrawable(R.drawable.web_view_progress_bar_drawable) as LayerDrawable
+            val progressBarClipDrawable = progressBarLayerList.findDrawableByLayerId(android.R.id.progress) as ClipDrawable
+            progressBarClipDrawable.drawable = GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray())
+
+            browserViewBinding.webViewProgressBar.indeterminateDrawable = progressBarLayerList
 
             browserViewBinding.webView.settings.javaScriptEnabled = true
 
@@ -139,10 +144,14 @@ class BuiltInWebView : AppCompatActivity() {
         override fun onPageStarted(webView: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(webView, url, favicon)
 
+            browserViewBinding.webViewProgressBar.visibility = View.VISIBLE
+
         }
 
         override fun onPageFinished(webView: WebView?, url: String?) {
             super.onPageFinished(webView, url)
+
+            browserViewBinding.webViewProgressBar.visibility = View.INVISIBLE
 
         }
 

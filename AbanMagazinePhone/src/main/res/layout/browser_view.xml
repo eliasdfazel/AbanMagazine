@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/6/20 4:03 AM
-  ~ Last modified 9/6/20 4:03 AM
+  ~ Created by Elias Fazel on 9/6/20 7:07 AM
+  ~ Last modified 9/6/20 6:51 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -29,7 +29,9 @@
         android:maxHeight="10dp"
         android:minHeight="10dp"
         android:indeterminate="true"
+        android:indeterminateDuration="7000"
         android:indeterminateDrawable="@drawable/web_view_progress_bar_drawable"
+        android:visibility="invisible"
 
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintStart_toStartOf="parent"

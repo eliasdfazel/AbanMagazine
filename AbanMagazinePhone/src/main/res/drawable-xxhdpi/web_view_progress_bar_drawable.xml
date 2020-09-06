@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 9/6/20 7:07 AM
+  ~ Last modified 9/6/20 5:25 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@android:id/progress">
+
+        <clip>
+
+            <shape>
+                <gradient
+                    android:endColor="@color/default_color_game"
+                    android:startColor="@color/default_color"
+                    android:angle="0" />
+            </shape>
+
+        </clip>
+
+    </item>
+
+</layer-list>
