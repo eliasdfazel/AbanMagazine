@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/1/20 11:16 AM
- * Last modified 9/1/20 11:12 AM
+ * Created by Elias Fazel on 9/7/20 4:38 AM
+ * Last modified 9/7/20 4:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,7 +26,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcess
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcessAction
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
@@ -44,7 +44,7 @@ import org.jsoup.nodes.Document
 
 class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val language: Language = Language()
+    val languageUtils: LanguageUtils = LanguageUtils()
 
     val singlePostItemsData: ArrayList<SinglePostItemData> = ArrayList<SinglePostItemData>()
 

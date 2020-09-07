@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:48 AM
- * Last modified 9/4/20 8:38 AM
+ * Created by Elias Fazel on 9/7/20 4:38 AM
+ * Last modified 9/7/20 4:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,6 +28,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpointsFactory
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations.SpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.InApplicationUpdate.InApplicationUpdateProcess
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
@@ -43,6 +44,8 @@ import javax.net.ssl.HttpsURLConnection
 
 fun HomePage.startNetworkOperations() {
 
+    val languageUtils: LanguageUtils = LanguageUtils()
+
     if (networkCheckpoint.networkConnection()) {
 
         /*Load Featured Posts*/
@@ -55,7 +58,8 @@ fun HomePage.startNetworkOperations() {
                 numberOfPageInPostsList = 1,
                 amountOfPostsToGet = 10,
                 sortByType = "date",
-                sortBy = "desc"
+                sortBy = "desc",
+                postsLanguage = languageUtils.selectedLanguage(applicationContext)
             ),
             object : JsonRequestResponseInterface {
 

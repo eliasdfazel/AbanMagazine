@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/31/20 9:54 AM
- * Last modified 8/31/20 9:53 AM
+ * Created by Elias Fazel on 9/7/20 4:38 AM
+ * Last modified 9/7/20 4:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,7 +26,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.isColorDark
@@ -95,9 +95,9 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
         postsViewUiBinding.postTopBarMargin.layoutParams = postTopBarMarginLayoutParams
     }
 
-    val language: Language = Language()
+    val languageUtils: LanguageUtils = LanguageUtils()
 
-    if (language.checkRtl(postTitle)) {
+    if (languageUtils.checkRtl(postTitle)) {
 
         postsViewUiBinding.postTitle.setPadding(
             DpToInteger(applicationContext, 81),

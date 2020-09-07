@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:22 AM
- * Last modified 9/7/20 4:21 AM
+ * Created by Elias Fazel on 9/7/20 4:38 AM
+ * Last modified 9/7/20 4:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,7 +31,7 @@ data class PostsEndpointsFactory (
      **/
     var sortBy: String = "desc",
     /**
-     * Language Of Posts Based On Tags Of Language Id. For Example, A Tag Of English With Id of 1234
+     * Language Based On Tags Of Language Id. For Example, A Tag Of English With Id of 1234
      **/
     var postsLanguage: String = PostsDataParameters.Language.Persian
 )

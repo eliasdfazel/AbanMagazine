@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 12:54 AM
- * Last modified 7/24/20 12:52 AM
+ * Created by Elias Fazel on 9/7/20 4:38 AM
+ * Last modified 9/7/20 4:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Utils
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 
 /**
  * Use \n To Start New Line
@@ -52,7 +52,7 @@ class SharePost (private val appCompatActivity: AppCompatActivity) {
 
     private fun createSocialMediaHashTagsCompaign(postTitle: String) : String {
 
-        val language = Language()
+        val language = LanguageUtils()
 
         val allWords = postTitle.split(" ")
 

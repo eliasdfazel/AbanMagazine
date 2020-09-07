@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/24/20 7:41 AM
- * Last modified 8/24/20 7:39 AM
+ * Created by Elias Fazel on 9/7/20 4:38 AM
+ * Last modified 9/7/20 4:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@ package com.abanabsalan.aban.magazine.Utils.IndexingConfiguration
 
 import android.net.Uri
 import android.util.Log
-import com.abanabsalan.aban.magazine.Utils.BlogContent.Language
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.google.firebase.appindexing.Action
 import com.google.firebase.appindexing.FirebaseAppIndex
 import com.google.firebase.appindexing.FirebaseUserActions
@@ -74,7 +74,7 @@ class ApplicationDataIndexing {
 
     private fun createKeywords(postTitle: String) : String {
 
-        val language = Language()
+        val language = LanguageUtils()
 
         val allWords = postTitle.split(" ")
 
