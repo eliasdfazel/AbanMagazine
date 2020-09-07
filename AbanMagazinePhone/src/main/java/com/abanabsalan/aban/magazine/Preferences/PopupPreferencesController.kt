@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/23/20 6:22 AM
- * Last modified 8/23/20 6:22 AM
+ * Created by Elias Fazel on 9/7/20 10:55 AM
+ * Last modified 9/7/20 9:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore.FirestoreConfiguration
@@ -30,6 +31,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -57,6 +59,8 @@ class PopupPreferencesController(
         initialThemeToggleAction()
 
         socialMediaActionHomePage()
+
+        languageSwitchActionHomePage()
 
     }
 
@@ -271,6 +275,29 @@ class PopupPreferencesController(
             context.startActivity(shareIntent)
 
             true
+        }
+
+    }
+
+    private fun languageSwitchActionHomePage() {
+
+        val languageUtils = LanguageUtils()
+
+        preferencesPopupUiViewBinding.languageSwitch.setOnClickListener {
+
+            when (languageUtils.selectedLanguage(context)) {
+                PostsDataParameters.Language.Persian -> {
+
+                    languageUtils.saveSelectedLanguage(context, PostsDataParameters.Language.English)
+
+                }
+                PostsDataParameters.Language.English -> {
+
+                    languageUtils.saveSelectedLanguage(context, PostsDataParameters.Language.Persian)
+
+                }
+            }
+
         }
 
     }

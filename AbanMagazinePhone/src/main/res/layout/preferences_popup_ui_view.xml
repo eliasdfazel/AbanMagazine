@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 7/31/20 5:54 AM
-  ~ Last modified 7/31/20 4:04 AM
+  ~ Created by Elias Fazel on 9/7/20 10:55 AM
+  ~ Last modified 9/7/20 10:43 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -36,27 +36,16 @@
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/settingsView"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/languageSwitch"
         android:layout_width="99dp"
         android:layout_height="99dp"
         android:layout_marginStart="11dp"
         android:layout_margin="13dp"
-        android:contentDescription="@string/preferencesText"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:visibility="invisible"
+        android:contentDescription="@string/changeLanguageText"
+        android:visibility="visible"
 
-        apps:cornerRadius="51dp"
-        apps:elevation="23dp"
-        apps:icon="@drawable/setting_icon"
-        apps:iconSize="37sp"
-        apps:iconGravity="textStart"
-        apps:iconPadding="0dp"
-        apps:rippleColor="@color/cyberGreen"
-        apps:backgroundTint="@color/default_color_transparent"
+        apps:lottie_rawRes="@raw/english"
 
         apps:layout_constraintTop_toTopOf="@id/toggleTheme"
         apps:layout_constraintBottom_toBottomOf="@id/toggleTheme"

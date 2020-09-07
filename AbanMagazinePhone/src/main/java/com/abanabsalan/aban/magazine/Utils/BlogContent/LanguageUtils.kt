@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 7:42 AM
- * Last modified 9/7/20 7:26 AM
+ * Created by Elias Fazel on 9/7/20 10:55 AM
+ * Last modified 9/7/20 9:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.Utils.BlogContent
 import android.content.Context
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
+import com.abanabsalan.aban.magazine.Utils.Preferences.SavePreferences
 
 
 class LanguageUtils {
@@ -55,6 +56,16 @@ class LanguageUtils {
 
             }
         }
+
+    }
+
+    fun saveSelectedLanguage(context: Context, selectedLanguage: String) {
+
+        LanguageUtils.SelectedLanguage = selectedLanguage
+
+        val savePreferences: SavePreferences = SavePreferences(context)
+
+        savePreferences.savePreference("UserPreferences", "Language", selectedLanguage)
 
     }
 
