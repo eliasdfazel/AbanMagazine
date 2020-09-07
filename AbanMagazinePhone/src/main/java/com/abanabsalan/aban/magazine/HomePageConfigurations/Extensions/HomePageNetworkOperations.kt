@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:38 AM
- * Last modified 9/7/20 4:37 AM
+ * Created by Elias Fazel on 9/7/20 6:48 AM
+ * Last modified 9/7/20 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -230,13 +230,17 @@ fun startFeaturedPostCategoryRetrieval(context: Context, homePageViewBinding: Ho
 
     homePageViewBinding.featuredPostsLoadingView.visibility = View.VISIBLE
 
+    val languageUtils: LanguageUtils = LanguageUtils()
+
     val specificCategoryRetrieval: SpecificCategoryRetrieval = SpecificCategoryRetrieval(context)
+
     specificCategoryRetrieval.start(
         SpecificCategoryEndpointsFactory(
             numberOfPageInPostsList,
             sortByType = "id",
             IdOfCategoryToGetPosts = 150, // Featured Posts
-            amountOfPostsToGet = (columnCount(context, 190) * 2)
+            amountOfPostsToGet = (columnCount(context, 190) * 2),
+            postsLanguage = languageUtils.selectedLanguage(context)
         ),
         object : JsonRequestResponseInterface {
 
