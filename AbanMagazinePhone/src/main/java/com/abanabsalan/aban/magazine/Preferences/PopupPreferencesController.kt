@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 10:55 AM
- * Last modified 9/7/20 9:10 AM
+ * Created by Elias Fazel on 9/7/20 12:26 PM
+ * Last modified 9/7/20 12:24 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.abanabsalan.aban.magazine.EntryConfiguration
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
@@ -283,6 +284,20 @@ class PopupPreferencesController(
 
         val languageUtils = LanguageUtils()
 
+        when (languageUtils.selectedLanguage(context)) {
+            PostsDataParameters.Language.Persian -> {
+
+                preferencesPopupUiViewBinding.languageSwitch.setImageDrawable(context.getDrawable(R.drawable.persian))
+
+            }
+            PostsDataParameters.Language.English -> {
+
+                preferencesPopupUiViewBinding.languageSwitch.setAnimation(R.raw.english)
+                preferencesPopupUiViewBinding.languageSwitch.playAnimation()
+
+            }
+        }
+
         preferencesPopupUiViewBinding.languageSwitch.setOnClickListener {
 
             when (languageUtils.selectedLanguage(context)) {
@@ -290,13 +305,28 @@ class PopupPreferencesController(
 
                     languageUtils.saveSelectedLanguage(context, PostsDataParameters.Language.English)
 
+                    preferencesPopupUiViewBinding.languageSwitch.setAnimation(R.raw.english)
+                    preferencesPopupUiViewBinding.languageSwitch.playAnimation()
+
                 }
                 PostsDataParameters.Language.English -> {
 
                     languageUtils.saveSelectedLanguage(context, PostsDataParameters.Language.Persian)
 
+                    preferencesPopupUiViewBinding.languageSwitch.setImageDrawable(context.getDrawable(R.drawable.persian))
+
                 }
             }
+
+            Handler().postDelayed({
+
+                context.startActivity(Intent(context, EntryConfiguration::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                })
+
+                context.finish()
+
+            }, 3333)
 
         }
 
