@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/1/20 11:16 AM
- * Last modified 9/1/20 10:54 AM
+ * Created by Elias Fazel on 9/7/20 4:22 AM
+ * Last modified 9/7/20 4:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,11 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 
 
 class PostsDataParameters {
+
+    object Language {
+        const val English: String = "2418"
+        const val Persian: String = "2052"
+    }
 
     object JsonDataStructure {
         const val PostLink: String = "link"
