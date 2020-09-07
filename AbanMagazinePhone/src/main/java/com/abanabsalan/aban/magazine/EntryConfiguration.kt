@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/2/20 3:24 AM
- * Last modified 9/2/20 2:43 AM
+ * Created by Elias Fazel on 9/7/20 7:42 AM
+ * Last modified 9/7/20 7:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
 import com.abanabsalan.aban.magazine.databinding.EntryConfigurationViewBinding
@@ -34,6 +35,8 @@ class EntryConfiguration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         entryConfigurationViewBinding = EntryConfigurationViewBinding.inflate(layoutInflater)
         setContentView(entryConfigurationViewBinding.root)
+
+        LanguageUtils.SelectedLanguage = LanguageUtils().selectedLanguage(applicationContext)
 
         runtimePermission()
 

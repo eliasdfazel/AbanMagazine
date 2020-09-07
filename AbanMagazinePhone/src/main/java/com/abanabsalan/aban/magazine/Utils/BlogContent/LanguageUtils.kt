@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:38 AM
- * Last modified 9/7/20 4:37 AM
+ * Created by Elias Fazel on 9/7/20 7:42 AM
+ * Last modified 9/7/20 7:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,8 +17,12 @@ import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
 
 class LanguageUtils {
 
+    companion object {
+        var SelectedLanguage: String = PostsDataParameters.Language.Persian
+    }
+
     /**
-     * False For RTL Language
+     * RTL Language: True
      **/
     fun checkRtl(aString: String): Boolean {
 
@@ -34,7 +38,7 @@ class LanguageUtils {
 
         val readPreferences: ReadPreferences = ReadPreferences(context)
 
-        return when (readPreferences.readPreference("UserPreferences", "Language", PostsDataParameters.Language.Persian)) {
+        return when (readPreferences.readPreference("UserPreferences", "Language", PostsDataParameters.Language.English)) {
             PostsDataParameters.Language.Persian -> {
 
                 PostsDataParameters.Language.Persian

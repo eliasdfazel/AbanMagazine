@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 9:04 AM
- * Last modified 9/4/20 9:02 AM
+ * Created by Elias Fazel on 9/7/20 7:42 AM
+ * Last modified 9/7/20 7:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataPar
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcase
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -95,6 +96,8 @@ class HomePageLiveData : ViewModel() {
 
         controlLoadingView.postValue(true)
 
+        val languageUtils: LanguageUtils = LanguageUtils()
+
         val categoriesItemData: ArrayList<CategoriesItemData> = ArrayList<CategoriesItemData>()
 
         for (i in 0 until categoriesJsonArray.length()) {
@@ -103,12 +106,46 @@ class HomePageLiveData : ViewModel() {
 
             if (categoryJsonObject.getInt(CategoriesDataParameters.JsonDataStructure.CategoryParentId) == 0) {
 
-                categoriesItemData.add(CategoriesItemData(
-                    categoryLink = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryLink),
-                    categoryId = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryId),
-                    categoryName = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName),
-                    categoryDescription = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryDescription)
-                ))
+                when (LanguageUtils.SelectedLanguage) {
+                    PostsDataParameters.Language.Persian -> {
+                        Log.d(this@HomePageLiveData.javaClass.simpleName, "${PostsDataParameters.Language.Persian} | ${categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName)}")
+
+                        if (languageUtils.checkRtl(categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName))) {
+
+                            categoriesItemData.add(CategoriesItemData(
+                                categoryLink = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryLink),
+                                categoryId = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryId),
+                                categoryName = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName),
+                                categoryDescription = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryDescription)
+                            ))
+
+                        } else {
+
+
+
+                        }
+
+                    }
+                    PostsDataParameters.Language.English -> {
+                        Log.d(this@HomePageLiveData.javaClass.simpleName, "${PostsDataParameters.Language.English} | ${categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName)}")
+
+                        if (languageUtils.checkRtl(categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName))) {
+
+
+
+                        } else {
+
+                            categoriesItemData.add(CategoriesItemData(
+                                categoryLink = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryLink),
+                                categoryId = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryId),
+                                categoryName = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName),
+                                categoryDescription = categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryDescription)
+                            ))
+
+                        }
+
+                    }
+                }
 
             }
 
