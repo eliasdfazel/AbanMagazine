@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 12:26 PM
- * Last modified 9/7/20 12:24 PM
+ * Created by Elias Fazel on 9/8/20 4:37 AM
+ * Last modified 9/8/20 4:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Handler
 import android.text.Html
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -281,6 +282,8 @@ class PopupPreferencesController(
     }
 
     private fun languageSwitchActionHomePage() {
+
+        preferencesPopupUiViewBinding.languageSwitch.visibility = View.VISIBLE
 
         val languageUtils = LanguageUtils()
 

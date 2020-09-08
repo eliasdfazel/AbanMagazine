@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/1/20 11:16 AM
- * Last modified 9/1/20 11:15 AM
+ * Created by Elias Fazel on 9/8/20 4:37 AM
+ * Last modified 9/8/20 4:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -169,7 +169,7 @@ class PostsLiveData : ViewModel() {
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostImage,
                         null,
                         null,
-                        PostItemImage(element.attr("src").replace(" ", ""), targetLink),
+                        PostItemImage(element.attr("src").replace(" ", ""), targetLink, element.attr("alt")),
                         null,
                         null,
                         null,

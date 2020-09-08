@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:38 AM
- * Last modified 9/7/20 4:37 AM
+ * Created by Elias Fazel on 9/8/20 4:37 AM
+ * Last modified 9/8/20 4:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -281,7 +281,25 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                     }
                 })
 
+                (viewHolder as PostViewImageAdapterViewHolder).postImageDescription.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight ->{
+
+                        singlePostViewContext.getColor(R.color.dark)
+
+                    }
+                    ThemeType.ThemeDark -> {
+
+                        singlePostViewContext.getColor(R.color.light)
+
+                    }
+                    else -> {
+                        singlePostViewContext.getColor(R.color.dark)
+                    }
+                })
+
                 singlePostItemsData[position].postItemImage?.let {
+
+                    (viewHolder as PostViewImageAdapterViewHolder).postImageDescription.text = it.imageDescription
 
                     val drawableError: Drawable? = singlePostViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
                     drawableError?.setTint(singlePostViewContext.getColor(R.color.red))

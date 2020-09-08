@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/2/20 10:38 PM
-  ~ Last modified 8/2/20 10:17 PM
+  ~ Created by Elias Fazel on 9/8/20 4:37 AM
+  ~ Last modified 9/8/20 4:36 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -43,6 +43,20 @@
         apps:shape="rounded"
 
         apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/postImageDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="19dp"
+        android:gravity="center"
+        android:textColor="@color/dark"
+        android:textSize="13sp"
+
+        apps:layout_constraintTop_toBottomOf="@id/postImage"
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
 

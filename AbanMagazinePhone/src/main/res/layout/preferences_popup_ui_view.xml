@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/7/20 10:55 AM
-  ~ Last modified 9/7/20 10:43 AM
+  ~ Created by Elias Fazel on 9/8/20 4:37 AM
+  ~ Last modified 9/8/20 4:33 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@
         android:layout_marginStart="11dp"
         android:layout_margin="13dp"
         android:contentDescription="@string/changeLanguageText"
-        android:visibility="visible"
+        android:visibility="invisible"
 
         apps:lottie_rawRes="@raw/english"
 
