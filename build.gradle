@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 2:05 AM
- * Last modified 8/21/20 2:00 AM
+ * Created by Elias Fazel on 9/13/20 7:13 AM
+ * Last modified 9/13/20 7:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,9 +24,9 @@ buildscript {
 
         classpath "com.google.gms:google-services:4.3.3"
 
-        classpath "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:2.2.1"
 
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
     }
 }
 

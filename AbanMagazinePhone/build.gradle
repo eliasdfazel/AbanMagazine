@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/8/20 4:37 AM
- * Last modified 9/8/20 3:46 AM
+ * Created by Elias Fazel on 9/13/20 7:13 AM
+ * Last modified 9/13/20 7:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -174,7 +174,7 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.26'
 
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
 
 
     testImplementation 'junit:junit:4.13'
