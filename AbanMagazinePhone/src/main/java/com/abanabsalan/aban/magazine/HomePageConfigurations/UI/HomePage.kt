@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:48 AM
- * Last modified 9/4/20 8:47 AM
+ * Created by Elias Fazel on 9/13/20 7:10 AM
+ * Last modified 9/13/20 7:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -223,6 +223,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.newestPostsRecyclerView.adapter = newestPostsAdapter
 
+                } else {
+
+                    homePageViewBinding.newestPostsTextView.visibility = View.GONE
+                    homePageViewBinding.newestPostsRecyclerView.visibility = View.GONE
+
                 }
 
                 homePageLiveData.controlLoadingView.postValue(false)
@@ -271,6 +276,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     }
 
+                } else {
+
+                    homePageViewBinding.primaryCategoriesRecyclerView.visibility = View.GONE
+                    homePageViewBinding.secondaryCategoriesRecyclerView.visibility = View.GONE
+
                 }
 
                 homePageLiveData.controlLoadingView.postValue(false)
@@ -286,6 +296,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.productShowcaseRecyclerView.adapter = productShowcaseAdapter
 
+                } else {
+
+                    homePageViewBinding.productShowcaseRecyclerView.visibility = View.GONE
+
                 }
 
             })
@@ -300,6 +314,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     instagramStoryHighlightsAdapter.storyHighlightsItemData.addAll(it)
 
                     homePageViewBinding.instagramStoryHighlightsRecyclerView.adapter = instagramStoryHighlightsAdapter
+
+                } else {
+
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.GONE
 
                 }
 
