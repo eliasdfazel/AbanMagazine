@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 7:42 AM
- * Last modified 9/7/20 7:34 AM
+ * Created by Elias Fazel on 9/14/20 6:08 AM
+ * Last modified 9/14/20 5:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -102,13 +102,13 @@ class HomePageLiveData : ViewModel() {
 
         for (i in 0 until categoriesJsonArray.length()) {
             val categoryJsonObject = categoriesJsonArray.getJSONObject(i)
-            Log.d("${this@HomePageLiveData.javaClass.simpleName} PrepareRawDataToRenderForCategories", categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryId))
+            Log.d("${this@HomePageLiveData.javaClass.simpleName} PrepareRawDataToRenderForCategories", categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName))
 
             if (categoryJsonObject.getInt(CategoriesDataParameters.JsonDataStructure.CategoryParentId) == 0) {
 
                 when (LanguageUtils.SelectedLanguage) {
                     PostsDataParameters.Language.Persian -> {
-                        Log.d(this@HomePageLiveData.javaClass.simpleName, "${PostsDataParameters.Language.Persian} | ${categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName)}")
+                        Log.d(this@HomePageLiveData.javaClass.simpleName, "Language.Persian | ${categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName)}")
 
                         if (languageUtils.checkRtl(categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName))) {
 
@@ -127,7 +127,7 @@ class HomePageLiveData : ViewModel() {
 
                     }
                     PostsDataParameters.Language.English -> {
-                        Log.d(this@HomePageLiveData.javaClass.simpleName, "${PostsDataParameters.Language.English} | ${categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName)}")
+                        Log.d(this@HomePageLiveData.javaClass.simpleName, "Language.English | ${categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName)}")
 
                         if (languageUtils.checkRtl(categoryJsonObject.getString(CategoriesDataParameters.JsonDataStructure.CategoryName))) {
 
