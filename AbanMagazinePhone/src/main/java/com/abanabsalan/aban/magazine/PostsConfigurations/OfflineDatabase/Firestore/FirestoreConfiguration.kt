@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/23/20 6:22 AM
- * Last modified 8/23/20 6:22 AM
+ * Created by Elias Fazel on 9/23/20 4:47 AM
+ * Last modified 9/23/20 4:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,12 +28,18 @@ class FirestoreConfiguration (private val context: Context) {
 
         val firebaseFirestore = FirebaseFirestore.getInstance()
 
-        val firebaseFirestoreSettings = firestoreSettings {
-            isPersistenceEnabled = true
-            cacheSizeBytes = FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED
-        }
+        try {
 
-        firebaseFirestore.firestoreSettings = firebaseFirestoreSettings
+            val firebaseFirestoreSettings = firestoreSettings {
+                isPersistenceEnabled = true
+                cacheSizeBytes = FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED
+            }
+
+            firebaseFirestore.firestoreSettings = firebaseFirestoreSettings
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         if (networkCheckpoint.networkConnectionVpn()) {
 

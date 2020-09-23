@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/13/20 7:10 AM
- * Last modified 9/13/20 7:08 AM
+ * Created by Elias Fazel on 9/23/20 4:47 AM
+ * Last modified 9/23/20 4:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -40,6 +41,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.Secondar
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
+import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore.FirestoreConfiguration
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
@@ -54,6 +56,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerConstants
@@ -62,6 +65,14 @@ import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.SwipeGestureListener
 import javax.inject.Inject
 
 class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectionListenerInterface {
+
+    val firestoreConfiguration: FirestoreConfiguration by lazy {
+        FirestoreConfiguration(applicationContext)
+    }
+
+    val firestoreDatabase: FirebaseFirestore by lazy {
+        firestoreConfiguration.initialize()
+    }
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
@@ -354,7 +365,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 if (it) {
 
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
 
                         specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
 
@@ -538,6 +549,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                             Log.d(this@HomePage.javaClass.simpleName, "Updating Content")
 
                             updateDelay = false
+
+                            firestoreDatabase.clearPersistence()
 
                             setupRefreshView()
 

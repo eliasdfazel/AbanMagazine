@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/15/20 10:43 AM
- * Last modified 9/15/20 10:43 AM
+ * Created by Elias Fazel on 9/23/20 4:47 AM
+ * Last modified 9/23/20 4:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.Preferences
 import android.content.Intent
 import android.net.Uri
 import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.util.Log
 import android.widget.Toast
@@ -347,7 +348,7 @@ class PopupPreferencesController(
 
         val favoriteIt: FavoriteIt = FavoriteIt(context)
 
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
 
             Glide.with(context)
                 .asGif()
