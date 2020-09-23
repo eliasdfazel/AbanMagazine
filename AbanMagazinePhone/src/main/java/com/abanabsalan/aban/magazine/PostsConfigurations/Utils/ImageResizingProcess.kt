@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/2/20 10:38 PM
- * Last modified 8/2/20 10:11 PM
+ * Created by Elias Fazel on 9/23/20 5:09 AM
+ * Last modified 9/23/20 4:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Utils
 
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
@@ -57,18 +58,23 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
-                allowAnimation = when (newState) {
-                    RecyclerView.SCROLL_STATE_IDLE -> {
+                Handler(Looper.getMainLooper()).postDelayed({
 
-                        true
+                    allowAnimation = when (newState) {
+                        RecyclerView.SCROLL_STATE_IDLE -> {
 
+                            true
+
+                        }
+                        else -> {
+
+                            false
+
+                        }
                     }
-                    else -> {
 
-                        false
+                }, 531)
 
-                    }
-                }
             }
 
         })
@@ -137,7 +143,7 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
 
                         animationImage.scaleType = ImageView.ScaleType.FIT_CENTER
 
-                        Handler().postDelayed({
+                        Handler(Looper.getMainLooper()).postDelayed({
 
                             spring.endValue = (0.0)
 

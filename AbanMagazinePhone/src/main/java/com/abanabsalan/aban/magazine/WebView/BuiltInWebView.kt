@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/6/20 7:07 AM
- * Last modified 9/6/20 7:07 AM
+ * Created by Elias Fazel on 9/23/20 5:09 AM
+ * Last modified 9/23/20 5:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -136,7 +136,9 @@ class BuiltInWebView : AppCompatActivity() {
     inner class BuiltInWebViewClient : WebViewClient() {
 
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-            view?.loadUrl(request?.url?.toString())
+            if (request != null) {
+                view?.loadUrl(request.url.toString())
+            }
 
             return false
         }

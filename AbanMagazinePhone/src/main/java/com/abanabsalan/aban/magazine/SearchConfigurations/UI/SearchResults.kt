@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/12/20 1:33 AM
- * Last modified 8/12/20 1:33 AM
+ * Created by Elias Fazel on 9/23/20 5:09 AM
+ * Last modified 9/23/20 5:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -72,7 +72,7 @@ class SearchResults : AppCompatActivity() {
             searchResultsViewBinding.loadingView.playAnimation()
         }
 
-        val fullRawJsonArrayData: String = intent.getStringExtra(Intent.EXTRA_TEXT)
+        val fullRawJsonArrayData: String = intent.getStringExtra(Intent.EXTRA_TEXT)!!
 
         val fullJsonArrayData: JSONArray = JSONArray(fullRawJsonArrayData)
 

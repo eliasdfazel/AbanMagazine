@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/28/20 6:53 AM
- * Last modified 8/28/20 6:46 AM
+ * Created by Elias Fazel on 9/23/20 5:09 AM
+ * Last modified 9/23/20 5:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -71,9 +71,9 @@ class AllCategoryPosts : AppCompatActivity(), NetworkConnectionListenerInterface
         categoryLink = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryLink)
         categoryId = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryId)
 
-        val categoryName: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryName)
+        val categoryName: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryName)!!
 
-        val categoryDescription: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryDescription)
+        val categoryDescription: String = intent.getStringExtra(CategoriesDataParameters.CategoryParameters.CategoryDescription)!!
 
         setupUserInterface(categoryName, categoryDescription)
 

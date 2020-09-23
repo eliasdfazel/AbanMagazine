@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 6:48 AM
- * Last modified 9/7/20 6:37 AM
+ * Created by Elias Fazel on 9/23/20 5:09 AM
+ * Last modified 9/23/20 5:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -236,7 +236,7 @@ fun startFeaturedPostCategoryRetrieval(context: Context, homePageViewBinding: Ho
 
     specificCategoryRetrieval.start(
         SpecificCategoryEndpointsFactory(
-            numberOfPageInPostsList,
+            numberOfPageInPostsList = numberOfPageInPostsList,
             sortByType = "id",
             IdOfCategoryToGetPosts = 150, // Featured Posts
             amountOfPostsToGet = (columnCount(context, 190) * 2),
