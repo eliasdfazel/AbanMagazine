@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 5:09 AM
- * Last modified 9/23/20 4:53 AM
+ * Created by Elias Fazel on 9/23/20 5:28 AM
+ * Last modified 9/23/20 5:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,6 +35,8 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
 
     var revertDelay: Long = 3975
 
+    var idleDelay: Long = 1000
+
     var recyclerView: RecyclerView? = null
 
     private var allowAnimation: Boolean = true
@@ -58,22 +60,23 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
-                Handler(Looper.getMainLooper()).postDelayed({
+                when (newState) {
+                    RecyclerView.SCROLL_STATE_IDLE -> {
 
-                    allowAnimation = when (newState) {
-                        RecyclerView.SCROLL_STATE_IDLE -> {
+                        Handler(Looper.getMainLooper()).postDelayed({
 
-                            true
+                            allowAnimation = true
 
-                        }
-                        else -> {
+                        }, idleDelay)
 
-                            false
-
-                        }
                     }
+                    else -> {
 
-                }, 531)
+                        allowAnimation = false
+
+                    }
+                }
+
 
             }
 

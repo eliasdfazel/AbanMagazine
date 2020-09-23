@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 6:22 AM
- * Last modified 8/10/20 6:21 AM
+ * Created by Elias Fazel on 9/23/20 5:28 AM
+ * Last modified 9/23/20 5:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions
 
 import android.animation.Animator
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
@@ -37,7 +38,7 @@ fun HomePage.setupUserInterface() {
         homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext),
         0, 0)
 
-    Handler().postDelayed({
+    Handler(Looper.getMainLooper()).postDelayed({
 
         homePageViewBinding.optionMenus.playAnimation()
         homePageViewBinding.searchView.playAnimation()
@@ -225,7 +226,7 @@ fun HomePage.setupRefreshView() {
         }
     })
 
-    Handler().postDelayed({
+    Handler(Looper.getMainLooper()).postDelayed({
 
         val finalRadiusHide = hypot(displayX(applicationContext).toDouble(), displayY(applicationContext).toDouble())
 
@@ -260,7 +261,7 @@ fun HomePage.setupRefreshView() {
 
     }, (1000 * 60/*One Minute*/) * 1)
 
-    Handler().postDelayed({
+    Handler(Looper.getMainLooper()).postDelayed({
 
         updateDelay = true
 

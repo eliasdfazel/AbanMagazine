@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 4:47 AM
- * Last modified 9/23/20 4:43 AM
+ * Created by Elias Fazel on 9/23/20 5:28 AM
+ * Last modified 9/23/20 5:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -321,7 +321,7 @@ class PopupPreferencesController(
                 }
             }
 
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
 
                 context.startActivity(Intent(context, EntryConfiguration::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK

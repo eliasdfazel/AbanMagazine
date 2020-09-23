@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/9/20 11:00 PM
- * Last modified 8/9/20 11:00 PM
+ * Created by Elias Fazel on 9/23/20 5:28 AM
+ * Last modified 9/23/20 5:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.Utils.UI.TypeWritter
 
 import android.content.Context
 import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
@@ -22,7 +23,7 @@ class TypeWriterTextView(context: Context, attrs: AttributeSet?) : AppCompatText
     private var inputTextIndex = 0
 
     private var animationDelay: Long = 71
-    private val animationHandler: Handler = Handler()
+    private val animationHandler: Handler = Handler(Looper.getMainLooper())
 
     private val characterAdder: Runnable = object : Runnable {
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/19/20 5:58 PM
- * Last modified 7/19/20 5:56 PM
+ * Created by Elias Fazel on 9/23/20 5:28 AM
+ * Last modified 9/23/20 5:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Network
 import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
@@ -59,7 +60,7 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
                 it.networkAvailable()
             }
 
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 if (networkCheckpoint.networkConnection()) {
                     Log.d(this@NetworkConnectionListener.javaClass.simpleName, "Network Available")
 
@@ -78,13 +79,13 @@ class NetworkConnectionListener @Inject constructor (private var appCompatActivi
                 it.networkLost()
             }
 
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 if (!networkCheckpoint.networkConnection()) {
                     Log.d(this@NetworkConnectionListener.javaClass.simpleName, "Network Lost")
 
                     rootView.addView(offlineIndicator)
 
-                    Handler().postDelayed(Runnable {
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
                         Glide.with(appCompatActivity)
                             .asGif()
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
