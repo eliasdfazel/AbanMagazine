@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:42 AM
- * Last modified 9/7/20 4:42 AM
+ * Created by Elias Fazel on 9/23/20 4:20 AM
+ * Last modified 9/23/20 4:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,10 @@ import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCo
 import com.abanabsalan.aban.magazine.Utils.Network.GeneralEndpoints
 
 data class SpecificCategoryEndpointsFactory (
+    /**
+     * Base Domain Address. In Case You Have Several Wordpress Websites.
+     **/
+    var baseDomainEndpoint: String = GeneralEndpoints.GeneralEndpointsAddressDotCom,
     /**
      * Number Of Page In List Of All Posts
      **/
@@ -46,7 +50,7 @@ class SpecificCategoryEndpoints (specificCategoryEndpointsFactory: SpecificCateg
      * Get All Posts Of A Specific Category.
      * Then Use Posts Json Parameters To Get Each Post Data.
      **/
-    val getSpecificCategoryPostsEndpointAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
+    val getSpecificCategoryPostsEndpointAddress: String = "${specificCategoryEndpointsFactory.baseDomainEndpoint}/wp-json/wp/v2/posts?" +
             "categories=${specificCategoryEndpointsFactory.IdOfCategoryToGetPosts?:1}&page=${specificCategoryEndpointsFactory.numberOfPageInPostsList}&per_page=${specificCategoryEndpointsFactory.amountOfPostsToGet}&orderby=${specificCategoryEndpointsFactory.sortByType}&order=${specificCategoryEndpointsFactory.sortBy}" +
             "&tags[]=${specificCategoryEndpointsFactory.postsLanguage}"
 

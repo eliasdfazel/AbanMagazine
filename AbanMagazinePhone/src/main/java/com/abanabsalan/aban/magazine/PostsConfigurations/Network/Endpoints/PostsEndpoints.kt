@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/15/20 10:43 AM
- * Last modified 9/15/20 10:43 AM
+ * Created by Elias Fazel on 9/23/20 4:20 AM
+ * Last modified 9/23/20 4:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,10 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataPar
 import com.abanabsalan.aban.magazine.Utils.Network.GeneralEndpoints
 
 data class PostsEndpointsFactory (
+    /**
+     * Base Domain Address. In Case You Have Several Wordpress Websites.
+     **/
+    var baseDomainEndpoint: String = GeneralEndpoints.GeneralEndpointsAddressDotCom,
     /**
      * Number Of Page In List Of All Posts
      **/
@@ -38,7 +42,7 @@ data class PostsEndpointsFactory (
 
 class PostsEndpoints (postsEndpointsFactory: PostsEndpointsFactory) {
 
-    val getPostEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/posts?" +
+    val getPostEndpointsAddress: String = "${postsEndpointsFactory.baseDomainEndpoint}/wp-json/wp/v2/posts?" +
             "page=${postsEndpointsFactory.numberOfPageInPostsList}&per_page=${postsEndpointsFactory.amountOfPostsToGet}&orderby=${postsEndpointsFactory.sortByType}&order=${postsEndpointsFactory.sortBy}" +
             "&tags[]=${postsEndpointsFactory.postsLanguage}"
 

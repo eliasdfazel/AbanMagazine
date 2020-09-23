@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/10/20 5:08 AM
- * Last modified 8/10/20 4:48 AM
+ * Created by Elias Fazel on 9/23/20 4:20 AM
+ * Last modified 9/23/20 4:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,10 @@ package com.abanabsalan.aban.magazine.SearchConfigurations.Network.Endpoints
 import com.abanabsalan.aban.magazine.Utils.Network.GeneralEndpoints
 
 data class SearchEndpointsFactory (
+    /**
+     * Base Domain Address. In Case You Have Several Wordpress Websites.
+     **/
+    var baseDomainEndpoint: String = GeneralEndpoints.GeneralEndpointsAddressDotCom,
     /**
      * Number Of Page In List Of All Posts
      **/
@@ -34,7 +38,7 @@ data class SearchEndpointsFactory (
 
 class SearchEndpoints (private val searchEndpointsFactory: SearchEndpointsFactory) {
 
-    val getSearchEndpointsAddress: String = "${GeneralEndpoints.GeneralEndpointsAddress}/wp-json/wp/v2/search?" +
+    val getSearchEndpointsAddress: String = "${searchEndpointsFactory.baseDomainEndpoint}/wp-json/wp/v2/search?" +
             "page=${searchEndpointsFactory.numberOfPageInPostsList}&" +
             "per_page=${searchEndpointsFactory.amountOfPostsToGet}&" +
             "orderby=${searchEndpointsFactory.sortByType}&" +
