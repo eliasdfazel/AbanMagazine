@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 5:28 AM
- * Last modified 9/23/20 5:27 AM
+ * Created by Elias Fazel on 9/23/20 9:50 AM
+ * Last modified 9/23/20 9:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Utils
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
@@ -28,18 +29,21 @@ interface ImageResizingProcessAction {
     fun onImageViewReverted() {}
 }
 
-class ImageResizingProcess (private val animationImage: ImageView, private val controlView: LottieAnimationView, private val informationView: MaterialButton){
+class ImageResizingProcess (private val animationImage: ImageView, private val controlView: LottieAnimationView, private val informationView: MaterialButton) {
 
     var tensionValue = 975.0
     var frictionValue = 21.0
 
     var revertDelay: Long = 3975
 
-    var idleDelay: Long = 1000
+    var pressDelay: Long = 777
 
     var recyclerView: RecyclerView? = null
 
-    private var allowAnimation: Boolean = true
+    private var runnablePressHold: Runnable? = null
+    private val handlerPressHold: Handler = Handler(Looper.getMainLooper())
+
+    private var allowAnimationPress: Boolean = false
 
     @SuppressLint("ClickableViewAccessibility")
     fun start(imageResizingProcessAction: ImageResizingProcessAction) {
@@ -47,8 +51,6 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
         recyclerView?.onFlingListener = object : RecyclerView.OnFlingListener() {
 
             override fun onFling(velocityX: Int, velocityY: Int): Boolean {
-
-                allowAnimation = false
 
                 return false
             }
@@ -63,16 +65,8 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
                 when (newState) {
                     RecyclerView.SCROLL_STATE_IDLE -> {
 
-                        Handler(Looper.getMainLooper()).postDelayed({
-
-                            allowAnimation = true
-
-                        }, idleDelay)
-
                     }
                     else -> {
-
-                        allowAnimation = false
 
                     }
                 }
@@ -139,30 +133,53 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
 
             when (motionEvent?.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    Log.d(this@ImageResizingProcess.javaClass.simpleName, "Image Touch Down")
 
-                    if (allowAnimation) {
+                    allowAnimationPress = true
 
-                        spring.endValue = (0.37)
+                    runnablePressHold = Runnable {
+                        if (allowAnimationPress) {
 
-                        animationImage.scaleType = ImageView.ScaleType.FIT_CENTER
+                            spring.endValue = (0.37)
 
-                        Handler(Looper.getMainLooper()).postDelayed({
+                            animationImage.scaleType = ImageView.ScaleType.FIT_CENTER
 
-                            spring.endValue = (0.0)
+                            Handler(Looper.getMainLooper()).postDelayed({
 
-                            animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                                spring.endValue = (0.0)
 
-                            imageResizingProcessAction.onImageViewReverted()
+                                animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
 
-                        }, revertDelay)
+                                imageResizingProcessAction.onImageViewReverted()
 
+                            }, revertDelay)
+
+                        }
+                    }
+
+                    runnablePressHold?.let {
+                        handlerPressHold.postDelayed(it, pressDelay)
                     }
 
                 }
                 MotionEvent.ACTION_UP -> {
+                    Log.d(this@ImageResizingProcess.javaClass.simpleName, "Image Touch Up")
+
+                    allowAnimationPress = false
+
+                    runnablePressHold?.let {
+                        handlerPressHold.removeCallbacks(it)
+                    }
 
                 }
                 MotionEvent.ACTION_CANCEL -> {
+                    Log.d(this@ImageResizingProcess.javaClass.simpleName, "Image Touch Cancel")
+
+                    allowAnimationPress = false
+
+                    runnablePressHold?.let {
+                        handlerPressHold.removeCallbacks(it)
+                    }
 
                     spring.endValue = (0.0)
 
