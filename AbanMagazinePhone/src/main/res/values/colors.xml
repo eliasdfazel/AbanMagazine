@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/10/20 2:01 AM
-  ~ Last modified 8/10/20 12:51 AM
+  ~ Created by Elias Fazel on 9/23/20 10:40 AM
+  ~ Last modified 9/23/20 10:27 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="default_color">#237DAE</color>
+    <color name="default_color_bright">#00A5FF</color>
     <color name="default_color_light">#008dda</color>
     <color name="default_color_light_transparent">#80008dda</color>
     <color name="default_color_dark">#0a415e</color>
@@ -48,6 +49,9 @@
     <color name="dark_transparent">#b30a0f18</color>
     <color name="dark_transparent_high">#220A0F18</color>
     <color name="dark_transparent_50">#b30a0f18</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 
     <color name="instagramOne">#8a3ab9</color>
     <color name="instagramTwo">#fbad50</color>

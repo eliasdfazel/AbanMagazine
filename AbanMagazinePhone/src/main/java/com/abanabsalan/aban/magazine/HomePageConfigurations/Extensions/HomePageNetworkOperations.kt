@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 5:09 AM
- * Last modified 9/23/20 5:08 AM
+ * Created by Elias Fazel on 9/23/20 10:40 AM
+ * Last modified 9/23/20 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -55,6 +55,7 @@ fun HomePage.startNetworkOperations() {
         val newestPostsRetrieval: NewestPostsRetrieval = NewestPostsRetrieval(applicationContext)
         newestPostsRetrieval.start(
             PostsEndpointsFactory(
+                baseDomainEndpoint = languageUtils.selectedBaseDomain(applicationContext),
                 numberOfPageInPostsList = 1,
                 amountOfPostsToGet = 10,
                 sortByType = "date",
@@ -81,6 +82,7 @@ fun HomePage.startNetworkOperations() {
         val categoriesRetrieval: CategoriesRetrieval = CategoriesRetrieval(applicationContext)
         categoriesRetrieval.start(
             CategoriesEndpointsFactory(
+                baseDomainEndpoint = languageUtils.selectedBaseDomain(applicationContext),
                 excludeCategory = "199,1034,150",
                 amountOfCategoriesToGet = 100,
                 sortByType = "count"

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 10:14 AM
- * Last modified 9/4/20 10:14 AM
+ * Created by Elias Fazel on 9/23/20 10:40 AM
+ * Last modified 9/23/20 10:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,7 +46,7 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
-                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.darker))
+                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.black))
                 productShowcaseViewHolder.productTitleView.setShadowLayer(productShowcaseViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
 
                 productShowcaseViewHolder.productPurchaseView.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.dark_transparent))
@@ -56,7 +56,7 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
             }
             ThemeType.ThemeDark -> {
 
-                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.lighter))
+                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.white))
                 productShowcaseViewHolder.productTitleView.setShadowLayer(productShowcaseViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
 
                 productShowcaseViewHolder.productPurchaseView.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.light_transparent))
@@ -73,7 +73,7 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
-                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.darker))
+                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.black))
                 productShowcaseViewHolder.productTitleView.setShadowLayer(productShowcaseViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
 
                 productShowcaseViewHolder.productPurchaseView.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.dark_transparent))
@@ -83,7 +83,7 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
             }
             ThemeType.ThemeDark -> {
 
-                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.lighter))
+                productShowcaseViewHolder.productTitleView.setTextColor(context.getColor(R.color.white))
                 productShowcaseViewHolder.productTitleView.setShadowLayer(productShowcaseViewHolder.productTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
 
                 productShowcaseViewHolder.productPurchaseView.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.light_transparent))

@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/4/20 10:06 AM
-  ~ Last modified 9/4/20 10:04 AM
+  ~ Created by Elias Fazel on 9/23/20 10:40 AM
+  ~ Last modified 9/23/20 10:28 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -38,15 +38,16 @@
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:paddingHorizontal="7dp"
-        android:paddingVertical="1dp"
+        android:paddingVertical="5dp"
         android:gravity="center"
+        android:lines="2"
         android:ellipsize="end"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:textStyle="bold"
-        android:textColor="@color/darker"
+        android:textColor="@color/black"
         android:fontFamily="@font/persian_sans"
         android:shadowColor="@color/light"
-        android:shadowRadius="3"
+        android:shadowRadius="7"
 
         apps:layout_constraintTop_toBottomOf="@id/productImageView"/>
 
@@ -70,6 +71,7 @@
         apps:icon="@drawable/shopping_bag"
         apps:iconSize="33dp"
         apps:iconGravity="textStart"
+        apps:iconTint="@color/light"
         apps:rippleColor="@color/default_color_game_light"
         apps:backgroundTint="@color/dark_transparent"
 

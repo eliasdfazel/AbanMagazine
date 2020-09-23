@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 6:48 AM
- * Last modified 9/7/20 6:36 AM
+ * Created by Elias Fazel on 9/23/20 10:40 AM
+ * Last modified 9/23/20 10:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,6 +30,7 @@ class AllCategoryPostsRetrieval (private val context: Context){
 
         specificCategoryRetrieval.start(
             SpecificCategoryEndpointsFactory(
+                baseDomainEndpoint = languageUtils.selectedBaseDomain(context),
                 numberOfPageInPostsList = 1,
                 sortByType = "id",
                 IdOfCategoryToGetPosts = categoryId,

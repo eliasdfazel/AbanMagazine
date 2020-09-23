@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/12/20 1:33 AM
-  ~ Last modified 8/12/20 1:15 AM
+  ~ Created by Elias Fazel on 9/23/20 10:40 AM
+  ~ Last modified 9/23/20 9:52 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@
     <net.geekstools.imageview.customshapes.ShapesImage
         android:id="@+id/postFeatureImageView"
         android:layout_width="match_parent"
-        android:layout_height="213dp"
+        android:layout_height="219dp"
         android:transitionName="@string/featuredImageTransitionName"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
