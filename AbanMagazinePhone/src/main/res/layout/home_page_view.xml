@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/7/20 12:26 PM
-  ~ Last modified 9/7/20 11:59 AM
+  ~ Created by Elias Fazel on 9/24/20 9:10 AM
+  ~ Last modified 9/24/20 8:37 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -100,6 +100,27 @@
                 apps:SpinKit_Color="@color/light_pink"/>
 
             <!-- Products Showcase -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/productShowcaseTextView"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginVertical="11dp"
+                android:paddingHorizontal="7dp"
+                android:gravity="center_vertical"
+                android:text="@string/productsShowcaseText"
+                android:textSize="23sp"
+                android:textColor="@color/darker"
+                android:fontFamily="@font/persian_sans"
+                android:visibility="invisible"
+
+                apps:autoSizeTextType="uniform"
+                apps:autoSizeMaxTextSize="23sp"
+                apps:autoSizeMinTextSize="12sp"
+                apps:autoSizeStepGranularity="1sp"
+
+                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productShowcaseRecyclerView"
                 android:layout_width="match_parent"
@@ -111,7 +132,7 @@
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="17dp"
 
-                apps:layout_constraintTop_toBottomOf="@id/featuredPostsRecyclerView"/>
+                apps:layout_constraintTop_toBottomOf="@id/productShowcaseTextView"/>
 
             <!-- Banner Ads - Top -->
             <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

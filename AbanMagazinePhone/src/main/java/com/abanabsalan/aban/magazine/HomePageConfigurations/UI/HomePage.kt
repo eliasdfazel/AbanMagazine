@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 5:28 AM
- * Last modified 9/23/20 5:22 AM
+ * Created by Elias Fazel on 9/24/20 9:10 AM
+ * Last modified 9/24/20 8:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -177,7 +177,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             }
 
-            /*Load Featured Posts*/
+            /* Load Featured Posts */
             homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
 
                 if (!it.isNullOrEmpty()) {
@@ -212,7 +212,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 } else {
 
-                    homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
+                    homePageViewBinding.featuredPostsLoadingView.visibility = View.GONE
+
+                    homePageViewBinding.featuredPostsTextView.visibility = View.GONE
+                    homePageViewBinding.featuredPostsRecyclerView.visibility = View.GONE
+
 
                     Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
 
@@ -222,7 +226,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             })
 
-            /*Load Newest Posts*/
+            /* Load Newest Posts */
             homePageLiveData.newestPostsLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
@@ -245,7 +249,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             })
 
-            /*Load Categories*/
+            /* Load Categories */
             homePageLiveData.categoriesLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
@@ -298,9 +302,12 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             })
 
+            /* Product Showcase */
             homePageLiveData.productShowcaseLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
+
+                    homePageViewBinding.productShowcaseTextView.visibility = View.VISIBLE
 
                     productShowcaseAdapter.productShowcaseItemData.clear()
                     productShowcaseAdapter.productShowcaseItemData.addAll(it)
@@ -310,11 +317,13 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                 } else {
 
                     homePageViewBinding.productShowcaseRecyclerView.visibility = View.GONE
+                    homePageViewBinding.productShowcaseTextView.visibility = View.GONE
 
                 }
 
             })
 
+            /* Instagram Story Highlights */
             homePageLiveData.instagramStoryHighlightsLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
@@ -334,7 +343,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             })
 
-            /*Progress Loading View*/
+            /* Progress Loading View */
             homePageLiveData.controlLoadingView.observe(this@HomePage, Observer {
 
                 if (it) {
@@ -349,7 +358,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             })
 
-            /*Change Theme*/
+            /* Change Theme */
             homePageLiveData.toggleTheme.observe(this@HomePage, Observer {
 
                 var delayTheme: Long = 3333
