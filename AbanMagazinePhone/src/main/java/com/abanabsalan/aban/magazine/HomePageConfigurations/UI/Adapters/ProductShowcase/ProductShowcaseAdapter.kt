@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 10:40 AM
- * Last modified 9/23/20 10:16 AM
+ * Created by Elias Fazel on 9/25/20 9:41 AM
+ * Last modified 9/25/20 9:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -93,7 +93,7 @@ class ProductShowcaseAdapter (private val context: HomePage, private val overall
             }
         }
 
-        productShowcaseViewHolder.productTitleView.text = (productShowcaseItemData[position].nameOfProduct)
+        productShowcaseViewHolder.productTitleView.text = (productShowcaseItemData[position].titleOfProduct)
 
         productShowcaseViewHolder.productPurchaseView.setOnClickListener {
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/8/20 4:37 AM
- * Last modified 9/8/20 4:20 AM
+ * Created by Elias Fazel on 9/25/20 9:41 AM
+ * Last modified 9/25/20 9:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcase
 import kotlinx.coroutines.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -81,7 +82,8 @@ class PostsLiveData : ViewModel() {
                                     instagramPostAddress = instagramEmbeddedId,
                                     instagramPostImage = rawJsonInstagramPost.getString("thumbnail_url"),
                                     instagramPostTitle = rawJsonInstagramPost.getString("title")
-                                )
+                                ),
+                                null
                             )
                         )
 
@@ -91,12 +93,42 @@ class PostsLiveData : ViewModel() {
                     e.printStackTrace()
                 }
 
+            } else if (element.`is`("div") && element.id() == ProductShowcase.ProductShowcase) {
+
+                val productLink = element.getElementById(ProductShowcase.ProductLink).select("a").first().attr("abs:href")
+                val productTitle = element.getElementById(ProductShowcase.ProductTitle).text()
+                val productDescription = element.getElementById(ProductShowcase.ProductDescription).text()
+                val productBrand = element.getElementById(ProductShowcase.ProductBrand).text()
+                val productImage = element.getElementById(ProductShowcase.ProductImage).attr("src").replace(" ", "")
+
+                println(">>>>>>>>>>>>>>>> 1 " + productLink)
+                println(">>>>>>>>>>>>>>>> 2 " + productTitle)
+                println(">>>>>>>>>>>>>>>> 3 " + productDescription)
+                println(">>>>>>>>>>>>>>>> 4 " + productBrand)
+                println(">>>>>>>>>>>>>>>> 5 " + productImage)
+
+//                singlePostItemsData.add(
+//                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
+//                        null,
+//                        null,
+//                        null,
+//                        null,
+//                        null,
+//                        null,
+//                        null,
+//                        ProductShowcaseItemData(
+//
+//                        )
+//                    )
+//                )
+
             } else if (element.`is`("p")) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Paragraph ${element}")
 
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostParagraph,
                         PostItemParagraph(element.text()),
+                        null,
                         null,
                         null,
                         null,
@@ -113,6 +145,7 @@ class PostsLiveData : ViewModel() {
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostSubTitle,
                         null,
                         PostItemSubTitle(element.text()),
+                        null,
                         null,
                         null,
                         null,
@@ -134,6 +167,7 @@ class PostsLiveData : ViewModel() {
                             null,
                             PostItemButton(element.select("a").first().attr("abs:href"), element.text()),
                             null,
+                            null,
                             null
                         )
                     )
@@ -146,6 +180,7 @@ class PostsLiveData : ViewModel() {
                             null,
                             null,
                             PostItemTextLink("${element}"),
+                            null,
                             null,
                             null,
                             null
@@ -173,6 +208,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
+                        null,
                         null
                     )
                 )
@@ -188,6 +224,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         PostItemIFrame("${element}"),
+                        null,
                         null
                     )
                 )

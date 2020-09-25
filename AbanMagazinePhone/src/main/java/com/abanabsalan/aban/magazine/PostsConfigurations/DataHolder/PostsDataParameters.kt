@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/8/20 4:37 AM
- * Last modified 9/8/20 4:20 AM
+ * Created by Elias Fazel on 9/25/20 9:41 AM
+ * Last modified 9/25/20 9:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,8 +10,10 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 
+ import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
 
-class PostsDataParameters {
+
+ class PostsDataParameters {
 
     object Language {
         const val English: String = "2418"
@@ -109,4 +111,5 @@ data class SinglePostItemData (var dataType: Int,
                                var postItemTextLink: PostItemTextLink?,
                                var postItemButton: PostItemButton?,
                                var postItemIFrame: PostItemIFrame?,
-                               var postItemBlockQuoteInstagram: PostItemBlockQuoteInstagram?)
+                               var postItemBlockQuoteInstagram: PostItemBlockQuoteInstagram?,
+                               var productShowcaseItemData: ProductShowcaseItemData?)

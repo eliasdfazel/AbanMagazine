@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/14/20 6:08 AM
- * Last modified 9/14/20 5:41 AM
+ * Created by Elias Fazel on 9/25/20 9:41 AM
+ * Last modified 9/25/20 9:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -203,9 +203,11 @@ class HomePageLiveData : ViewModel() {
 
                 productShowcaseItemData.add(
                     ProductShowcaseItemData(
-                        nameOfProduct = productName,
+                        titleOfProduct = productName,
                         linkToProduct = linkToProduct,
-                        linkToImageProduct = linkToProductImage
+                        linkToImageProduct = linkToProductImage,
+                        descriptionOfProduct = null,
+                        brandOfProduct = null
                     ))
 
             }
