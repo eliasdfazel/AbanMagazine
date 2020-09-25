@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 11:27 AM
- * Last modified 9/25/20 10:53 AM
+ * Created by Elias Fazel on 9/25/20 12:23 PM
+ * Last modified 9/25/20 12:18 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostU
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.text.Html
 import android.view.LayoutInflater
@@ -209,6 +210,39 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
             PostsDataParameters.PostItemsViewParameters.ProductShowcase -> {
 
                 (viewHolder as PostViewProductShowcaseAdapterViewHolder)
+
+                val productImageBackground = context.getDrawable(R.drawable.product_image_showcase_item_background) as LayerDrawable
+                val productTextBackground = context.getDrawable(R.drawable.product_text_showcase_item_background) as LayerDrawable
+
+                when (context.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight ->{
+
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.dark))
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.light))
+
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.dark))
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.light))
+
+                        (viewHolder).productTitle.setTextColor(context.getColor(R.color.darker))
+                        (viewHolder).productDescription.setTextColor(context.getColor(R.color.dark))
+
+                    }
+                    ThemeType.ThemeDark -> {
+
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.light))
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.dark))
+
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.light))
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.dark))
+
+                        (viewHolder).productTitle.setTextColor(context.getColor(R.color.lighter))
+                        (viewHolder).productDescription.setTextColor(context.getColor(R.color.light))
+
+                    }
+                }
+
+                (viewHolder).productImage.background = productImageBackground
+                (viewHolder).productInformation.background = productTextBackground
 
             }
             else -> {
@@ -511,6 +545,39 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
             }
             PostsDataParameters.PostItemsViewParameters.ProductShowcase -> {
 
+                val productImageBackground = context.getDrawable(R.drawable.product_image_showcase_item_background) as LayerDrawable
+                val productTextBackground = context.getDrawable(R.drawable.product_text_showcase_item_background) as LayerDrawable
+
+                when (context.overallTheme.checkThemeLightDark()) {
+                    ThemeType.ThemeLight ->{
+
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.dark))
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.light))
+
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.dark))
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.light))
+
+                        (viewHolder as PostViewProductShowcaseAdapterViewHolder).productTitle.setTextColor(context.getColor(R.color.darker))
+                        (viewHolder as PostViewProductShowcaseAdapterViewHolder).productDescription.setTextColor(context.getColor(R.color.dark))
+
+                    }
+                    ThemeType.ThemeDark -> {
+
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.light))
+                        productImageBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.dark))
+
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.light))
+                        productTextBackground.findDrawableByLayerId(R.id.temporaryForeground).setTint(context.getColor(R.color.dark))
+
+                        (viewHolder as PostViewProductShowcaseAdapterViewHolder).productTitle.setTextColor(context.getColor(R.color.lighter))
+                        (viewHolder as PostViewProductShowcaseAdapterViewHolder).productDescription.setTextColor(context.getColor(R.color.light))
+
+                    }
+                }
+
+                (viewHolder as PostViewProductShowcaseAdapterViewHolder).productImage.background = productImageBackground
+                (viewHolder as PostViewProductShowcaseAdapterViewHolder).productInformation.background = productTextBackground
+
                 singlePostItemsData[position].productShowcaseItemData?.let { productShowcaseItemData ->
 
                     (viewHolder as PostViewProductShowcaseAdapterViewHolder).productTitle.text = Html.fromHtml(productShowcaseItemData.titleOfProduct, Html.FROM_HTML_MODE_LEGACY)
@@ -527,9 +594,25 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
                         .asDrawable()
                         .load(productShowcaseItemData.linkToImageProduct)
                         .apply(requestOptions)
-                        .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 23)))
+                        .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 13)))
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into((viewHolder as PostViewProductShowcaseAdapterViewHolder).productImage)
+
+                    (viewHolder as PostViewProductShowcaseAdapterViewHolder).productImage.setOnClickListener {
+
+                        val buttonIntent = Intent(Intent.ACTION_VIEW, Uri.parse(productShowcaseItemData.linkToProduct))
+                        buttonIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        context.startActivity(buttonIntent)
+
+                    }
+
+                    (viewHolder as PostViewProductShowcaseAdapterViewHolder).purchaseButton.setOnClickListener {
+
+                        val buttonIntent = Intent(Intent.ACTION_VIEW, Uri.parse(productShowcaseItemData.linkToProduct))
+                        buttonIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        context.startActivity(buttonIntent)
+
+                    }
 
                 }
 

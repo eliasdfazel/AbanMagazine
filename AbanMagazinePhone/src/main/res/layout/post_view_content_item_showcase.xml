@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/25/20 11:27 AM
-  ~ Last modified 9/25/20 11:11 AM
+  ~ Created by Elias Fazel on 9/25/20 12:23 PM
+  ~ Last modified 9/25/20 12:22 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -14,8 +14,8 @@
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
     android:layout_width="match_parent"
-    android:layout_height="420dp"
-    android:layout_marginVertical="11dp"
+    android:layout_height="423dp"
+    android:layout_marginVertical="19dp"
     android:layout_marginHorizontal="7dp"
     android:background="@android:color/transparent"
     tools:context=".PostsConfigurations.SinglePost.SinglePostUI.SinglePostView">
@@ -24,20 +24,21 @@
         android:id="@+id/productImage"
         android:layout_width="201dp"
         android:layout_height="351dp"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:paddingStart="3dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingStart="0dp"
         android:paddingEnd="0dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/product_showcase_item_background"
+        android:background="@drawable/product_image_showcase_item_background"
 
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/productInformation"
         android:layout_width="0dp"
         android:layout_height="351dp"
-        android:background="@drawable/product_showcase_item_background"
+        android:background="@drawable/product_text_showcase_item_background"
 
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintStart_toEndOf="@id/productImage"
@@ -47,12 +48,14 @@
             android:id="@+id/productTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="7dp"
+            android:paddingTop="7dp"
+            android:paddingStart="11dp"
+            android:paddingEnd="7dp"
             android:gravity="center_vertical"
             android:textSize="25sp"
             android:textColor="@color/darker"
             android:textStyle="bold"
-            android:fontFamily="@font/persian_sans"
+            android:typeface="normal"
             android:lines="2"
             android:ellipsize="end"
 
@@ -62,11 +65,12 @@
             android:id="@+id/productBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="7dp"
+            android:paddingStart="11dp"
+            android:paddingEnd="7dp"
             android:gravity="center_vertical"
             android:textAllCaps="true"
             android:textSize="23sp"
-            android:textColor="@color/default_color_game"
+            android:textColor="@color/default_color_game_light"
             android:fontFamily="@font/upcil"
             android:lines="1"
             android:ellipsize="end"
@@ -77,10 +81,13 @@
             android:id="@+id/productDescription"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="7dp"
-            android:textSize="21sp"
-            android:textColor="@color/darker"
-            android:fontFamily="@font/persian_sans"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:paddingStart="11dp"
+            android:paddingEnd="7dp"
+            android:textSize="19sp"
+            android:textColor="@color/dark"
+            android:typeface="normal"
             android:ellipsize="end"
 
             apps:layout_constraintTop_toBottomOf="@id/productBrand"
@@ -92,6 +99,7 @@
         android:id="@+id/purchaseButton"
         android:layout_width="0dp"
         android:layout_height="71dp"
+        android:layout_marginTop="3dp"
         android:gravity="center"
         android:ellipsize="end"
         android:textAllCaps="false"
