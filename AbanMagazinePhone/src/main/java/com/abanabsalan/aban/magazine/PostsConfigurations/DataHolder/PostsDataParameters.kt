@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 9:41 AM
- * Last modified 9/25/20 9:07 AM
+ * Created by Elias Fazel on 9/25/20 11:27 AM
+ * Last modified 9/25/20 9:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -75,6 +75,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
         const val PostBlockQuoteInstagram: Int = 6
         const val PostBlockQuoteTwitter: Int = 7
         const val PostBlockQuoteFacebook: Int = 8
+        const val ProductShowcase: Int = 9
     }
 
     object PostItemsBlockQuoteType {

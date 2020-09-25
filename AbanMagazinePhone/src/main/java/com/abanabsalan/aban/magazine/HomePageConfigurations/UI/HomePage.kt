@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/24/20 9:10 AM
- * Last modified 9/24/20 8:34 AM
+ * Created by Elias Fazel on 9/25/20 11:27 AM
+ * Last modified 9/25/20 10:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,8 +56,12 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
@@ -559,7 +563,14 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                             updateDelay = false
 
-                            firestoreDatabase.clearPersistence()
+                            CoroutineScope(Dispatchers.IO).launch {
+
+                                firestoreDatabase.clearPersistence()
+
+                                Glide.get(this@HomePage).clearDiskCache()
+                                Glide.get(this@HomePage).clearMemory()
+
+                            }
 
                             setupRefreshView()
 

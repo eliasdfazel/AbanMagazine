@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/23/20 10:40 AM
-  ~ Last modified 9/23/20 10:32 AM
+  ~ Created by Elias Fazel on 9/25/20 11:27 AM
+  ~ Last modified 9/25/20 10:51 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -11,19 +11,36 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:bottom="5dp">
+    <item>
         <shape>
             <corners
-                android:topLeftRadius="11dp"
-                android:topRightRadius="11dp"
-                android:bottomLeftRadius="31dp"
-                android:bottomRightRadius="31dp"/>
+                android:topLeftRadius="23dp"
+                android:topRightRadius="23dp"
+                android:bottomLeftRadius="23dp"
+                android:bottomRightRadius="23dp"/>
             <gradient
-                android:startColor="@color/default_color"
+                android:type="linear"
+                android:gradientRadius="500dp"
+                android:startColor="@color/default_color_transparent_high"
                 android:centerColor="@color/default_color"
-                android:endColor="@color/default_color_transparent"
+                android:endColor="@color/default_color_transparent_high"
                 android:angle="270" />
+        </shape>
+    </item>
+
+    <item
+        android:top="7dp"
+        android:bottom="7dp"
+        android:start="3dp"
+        android:end="3dp">
+        <shape>
+            <corners
+                android:topLeftRadius="23dp"
+                android:topRightRadius="23dp"
+                android:bottomLeftRadius="23dp"
+                android:bottomRightRadius="23dp"/>
+            <solid
+                android:color="@color/light"/>
         </shape>
     </item>
 

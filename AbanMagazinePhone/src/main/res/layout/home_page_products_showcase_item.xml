@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/23/20 10:40 AM
-  ~ Last modified 9/23/20 10:28 AM
+  ~ Created by Elias Fazel on 9/25/20 11:27 AM
+  ~ Last modified 9/25/20 9:56 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -17,7 +17,7 @@
     android:layout_marginVertical="1dp"
     android:layout_marginHorizontal="7dp"
     android:elevation="3dp"
-    android:background="@drawable/product_showcase_item_background">
+    android:background="@drawable/product_selection_showcase_item_background">
 
     <net.geekstools.imageview.customshapes.ShapesImage
         android:id="@+id/productImageView"

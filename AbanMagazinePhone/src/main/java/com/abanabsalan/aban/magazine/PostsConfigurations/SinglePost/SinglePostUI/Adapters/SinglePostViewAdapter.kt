@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/8/20 4:37 AM
- * Last modified 9/8/20 4:29 AM
+ * Created by Elias Fazel on 9/25/20 11:27 AM
+ * Last modified 9/25/20 10:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,12 +27,14 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProc
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcessAction
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
+import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
@@ -42,7 +44,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
 
-class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val languageUtils: LanguageUtils = LanguageUtils()
 
@@ -55,7 +57,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
                 )
 
@@ -63,7 +65,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
 
                 PostViewSubTitleAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_sub_title, viewGroup, false)
                 )
 
@@ -71,7 +73,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
                 PostViewImageAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_image, viewGroup, false)
                 )
 
@@ -79,7 +81,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
                 PostViewTextLinkAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_text_link, viewGroup, false)
                 )
 
@@ -87,7 +89,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostButton -> {
 
                 PostViewButtonAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_button, viewGroup, false)
                 )
 
@@ -95,7 +97,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
 
                 PostViewIFrameAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_i_frame, viewGroup, false)
                 )
 
@@ -103,15 +105,23 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram -> {
 
                 PostViewBlockQuoteInstagramAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_block_quote_instagram, viewGroup, false)
+                )
+
+            }
+            PostsDataParameters.PostItemsViewParameters.ProductShowcase -> {
+
+                PostViewProductShowcaseAdapterViewHolder(
+                    LayoutInflater.from(context)
+                        .inflate(R.layout.post_view_content_item_showcase, viewGroup, false)
                 )
 
             }
             else -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(singlePostViewContext)
+                    LayoutInflater.from(context)
                         .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
                 )
 
@@ -141,15 +151,15 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 (viewHolder as PostViewParagraphAdapterViewHolder)
 
-                viewHolder.postParagraph.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                viewHolder.postParagraph.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
                     }
                     ThemeType.ThemeDark -> {
-                        singlePostViewContext.getColor(R.color.light)
+                        context.getColor(R.color.light)
                     }
                     else -> {
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
                     }
                 })
 
@@ -158,15 +168,15 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 (viewHolder as PostViewSubTitleAdapterViewHolder)
 
-                viewHolder.postSubTitle.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                viewHolder.postSubTitle.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        singlePostViewContext.getColor(R.color.darker)
+                        context.getColor(R.color.darker)
                     }
                     ThemeType.ThemeDark -> {
-                        singlePostViewContext.getColor(R.color.lighter)
+                        context.getColor(R.color.lighter)
                     }
                     else -> {
-                        singlePostViewContext.getColor(R.color.darker)
+                        context.getColor(R.color.darker)
                     }
                 })
 
@@ -196,6 +206,11 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                 (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder)
 
             }
+            PostsDataParameters.PostItemsViewParameters.ProductShowcase -> {
+
+                (viewHolder as PostViewProductShowcaseAdapterViewHolder)
+
+            }
             else -> {
 
             }
@@ -211,15 +226,15 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
-                (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
                     }
                     ThemeType.ThemeDark -> {
-                        singlePostViewContext.getColor(R.color.light)
+                        context.getColor(R.color.light)
                     }
                     else -> {
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
                     }
                 })
 
@@ -238,15 +253,15 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             }
             PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
 
-                (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
-                        singlePostViewContext.getColor(R.color.darker)
+                        context.getColor(R.color.darker)
                     }
                     ThemeType.ThemeDark -> {
-                        singlePostViewContext.getColor(R.color.lighter)
+                        context.getColor(R.color.lighter)
                     }
                     else -> {
-                        singlePostViewContext.getColor(R.color.darker)
+                        context.getColor(R.color.darker)
                     }
                 })
 
@@ -265,35 +280,35 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
             }
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
-                (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight ->{
 
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
 
                     }
                     ThemeType.ThemeDark -> {
 
-                        singlePostViewContext.getColor(R.color.light)
+                        context.getColor(R.color.light)
 
                     }
                     else -> {
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
                     }
                 })
 
-                (viewHolder as PostViewImageAdapterViewHolder).postImageDescription.setTextColor(when (singlePostViewContext.overallTheme.checkThemeLightDark()) {
+                (viewHolder as PostViewImageAdapterViewHolder).postImageDescription.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight ->{
 
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
 
                     }
                     ThemeType.ThemeDark -> {
 
-                        singlePostViewContext.getColor(R.color.light)
+                        context.getColor(R.color.light)
 
                     }
                     else -> {
-                        singlePostViewContext.getColor(R.color.dark)
+                        context.getColor(R.color.dark)
                     }
                 })
 
@@ -301,15 +316,15 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                     (viewHolder as PostViewImageAdapterViewHolder).postImageDescription.text = it.imageDescription
 
-                    val drawableError: Drawable? = singlePostViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
-                    drawableError?.setTint(singlePostViewContext.getColor(R.color.red))
+                    val drawableError: Drawable? = context.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(context.getColor(R.color.red))
 
                     val requestOptions = RequestOptions()
                         .error(drawableError)
 
                     if (it.imageLink.contains(".gif")) {
 
-                        Glide.with(singlePostViewContext)
+                        Glide.with(context)
                             .asGif()
                             .load(it.imageLink)
                             .apply(requestOptions)
@@ -319,7 +334,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                     } else {
 
-                        Glide.with(singlePostViewContext)
+                        Glide.with(context)
                             .asDrawable()
                             .load(it.imageLink)
                             .apply(requestOptions)
@@ -334,7 +349,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
-                                    singlePostViewContext.runOnUiThread {
+                                    context.runOnUiThread {
                                         (viewHolder as PostViewImageAdapterViewHolder).postImage.setImageDrawable(resource)
                                         (viewHolder as PostViewImageAdapterViewHolder).postImageLoading.visibility = View.GONE
                                     }
@@ -363,10 +378,10 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreen.setOnClickListener { view ->
 
                             BuiltInWebView.show(
-                                context = singlePostViewContext,
+                                context = context,
                                 linkToLoad = it.imageLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
+                                gradientColorOne = context.dominantColor,
+                                gradientColorTwo = context.vibrantColor
                             )
 
                         }
@@ -374,10 +389,10 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                         (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setOnClickListener { view ->
 
                             BuiltInWebView.show(
-                                context = singlePostViewContext,
+                                context = context,
                                 linkToLoad = it.imageLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
+                                gradientColorOne = context.dominantColor,
+                                gradientColorTwo = context.vibrantColor
                             )
 
                         }
@@ -387,10 +402,10 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                         it.targetLink?.also { targetLink ->
 
                             BuiltInWebView.show(
-                                context = singlePostViewContext,
+                                context = context,
                                 linkToLoad = targetLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
+                                gradientColorOne = context.dominantColor,
+                                gradientColorTwo = context.vibrantColor
                             )
 
                         }
@@ -405,7 +420,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                 singlePostItemsData[position].postItemTextLink?.let {
 
                     (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.text = Html.fromHtml(
-                        "<small>${singlePostViewContext.getString(R.string.clickHere)}</small>" +
+                        "<small>${context.getString(R.string.clickHere)}</small>" +
                                 "<br/>" +
                                 "<big>" + it.linkText + "</big>"
                     )
@@ -417,10 +432,10 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                         linkContent.select("a").first().attr("abs:href")?.let { aLink ->
 
                             BuiltInWebView.show(
-                                context = singlePostViewContext,
+                                context = context,
                                 linkToLoad = aLink,
-                                gradientColorOne = singlePostViewContext.dominantColor,
-                                gradientColorTwo = singlePostViewContext.vibrantColor
+                                gradientColorOne = context.dominantColor,
+                                gradientColorTwo = context.vibrantColor
                             )
 
                         }
@@ -440,7 +455,7 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                         val buttonIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.linkButton))
                         buttonIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        singlePostViewContext.startActivity(buttonIntent)
+                        context.startActivity(buttonIntent)
 
                     }
 
@@ -463,13 +478,13 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
 
                 singlePostItemsData[position].postItemBlockQuoteInstagram?.let {
 
-                    val drawableError: Drawable? = singlePostViewContext.getDrawable(android.R.drawable.ic_menu_report_image)
-                    drawableError?.setTint(singlePostViewContext.getColor(R.color.red))
+                    val drawableError: Drawable? = context.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(context.getColor(R.color.red))
 
                     val requestOptions = RequestOptions()
                         .error(drawableError)
 
-                    Glide.with(singlePostViewContext)
+                    Glide.with(context)
                         .asDrawable()
                         .load(it.instagramPostImage)
                         .apply(requestOptions)
@@ -486,10 +501,35 @@ class SinglePostViewAdapter (private val singlePostViewContext: SinglePostView) 
                             action = Intent.ACTION_VIEW
                             data = Uri.parse(it.instagramPostAddress)
                             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            singlePostViewContext.startActivity(this@apply)
+                            context.startActivity(this@apply)
                         }
 
                     }
+
+                }
+
+            }
+            PostsDataParameters.PostItemsViewParameters.ProductShowcase -> {
+
+                singlePostItemsData[position].productShowcaseItemData?.let { productShowcaseItemData ->
+
+                    (viewHolder as PostViewProductShowcaseAdapterViewHolder).productTitle.text = Html.fromHtml(productShowcaseItemData.titleOfProduct, Html.FROM_HTML_MODE_LEGACY)
+                    (viewHolder as PostViewProductShowcaseAdapterViewHolder).productBrand.text = Html.fromHtml(productShowcaseItemData.brandOfProduct, Html.FROM_HTML_MODE_LEGACY)
+                    (viewHolder as PostViewProductShowcaseAdapterViewHolder).productDescription.text = Html.fromHtml(productShowcaseItemData.descriptionOfProduct, Html.FROM_HTML_MODE_LEGACY)
+
+                    val drawableError: Drawable? = context.getDrawable(android.R.drawable.ic_menu_report_image)
+                    drawableError?.setTint(context.getColor(R.color.red))
+
+                    val requestOptions = RequestOptions()
+                        .error(drawableError)
+
+                    Glide.with(context)
+                        .asDrawable()
+                        .load(productShowcaseItemData.linkToImageProduct)
+                        .apply(requestOptions)
+                        .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 23)))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into((viewHolder as PostViewProductShowcaseAdapterViewHolder).productImage)
 
                 }
 

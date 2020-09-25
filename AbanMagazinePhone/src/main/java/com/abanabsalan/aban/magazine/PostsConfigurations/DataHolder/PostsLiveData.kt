@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 9:41 AM
- * Last modified 9/25/20 9:41 AM
+ * Created by Elias Fazel on 9/25/20 11:27 AM
+ * Last modified 9/25/20 11:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcase
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Utils.notProductShowcaseElement
 import kotlinx.coroutines.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -52,7 +54,7 @@ class PostsLiveData : ViewModel() {
 
         allHtmlElement.forEachIndexed { index, element ->
 
-            if (element.`is`("blockquote")) {
+            if (element.`is`("blockquote") && notProductShowcaseElement(element.id())) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Block Quote ${element}")
 
                 try {
@@ -94,6 +96,7 @@ class PostsLiveData : ViewModel() {
                 }
 
             } else if (element.`is`("div") && element.id() == ProductShowcase.ProductShowcase) {
+                Log.d(this@PostsLiveData.javaClass.simpleName, "Showcase ${element}")
 
                 val productLink = element.getElementById(ProductShowcase.ProductLink).select("a").first().attr("abs:href")
                 val productTitle = element.getElementById(ProductShowcase.ProductTitle).text()
@@ -101,28 +104,28 @@ class PostsLiveData : ViewModel() {
                 val productBrand = element.getElementById(ProductShowcase.ProductBrand).text()
                 val productImage = element.getElementById(ProductShowcase.ProductImage).attr("src").replace(" ", "")
 
-                println(">>>>>>>>>>>>>>>> 1 " + productLink)
-                println(">>>>>>>>>>>>>>>> 2 " + productTitle)
-                println(">>>>>>>>>>>>>>>> 3 " + productDescription)
-                println(">>>>>>>>>>>>>>>> 4 " + productBrand)
-                println(">>>>>>>>>>>>>>>> 5 " + productImage)
+                element.getElementById(ProductShowcase.ProductShowcase).empty()
 
-//                singlePostItemsData.add(
-//                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram,
-//                        null,
-//                        null,
-//                        null,
-//                        null,
-//                        null,
-//                        null,
-//                        null,
-//                        ProductShowcaseItemData(
-//
-//                        )
-//                    )
-//                )
+                singlePostItemsData.add(
+                    SinglePostItemData(PostsDataParameters.PostItemsViewParameters.ProductShowcase,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        ProductShowcaseItemData(
+                            linkToProduct = productLink,
+                            titleOfProduct = productTitle,
+                            descriptionOfProduct = productDescription,
+                            brandOfProduct = productBrand,
+                            linkToImageProduct = productImage
+                        )
+                    )
+                )
 
-            } else if (element.`is`("p")) {
+            } else if (element.`is`("p") && notProductShowcaseElement(element.id())) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Paragraph ${element}")
 
                 singlePostItemsData.add(
@@ -138,7 +141,7 @@ class PostsLiveData : ViewModel() {
                     )
                 )
 
-            } else if (element.`is`("h4")) {
+            } else if (element.`is`("h4") && notProductShowcaseElement(element.id())) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "SubTitle Headline 4 ${element}")
 
                 singlePostItemsData.add(
@@ -154,7 +157,7 @@ class PostsLiveData : ViewModel() {
                     )
                 )
 
-            } else if (element.`is`("a")) {
+            } else if (element.`is`("a") && notProductShowcaseElement(element.id())) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Link ${element}")
 
                 if (element.id() == "PurchaseButton") {
@@ -189,7 +192,7 @@ class PostsLiveData : ViewModel() {
 
                 }
 
-            } else if (element.`is`("img")) {
+            } else if (element.`is`("img") && notProductShowcaseElement(element.id())) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Image ${element.attr("src").replace(" ", "")}")
 
                 val targetLink: String? = try {
@@ -213,7 +216,7 @@ class PostsLiveData : ViewModel() {
                     )
                 )
 
-            } else if (element.`is`("iframe")) {
+            } else if (element.`is`("iframe") && notProductShowcaseElement(element.id())) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "iFrame ${element}")
 
                 singlePostItemsData.add(
