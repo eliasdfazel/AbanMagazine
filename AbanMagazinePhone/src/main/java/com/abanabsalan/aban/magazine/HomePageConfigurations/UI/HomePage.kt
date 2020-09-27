@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 11:27 AM
- * Last modified 9/25/20 10:41 AM
+ * Created by Elias Fazel on 9/27/20 5:57 AM
+ * Last modified 9/27/20 5:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -565,10 +565,18 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                             CoroutineScope(Dispatchers.IO).launch {
 
-                                firestoreDatabase.clearPersistence()
+                                try {
 
-                                Glide.get(this@HomePage).clearDiskCache()
-                                Glide.get(this@HomePage).clearMemory()
+                                    firestoreDatabase.clearPersistence()
+
+                                    val t = cacheDir.deleteRecursively()
+
+                                    Glide.get(this@HomePage).clearDiskCache()
+                                    Glide.get(this@HomePage).clearMemory()
+
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
 
                             }
 
