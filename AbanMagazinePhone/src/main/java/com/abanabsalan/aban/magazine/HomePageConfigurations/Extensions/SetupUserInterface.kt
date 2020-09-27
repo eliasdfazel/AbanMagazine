@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/26/20 8:55 AM
- * Last modified 9/26/20 8:54 AM
+ * Created by Elias Fazel on 9/27/20 5:59 AM
+ * Last modified 9/27/20 5:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -263,7 +263,7 @@ fun HomePage.setupRefreshView() {
             }
         })
 
-    }, (1000 * 60/*One Minute*/) * 1)
+    }, (1000/*One Seconds*/) * 10)
 
     Handler(Looper.getMainLooper()).postDelayed({
 
