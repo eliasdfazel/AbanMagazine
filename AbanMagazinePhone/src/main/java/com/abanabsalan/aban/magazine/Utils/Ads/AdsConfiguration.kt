@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/11/20 3:29 AM
- * Last modified 8/11/20 3:28 AM
+ * Created by Elias Fazel on 9/27/20 7:26 AM
+ * Last modified 9/27/20 6:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,7 +31,7 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
         bannerAdsLoadShow()
 
-        val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A")
+        val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A", "F54D998BCE077711A17272B899B44798")
 
         val configuration = RequestConfiguration.Builder()
             .setTestDeviceIds(testDeviceIds)

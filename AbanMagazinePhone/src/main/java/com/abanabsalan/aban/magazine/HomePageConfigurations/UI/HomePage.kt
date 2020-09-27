@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 5:57 AM
- * Last modified 9/27/20 5:57 AM
+ * Created by Elias Fazel on 9/27/20 7:26 AM
+ * Last modified 9/27/20 7:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -216,11 +216,14 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 } else {
 
+                    if (specificCategoryAdapter.specificCategoryPostsItemData.isNullOrEmpty()) {
+
+                        homePageViewBinding.featuredPostsTextView.visibility = View.GONE
+                        homePageViewBinding.featuredPostsRecyclerView.visibility = View.GONE
+
+                    }
+
                     homePageViewBinding.featuredPostsLoadingView.visibility = View.GONE
-
-                    homePageViewBinding.featuredPostsTextView.visibility = View.GONE
-                    homePageViewBinding.featuredPostsRecyclerView.visibility = View.GONE
-
 
                     Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
 
