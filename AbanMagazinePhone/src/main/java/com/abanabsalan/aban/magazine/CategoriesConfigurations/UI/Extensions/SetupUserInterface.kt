@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/24/20 12:54 AM
- * Last modified 7/23/20 11:25 PM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,8 +17,8 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 
 fun AllCategoryPosts.setupUserInterface(categoryName: String, categoryDescription: String) {
 
-    allCategoryPostsBinding.toolbarTitle.text = Html.fromHtml(categoryName)
-    allCategoryPostsBinding.toolbarDescription.setAnimatedInputText(Html.fromHtml(categoryDescription))
+    allCategoryPostsBinding.toolbarTitle.text = Html.fromHtml(categoryName, Html.FROM_HTML_MODE_LEGACY)
+    allCategoryPostsBinding.toolbarDescription.setAnimatedInputText(Html.fromHtml(categoryDescription, Html.FROM_HTML_MODE_LEGACY))
 
     when (overallTheme.checkThemeLightDark()) {
         ThemeType.ThemeLight -> {

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 4:45 AM
- * Last modified 8/5/20 4:42 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -140,8 +140,8 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
             })
             .submit()
 
-        specificCategoryViewHolder.postTitleView.text = Html.fromHtml(specificCategoryPostsItemData[position].postTitle)
-        specificCategoryViewHolder.postExcerptView.text = Html.fromHtml(specificCategoryPostsItemData[position].postExcerpt)
+        specificCategoryViewHolder.postTitleView.text = Html.fromHtml(specificCategoryPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
+        specificCategoryViewHolder.postExcerptView.text = Html.fromHtml(specificCategoryPostsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY)
 
         specificCategoryViewHolder.rootViewItem.setOnClickListener {
 

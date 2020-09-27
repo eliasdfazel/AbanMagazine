@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/6/20 4:22 AM
- * Last modified 8/6/20 4:10 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -139,7 +139,7 @@ class RelatedPostsAdapter (private val context: SinglePostView, private val over
             })
             .submit()
 
-        relatedPostsViewHolder.postTitleView.text = Html.fromHtml(relatedPostsItemData[position].postTitle)
+        relatedPostsViewHolder.postTitleView.text = Html.fromHtml(relatedPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
 
         relatedPostsViewHolder.rootViewItem.setOnClickListener {
 

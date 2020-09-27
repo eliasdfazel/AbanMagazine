@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 5:28 AM
- * Last modified 9/23/20 5:22 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -576,9 +576,9 @@ class PopupPreferencesController(
                 sharePostTitle = Html.fromHtml(
                     (context as SinglePostView).postTitle ?: context.getString(
                         R.string.applicationName
-                    )
+                    ), Html.FROM_HTML_MODE_LEGACY
                 ).toString(),
-                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString())
+                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString(), Html.FROM_HTML_MODE_LEGACY)
                     .toString(),
                 sharePostLink = (context as SinglePostView).postLink
                     ?: context.getString(R.string.playStoreLink)

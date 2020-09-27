@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:38 AM
- * Last modified 9/7/20 4:37 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -87,7 +87,7 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
         }
     }
 
-    postsViewUiBinding.postTitle.text = Html.fromHtml(postTitle)
+    postsViewUiBinding.postTitle.text = Html.fromHtml(postTitle, Html.FROM_HTML_MODE_LEGACY)
 
     postsViewUiBinding.postTitle.post {
         val postTopBarMarginLayoutParams = postsViewUiBinding.postTopBarMargin.layoutParams
@@ -176,6 +176,10 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
                             Log.d(this@setupUserInterface.javaClass.simpleName, "Light Extracted Colors")
 
                             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+                            if (overallTheme.checkThemeLightDark() == ThemeType.ThemeLight) {
+                                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                            }
 
                         }
 

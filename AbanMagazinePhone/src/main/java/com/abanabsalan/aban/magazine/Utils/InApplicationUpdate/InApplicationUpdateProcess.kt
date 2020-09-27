@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 5:52 AM
- * Last modified 8/8/20 5:52 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -118,7 +118,7 @@ class InApplicationUpdateProcess (private val context: AppCompatActivity, privat
         snackbar.setBackgroundTint(context.getColor(R.color.light_pink))
         snackbar.setTextColor(context.getColor(R.color.default_color_dark))
         snackbar.setActionTextColor(context.getColor(R.color.dark))
-        snackbar.setAction(Html.fromHtml(context.getString(R.string.inAppUpdateAction))) { view ->
+        snackbar.setAction(Html.fromHtml(context.getString(R.string.inAppUpdateAction), Html.FROM_HTML_MODE_LEGACY)) { view ->
 
             appUpdateManager.completeUpdate().addOnSuccessListener {
 

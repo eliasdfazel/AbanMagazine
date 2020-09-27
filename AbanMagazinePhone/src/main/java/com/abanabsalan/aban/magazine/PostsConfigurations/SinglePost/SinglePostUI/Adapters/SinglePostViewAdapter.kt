@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 12:23 PM
- * Last modified 9/25/20 12:18 PM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -274,7 +274,7 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                 singlePostItemsData[position].postItemParagraph?.let {
 
-                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText)
+                    (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.text = Html.fromHtml(it.paragraphText, Html.FROM_HTML_MODE_LEGACY)
 
                     (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setOnClickListener {
 
@@ -301,7 +301,7 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                 singlePostItemsData[position].postItemSubTitle?.let {
 
-                    (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.text = Html.fromHtml(it.subTitleText)
+                    (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.text = Html.fromHtml(it.subTitleText, Html.FROM_HTML_MODE_LEGACY)
 
                     (viewHolder as PostViewSubTitleAdapterViewHolder).postSubTitle.setOnClickListener {
 
@@ -456,7 +456,7 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
                     (viewHolder as PostViewTextLinkAdapterViewHolder).postTextLink.text = Html.fromHtml(
                         "<small>${context.getString(R.string.clickHere)}</small>" +
                                 "<br/>" +
-                                "<big>" + it.linkText + "</big>"
+                                "<big>" + it.linkText + "</big>", Html.FROM_HTML_MODE_LEGACY
                     )
 
                     val linkContent: Document = Jsoup.parse(it.linkText)
@@ -526,8 +526,8 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into((viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostImage)
 
-                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostUsername.text = "@" + Html.fromHtml(it.instagramUsername)
-                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostTitle.text = Html.fromHtml(it.instagramPostTitle)
+                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostUsername.text = "@" + Html.fromHtml(it.instagramUsername, Html.FROM_HTML_MODE_LEGACY)
+                    (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).instagramPostTitle.text = Html.fromHtml(it.instagramPostTitle, Html.FROM_HTML_MODE_LEGACY)
 
                     (viewHolder as PostViewBlockQuoteInstagramAdapterViewHolder).rootViewItem.setOnClickListener { view ->
 

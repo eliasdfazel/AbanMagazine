@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/20/20 8:15 PM
- * Last modified 7/20/20 7:16 PM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -57,7 +57,7 @@ class PrimaryCategoryAdapter (private val context: HomePage, private val overall
             }
         }
 
-        primaryCategoryViewHolder.categoryNameView.text = Html.fromHtml(categoriesItemData[position].categoryName)
+        primaryCategoryViewHolder.categoryNameView.text = Html.fromHtml(categoriesItemData[position].categoryName, Html.FROM_HTML_MODE_LEGACY)
 
         Glide.with(context)
             .asDrawable()

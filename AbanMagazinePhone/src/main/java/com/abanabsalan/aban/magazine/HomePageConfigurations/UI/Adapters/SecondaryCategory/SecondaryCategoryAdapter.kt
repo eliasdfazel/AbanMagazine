@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/8/20 7:32 AM
- * Last modified 8/8/20 7:27 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,7 +60,7 @@ class SecondaryCategoryAdapter (private val context: HomePage, private val overa
             }
         }
 
-        secondaryCategoryViewHolder.categoryNameView.text = Html.fromHtml(categoriesItemData[position].categoryName)
+        secondaryCategoryViewHolder.categoryNameView.text = Html.fromHtml(categoriesItemData[position].categoryName, Html.FROM_HTML_MODE_LEGACY)
 
         Glide.with(context)
             .asDrawable()

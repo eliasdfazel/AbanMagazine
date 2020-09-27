@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/23/20 9:07 AM
- * Last modified 8/23/20 8:22 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -140,13 +140,13 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
             })
             .submit()
 
-        newestPostsViewHolder.postTitleView.text = Html.fromHtml(newestPostsItemData[position].postTitle)
+        newestPostsViewHolder.postTitleView.text = Html.fromHtml(newestPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
 
         context.applicationDataIndexing.insert(
             indexLink = newestPostsItemData[position].postLink,
             indexId = newestPostsItemData[position].postId,
-            indexTitle = Html.fromHtml(newestPostsItemData[position].postTitle).toString(),
-            indexDescription = Html.fromHtml(newestPostsItemData[position].postExcerpt).toString(),
+            indexTitle = Html.fromHtml(newestPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY).toString(),
+            indexDescription = Html.fromHtml(newestPostsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY).toString(),
             indexImage = newestPostsItemData[position].postFeaturedImage
         )
 

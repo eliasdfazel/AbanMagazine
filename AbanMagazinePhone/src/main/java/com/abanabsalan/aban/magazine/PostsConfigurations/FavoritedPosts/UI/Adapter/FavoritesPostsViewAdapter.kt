@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 4:45 AM
- * Last modified 8/5/20 4:42 AM
+ * Created by Elias Fazel on 9/27/20 6:33 AM
+ * Last modified 9/27/20 6:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -136,8 +136,8 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
             .transform(CenterCrop(), RoundedCorners(23))
             .into(favoritesPostsViewViewHolder.postFeatureImageView)
 
-        favoritesPostsViewViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle)
-        favoritesPostsViewViewHolder.postExcerptView.text = Html.fromHtml(postsItemData[position].postExcerpt)
+        favoritesPostsViewViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
+        favoritesPostsViewViewHolder.postExcerptView.text = Html.fromHtml(postsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY)
 
         Glide.with(context)
             .asGif()
@@ -168,8 +168,8 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
 
             SharePost(appCompatActivity = context)
                 .invoke(
-                    sharePostTitle = Html.fromHtml(postsItemData[position].postTitle).toString(),
-                    sharePostExcerpt = Html.fromHtml(postsItemData[position].postExcerpt).toString(),
+                    sharePostTitle = Html.fromHtml(postsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY).toString(),
+                    sharePostExcerpt = Html.fromHtml(postsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY).toString(),
                     sharePostLink = postsItemData[position].postLink
                 )
 
