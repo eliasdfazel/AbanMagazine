@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 11:27 AM
- * Last modified 9/25/20 11:23 AM
+ * Created by Elias Fazel on 9/28/20 12:37 PM
+ * Last modified 9/28/20 12:29 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -95,7 +95,7 @@ class PostsLiveData : ViewModel() {
                     e.printStackTrace()
                 }
 
-            } else if (element.`is`("div") && element.id() == ProductShowcase.ProductShowcase) {
+            } else if (element.`is`("div") && element.id().contains(ProductShowcase.ProductShowcase)) {
                 Log.d(this@PostsLiveData.javaClass.simpleName, "Showcase ${element}")
 
                 val productLink = element.getElementById(ProductShowcase.ProductLink).select("a").first().attr("abs:href")
@@ -104,7 +104,8 @@ class PostsLiveData : ViewModel() {
                 val productBrand = element.getElementById(ProductShowcase.ProductBrand).text()
                 val productImage = element.getElementById(ProductShowcase.ProductImage).attr("src").replace(" ", "")
 
-                element.getElementById(ProductShowcase.ProductShowcase).empty()
+                val elementIdIndex = element.id().replace(ProductShowcase.ProductShowcase, "")
+                element.getElementById("${ProductShowcase.ProductShowcase}${elementIdIndex}").empty()
 
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.ProductShowcase,

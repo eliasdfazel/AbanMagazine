@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 11:27 AM
- * Last modified 9/25/20 11:25 AM
+ * Created by Elias Fazel on 9/28/20 12:37 PM
+ * Last modified 9/28/20 12:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ fun notProductShowcaseElement(elementId: String) : Boolean {
 
     var notShowcaseElement = false
 
-    if (elementId != ProductShowcase.ProductShowcase
+    if (!elementId.contains(ProductShowcase.ProductShowcase)
         && elementId != ProductShowcase.ProductLink
         && elementId != ProductShowcase.ProductTitle
         && elementId != ProductShowcase.ProductBrand
