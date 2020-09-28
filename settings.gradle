@@ -1,14 +1,13 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/13/20 12:10 AM
- * Last modified 8/13/20 12:04 AM
+ * Created by Elias Fazel on 9/28/20 12:21 PM
+ * Last modified 9/28/20 12:19 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 include ':AbanMagazinePhone'
-include ':AbanMagazineWatch'
 
 include ':BlurryEffectLibrary'
 include ':ShapesCustomImageViewLibrary'
