@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/11/20 3:29 AM
- * Last modified 8/11/20 3:11 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,13 +19,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
+import com.abanabsalan.aban.magazine.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.favoritesPostsNetworkOperations
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.Adapter.FavoritesPostsViewAdapter
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListenerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount

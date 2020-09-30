@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/28/20 12:37 PM
- * Last modified 9/28/20 12:37 PM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI
 import android.app.ActivityOptions
 import android.app.PictureInPictureParams
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -30,6 +31,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
+import com.abanabsalan.aban.magazine.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
+import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
+import com.abanabsalan.aban.magazine.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
@@ -45,7 +50,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firesto
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
-import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.IndexingConfiguration.ApplicationDataIndexing
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
@@ -57,7 +61,19 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.toggleLightDarkThemeHomePage
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -104,6 +120,14 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     var scrollViewAtTop: Boolean = false
     var updateDelay: Boolean = true
+
+    lateinit var userSignIn: UserSignIn
+
+    val userInformationIO: UserInformationIO by lazy {
+        UserInformationIO(applicationContext)
+    }
+
+    val firebaseAuth = Firebase.auth
 
     val applicationDataIndexing: ApplicationDataIndexing = ApplicationDataIndexing()
 
@@ -521,6 +545,75 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                 this.addCategory(Intent.CATEGORY_HOME)
                 this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }, ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        data?.let {
+
+            when (requestCode) {
+                UserInformation.GoogleSignInRequestCode -> {
+
+                    val googleSignInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    val googleSignInAccount = googleSignInAccountTask.getResult(ApiException::class.java)
+
+                    val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount?.idToken, null)
+                    firebaseAuth.signInWithCredential(authCredential).addOnSuccessListener {
+
+                        val firebaseUser = firebaseAuth.currentUser
+
+                        if (firebaseUser != null) {
+
+                            val accountName: String = firebaseUser.email.toString()
+
+                            userInformationIO.saveUserInformation(accountName)
+
+                            userSignIn.signInSuccessful(accountName)
+
+                            Glide.with(applicationContext)
+                                .asDrawable()
+                                .load(firebaseAuth.currentUser?.photoUrl)
+                                .transform(CenterCrop(), CircleCrop())
+                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .listener(object : RequestListener<Drawable> {
+                                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                                        return false
+                                    }
+
+                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                                        runOnUiThread {
+
+                                            homePageViewBinding.preferencePopupInclude.signupView.icon = resource
+
+                                        }
+
+                                        return false
+                                    }
+
+                                })
+                                .submit()
+
+                            /* Retrieve Favorited Data */
+
+                        }
+
+                    }.addOnFailureListener {
+
+                        userSignIn.signInDismissed()
+
+                    }
+
+                }
+                else -> {
+
+                }
+            }
 
         }
 

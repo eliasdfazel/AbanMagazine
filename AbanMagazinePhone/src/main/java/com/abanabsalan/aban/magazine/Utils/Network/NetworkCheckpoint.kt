@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/22/20 9:26 AM
- * Last modified 8/22/20 8:47 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 6:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,7 +26,7 @@ interface InterfaceNetworkCheckpoint {
 
 class NetworkCheckpoint @Inject constructor(var context: Context) : InterfaceNetworkCheckpoint {
 
-    fun networkConnection(): Boolean {
+    fun networkConnection() : Boolean {
 
         var networkAvailable = false
 
@@ -64,7 +64,7 @@ class NetworkCheckpoint @Inject constructor(var context: Context) : InterfaceNet
         return networkAvailable
     }
 
-    fun networkConnectionVpn(): Boolean {
+    fun networkConnectionVpn() : Boolean {
 
         var networkAvailable = false
 

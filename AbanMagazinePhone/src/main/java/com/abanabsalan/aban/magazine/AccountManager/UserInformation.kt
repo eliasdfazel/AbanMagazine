@@ -1,15 +1,16 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/22/20 9:26 AM
- * Last modified 8/22/20 8:49 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 6:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.Utils.AccountManager
+package com.abanabsalan.aban.magazine.AccountManager
 
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.System.SystemInformation
@@ -23,14 +24,66 @@ interface UserSignIn {
     fun signInDismissed()
 }
 
-class UserInformation(private val context: SinglePostView, private val userSignIn: UserSignIn) {
+class UserInformation(private val userSignIn: UserSignIn) {
 
     companion object {
         const val AccountPickerRequestCode = 101
         const val GoogleSignInRequestCode = 103
     }
 
-    fun startSignInProcess() {
+    fun startSignInProcessHomePage(context: HomePage) {
+
+        val systemInformation = SystemInformation(context)
+
+        context.userSignIn = userSignIn
+
+        if (context.networkCheckpoint.networkConnectionVpn()) {
+
+            if (context.firebaseAuth.currentUser == null) {
+
+                val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(context.getString(R.string.webClientId))
+                    .requestEmail()
+                    .build()
+
+                val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+                googleSignInClient.signInIntent.run {
+                    context.startActivityForResult(this@run, UserInformation.GoogleSignInRequestCode)
+                }
+
+            }
+
+        } else if (systemInformation.getCountryIso().toUpperCase(Locale.getDefault()) == "IR"
+            || systemInformation.getCountryIso() == "Undefined") {
+
+            val accountPickerIntent = AccountPicker.newChooseAccountIntent(
+                AccountPicker.AccountChooserOptions.Builder()
+                    .setAllowableAccountsTypes(listOf("com.google"))
+                    .build()
+            )
+            context.startActivityForResult(accountPickerIntent, UserInformation.AccountPickerRequestCode)
+
+        } else {
+
+            if (context.firebaseAuth.currentUser == null) {
+
+                val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(context.getString(R.string.webClientId))
+                    .requestEmail()
+                    .build()
+
+                val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+                googleSignInClient.signInIntent.run {
+                    context.startActivityForResult(this@run, UserInformation.GoogleSignInRequestCode)
+                }
+
+            }
+
+        }
+
+    }
+
+    fun startSignInProcessSinglePostView(context: SinglePostView) {
 
         val systemInformation = SystemInformation(context)
 

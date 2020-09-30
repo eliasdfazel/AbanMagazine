@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 5:28 AM
- * Last modified 9/23/20 5:22 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.abanabsalan.aban.magazine.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
+import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
+import com.abanabsalan.aban.magazine.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.RelatedPosts.UI.RelatedPostsAdapter
@@ -33,10 +37,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.s
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
-import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformationIO
-import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
-import com.abanabsalan.aban.magazine.Utils.Ads.AdsConfiguration
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme

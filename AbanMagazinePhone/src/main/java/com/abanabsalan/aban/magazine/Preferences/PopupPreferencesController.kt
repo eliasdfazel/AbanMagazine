@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 6:33 AM
- * Last modified 9/27/20 6:05 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,14 +11,19 @@
 package com.abanabsalan.aban.magazine.Preferences
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.text.Html
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.abanabsalan.aban.magazine.AccountManager.UserInformation
+import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
+import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.EntryConfiguration
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
@@ -30,9 +35,6 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.h
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformation
-import com.abanabsalan.aban.magazine.Utils.AccountManager.UserInformationIO
-import com.abanabsalan.aban.magazine.Utils.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
@@ -40,9 +42,15 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import kotlinx.coroutines.Job
 
 
@@ -59,6 +67,8 @@ class PopupPreferencesController(
     fun initializeForHomePage() {
 
         initialThemeToggleAction()
+
+        signInProcess()
 
         socialMediaActionHomePage()
 
@@ -148,6 +158,75 @@ class PopupPreferencesController(
 
     }
 
+    private fun signInProcess() {
+
+        if ((context as HomePage).networkCheckpoint.networkConnection()) {
+
+            preferencesPopupUiViewBinding.signupView.visibility = View.VISIBLE
+
+            if ((context as HomePage).userInformationIO.userSignedIn()) {
+
+                Glide.with(context)
+                    .asDrawable()
+                    .load((context as HomePage).firebaseAuth.currentUser?.photoUrl)
+                    .transform(CenterCrop(), CircleCrop())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                            return false
+                        }
+
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                            context.runOnUiThread {
+
+                                preferencesPopupUiViewBinding.signupView.icon = resource
+
+                            }
+
+                            return false
+                        }
+
+                    })
+                    .submit()
+
+            }
+
+        }
+
+        preferencesPopupUiViewBinding.signupView.setOnClickListener {
+
+            if ((context as HomePage).userInformationIO.userSignedIn()) {
+
+
+
+            } else {
+
+                val userInformation = UserInformation(object : UserSignIn {
+
+                    override fun signInSuccessful(accountName: String) {
+
+                        (context as HomePage).userInformationIO.saveUserInformation(accountName)
+
+                    }
+
+                    override fun signInDismissed() {
+
+
+
+                    }
+
+                })
+
+                userInformation.startSignInProcessHomePage(context as HomePage)
+
+            }
+
+        }
+
+    }
+
     private fun socialMediaActionHomePage() {
 
         val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
@@ -210,11 +289,11 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.shareView.setOnClickListener {
 
-            val shareText: String = "مجله آبان | بوستان مد و استایل" +
+            val shareText: String = "Aban Magazine | Fashion & Style Paradise" +
                     "\n" +
-                    "مجله اینترنتی تخصصی مد و استایل" +
+                    "Professional Fashion & Style Digital Magazine" +
                     "\n" + "\n" +
-                    "نصب برنامه" +
+                    "Install Our Application" +
                     "\n" +
                     "${context.getString(R.string.playStoreLink)}" +
                     "\n" + "\n" +
@@ -222,7 +301,7 @@ class PopupPreferencesController(
                     "\n" +
                     "#AbanAbsalan" +
                     "\n" +
-                    "#آبان_آبسالان" +
+                    "#AbanAbsalan" +
                     ""
 
             val shareIntent: Intent = Intent(Intent.ACTION_SEND).apply {
@@ -254,11 +333,11 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.shareView.setOnLongClickListener {
 
-            val shareText: String = "مجله آبان | بوستان مد و استایل" +
+            val shareText: String = "Aban Magazine | Fashion & Style Paradise" +
                     "\n" +
-                    "مجله اینترنتی تخصصی مد و استایل" +
+                    "Professional Fashion & Style Digital Magazine" +
                     "\n" + "\n" +
-                    "نصب برنامه" +
+                    "Install Our Application" +
                     "\n" +
                     "${context.getString(R.string.playStoreLink)}" +
                     "\n" + "\n" +
@@ -266,7 +345,7 @@ class PopupPreferencesController(
                     "\n" +
                     "#AbanAbsalan" +
                     "\n" +
-                    "#آبان_آبسالان" +
+                    "#AbanAbsalan" +
                     ""
 
             val shareIntent: Intent = Intent(Intent.ACTION_SEND).apply {
@@ -431,8 +510,7 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
-
-            val userInformation = UserInformation(context as SinglePostView, object : UserSignIn {
+            val userInformation = UserInformation(object : UserSignIn {
 
                 override fun signInSuccessful(accountName: String) {
 
@@ -511,7 +589,7 @@ class PopupPreferencesController(
 
                     } else {
 
-                        userInformation.startSignInProcess()
+                        userInformation.startSignInProcessSinglePostView(context as SinglePostView)
 
                     }
 

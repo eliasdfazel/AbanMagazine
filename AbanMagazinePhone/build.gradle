@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 5:57 AM
- * Last modified 9/27/20 4:49 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 5:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -104,15 +104,17 @@ dependencies {
 
 
     implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
 
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+
+    implementation 'com.google.firebase:firebase-config-ktx:19.2.0'
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.1'
 
     implementation 'com.google.firebase:firebase-appindexing:19.1.0'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:19.1.0'
 
-    implementation 'com.google.firebase:firebase-firestore-ktx:21.6.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.7.0'
 
     implementation 'com.google.firebase:firebase-auth-ktx:19.4.0'
 

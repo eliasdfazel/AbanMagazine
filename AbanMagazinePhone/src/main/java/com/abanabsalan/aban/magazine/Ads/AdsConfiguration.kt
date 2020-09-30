@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 7:26 AM
- * Last modified 9/27/20 6:56 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 5:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.Utils.Ads
+package com.abanabsalan.aban.magazine.Ads
 
 import android.util.Log
 import android.view.View

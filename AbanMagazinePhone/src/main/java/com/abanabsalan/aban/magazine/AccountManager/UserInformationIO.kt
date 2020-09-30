@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/21/20 8:17 AM
- * Last modified 8/21/20 8:17 AM
+ * Created by Elias Fazel on 9/30/20 6:38 AM
+ * Last modified 9/30/20 5:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.Utils.AccountManager
+package com.abanabsalan.aban.magazine.AccountManager
 
 import android.content.Context
 import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
