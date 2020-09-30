@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 10:40 AM
- * Last modified 9/23/20 10:01 AM
+ * Created by Elias Fazel on 9/30/20 8:00 AM
+ * Last modified 9/30/20 7:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,6 +29,7 @@ import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endp
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations.SpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
+import com.abanabsalan.aban.magazine.Utils.BlogContent.PostsData
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.InApplicationUpdate.InApplicationUpdateProcess
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
@@ -37,10 +38,81 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
 import javax.net.ssl.HttpsURLConnection
+
+fun HomePage.homePageRemoteConfiguration() {
+
+    val postsData = PostsData(applicationContext)
+
+    val firebaseRemoteConfiguration = Firebase.remoteConfig
+    val configSettings = remoteConfigSettings {
+        minimumFetchIntervalInSeconds = 3600
+    }
+    firebaseRemoteConfiguration.setConfigSettingsAsync(configSettings)
+
+    firebaseRemoteConfiguration
+        .fetchAndActivate().addOnCompleteListener(this) { task ->
+
+            if (task.isSuccessful) {
+                val remoteDataUpdated = task.result
+
+                if (remoteDataUpdated) {
+
+                    if (firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt() > postsData.readTotalPostsNumber()) {
+
+                        postsData.saveTotalPostsNumber(firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt())
+
+                        if (scrollViewAtTop && updateDelay) {
+                            Log.d(this@homePageRemoteConfiguration.javaClass.simpleName, "Updating Content")
+
+                            updateDelay = false
+
+                            cacheDir.deleteRecursively()
+
+                            CoroutineScope(Dispatchers.IO).launch {
+
+                                try {
+
+                                    firestoreDatabase.clearPersistence()
+
+                                    Glide.get(this@homePageRemoteConfiguration).clearDiskCache()
+                                    Glide.get(this@homePageRemoteConfiguration).clearMemory()
+
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+
+                            }
+
+                            setupRefreshView()
+
+                            startNetworkOperations()
+
+                        }
+
+                    }
+
+                }
+
+            } else {
+
+
+
+            }
+
+        }
+
+}
 
 fun HomePage.startNetworkOperations() {
 

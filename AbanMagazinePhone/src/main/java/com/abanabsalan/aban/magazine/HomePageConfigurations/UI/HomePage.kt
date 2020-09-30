@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 7:45 AM
- * Last modified 9/30/20 7:41 AM
+ * Created by Elias Fazel on 9/30/20 8:00 AM
+ * Last modified 9/30/20 7:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -458,6 +458,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             }
 
         }
+
+        homePageRemoteConfiguration()
 
     }
 

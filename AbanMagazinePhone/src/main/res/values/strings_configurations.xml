@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/5/20 2:33 AM
-  ~ Last modified 8/4/20 2:03 AM
+  ~ Created by Elias Fazel on 9/30/20 8:00 AM
+  ~ Last modified 9/30/20 7:50 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -32,5 +32,6 @@
     <string name="favoritesPostsViewInterstitial" translatable="false">ca-app-pub-2920235108594210/2138586409</string>
     <string name="favoritesPostsViewBanner" translatable="false">ca-app-pub-2920235108594210/9256983933</string>
 
+    <string name="totalWebsitePost" translatable="false">TotalWebsitePost</string>
 
 </resources>
