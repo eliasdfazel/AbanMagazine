@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 6:38 AM
- * Last modified 9/30/20 6:38 AM
+ * Created by Elias Fazel on 9/30/20 7:45 AM
+ * Last modified 9/30/20 7:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -61,19 +61,6 @@ class PopupPreferencesController(
 
     private val overallTheme: OverallTheme by lazy {
         OverallTheme(context)
-    }
-
-    /* Home */
-    fun initializeForHomePage() {
-
-        initialThemeToggleAction()
-
-        signInProcess()
-
-        socialMediaActionHomePage()
-
-        languageSwitchActionHomePage()
-
     }
 
     private fun initialThemeToggleAction() {
@@ -155,6 +142,19 @@ class PopupPreferencesController(
             }
 
         }
+
+    }
+
+    /* Home */
+    fun initializeForHomePage() {
+
+        initialThemeToggleAction()
+
+        signInProcess()
+
+        socialMediaActionHomePage()
+
+        languageSwitchActionHomePage()
 
     }
 
@@ -419,50 +419,13 @@ class PopupPreferencesController(
 
         initialThemeToggleAction()
 
-        socialMediaActionPostView(postId)
+        socialMediaActionPostView()
+
+        favoriteActionPostView(postId)
 
     }
 
-    private fun socialMediaActionPostView(postId: String?) {
-
-        val favoriteIt: FavoriteIt = FavoriteIt(context)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-
-            Glide.with(context)
-                .asGif()
-                .load(R.raw.share_animation)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(CenterInside(), RoundedCorners(23))
-                .into(preferencesPopupUiViewBinding.shareView)
-
-        }, 531)
-
-        postId?.let {
-
-            if (favoriteIt.isFavorited(postId)) {
-
-                preferencesPopupUiViewBinding.rateFavoriteView.setAnimation(R.raw.favorite_it_animation)
-                preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
-                preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
-
-            } else {
-
-                preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(
-                    context.getDrawable(
-                        R.drawable.unfavorite_it_icon
-                    )
-                )
-
-            }
-
-        }
-
-        val userInformationIO = UserInformationIO(context)
-
-        val firestoreConfiguration: FirestoreConfiguration = FirestoreConfiguration(context)
-
-        val firestoreDatabase = firestoreConfiguration.initialize()
+    private fun socialMediaActionPostView() {
 
         preferencesPopupUiViewBinding.instagramView.setOnClickListener {
 
@@ -508,6 +471,49 @@ class PopupPreferencesController(
 
         }
 
+    }
+
+    private fun favoriteActionPostView(postId: String?) {
+
+        val favoriteIt: FavoriteIt = FavoriteIt(context)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            Glide.with(context)
+                .asGif()
+                .load(R.raw.share_animation)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(CenterInside(), RoundedCorners(23))
+                .into(preferencesPopupUiViewBinding.shareView)
+
+        }, 531)
+
+        postId?.let {
+
+            if (favoriteIt.isFavorited(postId)) {
+
+                preferencesPopupUiViewBinding.rateFavoriteView.setAnimation(R.raw.favorite_it_animation)
+                preferencesPopupUiViewBinding.rateFavoriteView.setMinAndMaxFrame(0, 21)
+                preferencesPopupUiViewBinding.rateFavoriteView.playAnimation()
+
+            } else {
+
+                preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(
+                    context.getDrawable(
+                        R.drawable.unfavorite_it_icon
+                    )
+                )
+
+            }
+
+        }
+
+        val userInformationIO = UserInformationIO(context)
+
+        val firestoreConfiguration: FirestoreConfiguration = FirestoreConfiguration(context)
+
+        val firestoreDatabase = firestoreConfiguration.initialize()
+
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
             val userInformation = UserInformation(object : UserSignIn {
@@ -525,7 +531,7 @@ class PopupPreferencesController(
 
                             val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
 
-                            val databasePath = firestoreConfiguration.favoritedPostedDatabasePath(accountName, postId)
+                            val databasePath = firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
 
                             firestoreDatabase.document(databasePath).set(favoritedPostData)
                                 .addOnSuccessListener {
@@ -571,7 +577,7 @@ class PopupPreferencesController(
 
                                 val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
 
-                                val databasePath = firestoreConfiguration.favoritedPostedDatabasePath(accountName, postId)
+                                val databasePath = firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
 
                                 firestoreDatabase.document(databasePath).set(favoritedPostData)
                                     .addOnSuccessListener {
@@ -610,7 +616,7 @@ class PopupPreferencesController(
 
                         postId?.let {
 
-                            val databasePath = firestoreConfiguration.favoritedPostedDatabasePath(accountName, postId)
+                            val databasePath = firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
 
                             firestoreDatabase.document(databasePath).delete()
                                 .addOnSuccessListener {

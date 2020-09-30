@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/5/20 3:46 AM
- * Last modified 8/5/20 3:46 AM
+ * Created by Elias Fazel on 9/30/20 7:45 AM
+ * Last modified 9/30/20 7:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,7 +31,7 @@ class FavoriteIt (private val context: Context) {
         var FavoriteDataChanged: Boolean = false
     }
 
-    lateinit var favoriteInterface: FavoriteInterface
+    var favoriteInterface: FavoriteInterface? = null
 
     fun saveAsFavorite(postId: String) {
 
@@ -39,7 +39,7 @@ class FavoriteIt (private val context: Context) {
 
         savePreferences.savePreference(PreferenceName, postId, true)
 
-        favoriteInterface.favoritedIt()
+        favoriteInterface?.favoritedIt()
 
     }
 
@@ -49,7 +49,7 @@ class FavoriteIt (private val context: Context) {
 
         savePreferences.removePrefrenceItem(PreferenceName, postId)
 
-        favoriteInterface.unfavoritedIt()
+        favoriteInterface?.unfavoritedIt()
 
     }
 

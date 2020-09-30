@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 6:38 AM
- * Last modified 9/30/20 6:38 AM
+ * Created by Elias Fazel on 9/30/20 7:45 AM
+ * Last modified 9/30/20 7:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -44,6 +44,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryC
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.ProductShowcase.ProductShowcaseAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore.FirestoreConfiguration
@@ -430,6 +431,32 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             startFeaturedPostsLoadMoreListener(homePageLiveData, specificCategoryAdapter)
 
+            if (!favoriteIt.getAllFavoritedPosts().isNullOrEmpty()) {
+
+                homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
+
+            } else {
+
+                homePageViewBinding.favoritedPostsView.visibility = View.INVISIBLE
+
+            }
+
+            homePageViewBinding.favoritedPostsView.setOnClickListener {
+
+                val activityOptions = ActivityOptions.makeScaleUpAnimation(
+                    it,
+                    it.x.toInt(),
+                    it.y.toInt(),
+                    it.width,
+                    it.height
+                )
+
+                Intent(applicationContext, FavoritesPostsView::class.java).apply {
+                    startActivity(this@apply, activityOptions.toBundle())
+                }
+
+            }
+
         }
 
     }
@@ -470,32 +497,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         }
 
         internetCheckpoint()
-
-        if (!favoriteIt.getAllFavoritedPosts().isNullOrEmpty()) {
-
-            homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
-
-            homePageViewBinding.favoritedPostsView.setOnClickListener {
-
-                val activityOptions = ActivityOptions.makeScaleUpAnimation(
-                    it,
-                    it.x.toInt(),
-                    it.y.toInt(),
-                    it.width,
-                    it.height
-                )
-
-                Intent(applicationContext, FavoritesPostsView::class.java).apply {
-                    startActivity(this@apply, activityOptions.toBundle())
-                }
-
-            }
-
-        } else {
-
-            homePageViewBinding.favoritedPostsView.visibility = View.INVISIBLE
-
-        }
 
         if (this@HomePage.isInMultiWindowMode) {
             Log.d(this@HomePage.javaClass.simpleName, "Multi Window Mode Entered")
@@ -600,6 +601,30 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                                 .submit()
 
                             /* Retrieve Favorited Data */
+                            val favoriteIt: FavoriteIt = FavoriteIt(applicationContext)
+
+                            val databasePath = firestoreConfiguration.favoritedPostsCollectionPath(accountName)
+
+                            firestoreDatabase
+                                .collection(databasePath)
+                                .get()
+                                .addOnSuccessListener {
+
+                                    val favoritedPostsDocuments = it.documents
+
+                                    repeat(favoritedPostsDocuments.size) { index ->
+
+                                        favoriteIt.saveAsFavorite(favoritedPostsDocuments[index][PostsDataParameters.PostParameters.PostId].toString())
+
+                                    }
+
+                                    homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
+
+                                }.addOnFailureListener {
+
+
+
+                                }
 
                         }
 

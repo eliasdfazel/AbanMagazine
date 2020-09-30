@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/30/20 6:38 AM
-  ~ Last modified 9/30/20 6:37 AM
+  ~ Created by Elias Fazel on 9/30/20 7:45 AM
+  ~ Last modified 9/30/20 6:50 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -68,7 +68,7 @@
         apps:cornerRadius="51dp"
         apps:elevation="23dp"
         apps:icon="@drawable/sign_up_icon"
-        apps:iconSize="99sp"
+        apps:iconSize="107sp"
         apps:iconGravity="textStart"
         apps:iconTint="@android:color/transparent"
         apps:iconTintMode="add"
