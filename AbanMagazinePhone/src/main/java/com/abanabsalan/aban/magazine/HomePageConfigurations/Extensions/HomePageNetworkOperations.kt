@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 8:00 AM
- * Last modified 9/30/20 7:59 AM
+ * Created by Elias Fazel on 9/30/20 8:11 AM
+ * Last modified 9/30/20 8:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -61,16 +61,17 @@ fun HomePage.homePageRemoteConfiguration() {
     firebaseRemoteConfiguration.setConfigSettingsAsync(configSettings)
 
     firebaseRemoteConfiguration
-        .fetchAndActivate().addOnCompleteListener(this) { task ->
+        .fetchAndActivate().addOnCompleteListener(this@homePageRemoteConfiguration) { task ->
 
             if (task.isSuccessful) {
-                val remoteDataUpdated = task.result
 
-                if (remoteDataUpdated) {
+                if (firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt() > postsData.readTotalPostsNumber()) {
 
-                    if (firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt() > postsData.readTotalPostsNumber()) {
+                    if (postsData.readTotalPostsNumber() == -1) {
 
-                        postsData.saveTotalPostsNumber(firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt())
+
+
+                    } else {
 
                         if (scrollViewAtTop && updateDelay) {
                             Log.d(this@homePageRemoteConfiguration.javaClass.simpleName, "Updating Content")
@@ -101,6 +102,8 @@ fun HomePage.homePageRemoteConfiguration() {
                         }
 
                     }
+
+                    postsData.saveTotalPostsNumber(firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt())
 
                 }
 
