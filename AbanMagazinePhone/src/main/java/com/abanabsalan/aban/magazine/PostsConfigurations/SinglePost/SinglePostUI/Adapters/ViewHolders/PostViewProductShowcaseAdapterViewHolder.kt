@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 12:23 PM
- * Last modified 9/25/20 12:17 PM
+ * Created by Elias Fazel on 10/1/20 6:43 AM
+ * Last modified 10/1/20 6:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
-import kotlinx.android.synthetic.main.post_view_content_item_showcase.view.*
+import kotlinx.android.synthetic.main.post_view_content_item_showcase_vertical.view.*
 
 class PostViewProductShowcaseAdapterViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val rootViewItem: ConstraintLayout = view.rootViewItem
