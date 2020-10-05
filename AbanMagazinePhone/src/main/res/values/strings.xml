@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/24/20 9:10 AM
-  ~ Last modified 9/24/20 8:46 AM
+  ~ Created by Elias Fazel on 10/5/20 11:20 AM
+  ~ Last modified 10/5/20 11:15 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -29,7 +29,8 @@
     <string name="relatedPosts">Related Posts</string>
 
     <string name="productsShowcaseText">Aban\'s Special Handpicked Selection 💟</string>
-    <string name="purchaseText">See Details</string>
+    <string name="purchaseText">See Details On Amazon</string>
+    <string name="purchaseTextTwoLines">See Details\nOn Amazon</string>
 
     <string name="noMoreContent">No More Content</string>
     <string name="turnOnText">Turn On</string>

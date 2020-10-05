@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/24/20 9:10 AM
-  ~ Last modified 9/24/20 8:40 AM
+  ~ Created by Elias Fazel on 10/5/20 11:20 AM
+  ~ Last modified 10/5/20 11:15 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -30,7 +30,8 @@
     <string name="relatedPosts">مطالب مرتبط</string>
 
     <string name="productsShowcaseText">محصولات دستچین و منتخب آبان 💟</string>
-    <string name="purchaseText">مشاهده محصول</string>
+    <string name="purchaseText">مشاهده محصول بروی دیچی کالا</string>
+    <string name="purchaseTextTwoLines">See Details\nOn Amazon</string>
 
     <string name="noMoreContent">مطلب دیگری یافت نشد</string>
     <string name="turnOnText">روشن کردن</string>

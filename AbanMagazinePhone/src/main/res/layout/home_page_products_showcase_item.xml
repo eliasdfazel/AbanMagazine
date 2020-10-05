@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/25/20 11:27 AM
-  ~ Last modified 9/25/20 9:56 AM
+  ~ Created by Elias Fazel on 10/5/20 11:20 AM
+  ~ Last modified 10/5/20 11:18 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
-    android:layout_width="213dp"
+    android:layout_width="277dp"
     android:layout_height="wrap_content"
     android:layout_marginVertical="1dp"
     android:layout_marginHorizontal="7dp"
@@ -21,8 +21,8 @@
 
     <net.geekstools.imageview.customshapes.ShapesImage
         android:id="@+id/productImageView"
-        android:layout_width="213dp"
-        android:layout_height="213dp"
+        android:layout_width="277dp"
+        android:layout_height="277dp"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
@@ -36,7 +36,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productTitleView"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="71dp"
         android:paddingHorizontal="7dp"
         android:paddingVertical="5dp"
         android:gravity="center"
@@ -53,14 +53,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/productPurchaseView"
-        android:layout_width="213dp"
-        android:layout_height="71dp"
+        android:layout_width="277dp"
+        android:layout_height="73dp"
         android:layout_marginHorizontal="7dp"
         android:gravity="center"
         android:ellipsize="end"
+        android:lines="2"
         android:textAllCaps="false"
         android:text="@string/purchaseText"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:textColor="@color/light"
         android:textStyle="bold"
         android:fontFamily="@font/persian_sans"
