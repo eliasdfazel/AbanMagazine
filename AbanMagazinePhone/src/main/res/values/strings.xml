@@ -1,8 +1,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 10/5/20 11:20 AM
-  ~ Last modified 10/5/20 11:15 AM
+  ~ Created by Elias Fazel on 10/5/20 11:27 AM
+  ~ Last modified 10/5/20 11:23 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -55,5 +55,7 @@
             Complete It!
         ]]>
     </string>
+
+    <string name="associateText">As an Amazon Associate I Earn from Qualifying Purchases.</string>
 
 </resources>
