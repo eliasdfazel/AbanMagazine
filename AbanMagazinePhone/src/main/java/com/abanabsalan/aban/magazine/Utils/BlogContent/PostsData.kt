@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 8:11 AM
- * Last modified 9/30/20 8:03 AM
+ * Created by Elias Fazel on 10/14/20 11:43 AM
+ * Last modified 10/14/20 11:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import com.abanabsalan.aban.magazine.Utils.Preferences.SavePreferences
 
 class PostsData (private val context: Context) {
 
-    fun saveTotalPostsNumber(totalPostsNumber: Int) {
+    fun saveTotalPostsNumber(totalPostsNumber: Long) {
 
         val savePreferences = SavePreferences(context)
 
@@ -24,11 +24,11 @@ class PostsData (private val context: Context) {
 
     }
 
-    fun readTotalPostsNumber() : Int {
+    fun readTotalPostsNumber() : Long {
 
         val readPreferences = ReadPreferences(context)
 
-        return readPreferences.readPreference("PostsInformation", "TotalPostsNumber", -1)
+        return readPreferences.readPreference("PostsInformation", "TotalPostsNumber", 0).toLong()
     }
 
 }

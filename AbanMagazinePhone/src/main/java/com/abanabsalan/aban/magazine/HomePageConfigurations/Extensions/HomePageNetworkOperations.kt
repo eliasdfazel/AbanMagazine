@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 8:11 AM
- * Last modified 9/30/20 8:11 AM
+ * Created by Elias Fazel on 10/14/20 11:43 AM
+ * Last modified 10/14/20 11:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -65,13 +65,9 @@ fun HomePage.homePageRemoteConfiguration() {
 
             if (task.isSuccessful) {
 
-                if (firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt() > postsData.readTotalPostsNumber()) {
+                if (firebaseRemoteConfiguration.getString(getString(R.string.websiteDataDate)).toLong() > postsData.readTotalPostsNumber()) {
 
-                    if (postsData.readTotalPostsNumber() == -1) {
-
-
-
-                    } else {
+                    if (postsData.readTotalPostsNumber() > 0.toLong()) {
 
                         if (scrollViewAtTop && updateDelay) {
                             Log.d(this@homePageRemoteConfiguration.javaClass.simpleName, "Updating Content")
@@ -103,7 +99,7 @@ fun HomePage.homePageRemoteConfiguration() {
 
                     }
 
-                    postsData.saveTotalPostsNumber(firebaseRemoteConfiguration.getString(getString(R.string.totalWebsitePost)).toInt())
+                    postsData.saveTotalPostsNumber(firebaseRemoteConfiguration.getString(getString(R.string.websiteDataDate)).toLong())
 
                 }
 
