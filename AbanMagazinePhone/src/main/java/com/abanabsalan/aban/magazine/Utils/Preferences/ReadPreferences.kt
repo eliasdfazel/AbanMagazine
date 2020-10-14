@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/14/20 11:43 AM
- * Last modified 10/14/20 11:37 AM
+ * Created by Elias Fazel on 10/14/20 11:46 AM
+ * Last modified 10/14/20 11:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@ import androidx.preference.PreferenceManager
 
 class ReadPreferences (private val context: Context) {
 
-    fun readPreference(PreferenceName: String, KEY: String, defaultVALUE: String): String? {
+    fun readPreference(PreferenceName: String, KEY: String, defaultVALUE: String?): String? {
         return context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE).getString(KEY, defaultVALUE)
     }
 
