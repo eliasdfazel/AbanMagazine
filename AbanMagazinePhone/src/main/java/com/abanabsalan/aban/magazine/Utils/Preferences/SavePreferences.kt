@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/31/20 11:57 PM
- * Last modified 7/31/20 11:27 PM
+ * Created by Elias Fazel on 10/14/20 11:53 AM
+ * Last modified 10/14/20 11:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,63 +15,63 @@ import androidx.preference.PreferenceManager
 
 class SavePreferences (private val context: Context) {
 
-    fun savePreference(PreferenceName: String?, KEY: String?, VALUE: String?) {
+    fun savePreference(PreferenceName: String, KEY: String, VALUE: String?) {
         val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putString(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun savePreference(PreferenceName: String?, KEY: String?, VALUE: Int) {
+    fun savePreference(PreferenceName: String, KEY: String, VALUE: Int) {
         val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putInt(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun savePreference(PreferenceName: String?, KEY: String?, VALUE: Long) {
+    fun savePreference(PreferenceName: String, KEY: String, VALUE: Long) {
         val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putLong(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun savePreference(PreferenceName: String?, KEY: String?, VALUE: Float) {
+    fun savePreference(PreferenceName: String, KEY: String, VALUE: Float) {
         val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putFloat(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun savePreference(PreferenceName: String?, KEY: String?, VALUE: Boolean) {
+    fun savePreference(PreferenceName: String, KEY: String, VALUE: Boolean) {
         val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putBoolean(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun saveDefaultPreference(KEY: String?, VALUE: String?) {
+    fun saveDefaultPreference(KEY: String, VALUE: String?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putString(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun saveDefaultPreference(KEY: String?, VALUE: Int) {
+    fun saveDefaultPreference(KEY: String, VALUE: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putInt(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun saveDefaultPreference(KEY: String?, VALUE: Boolean) {
+    fun saveDefaultPreference(KEY: String, VALUE: Boolean) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.putBoolean(KEY, VALUE)
         editorSharedPreferences.apply()
     }
 
-    fun removePrefrenceItem(PreferenceName: String?, KEY: String?) {
+    fun removePrefrenceItem(PreferenceName: String, KEY: String?) {
         val sharedPreferences = context.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
         val editorSharedPreferences = sharedPreferences.edit()
         editorSharedPreferences.remove(KEY)
