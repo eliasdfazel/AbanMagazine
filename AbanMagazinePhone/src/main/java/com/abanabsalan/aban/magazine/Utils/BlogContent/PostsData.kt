@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/14/20 11:43 AM
- * Last modified 10/14/20 11:42 AM
+ * Created by Elias Fazel on 10/15/20 4:12 AM
+ * Last modified 10/15/20 4:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ class PostsData (private val context: Context) {
 
         val readPreferences = ReadPreferences(context)
 
-        return readPreferences.readPreference("PostsInformation", "TotalPostsNumber", 0).toLong()
+        return readPreferences.readPreference("PostsInformation", "TotalPostsNumber", System.currentTimeMillis())
     }
 
 }
