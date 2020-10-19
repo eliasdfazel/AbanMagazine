@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 7:45 AM
- * Last modified 9/30/20 7:14 AM
+ * Created by Elias Fazel on 10/19/20 12:14 PM
+ * Last modified 10/19/20 12:05 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -229,9 +229,9 @@ class PopupPreferencesController(
 
     private fun socialMediaActionHomePage() {
 
-        val instagramViewLayoutParams = preferencesPopupUiViewBinding.instagramView.layoutParams as ConstraintLayout.LayoutParams
-        instagramViewLayoutParams.bottomMargin = navigationBarHeight(context)
-        preferencesPopupUiViewBinding.instagramView.layoutParams = instagramViewLayoutParams
+        val associateInformationLayoutParams = preferencesPopupUiViewBinding.associateInformationView.layoutParams as ConstraintLayout.LayoutParams
+        associateInformationLayoutParams.bottomMargin = associateInformationLayoutParams.bottomMargin + navigationBarHeight(context)
+        preferencesPopupUiViewBinding.associateInformationView.layoutParams = associateInformationLayoutParams
 
         preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.rate_icon))
         preferencesPopupUiViewBinding.shareView.setImageDrawable(context.getDrawable(R.drawable.share_icon))

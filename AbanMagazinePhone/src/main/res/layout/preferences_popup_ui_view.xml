@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 10/18/20 2:11 AM
-  ~ Last modified 10/18/20 2:11 AM
+  ~ Created by Elias Fazel on 10/19/20 12:14 PM
+  ~ Last modified 10/19/20 12:05 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -80,10 +80,11 @@
         apps:layout_constraintBottom_toBottomOf="@id/toggleTheme"
         apps:layout_constraintStart_toStartOf="parent"/>
 
-    <AutoCompleteTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/associateInformationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
         android:paddingHorizontal="13dp"
         android:gravity="center"
         android:text="@string/associateText"
