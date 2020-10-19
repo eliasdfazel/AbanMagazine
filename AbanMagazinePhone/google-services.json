@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "917900886743-62fppdsla5e8oab0ltvtg6i1jfusiomq.apps.googleusercontent.com",
+          "client_id": "917900886743-fup0abp58vhapbvrr8voup78vg9vq3hm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.abanabsalan.aban.magazine",
@@ -23,11 +23,11 @@
           }
         },
         {
-          "client_id": "917900886743-5r218glkus4f3c1ijrq4beh8ubjl47n3.apps.googleusercontent.com",
+          "client_id": "917900886743-qm8d7qi4bf4t4autuhe98r64ntj1ugmk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.abanabsalan.aban.magazine",
-            "certificate_hash": "c4f7ba6ff825ee77e200fa6c3edc4a749be7baac"
+            "certificate_hash": "1d15eb4e4e7fc488f568267af689e34209fc705f"
           }
         },
         {
@@ -49,7 +49,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-2920235108594210~9707242784"
     }
   ],
   "configuration_version": "1"
