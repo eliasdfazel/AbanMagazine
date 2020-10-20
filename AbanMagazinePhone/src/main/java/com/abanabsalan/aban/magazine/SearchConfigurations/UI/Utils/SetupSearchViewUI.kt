@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/20/20 8:59 AM
- * Last modified 10/20/20 8:57 AM
+ * Created by Elias Fazel on 10/20/20 9:30 AM
+ * Last modified 10/20/20 9:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,8 @@ import org.json.JSONArray
 
 class SetupSearchViewUI (private val context: AppCompatActivity, private val searchPopupUiViewBinding: SearchPopupUiViewBinding) {
 
+    var searchQuery: String? = null
+
     init {
 
         val searchPopupUiViewParams = searchPopupUiViewBinding.textInputSearchView.layoutParams as ConstraintLayout.LayoutParams
@@ -45,6 +47,14 @@ class SetupSearchViewUI (private val context: AppCompatActivity, private val sea
 
         showKeyboard(context, searchPopupUiViewBinding.searchView).also {
             searchPopupUiViewBinding.searchView.requestFocus()
+        }
+
+        searchQuery?.let {
+
+            searchPopupUiViewBinding.searchView.setText(it)
+
+            invokeSearchingProcess(searchPopupUiViewBinding.searchView.text.toString())
+
         }
 
         searchPopupUiViewBinding.root.setOnClickListener {
