@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/11/20 4:20 AM
- * Last modified 8/11/20 4:20 AM
+ * Created by Elias Fazel on 10/20/20 8:59 AM
+ * Last modified 10/20/20 8:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,11 +15,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupSearches
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Operations.SearchResultsRetrieval
+import com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.Extensions.hidePopupSearches
+import com.abanabsalan.aban.magazine.SearchConfigurations.SearchRemoteQuery
 import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.System.showKeyboard
@@ -28,7 +31,7 @@ import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import org.json.JSONArray
 
-class SetupSearchViewUI (private val context: HomePage, private val searchPopupUiViewBinding: SearchPopupUiViewBinding) {
+class SetupSearchViewUI (private val context: AppCompatActivity, private val searchPopupUiViewBinding: SearchPopupUiViewBinding) {
 
     init {
 
@@ -46,7 +49,14 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
 
         searchPopupUiViewBinding.root.setOnClickListener {
 
-            context.hidePopupSearches()
+            when (context) {
+                is HomePage -> {
+                    context.hidePopupSearches()
+                }
+                is SearchRemoteQuery -> {
+                    context.hidePopupSearches()
+                }
+            }
 
         }
 
@@ -108,8 +118,16 @@ class SetupSearchViewUI (private val context: HomePage, private val searchPopupU
                         context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, 0).toBundle())
                     }
 
-                    context.homePageViewBinding.searchPopupInclude.loadingView.pauseAnimation()
-                    context.homePageViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
+                    when (context) {
+                        is HomePage -> {
+                            context.homePageViewBinding.searchPopupInclude.loadingView.pauseAnimation()
+                            context.homePageViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
+                        }
+                        is SearchRemoteQuery -> {
+                            context.remoteSearchViewBinding.searchPopupInclude.loadingView.pauseAnimation()
+                            context.remoteSearchViewBinding.searchPopupInclude.root.visibility = View.INVISIBLE
+                        }
+                    }
 
                 }
 

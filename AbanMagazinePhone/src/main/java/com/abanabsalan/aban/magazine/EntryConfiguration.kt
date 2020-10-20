@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 7:42 AM
- * Last modified 9/7/20 7:17 AM
+ * Created by Elias Fazel on 10/20/20 8:59 AM
+ * Last modified 10/20/20 8:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -54,7 +54,8 @@ class EntryConfiguration : AppCompatActivity() {
                     && checkSelfPermission(Manifest.permission.CHANGE_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED
                     && checkSelfPermission(Manifest.permission.CHANGE_WIFI_STATE) == PackageManager.PERMISSION_GRANTED
                     && checkSelfPermission(Manifest.permission.GET_ACCOUNTS) == PackageManager.PERMISSION_GRANTED
-                    && checkSelfPermission(Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
+                    && checkSelfPermission(Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED
+                    && checkSelfPermission(Manifest.permission.WAKE_LOCK) == PackageManager.PERMISSION_GRANTED) {
 
                     startActivity(Intent(applicationContext, HomePage::class.java),
                         ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
@@ -94,7 +95,8 @@ class EntryConfiguration : AppCompatActivity() {
             Manifest.permission.CHANGE_NETWORK_STATE,
             Manifest.permission.CHANGE_WIFI_STATE,
             Manifest.permission.GET_ACCOUNTS,
-            Manifest.permission.VIBRATE
+            Manifest.permission.VIBRATE,
+            Manifest.permission.WAKE_LOCK
         )
 
         requestPermissions(
