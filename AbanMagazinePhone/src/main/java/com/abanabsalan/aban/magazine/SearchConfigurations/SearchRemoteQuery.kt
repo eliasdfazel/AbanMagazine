@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/20/20 8:59 AM
- * Last modified 10/20/20 8:58 AM
+ * Created by Elias Fazel on 10/20/20 9:26 AM
+ * Last modified 10/20/20 9:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,17 +24,22 @@ class SearchRemoteQuery : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         remoteSearchViewBinding = RemoteSearchViewBinding.inflate(layoutInflater)
+        setContentView(remoteSearchViewBinding.root)
 
         val remoteSearchQuery = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
 
-        remoteSearchQuery?.let {
+        remoteSearchViewBinding.rootView.post {
 
-            SetupSearchViewUI(
-                this@SearchRemoteQuery,
-                remoteSearchViewBinding.searchPopupInclude
-            )
+            remoteSearchQuery?.let {
 
-            showPopupSearches()
+                SetupSearchViewUI(
+                    this@SearchRemoteQuery,
+                    remoteSearchViewBinding.searchPopupInclude
+                )
+
+                showPopupSearches()
+
+            }
 
         }
 
