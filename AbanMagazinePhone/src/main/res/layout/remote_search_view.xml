@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 10/21/20 3:06 AM
-  ~ Last modified 10/21/20 2:41 AM
+  ~ Created by Elias Fazel on 10/21/20 3:25 AM
+  ~ Last modified 10/21/20 3:24 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -15,7 +15,20 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/default_color"
     tools:context=".SearchConfigurations.RemoteQuery.UI.SearchRemoteQuery">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/application_icon_launcher"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
     <include
         layout="@layout/search_popup_ui_view"

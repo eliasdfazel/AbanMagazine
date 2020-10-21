@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/21/20 3:06 AM
- * Last modified 10/21/20 2:58 AM
+ * Created by Elias Fazel on 10/21/20 3:25 AM
+ * Last modified 10/21/20 3:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,7 +53,7 @@ class SetupSearchViewUI (private val context: AppCompatActivity, private val sea
 
             searchPopupUiViewBinding.searchView.setText(it)
 
-            invokeSearchingProcess(searchPopupUiViewBinding.searchView.text.toString())
+     //       invokeSearchingProcess(searchPopupUiViewBinding.searchView.text.toString())
 
         }
 
