@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/21/20 3:25 AM
- * Last modified 10/21/20 3:14 AM
+ * Created by Elias Fazel on 10/21/20 3:29 AM
+ * Last modified 10/21/20 3:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,7 @@ import com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.Extensions
 import com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.UI.SearchRemoteQuery
 import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
+import com.abanabsalan.aban.magazine.Utils.System.hideKeyboard
 import com.abanabsalan.aban.magazine.Utils.System.showKeyboard
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.databinding.SearchPopupUiViewBinding
@@ -53,7 +54,7 @@ class SetupSearchViewUI (private val context: AppCompatActivity, private val sea
 
             searchPopupUiViewBinding.searchView.setText(it)
 
-     //       invokeSearchingProcess(searchPopupUiViewBinding.searchView.text.toString())
+            invokeSearchingProcess(searchPopupUiViewBinding.searchView.text.toString())
 
         }
 
@@ -109,6 +110,8 @@ class SetupSearchViewUI (private val context: AppCompatActivity, private val sea
     }
 
     fun invokeSearchingProcess(searchQuery: String) {
+
+        hideKeyboard(context, searchPopupUiViewBinding.searchView)
 
         searchPopupUiViewBinding.loadingView.visibility = View.VISIBLE
         searchPopupUiViewBinding.loadingView.playAnimation()
