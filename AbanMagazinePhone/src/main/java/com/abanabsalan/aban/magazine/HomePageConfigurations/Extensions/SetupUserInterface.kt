@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 5:59 AM
- * Last modified 9/27/20 5:59 AM
+ * Created by Elias Fazel on 10/21/20 3:06 AM
+ * Last modified 10/21/20 2:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -294,7 +294,7 @@ fun HomePage.setupPopupSearchesClick() {
     SetupSearchViewUI(
         this@setupPopupSearchesClick,
         homePageViewBinding.searchPopupInclude
-    )
+    ).initialize()
 
 }
 

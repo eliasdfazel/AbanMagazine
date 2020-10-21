@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/20/20 9:30 AM
- * Last modified 10/20/20 9:30 AM
+ * Created by Elias Fazel on 10/21/20 3:06 AM
+ * Last modified 10/21/20 2:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,7 +22,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.Network.Operations.SearchResultsRetrieval
 import com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.Extensions.hidePopupSearches
-import com.abanabsalan.aban.magazine.SearchConfigurations.SearchRemoteQuery
+import com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.UI.SearchRemoteQuery
 import com.abanabsalan.aban.magazine.SearchConfigurations.UI.SearchResults
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.abanabsalan.aban.magazine.Utils.System.showKeyboard
@@ -35,7 +35,7 @@ class SetupSearchViewUI (private val context: AppCompatActivity, private val sea
 
     var searchQuery: String? = null
 
-    init {
+    fun initialize() {
 
         val searchPopupUiViewParams = searchPopupUiViewBinding.textInputSearchView.layoutParams as ConstraintLayout.LayoutParams
         searchPopupUiViewParams.bottomMargin = searchPopupUiViewParams.bottomMargin + navigationBarHeight(context)

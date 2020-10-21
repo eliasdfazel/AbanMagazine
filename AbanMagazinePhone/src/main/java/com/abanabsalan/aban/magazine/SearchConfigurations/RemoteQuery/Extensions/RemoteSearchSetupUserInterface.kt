@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/20/20 8:59 AM
- * Last modified 10/20/20 8:57 AM
+ * Created by Elias Fazel on 10/21/20 3:06 AM
+ * Last modified 10/21/20 2:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,7 @@ import android.animation.Animator
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
-import com.abanabsalan.aban.magazine.SearchConfigurations.SearchRemoteQuery
+import com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.UI.SearchRemoteQuery
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayY

@@ -1,14 +1,14 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/20/20 9:33 AM
- * Last modified 10/20/20 9:32 AM
+ * Created by Elias Fazel on 10/21/20 3:06 AM
+ * Last modified 10/21/20 2:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-package com.abanabsalan.aban.magazine.SearchConfigurations
+package com.abanabsalan.aban.magazine.SearchConfigurations.RemoteQuery.UI
 
 import android.content.Intent
 import android.os.Bundle
@@ -50,10 +50,12 @@ class SearchRemoteQuery : AppCompatActivity() {
 
             remoteSearchQuery?.let {
 
-                SetupSearchViewUI(
+                val setupSearchViewUI = SetupSearchViewUI(
                     this@SearchRemoteQuery,
                     remoteSearchViewBinding.searchPopupInclude
                 )
+                setupSearchViewUI.searchQuery = remoteSearchQuery.toString()
+                setupSearchViewUI.initialize()
 
                 showPopupSearches()
 
