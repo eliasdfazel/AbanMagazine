@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/7/20 4:38 AM
- * Last modified 9/7/20 4:37 AM
+ * Created by Elias Fazel on 10/22/20 7:58 AM
+ * Last modified 10/22/20 7:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,7 +20,7 @@ import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 class SharePost (private val appCompatActivity: AppCompatActivity) {
 
     object Compaigns {
-        const val Hashtags = "#AbanAbsalan" + "\n" + "#آبان_آبسالان"
+        const val Hashtags = "#AbanAbsalan"
         const val SocialMention = "@AbanAbsalan"
     }
 
@@ -35,7 +35,7 @@ class SharePost (private val appCompatActivity: AppCompatActivity) {
                 "\n" + "\n" +
                 SharePost.Compaigns.Hashtags +
                 "\n" +
-                "${createSocialMediaHashTagsCompaign(sharePostTitle)}" +
+                "${createSocialMediaHashTagsCampaign(sharePostTitle)}" +
                 "\n" +
                 SharePost.Compaigns.SocialMention +
                 "\n" + "\n" + "\n" +
@@ -50,7 +50,7 @@ class SharePost (private val appCompatActivity: AppCompatActivity) {
 
     }
 
-    private fun createSocialMediaHashTagsCompaign(postTitle: String) : String {
+    private fun createSocialMediaHashTagsCampaign(postTitle: String) : String {
 
         val language = LanguageUtils()
 
@@ -60,15 +60,8 @@ class SharePost (private val appCompatActivity: AppCompatActivity) {
 
         allWords.forEach {
 
-            if (language.checkRtl(it)) {
+            hashtagsText.append("#${it} ")
 
-                hashtagsText.append("#${it} ")
-
-            } else {
-
-                hashtagsText.append(" ${it}#")
-
-            }
         }
 
         return hashtagsText.toString()
