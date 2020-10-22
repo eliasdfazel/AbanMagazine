@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 10/22/20 9:14 AM
+  ~ Last modified 10/22/20 9:09 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/searchSelectedMenu"
+        android:icon="@drawable/animated_search_icon"
+        android:title="@string/searchRemoteText"
+        app:showAsAction="always" />
+
+</menu>
