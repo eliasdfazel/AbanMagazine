@@ -1,8 +1,8 @@
  /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 11:27 AM
- * Last modified 9/25/20 9:42 AM
+ * Created by Elias Fazel on 11/12/20 6:05 AM
+ * Last modified 11/12/20 5:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -47,7 +47,8 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 
         const val PostFeaturedImage: String = "PostFeaturedImage"
         const val PostTitle: String = "PostTitle"
-        const val PostContent: String = "content"
+        const val PostContent: String = "PostContent"
+        const val PostTags: String = "PostTags"
         const val PostExcerpt: String = "PostExcerpt"
         const val PostCommentsLink: String = "PostCommentsLink"
 

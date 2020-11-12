@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/14/20 11:43 AM
- * Last modified 10/14/20 11:42 AM
+ * Created by Elias Fazel on 11/12/20 6:05 AM
+ * Last modified 11/12/20 5:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,6 +28,8 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Endpoints.SpecificCategoryEndpointsFactory
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Network.Operations.SpecificCategoryRetrieval
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
+import com.abanabsalan.aban.magazine.TagsConfigurations.Network.Endpoints.TagsEndpointsFactory
+import com.abanabsalan.aban.magazine.TagsConfigurations.Network.Operations.TagsPostsRetrieval
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.BlogContent.PostsData
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
@@ -194,6 +196,30 @@ fun HomePage.startNetworkOperations() {
 
         })
 
+        /*Load Recommended Posts*/
+        val tagsPostsRetrieval: TagsPostsRetrieval = TagsPostsRetrieval(applicationContext)
+        tagsPostsRetrieval.start(
+            TagsEndpointsFactory(
+                tags = "167,2756"
+            ),
+            object : JsonRequestResponseInterface {
+
+                override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                    super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
+
+//                    homePageLiveData.prepareRawDataToRenderForNewestPosts(rawDataJsonArray)
+
+
+                }
+
+                override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                    Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
+
+                }
+
+            }
+        )
+
         /*Load Instagram Story Highlights*/
         val storyHighlightsRetrieval: StoryHighlightsRetrieval = StoryHighlightsRetrieval(applicationContext)
         storyHighlightsRetrieval.start(object : JsonRequestResponseInterface {
@@ -215,7 +241,7 @@ fun HomePage.startNetworkOperations() {
 
         })
 
-        /*Invoke In Applicatio Update*/
+        /*Invoke In Application Update*/
         InApplicationUpdateProcess(this@startNetworkOperations, homePageViewBinding.rootView)
             .initialize()
 

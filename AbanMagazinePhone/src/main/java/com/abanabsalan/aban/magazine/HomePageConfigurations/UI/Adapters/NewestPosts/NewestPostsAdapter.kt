@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 6:33 AM
- * Last modified 9/27/20 6:04 AM
+ * Created by Elias Fazel on 11/12/20 6:05 AM
+ * Last modified 11/12/20 5:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -159,6 +159,7 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
                 postFeaturedImage = newestPostsItemData[position].postFeaturedImage,
                 postTitle = newestPostsItemData[position].postTitle,
                 postContent = newestPostsItemData[position].postContent,
+                postTags = newestPostsItemData[position].postTags,
                 postExcerpt = newestPostsItemData[position].postExcerpt,
                 postLink = newestPostsItemData[position].postLink,
                 relatedPostStringJson = newestPostsItemData[position].relatedPostsContent

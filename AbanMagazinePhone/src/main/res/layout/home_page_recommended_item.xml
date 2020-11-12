@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 11/12/20 6:05 AM
+  ~ Last modified 11/12/20 4:09 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootViewItem"
+    android:layout_width="match_parent"
+    android:layout_height="153dp"
+    android:layout_marginVertical="3dp"
+    android:layout_marginHorizontal="3dp"
+    android:background="@android:color/transparent"
+
+    apps:layout_constraintDimensionRatio="1:1">
+
+    <net.geekstools.imageview.customshapes.ShapesImage
+        android:id="@+id/categoryFeaturedImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+
+        apps:shapeDrawable="@drawable/primary_categories_item_background"/>
+
+    <net.geeksempire.blurry.effect.view.RealtimeBlurView
+        android:id="@+id/searchesBlurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        apps:realtimeBlurRadius="13dp"
+        apps:realtimeOverlayColor="@color/default_color_light_transparent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/categoryNameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="7dp"
+        android:gravity="center"
+        android:lines="3"
+        android:ellipsize="end"
+        android:textSize="17sp"
+        android:textColor="@color/light"
+        android:fontFamily="@font/persian_sans"
+        android:shadowColor="@color/default_color_dark"
+        android:shadowRadius="25" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

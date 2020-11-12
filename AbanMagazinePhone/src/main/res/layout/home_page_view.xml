@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 9/24/20 9:10 AM
-  ~ Last modified 9/24/20 8:37 AM
+  ~ Created by Elias Fazel on 11/12/20 6:05 AM
+  ~ Last modified 11/12/20 3:50 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -68,7 +68,7 @@
                 android:textSize="23sp"
                 android:textColor="@color/darker"
                 android:fontFamily="@font/persian_sans"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 apps:layout_constraintTop_toBottomOf="@id/secondaryCategoriesRecyclerView"/>
 
@@ -89,7 +89,7 @@
                 android:layout_width="29dp"
                 android:layout_height="29dp"
                 android:layout_marginEnd="11dp"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 apps:layout_constraintStart_toStartOf="parent"
                 apps:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
                 android:textSize="23sp"
                 android:textColor="@color/darker"
                 android:fontFamily="@font/persian_sans"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 apps:autoSizeTextType="uniform"
                 apps:autoSizeMaxTextSize="23sp"
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="1dp"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 ads:adSize="SMART_BANNER"
                 ads:adUnitId="@string/homePageBannerTop"
@@ -161,7 +161,7 @@
                 android:textSize="23sp"
                 android:textColor="@color/darker"
                 android:fontFamily="@font/persian_sans"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 apps:layout_constraintTop_toBottomOf="@id/bannerAdViewTop"/>
 
@@ -211,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="1dp"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 ads:adSize="SMART_BANNER"
                 ads:adUnitId="@string/homePageBannerBottom"
@@ -229,7 +229,7 @@
                 android:requiresFadingEdge="horizontal"
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="7dp"
-                android:visibility="invisible"
+                android:visibility="gone"
 
                 apps:layout_constraintTop_toBottomOf="@id/bannerAdViewBottom"/>
 
@@ -373,7 +373,7 @@
         android:id="@+id/preferencePopupInclude"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="gone"
 
         apps:layout_constraintTop_toBottomOf="@id/homepageTopBar"
         apps:layout_constraintBottom_toBottomOf="parent"/>
@@ -384,7 +384,7 @@
         android:id="@+id/searchPopupInclude"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="gone"
 
         apps:layout_constraintTop_toBottomOf="@id/homepageTopBar"
         apps:layout_constraintBottom_toBottomOf="parent"/>

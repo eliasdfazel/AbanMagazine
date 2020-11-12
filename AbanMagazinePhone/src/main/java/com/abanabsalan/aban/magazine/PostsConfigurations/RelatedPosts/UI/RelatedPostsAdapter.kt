@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 6:33 AM
- * Last modified 9/27/20 6:05 AM
+ * Created by Elias Fazel on 11/12/20 6:05 AM
+ * Last modified 11/12/20 5:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -150,6 +150,7 @@ class RelatedPostsAdapter (private val context: SinglePostView, private val over
                 postFeaturedImage = relatedPostsItemData[position].postFeaturedImage,
                 postTitle = relatedPostsItemData[position].postTitle,
                 postContent = relatedPostsItemData[position].postContent,
+                postTags = relatedPostsItemData[position].postTags,
                 postExcerpt = relatedPostsItemData[position].postExcerpt,
                 postLink = relatedPostsItemData[position].postLink,
                 relatedPostStringJson = relatedPostsItemData[position].relatedPostsContent

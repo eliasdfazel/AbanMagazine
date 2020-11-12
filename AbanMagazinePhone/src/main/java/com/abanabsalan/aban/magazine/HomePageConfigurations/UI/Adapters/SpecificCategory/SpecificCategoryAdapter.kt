@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 6:33 AM
- * Last modified 9/27/20 6:04 AM
+ * Created by Elias Fazel on 11/12/20 6:05 AM
+ * Last modified 11/12/20 5:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -152,6 +152,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
                 postFeaturedImage = specificCategoryPostsItemData[position].postFeaturedImage,
                 postTitle = specificCategoryPostsItemData[position].postTitle,
                 postContent = specificCategoryPostsItemData[position].postContent,
+                postTags = specificCategoryPostsItemData[position].postTags,
                 postExcerpt = specificCategoryPostsItemData[position].postExcerpt,
                 postLink = specificCategoryPostsItemData[position].postLink,
                 relatedPostStringJson = specificCategoryPostsItemData[position].relatedPostsContent

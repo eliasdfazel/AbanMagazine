@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 6:38 AM
- * Last modified 9/30/20 6:38 AM
+ * Created by Elias Fazel on 11/12/20 6:05 AM
+ * Last modified 11/12/20 5:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.s
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.TagsConfigurations.Utils.TagsIO
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -66,6 +67,10 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
 
     val adsConfiguration: AdsConfiguration by lazy {
         AdsConfiguration(this@SinglePostView)
+    }
+
+    val tagsIO: TagsIO by lazy {
+        TagsIO(applicationContext)
     }
 
     private var postTopBarIsExpanded = true
@@ -109,6 +114,7 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
                  featuredImageSharedElement: AppCompatImageView,
                  postId: String,
                  postFeaturedImage: String, postTitle: String, postContent: String,
+                 postTags: String,
                  postExcerpt: String, postLink: String,
                  relatedPostStringJson: String?) {
 
@@ -120,6 +126,8 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
 
                 putExtra(PostsDataParameters.PostParameters.PostTitle, postTitle)
                 putExtra(PostsDataParameters.PostParameters.PostContent, postContent)
+
+                putExtra(PostsDataParameters.PostParameters.PostTags, postTags)
 
                 putExtra(PostsDataParameters.PostParameters.PostExcerpt, postExcerpt)
                 putExtra(PostsDataParameters.PostParameters.PostLink, postLink)
@@ -248,6 +256,13 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         relatedPostContent?.let { relatedPostContent ->
             postsLiveData.extractRelatedPostIds(JSONArray(relatedPostContent))
         }
+
+        /*Post Tags*/
+        intent.getStringExtra(PostsDataParameters.PostParameters.PostTags)?.let {
+            tagsIO.saveTagsDatabase(it)
+        }
+
+        tagsIO.prepareRecommendedTags()
 
         firebaseAnalytics.logEvent(this@SinglePostView.javaClass.simpleName, Bundle().apply {
             putString("PostId", postId)
