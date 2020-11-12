@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:29 AM
- * Last modified 11/12/20 6:27 AM
+ * Created by Elias Fazel on 11/12/20 9:16 AM
+ * Last modified 11/12/20 8:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.TagsConfigurations.Utils
 import android.content.Context
 import com.abanabsalan.aban.magazine.Utils.Preferences.ReadPreferences
 import com.abanabsalan.aban.magazine.Utils.Preferences.SavePreferences
+import java.io.File
 
 class TagsIO(val context: Context) {
 
@@ -40,7 +41,13 @@ class TagsIO(val context: Context) {
             it.value.toString().toInt()
         }
 
-        val sliceAllSavedTagsValue = allSavedTagsValue.subList(0, if(allSavedTagsValue.size > 3) { 3 } else { allSavedTagsValue.size })
+        val sliceAllSavedTagsValue = allSavedTagsValue.subList(
+            0, if (allSavedTagsValue.size > 3) {
+                3
+            } else {
+                allSavedTagsValue.size
+            }
+        )
 
         val tagsCsv = StringBuilder()
         sliceAllSavedTagsValue.forEach {
@@ -57,19 +64,23 @@ class TagsIO(val context: Context) {
 
     fun recommendedDataAvailable() : Boolean {
 
-        val sharedPreferences = context.getSharedPreferences("Tags", Context.MODE_PRIVATE)
+        var tagsAvailable = false
 
-        return try {
+        val tagsFile = File("/data/data/${context.packageName}/shared_prefs/Tags.xml")
 
-            val allSavedTagsValue = sharedPreferences.all
+        if (tagsFile.exists()) {
 
-            true
+            val sharedPreferences = context.getSharedPreferences("Tags", Context.MODE_PRIVATE)
 
-        } catch (e: NullPointerException) {
+            if (!sharedPreferences.all.isNullOrEmpty()) {
 
-            false
+                tagsAvailable = true
+
+            }
+
         }
 
+        return tagsAvailable
     }
 
 }

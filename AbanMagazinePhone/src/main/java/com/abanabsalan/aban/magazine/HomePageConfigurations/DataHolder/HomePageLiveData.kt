@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:10 AM
- * Last modified 11/12/20 6:08 AM
+ * Created by Elias Fazel on 11/12/20 9:16 AM
+ * Last modified 11/12/20 8:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -230,7 +230,7 @@ class HomePageLiveData : ViewModel() {
 
         for (i in 0 until postsJsonArray.length()) {
             val postJsonObject = postsJsonArray.getJSONObject(i)
-            Log.d("${this@HomePageLiveData.javaClass.simpleName} PrepareRawDataToRenderForNewestPosts", postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
+            Log.d("${this@HomePageLiveData.javaClass.simpleName} PrepareRawDataToRenderForRecommendedPosts", postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
 
             recommendedPostsItemData.add(PostsItemData(
                 postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:29 AM
- * Last modified 11/12/20 6:22 AM
+ * Created by Elias Fazel on 11/12/20 9:16 AM
+ * Last modified 11/12/20 8:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -371,6 +371,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                 if (it.isNotEmpty()) {
 
                     homePageViewBinding.forYouPostsTextView.visibility = View.VISIBLE
+                    homePageViewBinding.recommendedPostsRecyclerView.visibility = View.VISIBLE
 
                     recommendedPostsAdapter.recommendedPostsItemData.clear()
                     recommendedPostsAdapter.recommendedPostsItemData.addAll(it)

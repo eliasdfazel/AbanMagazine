@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:29 AM
- * Last modified 11/12/20 6:23 AM
+ * Created by Elias Fazel on 11/12/20 9:16 AM
+ * Last modified 11/12/20 9:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,11 +10,15 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.RecommendedPosts
 
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +42,7 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecommendedPostsViewHolder {
 
-        return RecommendedPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_newest_posts_item, viewGroup, false))
+        return RecommendedPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_recommended_item, viewGroup, false))
     }
 
     override fun getItemCount(): Int {
@@ -46,67 +50,18 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
         return recommendedPostsItemData.size
     }
 
-    override fun onBindViewHolder(recommendedPostsViewHolder: RecommendedPostsViewHolder, position: Int, dataPayloads: MutableList<Any>) {
-        super.onBindViewHolder(recommendedPostsViewHolder, position, dataPayloads)
-
-        when (overallTheme.checkThemeLightDark()) {
-            ThemeType.ThemeLight -> {
-
-                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
-                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
-                temporaryForeground.setTint(context.getColor(R.color.light))
-                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
-
-                recommendedPostsViewHolder.rootViewItem.background = newestPostsItemBackground
-
-                recommendedPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
-                recommendedPostsViewHolder.postTitleView.setShadowLayer(recommendedPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
-
-            }
-            ThemeType.ThemeDark -> {
-
-                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
-                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
-                temporaryForeground.setTint(context.getColor(R.color.dark))
-                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
-
-                recommendedPostsViewHolder.rootViewItem.background = newestPostsItemBackground
-
-                recommendedPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
-                recommendedPostsViewHolder.postTitleView.setShadowLayer(recommendedPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
-
-            }
-        }
-
-    }
-
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(recommendedPostsViewHolder: RecommendedPostsViewHolder, position: Int) {
 
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
-                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
-                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
-                temporaryForeground.setTint(context.getColor(R.color.light))
-                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
 
-                recommendedPostsViewHolder.rootViewItem.background = newestPostsItemBackground
-
-                recommendedPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.darker))
-                recommendedPostsViewHolder.postTitleView.setShadowLayer(recommendedPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
-                val newestPostsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
-                val temporaryForeground: Drawable = newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
-                temporaryForeground.setTint(context.getColor(R.color.dark))
-                newestPostsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
 
-                recommendedPostsViewHolder.rootViewItem.background = newestPostsItemBackground
-
-                recommendedPostsViewHolder.postTitleView.setTextColor(context.getColor(R.color.lighter))
-                recommendedPostsViewHolder.postTitleView.setShadowLayer(recommendedPostsViewHolder.postTitleView.shadowRadius,0f,0f,context.getColor(R.color.light))
 
             }
         }
@@ -143,7 +98,7 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
         recommendedPostsViewHolder.postTitleView.text = Html.fromHtml(recommendedPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
 
-        recommendedPostsViewHolder.rootViewItem.setOnClickListener {
+        recommendedPostsViewHolder.readMoreView.setOnClickListener {
 
             SinglePostView.show(
                 context = context,
@@ -165,17 +120,72 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
 
-                    recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(0f)
+                    val animation = ValueAnimator.ofFloat(13.3f, 0f)
+                    animation.duration = 1111
+                    animation.addUpdateListener {
+                        val value = it.animatedValue as Float
+
+                        recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(value)
+
+                        if (value == 0f) {
+
+                        }
+
+                    }
+                    animation.start()
+
+                    recommendedPostsViewHolder.readMoreView.visibility = View.VISIBLE
 
                 }
                 MotionEvent.ACTION_UP -> {
 
-                    recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(13f)
+                    Handler(Looper.getMainLooper()).postDelayed({
+
+                        val animation = ValueAnimator.ofFloat(0f, 13f)
+                        animation.duration = 1111
+                        animation.addUpdateListener {
+                            val value = it.animatedValue as Float
+
+                            recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(value)
+
+                            if (value == 13f) {
+
+                            }
+
+                        }
+                        animation.start()
+
+                        recommendedPostsViewHolder.readMoreView.visibility = View.INVISIBLE
+
+                    }, 1975)
+
+                }
+                MotionEvent.ACTION_CANCEL -> {
+
+                    Handler(Looper.getMainLooper()).postDelayed({
+
+                        val animation = ValueAnimator.ofFloat(0f, 13f)
+                        animation.duration = 1111
+                        animation.addUpdateListener {
+                            val value = it.animatedValue as Float
+
+                            recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(value)
+
+                            if (value == 13f) {
+
+                            }
+
+                        }
+                        animation.start()
+
+                        recommendedPostsViewHolder.readMoreView.visibility = View.INVISIBLE
+
+                    }, 1975)
 
                 }
             }
 
-            false
+            true
         }
 
     }
