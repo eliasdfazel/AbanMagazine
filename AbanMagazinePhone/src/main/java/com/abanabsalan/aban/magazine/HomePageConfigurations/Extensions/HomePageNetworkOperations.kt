@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 5:48 AM
+ * Created by Elias Fazel on 11/12/20 6:10 AM
+ * Last modified 11/12/20 6:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -200,14 +200,14 @@ fun HomePage.startNetworkOperations() {
         val tagsPostsRetrieval: TagsPostsRetrieval = TagsPostsRetrieval(applicationContext)
         tagsPostsRetrieval.start(
             TagsEndpointsFactory(
-                tags = "167,2756"
+                tags = tagsIO.prepareRecommendedTags()
             ),
             object : JsonRequestResponseInterface {
 
                 override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                     super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-//                    homePageLiveData.prepareRawDataToRenderForNewestPosts(rawDataJsonArray)
+                    homePageLiveData.prepareRawDataToRenderForRecommendedPosts(rawDataJsonArray)
 
 
                 }

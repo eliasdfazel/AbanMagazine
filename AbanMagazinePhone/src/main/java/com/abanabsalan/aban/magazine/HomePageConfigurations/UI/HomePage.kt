@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 8:00 AM
- * Last modified 9/30/20 7:47 AM
+ * Created by Elias Fazel on 11/12/20 6:10 AM
+ * Last modified 11/12/20 6:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -51,6 +51,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firesto
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
+import com.abanabsalan.aban.magazine.TagsConfigurations.Utils.TagsIO
 import com.abanabsalan.aban.magazine.Utils.IndexingConfiguration.ApplicationDataIndexing
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.Network.NetworkConnectionListener
@@ -109,6 +110,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     val favoriteIt: FavoriteIt by lazy {
         FavoriteIt(applicationContext)
+    }
+
+    val tagsIO: TagsIO by lazy {
+        TagsIO(applicationContext)
     }
 
     val adsConfiguration: AdsConfiguration by lazy {
@@ -191,6 +196,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme)
 
         val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme)
+
+        val recommendedPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme)
 
         val productShowcaseAdapter: ProductShowcaseAdapter = ProductShowcaseAdapter(this@HomePage, overallTheme)
 
@@ -352,6 +359,29 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     homePageViewBinding.productShowcaseTextView.visibility = View.GONE
 
                 }
+
+            })
+
+            /* Recommended Posts */
+            homePageLiveData.recommendedPostsLiveItemData.observe(this@HomePage, Observer {
+
+                if (it.isNotEmpty()) {
+
+                    homePageViewBinding.forYouPostsTextView.visibility = View.VISIBLE
+
+                    recommendedPostsAdapter.newestPostsItemData.clear()
+                    recommendedPostsAdapter.newestPostsItemData.addAll(it)
+
+                    homePageViewBinding.recommendedPostsRecyclerView.adapter = newestPostsAdapter
+
+                } else {
+
+                    homePageViewBinding.forYouPostsTextView.visibility = View.GONE
+                    homePageViewBinding.recommendedPostsRecyclerView.visibility = View.GONE
+
+                }
+
+                homePageLiveData.controlLoadingView.postValue(false)
 
             })
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/25/20 9:41 AM
- * Last modified 9/25/20 9:04 AM
+ * Created by Elias Fazel on 11/12/20 6:10 AM
+ * Last modified 11/12/20 6:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,6 +46,10 @@ class HomePageLiveData : ViewModel() {
 
     val productShowcaseLiveItemData: MutableLiveData<ArrayList<ProductShowcaseItemData>> by lazy {
         MutableLiveData<ArrayList<ProductShowcaseItemData>>()
+    }
+
+    val recommendedPostsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
+        MutableLiveData<ArrayList<PostsItemData>>()
     }
 
     val instagramStoryHighlightsLiveItemData: MutableLiveData<ArrayList<StoryHighlightsItemData>> by lazy {
@@ -215,6 +219,35 @@ class HomePageLiveData : ViewModel() {
         }
 
         productShowcaseLiveItemData.postValue(productShowcaseItemData)
+
+    }
+
+    fun prepareRawDataToRenderForRecommendedPosts(postsJsonArray: JSONArray) = CoroutineScope(SupervisorJob() + Dispatchers.IO).async {
+
+        controlLoadingView.postValue(true)
+
+        val recommendedPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+
+        for (i in 0 until postsJsonArray.length()) {
+            val postJsonObject = postsJsonArray.getJSONObject(i)
+            Log.d("${this@HomePageLiveData.javaClass.simpleName} PrepareRawDataToRenderForNewestPosts", postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId))
+
+            recommendedPostsItemData.add(PostsItemData(
+                postLink = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostLink),
+                postId = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostId),
+                postFeaturedImage = postJsonObject.getString(PostsDataParameters.JsonDataStructure.FeauturedImage),
+                postTitle = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostTitle).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postContent = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postExcerpt = postJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostExcerpt).getString(PostsDataParameters.JsonDataStructure.Rendered),
+                postPublishDate = postJsonObject.getString(PostsDataParameters.JsonDataStructure.PostDate),
+                postCategories = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostCategories).join(","),
+                postTags = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.PostTags).join(","),
+                relatedPostsContent = postJsonObject.getJSONArray(PostsDataParameters.JsonDataStructure.RelatedPosts).toString()
+            ))
+
+        }
+
+        recommendedPostsLiveItemData.postValue(recommendedPostsItemData)
 
     }
 

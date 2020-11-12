@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 5:24 AM
+ * Created by Elias Fazel on 11/12/20 6:10 AM
+ * Last modified 11/12/20 6:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -261,8 +261,6 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         intent.getStringExtra(PostsDataParameters.PostParameters.PostTags)?.let {
             tagsIO.saveTagsDatabase(it)
         }
-
-        tagsIO.prepareRecommendedTags()
 
         firebaseAnalytics.logEvent(this@SinglePostView.javaClass.simpleName, Bundle().apply {
             putString("PostId", postId)
