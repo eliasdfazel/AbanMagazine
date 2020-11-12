@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/15/20 4:12 AM
- * Last modified 10/15/20 4:11 AM
+ * Created by Elias Fazel on 11/12/20 9:29 AM
+ * Last modified 11/12/20 9:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,19 +16,19 @@ import com.abanabsalan.aban.magazine.Utils.Preferences.SavePreferences
 
 class PostsData (private val context: Context) {
 
-    fun saveTotalPostsNumber(totalPostsNumber: Long) {
+    fun saveWebsiteDataDate(totalPostsNumber: Long) {
 
         val savePreferences = SavePreferences(context)
 
-        savePreferences.savePreference("PostsInformation", "TotalPostsNumber", totalPostsNumber)
+        savePreferences.savePreference("PostsInformation", "WebsiteDataDate", totalPostsNumber)
 
     }
 
-    fun readTotalPostsNumber() : Long {
+    fun readWebsiteDataDate() : Long {
 
         val readPreferences = ReadPreferences(context)
 
-        return readPreferences.readPreference("PostsInformation", "TotalPostsNumber", System.currentTimeMillis())
+        return readPreferences.readPreference("PostsInformation", "WebsiteDataDate", System.currentTimeMillis())
     }
 
 }
