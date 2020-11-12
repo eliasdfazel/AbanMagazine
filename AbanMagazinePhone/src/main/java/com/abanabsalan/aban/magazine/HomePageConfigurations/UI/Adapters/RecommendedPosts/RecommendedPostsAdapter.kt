@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:19 AM
- * Last modified 11/12/20 6:18 AM
+ * Created by Elias Fazel on 11/12/20 6:29 AM
+ * Last modified 11/12/20 6:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -142,14 +142,6 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
             .submit()
 
         recommendedPostsViewHolder.postTitleView.text = Html.fromHtml(recommendedPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
-
-        context.applicationDataIndexing.insert(
-            indexLink = recommendedPostsItemData[position].postLink,
-            indexId = recommendedPostsItemData[position].postId,
-            indexTitle = Html.fromHtml(recommendedPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY).toString(),
-            indexDescription = Html.fromHtml(recommendedPostsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY).toString(),
-            indexImage = recommendedPostsItemData[position].postFeaturedImage
-        )
 
         recommendedPostsViewHolder.rootViewItem.setOnClickListener {
 

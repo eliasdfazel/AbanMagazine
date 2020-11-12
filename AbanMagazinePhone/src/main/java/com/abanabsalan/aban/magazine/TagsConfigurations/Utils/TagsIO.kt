@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 6:05 AM
+ * Created by Elias Fazel on 11/12/20 6:29 AM
+ * Last modified 11/12/20 6:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,6 +53,23 @@ class TagsIO(val context: Context) {
         val beforeFinalCharIndex = tagsCsv.toString().length - 1
 
         return tagsCsv.toString().replaceRange(beforeFinalCharIndex, finalCharIndex, "")
+    }
+
+    fun recommendedDataAvailable() : Boolean {
+
+        val sharedPreferences = context.getSharedPreferences("Tags", Context.MODE_PRIVATE)
+
+        return try {
+
+            val allSavedTagsValue = sharedPreferences.all
+
+            true
+
+        } catch (e: NullPointerException) {
+
+            false
+        }
+
     }
 
 }

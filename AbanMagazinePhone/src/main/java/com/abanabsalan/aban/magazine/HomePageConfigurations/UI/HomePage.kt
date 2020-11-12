@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:19 AM
- * Last modified 11/12/20 6:15 AM
+ * Created by Elias Fazel on 11/12/20 6:29 AM
+ * Last modified 11/12/20 6:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -178,6 +178,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         networkConnectionListener.networkConnectionListenerInterface = this@HomePage
 
         homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
+
+        homePageViewBinding.recommendedPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 333), RecyclerView.VERTICAL, false)
 
         homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
 
@@ -373,7 +375,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     recommendedPostsAdapter.recommendedPostsItemData.clear()
                     recommendedPostsAdapter.recommendedPostsItemData.addAll(it)
 
-                    homePageViewBinding.recommendedPostsRecyclerView.adapter = newestPostsAdapter
+                    homePageViewBinding.recommendedPostsRecyclerView.adapter = recommendedPostsAdapter
 
                 } else {
 

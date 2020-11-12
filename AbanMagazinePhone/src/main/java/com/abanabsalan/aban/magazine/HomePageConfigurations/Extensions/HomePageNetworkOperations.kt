@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:10 AM
- * Last modified 11/12/20 6:06 AM
+ * Created by Elias Fazel on 11/12/20 6:29 AM
+ * Last modified 11/12/20 6:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -197,28 +197,30 @@ fun HomePage.startNetworkOperations() {
         })
 
         /*Load Recommended Posts*/
-        val tagsPostsRetrieval: TagsPostsRetrieval = TagsPostsRetrieval(applicationContext)
-        tagsPostsRetrieval.start(
-            TagsEndpointsFactory(
-                tags = tagsIO.prepareRecommendedTags()
-            ),
-            object : JsonRequestResponseInterface {
+        if (tagsIO.recommendedDataAvailable()) {
+            val tagsPostsRetrieval: TagsPostsRetrieval = TagsPostsRetrieval(applicationContext)
+            tagsPostsRetrieval.start(
+                TagsEndpointsFactory(
+                    tags = tagsIO.prepareRecommendedTags()
+                ),
+                object : JsonRequestResponseInterface {
 
-                override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
-                    super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
+                    override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                        super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                    homePageLiveData.prepareRawDataToRenderForRecommendedPosts(rawDataJsonArray)
+                        homePageLiveData.prepareRawDataToRenderForRecommendedPosts(rawDataJsonArray)
 
+
+                    }
+
+                    override fun jsonRequestResponseFailureHandler(jsonError: String?) {
+                        Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
+
+                    }
 
                 }
-
-                override fun jsonRequestResponseFailureHandler(jsonError: String?) {
-                    Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
-
-                }
-
-            }
-        )
+            )
+        }
 
         /*Load Instagram Story Highlights*/
         val storyHighlightsRetrieval: StoryHighlightsRetrieval = StoryHighlightsRetrieval(applicationContext)
