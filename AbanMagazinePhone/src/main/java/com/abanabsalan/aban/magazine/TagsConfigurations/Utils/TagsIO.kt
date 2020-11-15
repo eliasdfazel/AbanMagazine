@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 9:16 AM
- * Last modified 11/12/20 8:35 AM
+ * Created by Elias Fazel on 11/15/20 9:54 AM
+ * Last modified 11/15/20 9:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,13 +41,11 @@ class TagsIO(val context: Context) {
             it.value.toString().toInt()
         }
 
-        val sliceAllSavedTagsValue = allSavedTagsValue.subList(
-            0, if (allSavedTagsValue.size > 3) {
-                3
-            } else {
-                allSavedTagsValue.size
-            }
-        )
+        val sliceAllSavedTagsValue = allSavedTagsValue.subList(0, if (allSavedTagsValue.size > 5) {
+            5
+        } else {
+            allSavedTagsValue.size
+        })
 
         val tagsCsv = StringBuilder()
         sliceAllSavedTagsValue.forEach {

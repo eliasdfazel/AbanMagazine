@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 9:16 AM
- * Last modified 11/12/20 9:16 AM
+ * Created by Elias Fazel on 11/15/20 9:54 AM
+ * Last modified 11/15/20 9:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,12 +29,10 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 
 class RecommendedPostsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<RecommendedPostsViewHolder>() {
 
@@ -77,24 +75,8 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
             .load(recommendedPostsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .listener(object : RequestListener<Drawable> {
-
-                override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-
-                    return false
-                }
-
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-
-                    context.runOnUiThread {
-                        recommendedPostsViewHolder.postFeaturedImage.setImageDrawable(resource)
-                    }
-
-                    return false
-                }
-
-            })
-            .submit()
+            .transform(CenterCrop(), RoundedCorners(13))
+            .into(recommendedPostsViewHolder.postFeaturedImage)
 
         recommendedPostsViewHolder.postTitleView.text = Html.fromHtml(recommendedPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
 
@@ -120,7 +102,7 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
 
-                    val animation = ValueAnimator.ofFloat(13.3f, 0f)
+                    val animation = ValueAnimator.ofFloat(11.3f, 0f)
                     animation.duration = 1111
                     animation.addUpdateListener {
                         val value = it.animatedValue as Float
@@ -141,14 +123,14 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
                     Handler(Looper.getMainLooper()).postDelayed({
 
-                        val animation = ValueAnimator.ofFloat(0f, 13f)
+                        val animation = ValueAnimator.ofFloat(0f, 11f)
                         animation.duration = 1111
                         animation.addUpdateListener {
                             val value = it.animatedValue as Float
 
                             recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(value)
 
-                            if (value == 13f) {
+                            if (value == 11f) {
 
                             }
 
@@ -164,14 +146,14 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
                     Handler(Looper.getMainLooper()).postDelayed({
 
-                        val animation = ValueAnimator.ofFloat(0f, 13f)
+                        val animation = ValueAnimator.ofFloat(0f, 11f)
                         animation.duration = 1111
                         animation.addUpdateListener {
                             val value = it.animatedValue as Float
 
                             recommendedPostsViewHolder.postFeaturedBlurryImage.setBlurRadius(value)
 
-                            if (value == 13f) {
+                            if (value == 11f) {
 
                             }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 6:05 AM
+ * Created by Elias Fazel on 11/15/20 9:54 AM
+ * Last modified 11/15/20 9:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,7 +24,7 @@ data class TagsEndpointsFactory (
     /**
      * Amount Of Posts Per Each Page
      **/
-    var amountOfPostsToGet: Int = 3,
+    var amountOfPostsToGet: Int = 5,
     /**
      * Sort collection by object attribute
      **/

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 6:38 AM
- * Last modified 9/30/20 5:49 AM
+ * Created by Elias Fazel on 11/15/20 9:54 AM
+ * Last modified 11/15/20 9:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ package com.abanabsalan.aban.magazine.Ads
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
@@ -25,18 +26,22 @@ class AdsConfiguration (private val appCompatActivity: AppCompatActivity) {
 
     fun initialize() {
 
-        MobileAds.initialize(appCompatActivity) { initializationStatus -> }
+        if (!BuildConfig.DEBUG) {
 
-        interstitialAdsLoadShow()
+            MobileAds.initialize(appCompatActivity) { initializationStatus -> }
 
-        bannerAdsLoadShow()
+            interstitialAdsLoadShow()
 
-        val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A", "F54D998BCE077711A17272B899B44798")
+            bannerAdsLoadShow()
 
-        val configuration = RequestConfiguration.Builder()
-            .setTestDeviceIds(testDeviceIds)
-            .build()
-        MobileAds.setRequestConfiguration(configuration)
+            val testDeviceIds = listOf("3E192B3766F6EDE8127A5ADFAA0E7B67", "A06676F37C8588BFF7D434B66274567A", "F54D998BCE077711A17272B899B44798")
+
+            val configuration = RequestConfiguration.Builder()
+                .setTestDeviceIds(testDeviceIds)
+                .build()
+            MobileAds.setRequestConfiguration(configuration)
+
+        }
 
     }
 
