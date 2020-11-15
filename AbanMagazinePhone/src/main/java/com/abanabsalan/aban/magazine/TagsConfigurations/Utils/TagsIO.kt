@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/15/20 9:54 AM
- * Last modified 11/15/20 9:45 AM
+ * Created by Elias Fazel on 11/15/20 10:49 AM
+ * Last modified 11/15/20 10:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,9 @@ class TagsIO(val context: Context) {
         val sharedPreferences = context.getSharedPreferences("Tags", Context.MODE_PRIVATE)
 
         val allSavedTagsValue = sharedPreferences.all.entries.sortedByDescending {
+
+            it.value.toString().toInt()
+        }.distinctBy {
 
             it.value.toString().toInt()
         }
