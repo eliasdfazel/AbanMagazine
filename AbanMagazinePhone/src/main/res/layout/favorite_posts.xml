@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/11/20 3:29 AM
-  ~ Last modified 8/11/20 3:29 AM
+  ~ Created by Elias Fazel on 11/16/20 9:10 AM
+  ~ Last modified 11/16/20 8:49 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -30,16 +30,13 @@
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <FrameLayout
         android:id="@+id/bannerAdView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
         android:visibility="invisible"
-
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/postViewBanner"
 
         apps:layout_constraintTop_toTopOf="parent" />
 

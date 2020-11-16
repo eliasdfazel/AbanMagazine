@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 6:38 AM
- * Last modified 9/30/20 6:38 AM
+ * Created by Elias Fazel on 11/16/20 9:10 AM
+ * Last modified 11/16/20 8:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
-import com.abanabsalan.aban.magazine.Ads.AdsConfiguration
+import com.abanabsalan.aban.magazine.Advertising.AdvertisingConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.favoritesPostsNetworkOperations
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.setupUserInterface
@@ -51,8 +51,8 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
         FavoriteIt(applicationContext)
     }
 
-    val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@FavoritesPostsView)
+    val advertisingConfiguration: AdvertisingConfiguration by lazy {
+        AdvertisingConfiguration(this@FavoritesPostsView)
     }
 
     @Inject
@@ -77,7 +77,7 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
 
         favoritePostsBinding.favoritePostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 379), RecyclerView.VERTICAL, false)
 
-        adsConfiguration.initialize()
+        advertisingConfiguration.initialize()
 
         favoritesPostsLiveData.allFavoritedPosts.observe(this@FavoritesPostsView, Observer {
 
@@ -137,7 +137,7 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
 
         }
 
-        adsConfiguration.getInterstitialAd?.let {
+        advertisingConfiguration.getInterstitialAd?.let {
             if (it.isLoaded) {
                 it.show()
             }

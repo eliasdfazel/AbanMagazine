@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 9:16 AM
- * Last modified 11/12/20 8:35 AM
+ * Created by Elias Fazel on 11/16/20 9:10 AM
+ * Last modified 11/16/20 8:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,7 @@ import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
-import com.abanabsalan.aban.magazine.Ads.AdsConfiguration
+import com.abanabsalan.aban.magazine.Advertising.AdvertisingConfiguration
 import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
@@ -117,8 +117,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         TagsIO(applicationContext)
     }
 
-    val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@HomePage)
+    val advertisingConfiguration: AdvertisingConfiguration by lazy {
+        AdvertisingConfiguration(this@HomePage)
     }
 
     private val swipeGestureListener: SwipeGestureListener by lazy {
@@ -164,7 +164,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             }
 
-        adsConfiguration.initialize()
+        advertisingConfiguration.initialize()
 
         PopupPreferencesController(this@HomePage, homePageViewBinding.preferencePopupInclude)
             .initializeForHomePage()
@@ -516,7 +516,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
     override fun onResume() {
         super.onResume()
 
-        adsConfiguration.getInterstitialAd?.let {
+        advertisingConfiguration.getInterstitialAd?.let {
             if (it.isLoaded) {
                 it.show()
             }

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:10 AM
- * Last modified 11/12/20 6:06 AM
+ * Created by Elias Fazel on 11/16/20 9:10 AM
+ * Last modified 11/16/20 8:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
-import com.abanabsalan.aban.magazine.Ads.AdsConfiguration
+import com.abanabsalan.aban.magazine.Advertising.AdvertisingConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.RelatedPosts.UI.RelatedPostsAdapter
@@ -65,8 +65,8 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         ViewModelProvider(this@SinglePostView).get(PostsLiveData::class.java)
     }
 
-    val adsConfiguration: AdsConfiguration by lazy {
-        AdsConfiguration(this@SinglePostView)
+    val advertisingConfiguration: AdvertisingConfiguration by lazy {
+        AdvertisingConfiguration(this@SinglePostView)
     }
 
     val tagsIO: TagsIO by lazy {
@@ -153,7 +153,7 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         postsViewUiBinding = PostsViewUiBinding.inflate(layoutInflater)
         setContentView(postsViewUiBinding.root)
 
-        adsConfiguration.initialize()
+        advertisingConfiguration.initialize()
 
         postId = intent.getStringExtra(PostsDataParameters.PostParameters.PostId)
         favoritedPostData[PostsDataParameters.PostParameters.PostId] = postId
@@ -272,7 +272,7 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
     override fun onResume() {
         super.onResume()
 
-        adsConfiguration.getInterstitialAd?.let {
+        advertisingConfiguration.getInterstitialAd?.let {
             if (it.isLoaded) {
                 it.show()
             }
