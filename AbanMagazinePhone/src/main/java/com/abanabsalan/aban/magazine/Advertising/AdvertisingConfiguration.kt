@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/16/20 9:21 AM
- * Last modified 11/16/20 9:19 AM
+ * Created by Elias Fazel on 11/16/20 10:03 AM
+ * Last modified 11/16/20 10:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,12 +10,9 @@
 
 package com.abanabsalan.aban.magazine.Advertising
 
-import android.graphics.Insets
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowMetrics
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.BuildConfig
@@ -133,8 +130,7 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
                 val bannerAdViewTop = AdView(appCompatActivity)
 
                 bannerAdViewTop.adUnitId = appCompatActivity.getString(R.string.homePageBannerTop)
-                bannerAdViewTop.adSize =
-                    bannerAdsSize((appCompatActivity).homePageViewBinding.bannerAdViewTop)
+                bannerAdViewTop.adSize = bannerAdsSize((appCompatActivity).homePageViewBinding.bannerAdViewTop)
 
                 (appCompatActivity).homePageViewBinding.bannerAdViewTop.addView(bannerAdViewTop)
 
@@ -146,8 +142,8 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
                     override fun onAdLoaded() {
 
-                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility =
-                            View.VISIBLE
+                        (appCompatActivity).homePageViewBinding.bannerAdViewTop.visibility = View.VISIBLE
+
                     }
 
                     override fun onAdFailedToLoad(errorCode: Int) {
@@ -177,14 +173,10 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
                 /* Bottom Banner */
                 val bannerAdViewBottom = AdView(appCompatActivity)
 
-                bannerAdViewBottom.adUnitId =
-                    appCompatActivity.getString(R.string.homePageBannerBottom)
-                bannerAdViewBottom.adSize =
-                    bannerAdsSize((appCompatActivity).homePageViewBinding.bannerAdViewBottom)
+                bannerAdViewBottom.adUnitId = appCompatActivity.getString(R.string.homePageBannerBottom)
+                bannerAdViewBottom.adSize = bannerAdsSize((appCompatActivity).homePageViewBinding.bannerAdViewBottom)
 
-                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.addView(
-                    bannerAdViewBottom
-                )
+                (appCompatActivity).homePageViewBinding.bannerAdViewBottom.addView(bannerAdViewBottom)
 
                 (appCompatActivity).homePageViewBinding.bannerAdViewBottom.post {
                     bannerAdViewBottom.loadAd(adRequest)
@@ -194,8 +186,8 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
                     override fun onAdLoaded() {
 
-                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility =
-                            View.VISIBLE
+                        (appCompatActivity).homePageViewBinding.bannerAdViewBottom.visibility = View.VISIBLE
+
                     }
 
                     override fun onAdFailedToLoad(errorCode: Int) {
@@ -228,8 +220,7 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
                 val bannerAdView = AdView(appCompatActivity)
 
                 bannerAdView.adUnitId = appCompatActivity.getString(R.string.postViewBanner)
-                bannerAdView.adSize =
-                    bannerAdsSize((appCompatActivity).postsViewUiBinding.bannerAdView)
+                bannerAdView.adSize = bannerAdsSize((appCompatActivity).postsViewUiBinding.bannerAdView)
 
                 (appCompatActivity).postsViewUiBinding.bannerAdView.addView(bannerAdView)
 
@@ -241,8 +232,8 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
                     override fun onAdLoaded() {
 
-                        (appCompatActivity).postsViewUiBinding.bannerAdView.visibility =
-                            View.VISIBLE
+                        (appCompatActivity).postsViewUiBinding.bannerAdView.visibility = View.VISIBLE
+
                     }
 
                     override fun onAdFailedToLoad(errorCode: Int) {
@@ -275,8 +266,7 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
                 val bannerAdView = AdView(appCompatActivity)
 
                 bannerAdView.adUnitId = appCompatActivity.getString(R.string.postViewBanner)
-                bannerAdView.adSize =
-                    bannerAdsSize((appCompatActivity).favoritePostsBinding.bannerAdView)
+                bannerAdView.adSize = bannerAdsSize((appCompatActivity).favoritePostsBinding.bannerAdView)
 
                 (appCompatActivity).favoritePostsBinding.bannerAdView.addView(bannerAdView)
 
@@ -288,8 +278,8 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
                     override fun onAdLoaded() {
 
-                        (appCompatActivity).favoritePostsBinding.bannerAdView.visibility =
-                            View.VISIBLE
+                        (appCompatActivity).favoritePostsBinding.bannerAdView.visibility = View.VISIBLE
+
                     }
 
                     override fun onAdFailedToLoad(errorCode: Int) {
@@ -325,23 +315,34 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
 
-            val windowMetrics: WindowMetrics = appCompatActivity.windowManager.currentWindowMetrics
-            val insets: Insets = windowMetrics.windowInsets.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+            val displayMetrics = DisplayMetrics()
 
-            AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(appCompatActivity, (windowMetrics.bounds.width() - insets.left - insets.right))
+            appCompatActivity.windowManager.defaultDisplay.getMetrics(displayMetrics)
 
-        } else {
-
-            val outMetrics = DisplayMetrics()
-
-            appCompatActivity.windowManager.defaultDisplay.getMetrics(outMetrics)
-
-            val density = outMetrics.density
+            val density = displayMetrics.density
 
             var adsBannerWidthPixels = adViewContainer.width.toFloat()
 
             if (adsBannerWidthPixels == 0f) {
-                adsBannerWidthPixels = outMetrics.widthPixels.toFloat()
+                adsBannerWidthPixels = displayMetrics.widthPixels.toFloat()
+            }
+
+            val adWidth = (adsBannerWidthPixels / density).toInt()
+
+            AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(appCompatActivity, adWidth)
+
+        } else {
+
+            val displayMetrics = DisplayMetrics()
+
+            appCompatActivity.windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+            val density = displayMetrics.density
+
+            var adsBannerWidthPixels = adViewContainer.width.toFloat()
+
+            if (adsBannerWidthPixels == 0f) {
+                adsBannerWidthPixels = displayMetrics.widthPixels.toFloat()
             }
 
             val adWidth = (adsBannerWidthPixels / density).toInt()
