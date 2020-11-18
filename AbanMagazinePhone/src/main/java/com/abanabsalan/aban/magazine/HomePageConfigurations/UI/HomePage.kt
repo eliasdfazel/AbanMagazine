@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/16/20 9:10 AM
- * Last modified 11/16/20 8:41 AM
+ * Created by Elias Fazel on 11/18/20 9:58 AM
+ * Last modified 11/18/20 9:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -493,8 +493,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
         }
 
-        homePageRemoteConfiguration()
-
     }
 
     override fun onStart() {
@@ -515,6 +513,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     override fun onResume() {
         super.onResume()
+
+        homePageRemoteConfiguration()
 
         advertisingConfiguration.getInterstitialAd?.let {
             if (it.isLoaded) {
