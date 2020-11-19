@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/18/20 9:58 AM
- * Last modified 11/18/20 9:57 AM
+ * Created by Elias Fazel on 11/19/20 7:09 AM
+ * Last modified 11/19/20 7:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -72,7 +72,6 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -595,78 +594,81 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             when (requestCode) {
                 UserInformation.GoogleSignInRequestCode -> {
 
-                    val googleSignInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
-                    val googleSignInAccount = googleSignInAccountTask.getResult(ApiException::class.java)
+                    GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener { googleSignInAccount ->
 
-                    val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount?.idToken, null)
-                    firebaseAuth.signInWithCredential(authCredential).addOnSuccessListener {
+                        val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
+                        firebaseAuth.signInWithCredential(authCredential).addOnSuccessListener {
 
-                        val firebaseUser = firebaseAuth.currentUser
+                            val firebaseUser = firebaseAuth.currentUser
 
-                        if (firebaseUser != null) {
+                            if (firebaseUser != null) {
 
-                            val accountName: String = firebaseUser.email.toString()
+                                val accountName: String = firebaseUser.email.toString()
 
-                            userInformationIO.saveUserInformation(accountName)
+                                userInformationIO.saveUserInformation(accountName)
 
-                            userSignIn.signInSuccessful(accountName)
+                                userSignIn.signInSuccessful(accountName)
 
-                            Glide.with(applicationContext)
-                                .asDrawable()
-                                .load(firebaseAuth.currentUser?.photoUrl)
-                                .transform(CenterCrop(), CircleCrop())
-                                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                .listener(object : RequestListener<Drawable> {
-                                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                Glide.with(applicationContext)
+                                    .asDrawable()
+                                    .load(firebaseAuth.currentUser?.photoUrl)
+                                    .transform(CenterCrop(), CircleCrop())
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .listener(object : RequestListener<Drawable> {
+                                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
 
-                                        return false
-                                    }
+                                            return false
+                                        }
 
-                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
-                                        runOnUiThread {
+                                            runOnUiThread {
 
-                                            homePageViewBinding.preferencePopupInclude.signupView.icon = resource
+                                                homePageViewBinding.preferencePopupInclude.signupView.icon = resource
+
+                                            }
+
+                                            return false
+                                        }
+
+                                    })
+                                    .submit()
+
+                                /* Retrieve Favorited Data */
+                                val favoriteIt: FavoriteIt = FavoriteIt(applicationContext)
+
+                                val favoriteDatabasePath = firestoreConfiguration.favoritedPostsCollectionPath(accountName)
+
+                                firestoreDatabase
+                                    .collection(favoriteDatabasePath)
+                                    .get()
+                                    .addOnSuccessListener {
+
+                                        val favoritedPostsDocuments = it.documents
+
+                                        repeat(favoritedPostsDocuments.size) { index ->
+
+                                            favoriteIt.saveAsFavorite(favoritedPostsDocuments[index][PostsDataParameters.PostParameters.PostId].toString())
 
                                         }
 
-                                        return false
-                                    }
+                                        if (!it.isEmpty) {
+                                            homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
+                                        }
 
-                                })
-                                .submit()
+                                    }.addOnFailureListener {
 
-                            /* Retrieve Favorited Data */
-                            val favoriteIt: FavoriteIt = FavoriteIt(applicationContext)
 
-                            val databasePath = firestoreConfiguration.favoritedPostsCollectionPath(accountName)
-
-                            firestoreDatabase
-                                .collection(databasePath)
-                                .get()
-                                .addOnSuccessListener {
-
-                                    val favoritedPostsDocuments = it.documents
-
-                                    repeat(favoritedPostsDocuments.size) { index ->
-
-                                        favoriteIt.saveAsFavorite(favoritedPostsDocuments[index][PostsDataParameters.PostParameters.PostId].toString())
 
                                     }
 
-                                    homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
+                            }
 
-                                }.addOnFailureListener {
+                        }.addOnFailureListener {
 
-
-
-                                }
+                            userSignIn.signInDismissed()
 
                         }
-
-                    }.addOnFailureListener {
-
-                        userSignIn.signInDismissed()
 
                     }
 
