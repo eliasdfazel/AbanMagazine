@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 9:29 AM
- * Last modified 11/12/20 9:29 AM
+ * Created by Elias Fazel on 11/20/20 9:00 AM
+ * Last modified 11/20/20 8:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.content.Intent
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
@@ -82,7 +83,7 @@ fun HomePage.homePageRemoteConfiguration() {
 
                                 try {
 
-                                    firestoreDatabase.clearPersistence()
+                                    (application as AbanMagazinePhoneApplication).firestoreDatabase.clearPersistence()
 
                                     Glide.get(this@homePageRemoteConfiguration).clearDiskCache()
                                     Glide.get(this@homePageRemoteConfiguration).clearMemory()

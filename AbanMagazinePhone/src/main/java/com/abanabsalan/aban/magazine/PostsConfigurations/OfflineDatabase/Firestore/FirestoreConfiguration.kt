@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/30/20 7:45 AM
- * Last modified 9/30/20 7:14 AM
+ * Created by Elias Fazel on 11/20/20 9:00 AM
+ * Last modified 11/20/20 8:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,9 @@ import com.abanabsalan.aban.magazine.Utils.Network.NetworkCheckpoint
 import com.abanabsalan.aban.magazine.Utils.System.SystemInformation
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.firestoreSettings
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class FirestoreConfiguration (private val context: Context) {
@@ -26,20 +28,14 @@ class FirestoreConfiguration (private val context: Context) {
 
     fun initialize() : FirebaseFirestore {
 
-        val firebaseFirestore = FirebaseFirestore.getInstance()
+        val firebaseFirestore = Firebase.firestore
 
-        try {
-
-            val firebaseFirestoreSettings = firestoreSettings {
-                isPersistenceEnabled = true
-                cacheSizeBytes = FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED
-            }
-
-            firebaseFirestore.firestoreSettings = firebaseFirestoreSettings
-
-        } catch (e: Exception) {
-            e.printStackTrace()
+        val firebaseFirestoreSettings = firestoreSettings {
+            isPersistenceEnabled = true
+            cacheSizeBytes = FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED
         }
+
+        firebaseFirestore.firestoreSettings = firebaseFirestoreSettings
 
         if (networkCheckpoint.networkConnectionVpn()) {
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/19/20 12:14 PM
- * Last modified 10/19/20 12:05 PM
+ * Created by Elias Fazel on 11/20/20 9:00 AM
+ * Last modified 11/20/20 9:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
@@ -30,7 +31,6 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
-import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore.FirestoreConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
@@ -510,9 +510,7 @@ class PopupPreferencesController(
 
         val userInformationIO = UserInformationIO(context)
 
-        val firestoreConfiguration: FirestoreConfiguration = FirestoreConfiguration(context)
-
-        val firestoreDatabase = firestoreConfiguration.initialize()
+        val firestoreDatabase = (context.application as AbanMagazinePhoneApplication).firestoreDatabase
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
@@ -531,7 +529,7 @@ class PopupPreferencesController(
 
                             val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
 
-                            val databasePath = firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
+                            val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
 
                             firestoreDatabase.document(databasePath).set(favoritedPostData)
                                 .addOnSuccessListener {
@@ -577,7 +575,7 @@ class PopupPreferencesController(
 
                                 val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
 
-                                val databasePath = firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
+                                val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
 
                                 firestoreDatabase.document(databasePath).set(favoritedPostData)
                                     .addOnSuccessListener {
@@ -616,7 +614,7 @@ class PopupPreferencesController(
 
                         postId?.let {
 
-                            val databasePath = firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
+                            val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
 
                             firestoreDatabase.document(databasePath).delete()
                                 .addOnSuccessListener {

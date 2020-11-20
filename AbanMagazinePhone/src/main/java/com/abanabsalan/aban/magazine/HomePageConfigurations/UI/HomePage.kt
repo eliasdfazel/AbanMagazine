@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/19/20 7:09 AM
- * Last modified 11/19/20 7:03 AM
+ * Created by Elias Fazel on 11/20/20 9:00 AM
+ * Last modified 11/20/20 8:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,7 +48,6 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.Specific
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
-import com.abanabsalan.aban.magazine.PostsConfigurations.OfflineDatabase.Firestore.FirestoreConfiguration
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SpecificCategoryConfigurations.Utils.PageCounter
@@ -74,7 +73,6 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
@@ -87,14 +85,6 @@ import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.SwipeGestureListener
 import javax.inject.Inject
 
 class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectionListenerInterface {
-
-    val firestoreConfiguration: FirestoreConfiguration by lazy {
-        FirestoreConfiguration(applicationContext)
-    }
-
-    val firestoreDatabase: FirebaseFirestore by lazy {
-        firestoreConfiguration.initialize()
-    }
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
@@ -637,9 +627,9 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                                 /* Retrieve Favorited Data */
                                 val favoriteIt: FavoriteIt = FavoriteIt(applicationContext)
 
-                                val favoriteDatabasePath = firestoreConfiguration.favoritedPostsCollectionPath(accountName)
+                                val favoriteDatabasePath = (application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostsCollectionPath(accountName)
 
-                                firestoreDatabase
+                                (application as AbanMagazinePhoneApplication).firestoreDatabase
                                     .collection(favoriteDatabasePath)
                                     .get()
                                     .addOnSuccessListener {
@@ -728,7 +718,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                                 try {
 
-                                    firestoreDatabase.clearPersistence()
+                                    (application as AbanMagazinePhoneApplication).firestoreDatabase.clearPersistence()
 
                                     Glide.get(this@HomePage).clearDiskCache()
                                     Glide.get(this@HomePage).clearMemory()
