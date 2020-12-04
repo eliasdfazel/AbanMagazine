@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/20/20 9:00 AM
- * Last modified 11/20/20 8:48 AM
+ * Created by Elias Fazel on 12/4/20 10:06 AM
+ * Last modified 12/4/20 10:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,6 +45,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.ProductS
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.RecommendedPosts.RecommendedPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Index.HomePagePopupIndex
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
@@ -112,6 +113,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     private val swipeGestureListener: SwipeGestureListener by lazy {
         SwipeGestureListener(applicationContext, this@HomePage)
+    }
+
+    val homePagePopupIndex: HomePagePopupIndex by lazy {
+        HomePagePopupIndex(homePageViewBinding)
     }
 
     var scrollViewAtTop: Boolean = false
@@ -253,6 +258,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 }
 
+                homePagePopupIndex.addFeaturedPostsIndex()
+
                 homePageLiveData.controlLoadingView.postValue(false)
 
             })
@@ -275,6 +282,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     homePageViewBinding.newestPostsRecyclerView.visibility = View.GONE
 
                 }
+
+                homePagePopupIndex.addNewestPostsIndex()
 
                 homePageLiveData.controlLoadingView.postValue(false)
 
@@ -329,6 +338,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 }
 
+                homePagePopupIndex.addCategoriesIndex()
+
                 homePageLiveData.controlLoadingView.postValue(false)
 
             })
@@ -352,6 +363,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 }
 
+                homePagePopupIndex.addProductsShowcaseIndex()
+
             })
 
             /* Recommended Posts */
@@ -374,6 +387,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 }
 
+                homePagePopupIndex.addRecommendedPostsIndex()
+
                 homePageLiveData.controlLoadingView.postValue(false)
 
             })
@@ -395,6 +410,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.GONE
 
                 }
+
+                homePagePopupIndex.addInstagramStoriesIndex()
 
             })
 
