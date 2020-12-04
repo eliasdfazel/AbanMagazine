@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/4/20 10:06 AM
-  ~ Last modified 12/4/20 3:53 AM
+  ~ Created by Elias Fazel on 12/4/20 10:53 AM
+  ~ Last modified 12/4/20 10:36 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -255,7 +255,16 @@
     </androidx.core.widget.NestedScrollView>
 
     <!-- Index View -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/indexInvocation"
+        android:layout_width="51dp"
+        android:layout_height="71dp"
+        android:foregroundGravity="right"
+        android:src="@drawable/index_icon"
 
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Top Bar  -->
     <androidx.constraintlayout.widget.ConstraintLayout

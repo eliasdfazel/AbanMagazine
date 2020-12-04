@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/4/20 10:06 AM
- * Last modified 12/4/20 10:06 AM
+ * Created by Elias Fazel on 12/4/20 10:53 AM
+ * Last modified 12/4/20 10:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,9 +10,12 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Index
 
+import android.annotation.SuppressLint
+import android.view.MotionEvent
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
 import kotlin.math.roundToInt
 
+@SuppressLint("ClickableViewAccessibility")
 class HomePagePopupIndex (val homePageViewBinding: HomePageViewBinding) {
 
     object IndexType {
@@ -25,6 +28,28 @@ class HomePagePopupIndex (val homePageViewBinding: HomePageViewBinding) {
     }
 
     val indexTypePositionMap = HashMap<Int, Int>()
+
+    init {
+
+        homePageViewBinding.indexInvocation.setOnTouchListener { view, motionEvent ->
+
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+
+
+
+                }
+                MotionEvent.ACTION_MOVE -> {
+
+
+
+                }
+            }
+
+            true
+        }
+
+    }
 
     fun addCategoriesIndex() {
 
@@ -83,6 +108,12 @@ class HomePagePopupIndex (val homePageViewBinding: HomePageViewBinding) {
             indexTypePositionMap[HomePagePopupIndex.IndexType.InstagramStories] = homePageViewBinding.instagramStoryHighlightsRecyclerView.y.roundToInt()
 
         }
+
+    }
+
+    fun scrollToPosition(yPosition: Int) {
+
+        homePageViewBinding.nestedScrollView.smoothScrollTo(0 , yPosition)
 
     }
 
