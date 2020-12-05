@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/5/20 7:30 AM
- * Last modified 12/5/20 7:28 AM
+ * Created by Elias Fazel on 12/5/20 11:15 AM
+ * Last modified 12/5/20 11:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -94,7 +94,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, 0)
 
             }
 
@@ -114,7 +114,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it.minus(homePageViewBinding.homepageTopBar.height))
 
             }
 
@@ -134,7 +134,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it.minus(homePageViewBinding.homepageTopBar.height))
 
             }
 
@@ -154,7 +154,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it.minus(homePageViewBinding.homepageTopBar.height))
 
             }
 
@@ -174,7 +174,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it.minus(homePageViewBinding.homepageTopBar.height))
 
             }
 
@@ -186,7 +186,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
         homePageViewBinding.instagramStoryHighlightsRecyclerView.post {
 
-            indexTypePositionMap[HomePagePopupIndex.IndexType.InstagramStories] = homePageViewBinding.instagramStoryHighlightsRecyclerView.y.roundToInt()
+            indexTypePositionMap[HomePagePopupIndex.IndexType.InstagramStories] = homePageViewBinding.bannerAdViewBottom.y.roundToInt()
 
         }
 
@@ -194,7 +194,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, homePageViewBinding.homepageScrollingContentView.height)
 
             }
 
