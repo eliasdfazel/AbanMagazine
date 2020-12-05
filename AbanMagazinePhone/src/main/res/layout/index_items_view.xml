@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/5/20 4:53 AM
-  ~ Last modified 12/5/20 4:33 AM
+  ~ Created by Elias Fazel on 12/5/20 7:30 AM
+  ~ Last modified 12/5/20 7:22 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -26,6 +26,7 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         android:text="@string/categoriesText"
+        android:tag="0"
 
         apps:cornerRadius="51dp"
         apps:rippleColor="@color/light_pink"
@@ -42,6 +43,7 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         android:text="@string/featuredPostsText"
+        android:tag="1"
 
         apps:cornerRadius="51dp"
         apps:rippleColor="@color/light_pink"
@@ -57,6 +59,7 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         android:text="@string/productsShowcaseText"
+        android:tag="2"
 
         apps:cornerRadius="51dp"
         apps:rippleColor="@color/light_pink"
@@ -72,6 +75,7 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         android:text="@string/newestPostsText"
+        android:tag="3"
 
         apps:cornerRadius="51dp"
         apps:rippleColor="@color/light_pink"
@@ -87,6 +91,7 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         android:text="@string/forYouPostsText"
+        android:tag="4"
 
         apps:cornerRadius="51dp"
         apps:rippleColor="@color/light_pink"
@@ -101,6 +106,7 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         android:text="@string/instagramStoriesText"
+        android:tag="5"
 
         apps:cornerRadius="51dp"
         apps:rippleColor="@color/light_pink"

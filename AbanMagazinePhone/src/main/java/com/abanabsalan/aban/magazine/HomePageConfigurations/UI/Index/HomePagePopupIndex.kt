@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/5/20 4:53 AM
- * Last modified 12/5/20 4:53 AM
+ * Created by Elias Fazel on 12/5/20 7:30 AM
+ * Last modified 12/5/20 7:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
+import com.abanabsalan.aban.magazine.Utils.System.doVibrate
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayY
@@ -35,7 +36,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
         const val InstagramStories = 5
     }
 
-    val indexTypePositionMap = HashMap<Int, Int>()
+    val indexTypePositionMap: HashMap<Int, Int> = HashMap<Int, Int>()
 
     init {
 
@@ -57,12 +58,14 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
             } else {
 
+                doVibrate(context, 123)
+
                 val finalRadius = hypot(displayX(context).toDouble(), displayY(context).toDouble())
 
                 val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.indexViewInclude.root,
-                    (homePageViewBinding.indexInvocation.x).roundToInt() + (homePageViewBinding.indexInvocation.height / 2),
-                    (homePageViewBinding.indexViewInclude.root.y).roundToInt(),
-                    DpToInteger(context, 13).toFloat(),
+                    homePageViewBinding.indexViewInclude.root.width,
+                    homePageViewBinding.indexViewInclude.root.height / 2,
+                    DpToInteger(context, 7).toFloat(),
                     finalRadius.toFloat())
 
                 circularReveal.duration = 1111
@@ -71,23 +74,6 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
                 homePageViewBinding.indexViewInclude.root.visibility = View.VISIBLE
 
                 circularReveal.start()
-                circularReveal.addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationRepeat(animation: Animator?) {
-
-                    }
-
-                    override fun onAnimationEnd(animation: Animator?) {
-
-                    }
-
-                    override fun onAnimationCancel(animation: Animator?) {
-
-                    }
-
-                    override fun onAnimationStart(animation: Animator?) {
-
-                    }
-                })
 
             }
 
@@ -104,6 +90,16 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
         }
 
+        homePageViewBinding.indexViewInclude.categoriesIndex.setOnClickListener { view ->
+
+            indexTypePositionMap[view.tag.toString().toInt()]?.let {
+
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+
+            }
+
+        }
+
     }
 
     fun addFeaturedPostsIndex() {
@@ -111,6 +107,16 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
         homePageViewBinding.featuredPostsTextView.post {
 
             indexTypePositionMap[HomePagePopupIndex.IndexType.FeaturedPosts] = homePageViewBinding.featuredPostsTextView.y.roundToInt()
+
+        }
+
+        homePageViewBinding.indexViewInclude.featuredPostsIndex.setOnClickListener { view ->
+
+            indexTypePositionMap[view.tag.toString().toInt()]?.let {
+
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+
+            }
 
         }
 
@@ -124,6 +130,16 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
         }
 
+        homePageViewBinding.indexViewInclude.productsShowcaseIndex.setOnClickListener { view ->
+
+            indexTypePositionMap[view.tag.toString().toInt()]?.let {
+
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+
+            }
+
+        }
+
     }
 
     fun addNewestPostsIndex() {
@@ -131,6 +147,16 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
         homePageViewBinding.newestPostsTextView.post {
 
             indexTypePositionMap[HomePagePopupIndex.IndexType.NewestPosts] = homePageViewBinding.newestPostsTextView.y.roundToInt()
+
+        }
+
+        homePageViewBinding.indexViewInclude.newestPostsIndex.setOnClickListener { view ->
+
+            indexTypePositionMap[view.tag.toString().toInt()]?.let {
+
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+
+            }
 
         }
 
@@ -144,6 +170,16 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
         }
 
+        homePageViewBinding.indexViewInclude.recommendedPostsIndex.setOnClickListener { view ->
+
+            indexTypePositionMap[view.tag.toString().toInt()]?.let {
+
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+
+            }
+
+        }
+
     }
 
     fun addInstagramStoriesIndex() {
@@ -154,11 +190,15 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
         }
 
-    }
+        homePageViewBinding.indexViewInclude.instagramStoriesIndex.setOnClickListener { view ->
 
-    fun scrollToPosition(yPosition: Int) {
+            indexTypePositionMap[view.tag.toString().toInt()]?.let {
 
-        homePageViewBinding.nestedScrollView.smoothScrollTo(0 , yPosition)
+                homePageViewBinding.nestedScrollView.smoothScrollTo(0, it)
+
+            }
+
+        }
 
     }
 
