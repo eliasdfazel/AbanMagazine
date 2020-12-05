@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 11/12/20 9:16 AM
-  ~ Last modified 11/12/20 8:54 AM
+  ~ Created by Elias Fazel on 12/5/20 4:53 AM
+  ~ Last modified 12/5/20 4:33 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -27,10 +27,12 @@
     <string name="typeToSearch">برای جستجو بنویسید…</string>
     <string name="searchError">⚠ اشکال در شبکه</string>
 
+    <string name="categoriesText">دسته ها</string>
     <string name="featuredPostsText">پست های ویژه</string>
     <string name="newestPostsText">جدیدترین ها</string>
     <string name="forYouPostsText">پیشنهاد برای شما</string>
     <string name="relatedPosts">مطالب مرتبط</string>
+    <string name="instagramStoriesText">اینستاگرام هایلایت ستوری</string>
 
     <string name="productsShowcaseText">محصولات دستچین و منتخب آبان 💟</string>
     <string name="purchaseText">مشاهده محصول بروی دیچی کالا</string>

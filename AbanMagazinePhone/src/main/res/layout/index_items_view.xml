@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 12/5/20 4:53 AM
+  ~ Last modified 12/5/20 4:33 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="213dp"
+    android:layout_height="360dp"
+    android:background="@drawable/index_background"
+    tools:context=".HomePageConfigurations.UI.HomePage">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/categoriesIndex"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginBottom="3dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:text="@string/categoriesText"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/light_pink"
+        apps:backgroundTint="@color/default_color_game_dark"
+
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/featuredPostsIndex"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginVertical="3dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:text="@string/featuredPostsText"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/light_pink"
+        apps:backgroundTint="@color/default_color_game_dark"
+
+        apps:layout_constraintTop_toBottomOf="@id/categoriesIndex"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/productsShowcaseIndex"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginVertical="3dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:text="@string/productsShowcaseText"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/light_pink"
+        apps:backgroundTint="@color/default_color_game_dark"
+
+        apps:layout_constraintTop_toBottomOf="@id/featuredPostsIndex"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/newestPostsIndex"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginVertical="3dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:text="@string/newestPostsText"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/light_pink"
+        apps:backgroundTint="@color/default_color_game_dark"
+
+        apps:layout_constraintTop_toBottomOf="@id/productsShowcaseIndex"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/recommendedPostsIndex"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginVertical="3dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:text="@string/forYouPostsText"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/light_pink"
+        apps:backgroundTint="@color/default_color_game_dark"
+
+        apps:layout_constraintTop_toBottomOf="@id/newestPostsIndex"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/instagramStoriesIndex"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:text="@string/instagramStoriesText"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/light_pink"
+        apps:backgroundTint="@color/default_color_game_dark"
+
+        apps:layout_constraintTop_toBottomOf="@id/recommendedPostsIndex"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

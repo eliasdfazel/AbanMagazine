@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/4/20 10:53 AM
- * Last modified 12/4/20 10:53 AM
+ * Created by Elias Fazel on 12/5/20 4:53 AM
+ * Last modified 12/5/20 4:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,13 +10,21 @@
 
 package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Index
 
+import android.animation.Animator
 import android.annotation.SuppressLint
-import android.view.MotionEvent
+import android.content.Context
+import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.AccelerateInterpolator
+import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
+import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
+import com.abanabsalan.aban.magazine.Utils.UI.Display.displayY
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
+import kotlin.math.hypot
 import kotlin.math.roundToInt
 
 @SuppressLint("ClickableViewAccessibility")
-class HomePagePopupIndex (val homePageViewBinding: HomePageViewBinding) {
+class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePageViewBinding) {
 
     object IndexType {
         const val Categories = 0
@@ -31,19 +39,56 @@ class HomePagePopupIndex (val homePageViewBinding: HomePageViewBinding) {
 
     init {
 
-        homePageViewBinding.indexInvocation.setOnTouchListener { view, motionEvent ->
+        homePageViewBinding.indexInvocation.setOnClickListener {
 
-            when (motionEvent.action) {
-                MotionEvent.ACTION_DOWN -> {
+            if (homePageViewBinding.indexViewInclude.root.isShown) {
 
+                homePageViewBinding.indexViewInclude.root.visibility = View.INVISIBLE
 
+            }
 
-                }
-                MotionEvent.ACTION_MOVE -> {
+        }
 
+        homePageViewBinding.indexInvocation.setOnLongClickListener {
 
+            if (homePageViewBinding.indexViewInclude.root.isShown) {
 
-                }
+                homePageViewBinding.indexViewInclude.root.visibility = View.INVISIBLE
+
+            } else {
+
+                val finalRadius = hypot(displayX(context).toDouble(), displayY(context).toDouble())
+
+                val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.indexViewInclude.root,
+                    (homePageViewBinding.indexInvocation.x).roundToInt() + (homePageViewBinding.indexInvocation.height / 2),
+                    (homePageViewBinding.indexViewInclude.root.y).roundToInt(),
+                    DpToInteger(context, 13).toFloat(),
+                    finalRadius.toFloat())
+
+                circularReveal.duration = 1111
+                circularReveal.interpolator = AccelerateInterpolator()
+
+                homePageViewBinding.indexViewInclude.root.visibility = View.VISIBLE
+
+                circularReveal.start()
+                circularReveal.addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationRepeat(animation: Animator?) {
+
+                    }
+
+                    override fun onAnimationEnd(animation: Animator?) {
+
+                    }
+
+                    override fun onAnimationCancel(animation: Animator?) {
+
+                    }
+
+                    override fun onAnimationStart(animation: Animator?) {
+
+                    }
+                })
+
             }
 
             true

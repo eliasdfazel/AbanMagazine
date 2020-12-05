@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/4/20 10:06 AM
- * Last modified 12/4/20 10:05 AM
+ * Created by Elias Fazel on 12/5/20 4:53 AM
+ * Last modified 12/5/20 4:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -116,7 +116,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
     }
 
     val homePagePopupIndex: HomePagePopupIndex by lazy {
-        HomePagePopupIndex(homePageViewBinding)
+        HomePagePopupIndex(applicationContext, homePageViewBinding)
     }
 
     var scrollViewAtTop: Boolean = false

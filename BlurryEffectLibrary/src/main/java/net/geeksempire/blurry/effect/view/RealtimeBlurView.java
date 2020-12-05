@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/7/20 3:42 PM
- * Last modified 7/7/20 3:29 PM
+ * Created by Elias Fazel on 12/5/20 4:53 AM
+ * Last modified 12/5/20 3:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -352,10 +352,13 @@ public class RealtimeBlurView extends View {
 	 */
 	protected void drawBlurredBitmap(Canvas canvas, Bitmap blurredBitmap, int overlayColor) {
 		if (blurredBitmap != null) {
+
 			mRectSrc.right = blurredBitmap.getWidth();
 			mRectSrc.bottom = blurredBitmap.getHeight();
+
 			mRectDst.right = getWidth();
 			mRectDst.bottom = getHeight();
+
 			canvas.drawBitmap(blurredBitmap, mRectSrc, mRectDst, null);
 		}
 		mPaint.setColor(overlayColor);
