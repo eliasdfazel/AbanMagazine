@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/5/20 11:15 AM
- * Last modified 12/5/20 11:10 AM
+ * Created by Elias Fazel on 12/6/20 6:30 AM
+ * Last modified 12/6/20 6:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,9 +13,13 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Index
 import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.System.doVibrate
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
@@ -40,41 +44,72 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
     init {
 
-        homePageViewBinding.indexInvocation.setOnClickListener {
+        homePageViewBinding.indexInvocation.bringToFront()
 
-            if (homePageViewBinding.indexViewInclude.root.isShown) {
+        homePageViewBinding.indexInvocation.setOnTouchListener { view, motionEvent ->
 
-                homePageViewBinding.indexViewInclude.root.visibility = View.INVISIBLE
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
 
-            }
+                    if (homePageViewBinding.indexViewInclude.root.isShown) {
 
-        }
+                        val animation = AnimationUtils.loadAnimation(context, R.anim.scale_down_move_right)
+                        homePageViewBinding.indexViewInclude.root.startAnimation(animation)
 
-        homePageViewBinding.indexInvocation.setOnLongClickListener {
+                        animation.setAnimationListener(object : Animation.AnimationListener {
 
-            if (homePageViewBinding.indexViewInclude.root.isShown) {
+                            override fun onAnimationStart(animation: Animation?) {
 
-                homePageViewBinding.indexViewInclude.root.visibility = View.INVISIBLE
 
-            } else {
 
-                doVibrate(context, 123)
+                            }
 
-                val finalRadius = hypot(displayX(context).toDouble(), displayY(context).toDouble())
+                            override fun onAnimationEnd(animation: Animation?) {
 
-                val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.indexViewInclude.root,
-                    homePageViewBinding.indexViewInclude.root.width,
-                    homePageViewBinding.indexViewInclude.root.height / 2,
-                    DpToInteger(context, 7).toFloat(),
-                    finalRadius.toFloat())
+                                homePageViewBinding.indexViewInclude.root.visibility = View.INVISIBLE
 
-                circularReveal.duration = 1111
-                circularReveal.interpolator = AccelerateInterpolator()
+                            }
 
-                homePageViewBinding.indexViewInclude.root.visibility = View.VISIBLE
+                            override fun onAnimationRepeat(animation: Animation?) {
 
-                circularReveal.start()
 
+
+                            }
+
+                        })
+
+                    } else {
+
+                        doVibrate(context, 123)
+
+                        val finalRadius = hypot(displayX(context).toDouble(), displayY(context).toDouble())
+
+                        val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.indexViewInclude.root,
+                            homePageViewBinding.indexViewInclude.root.width,
+                            (homePageViewBinding.indexViewInclude.root.height),
+                            DpToInteger(context, 7).toFloat(),
+                            finalRadius.toFloat())
+
+                        circularReveal.duration = 3111
+                        circularReveal.interpolator = AccelerateInterpolator()
+
+                        homePageViewBinding.indexViewInclude.root.visibility = View.VISIBLE
+
+                        circularReveal.start()
+
+                    }
+
+                }
+                MotionEvent.ACTION_UP -> {
+
+
+
+                }
+                MotionEvent.ACTION_MOVE -> {
+
+
+
+                }
             }
 
             true

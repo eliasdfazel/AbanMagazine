@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/5/20 11:15 AM
-  ~ Last modified 12/5/20 11:12 AM
+  ~ Created by Elias Fazel on 12/6/20 6:30 AM
+  ~ Last modified 12/6/20 6:28 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -258,10 +258,13 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/indexInvocation"
         android:layout_width="51dp"
-        android:layout_height="71dp"
+        android:layout_height="77dp"
+        android:padding="11dp"
         android:foregroundGravity="right"
+        android:scaleType="centerCrop"
         android:src="@drawable/index_icon"
 
+        apps:layout_constraintVertical_bias="0.606"
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintBottom_toBottomOf="parent"
         apps:layout_constraintEnd_toEndOf="parent" />
@@ -272,12 +275,13 @@
         android:id="@+id/indexViewInclude"
         android:layout_width="213dp"
         android:layout_height="360dp"
-        android:layout_marginEnd="0dp"
-        android:visibility="invisible"
+        android:layout_marginEnd="44dp"
+        android:visibility="visible"
 
+        apps:layout_constraintVertical_bias="0.690"
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintBottom_toBottomOf="parent"
-        apps:layout_constraintEnd_toStartOf="@id/indexInvocation"/>
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Top Bar  -->
     <androidx.constraintlayout.widget.ConstraintLayout
