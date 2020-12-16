@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/6/20 6:30 AM
- * Last modified 12/6/20 6:26 AM
+ * Created by Elias Fazel on 12/16/20 8:20 AM
+ * Last modified 12/16/20 8:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -85,12 +85,12 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
                         val finalRadius = hypot(displayX(context).toDouble(), displayY(context).toDouble())
 
                         val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(homePageViewBinding.indexViewInclude.root,
-                            homePageViewBinding.indexViewInclude.root.width,
-                            (homePageViewBinding.indexViewInclude.root.height),
-                            DpToInteger(context, 7).toFloat(),
+                            0,
+                            (homePageViewBinding.indexViewInclude.root.y + homePageViewBinding.indexInvocation.height).roundToInt(),
+                            DpToInteger(context, 1).toFloat(),
                             finalRadius.toFloat())
 
-                        circularReveal.duration = 3111
+                        circularReveal.duration = 1111
                         circularReveal.interpolator = AccelerateInterpolator()
 
                         homePageViewBinding.indexViewInclude.root.visibility = View.VISIBLE
