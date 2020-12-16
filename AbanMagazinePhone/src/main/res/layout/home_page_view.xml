@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/11/20 5:24 AM
-  ~ Last modified 12/11/20 5:24 AM
+  ~ Created by Elias Fazel on 12/16/20 7:44 AM
+  ~ Last modified 12/16/20 7:44 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -254,35 +254,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Index View -->
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/indexInvocation"
-        android:layout_width="51dp"
-        android:layout_height="77dp"
-        android:padding="11dp"
-        android:foregroundGravity="right"
-        android:scaleType="centerCrop"
-        android:src="@drawable/index_icon"
-
-        apps:layout_constraintVertical_bias="0.606"
-        apps:layout_constraintTop_toTopOf="parent"
-        apps:layout_constraintBottom_toBottomOf="parent"
-        apps:layout_constraintEnd_toEndOf="parent" />
-
-    <include
-        layout="@layout/index_items_view"
-
-        android:id="@+id/indexViewInclude"
-        android:layout_width="213dp"
-        android:layout_height="360dp"
-        android:layout_marginEnd="44dp"
-        android:visibility="invisible"
-
-        apps:layout_constraintVertical_bias="0.690"
-        apps:layout_constraintTop_toTopOf="parent"
-        apps:layout_constraintBottom_toBottomOf="parent"
-        apps:layout_constraintEnd_toEndOf="parent"/>
-
     <!-- Top Bar  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homepageTopBar"
@@ -388,6 +359,22 @@
             apps:layout_constraintBottom_toTopOf="@id/blurViewBottomBar"
             apps:layout_constraintEnd_toEndOf="parent"/>
 
+        <!-- Index View -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/indexInvocation"
+            android:layout_width="113dp"
+            android:layout_height="81dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="11dp"
+            android:padding="11dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/index_foreground"
+            android:visibility="visible"
+
+            apps:layout_constraintTop_toTopOf="parent"
+            apps:layout_constraintBottom_toTopOf="@id/blurViewBottomBar"
+            apps:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
@@ -419,5 +406,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
+
+    <!-- Index View -->
+    <include
+        layout="@layout/index_items_view"
+
+        android:id="@+id/indexViewInclude"
+        android:layout_width="213dp"
+        android:layout_height="360dp"
+        android:layout_marginStart="33dp"
+        android:visibility="invisible"
+
+        apps:layout_constraintBottom_toTopOf="@id/homepageBottomBar"
+        apps:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
