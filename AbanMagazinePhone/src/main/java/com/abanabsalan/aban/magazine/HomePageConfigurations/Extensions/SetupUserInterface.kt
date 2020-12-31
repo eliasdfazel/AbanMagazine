@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 9:23 AM
- * Last modified 11/12/20 9:23 AM
+ * Created by Elias Fazel on 12/31/20 5:18 AM
+ * Last modified 12/31/20 4:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,15 +11,20 @@
 package com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions
 
 import android.animation.Animator
+import android.graphics.Typeface
 import android.os.Handler
 import android.os.Looper
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils.SetupSearchViewUI
+import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.UI.Display.*
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import kotlin.math.hypot
@@ -48,6 +53,33 @@ fun HomePage.setupUserInterface() {
     setupPopupPreferencesClick()
 
     setupPopupSearchesClick()
+
+    val languageUtils = LanguageUtils()
+
+    when (languageUtils.selectedLanguage(applicationContext)) {
+        PostsDataParameters.Language.Persian -> {
+
+            homePageViewBinding.featuredPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.persian_sans)
+            homePageViewBinding.newestPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.persian_sans)
+            homePageViewBinding.forYouPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.persian_sans)
+
+        }
+        PostsDataParameters.Language.English -> {
+
+            homePageViewBinding.featuredPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.floral)
+            homePageViewBinding.featuredPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 37f)
+            homePageViewBinding.featuredPostsTextView.setTypeface(homePageViewBinding.featuredPostsTextView.typeface, Typeface.BOLD)
+
+            homePageViewBinding.newestPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.floral)
+            homePageViewBinding.newestPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 37f)
+            homePageViewBinding.newestPostsTextView.setTypeface(homePageViewBinding.newestPostsTextView.typeface, Typeface.BOLD)
+
+            homePageViewBinding.forYouPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.floral)
+            homePageViewBinding.forYouPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 37f)
+            homePageViewBinding.forYouPostsTextView.setTypeface(homePageViewBinding.forYouPostsTextView.typeface, Typeface.BOLD)
+
+        }
+    }
 
 }
 

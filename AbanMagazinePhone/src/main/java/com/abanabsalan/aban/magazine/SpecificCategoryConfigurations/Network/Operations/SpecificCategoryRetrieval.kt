@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 6:49 AM
- * Last modified 9/4/20 6:49 AM
+ * Created by Elias Fazel on 12/31/20 5:18 AM
+ * Last modified 12/31/20 5:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -63,5 +63,6 @@ class SpecificCategoryRetrieval (private val context: Context) {
 
         val requestQueue = Volley.newRequestQueue(context)
         requestQueue.add(jsonObjectRequest)
+
     }
 }

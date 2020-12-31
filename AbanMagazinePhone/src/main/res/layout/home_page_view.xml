@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/16/20 8:20 AM
-  ~ Last modified 12/16/20 8:06 AM
+  ~ Created by Elias Fazel on 12/31/20 5:18 AM
+  ~ Last modified 12/31/20 4:51 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -62,7 +62,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginVertical="11dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="11dp"
                 android:gravity="center_vertical"
                 android:text="@string/featuredPostsText"
                 android:textSize="23sp"
@@ -106,7 +106,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginVertical="11dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="11dp"
                 android:gravity="center_vertical"
                 android:text="@string/productsShowcaseText"
                 android:textSize="23sp"
@@ -152,7 +152,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginVertical="11dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="11dp"
                 android:gravity="center_vertical"
                 android:text="@string/newestPostsText"
                 android:textSize="23sp"
@@ -178,7 +178,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginVertical="9dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="11dp"
                 android:gravity="center_vertical"
                 android:text="@string/forYouPostsText"
                 android:textSize="23sp"
