@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 10:34 AM
- * Last modified 12/31/20 10:34 AM
+ * Created by Elias Fazel on 12/31/20 10:35 AM
+ * Last modified 12/31/20 10:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -61,13 +61,13 @@ class GesturePinchImageView : Fragment() {
                     (requireActivity() as SinglePostView).postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                     (requireActivity() as SinglePostView).postsViewUiBinding.postMenuIcon.visibility = View.VISIBLE
 
-                    (requireActivity() as SinglePostView).postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.INVISIBLE
-
                     this@GesturePinchImageView.requireActivity().supportFragmentManager
                         .beginTransaction()
                         .setCustomAnimations(android.R.anim.slide_out_right, 0)
                         .remove(this@GesturePinchImageView)
                         .commit()
+
+                    (requireActivity() as SinglePostView).postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.INVISIBLE
 
                 } catch (e: Exception) {
                     e.printStackTrace()
