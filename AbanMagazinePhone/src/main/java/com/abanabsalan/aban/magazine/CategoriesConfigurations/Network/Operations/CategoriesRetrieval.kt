@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 6:49 AM
- * Last modified 9/4/20 6:49 AM
+ * Created by Elias Fazel on 12/31/20 5:45 AM
+ * Last modified 12/31/20 5:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ package com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operation
 
 import android.content.Context
 import android.util.Log
+import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpoints
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
@@ -29,6 +30,8 @@ object EnqueueEndPointQuery {
 }
 
 class CategoriesRetrieval (private val context: Context){
+
+    private val cacheMechanism = CacheMechanism(context)
 
     fun start(categoriesEndpointsFactory: CategoriesEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
@@ -62,6 +65,11 @@ class CategoriesRetrieval (private val context: Context){
         )
 
         val requestQueue = Volley.newRequestQueue(context)
+
+        if (cacheMechanism.checkTimeToLive()) {
+            requestQueue.cache.clear()
+        }
+
         requestQueue.add(jsonObjectRequest)
     }
 }
