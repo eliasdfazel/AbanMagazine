@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/16/20 9:10 AM
- * Last modified 11/16/20 8:41 AM
+ * Created by Elias Fazel on 12/31/20 10:34 AM
+ * Last modified 12/31/20 10:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.Observer
@@ -35,6 +36,7 @@ import com.abanabsalan.aban.magazine.PostsConfigurations.RelatedPosts.UI.Related
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.setupUserInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.SinglePostViewAdapter
+import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.GesturePinchImageView
 import com.abanabsalan.aban.magazine.Preferences.PopupPreferencesController
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.TagsConfigurations.Utils.TagsIO
@@ -105,6 +107,8 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
     }
 
     val favoritedPostData: HashMap<String, Any?> = HashMap<String, Any?>()
+
+    val gesturePinchImageView = GesturePinchImageView()
 
     lateinit var postsViewUiBinding: PostsViewUiBinding
 
@@ -295,6 +299,22 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
 
             hidePopupPreferences()
 
+        } else if (postsViewUiBinding.gesturePinchImageViewContainer.isShown) {
+
+            postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
+            postsViewUiBinding.postMenuButton.visibility = View.VISIBLE
+
+            postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
+            postsViewUiBinding.postMenuIcon.visibility = View.VISIBLE
+
+            postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.INVISIBLE
+            postsViewUiBinding.gesturePinchImageViewContainer.startAnimation(AnimationUtils.loadAnimation(applicationContext, android.R.anim.slide_out_right))
+
+            supportFragmentManager
+                .beginTransaction()
+                .remove(gesturePinchImageView)
+                .commit()
+
         } else {
 
             this@SinglePostView.finish()
@@ -380,10 +400,10 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
                 postsViewUiBinding.postMenuIcon.visibility = View.INVISIBLE
             }
         } else {
-            if (!postsViewUiBinding.postMenuButton.isShown) {
+            if (!postsViewUiBinding.postMenuButton.isShown && !postsViewUiBinding.gesturePinchImageViewContainer.isShown) {
                 postsViewUiBinding.postMenuButton.visibility = View.VISIBLE
             }
-            if (!postsViewUiBinding.postMenuIcon.isShown) {
+            if (!postsViewUiBinding.postMenuIcon.isShown && !postsViewUiBinding.gesturePinchImageViewContainer.isShown) {
                 postsViewUiBinding.postMenuIcon.visibility = View.VISIBLE
             }
         }

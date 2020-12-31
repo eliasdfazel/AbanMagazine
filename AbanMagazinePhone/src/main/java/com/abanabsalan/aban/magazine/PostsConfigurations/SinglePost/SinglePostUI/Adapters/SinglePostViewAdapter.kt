@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 7:38 AM
- * Last modified 12/31/20 7:38 AM
+ * Created by Elias Fazel on 12/31/20 10:34 AM
+ * Last modified 12/31/20 10:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,20 +15,21 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.net.Uri
+import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.SinglePostItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.Extensions.paragraphsTextSelectionProcess
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.Adapters.ViewHolders.*
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
-import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcess
-import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.ImageResizingProcessAction
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
+import com.abanabsalan.aban.magazine.Utils.Data.convertDrawableToByteArray
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -338,22 +339,6 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
             }
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
-                (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
-                    ThemeType.ThemeLight ->{
-
-                        context.getColor(R.color.dark)
-
-                    }
-                    ThemeType.ThemeDark -> {
-
-                        context.getColor(R.color.light)
-
-                    }
-                    else -> {
-                        context.getColor(R.color.dark)
-                    }
-                })
-
                 (viewHolder as PostViewImageAdapterViewHolder).postImageDescription.setTextColor(when (context.overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight ->{
 
@@ -422,39 +407,25 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                     if (it.targetLink.isNullOrBlank()) {
 
-                        ImageResizingProcess((viewHolder as PostViewImageAdapterViewHolder).postImage,
-                            (viewHolder as PostViewImageAdapterViewHolder).showFullScreen,
-                            (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation)
-                            .start(object : ImageResizingProcessAction {
+                        (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener {
 
-                                override fun onImageViewReverted() {
-                                    super.onImageViewReverted()
+                            context.postsViewUiBinding.postMenuIcon.visibility = View.GONE
+                            context.postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
 
+                            context.postsViewUiBinding.postMenuButton.visibility = View.GONE
+                            context.postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
 
+                            context.postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.VISIBLE
 
-                                }
+                            context.gesturePinchImageView.arguments = Bundle().apply {
+                                putByteArray("ImageByteArray", (viewHolder as PostViewImageAdapterViewHolder).postImage.drawable.convertDrawableToByteArray())
+                            }
 
-                            })
-
-                        (viewHolder as PostViewImageAdapterViewHolder).showFullScreen.setOnClickListener { view ->
-
-                            BuiltInWebView.show(
-                                context = context,
-                                linkToLoad = it.imageLink,
-                                gradientColorOne = context.dominantColor,
-                                gradientColorTwo = context.vibrantColor
-                            )
-
-                        }
-
-                        (viewHolder as PostViewImageAdapterViewHolder).showFullScreenInformation.setOnClickListener { view ->
-
-                            BuiltInWebView.show(
-                                context = context,
-                                linkToLoad = it.imageLink,
-                                gradientColorOne = context.dominantColor,
-                                gradientColorTwo = context.vibrantColor
-                            )
+                            context.supportFragmentManager
+                                .beginTransaction()
+                                .setCustomAnimations(R.anim.slide_in_right, 0)
+                                .replace(R.id.gesturePinchImageViewContainer, context.gesturePinchImageView, "Gesture Pinch Image View")
+                                .commit()
 
                         }
 
@@ -462,7 +433,7 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                         it.targetLink?.also { targetLink ->
 
-                            (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener {
+                            (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener { view ->
 
                                 BuiltInWebView.show(
                                     context = context,

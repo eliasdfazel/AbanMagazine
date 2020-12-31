@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/16/20 8:20 AM
- * Last modified 12/16/20 8:16 AM
+ * Created by Elias Fazel on 12/31/20 10:34 AM
+ * Last modified 12/31/20 9:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,7 +53,7 @@ class HomePagePopupIndex (val context: Context, val homePageViewBinding: HomePag
 
                     if (homePageViewBinding.indexViewInclude.root.isShown) {
 
-                        val animation = AnimationUtils.loadAnimation(context, R.anim.scale_down_move_right)
+                        val animation = AnimationUtils.loadAnimation(context, R.anim.scale_down_move_left)
                         homePageViewBinding.indexViewInclude.root.startAnimation(animation)
 
                         animation.setAnimationListener(object : Animation.AnimationListener {
