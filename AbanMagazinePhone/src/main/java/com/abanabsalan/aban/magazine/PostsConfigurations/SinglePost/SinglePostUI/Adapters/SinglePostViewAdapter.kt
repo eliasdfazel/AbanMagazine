@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 7:19 AM
- * Last modified 12/31/20 7:14 AM
+ * Created by Elias Fazel on 12/31/20 7:38 AM
+ * Last modified 12/31/20 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -429,6 +429,9 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                                 override fun onImageViewReverted() {
                                     super.onImageViewReverted()
+
+
+
                                 }
 
                             })

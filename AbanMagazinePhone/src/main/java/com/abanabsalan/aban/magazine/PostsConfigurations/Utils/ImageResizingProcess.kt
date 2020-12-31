@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 7:19 AM
- * Last modified 12/31/20 6:59 AM
+ * Created by Elias Fazel on 12/31/20 7:38 AM
+ * Last modified 12/31/20 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,7 +17,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.facebook.rebound.SimpleSpringListener
 import com.facebook.rebound.Spring
@@ -41,8 +40,6 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
      **/
     var pressDelay: Long = 777
 
-    var recyclerView: RecyclerView? = null
-
     private var runnablePressHold: Runnable? = null
     private val handlerPressHold: Handler = Handler(Looper.getMainLooper())
 
@@ -50,34 +47,6 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
 
     @SuppressLint("ClickableViewAccessibility")
     fun start(imageResizingProcessAction: ImageResizingProcessAction) {
-
-        recyclerView?.onFlingListener = object : RecyclerView.OnFlingListener() {
-
-            override fun onFling(velocityX: Int, velocityY: Int): Boolean {
-
-                return false
-            }
-
-        }
-
-        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-                when (newState) {
-                    RecyclerView.SCROLL_STATE_IDLE -> {
-
-                    }
-                    else -> {
-
-                    }
-                }
-
-
-            }
-
-        })
 
         val springSystem = SpringSystem.create()
         val spring = springSystem.createSpring()
