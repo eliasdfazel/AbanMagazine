@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 5:18 AM
- * Last modified 12/31/20 4:50 AM
+ * Created by Elias Fazel on 12/31/20 5:59 AM
+ * Last modified 12/31/20 5:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,15 +67,15 @@ fun HomePage.setupUserInterface() {
         PostsDataParameters.Language.English -> {
 
             homePageViewBinding.featuredPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.floral)
-            homePageViewBinding.featuredPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 37f)
+            homePageViewBinding.featuredPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 33f)
             homePageViewBinding.featuredPostsTextView.setTypeface(homePageViewBinding.featuredPostsTextView.typeface, Typeface.BOLD)
 
             homePageViewBinding.newestPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.floral)
-            homePageViewBinding.newestPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 37f)
+            homePageViewBinding.newestPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 33f)
             homePageViewBinding.newestPostsTextView.setTypeface(homePageViewBinding.newestPostsTextView.typeface, Typeface.BOLD)
 
             homePageViewBinding.forYouPostsTextView.typeface = ResourcesCompat.getFont(applicationContext, R.font.floral)
-            homePageViewBinding.forYouPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 37f)
+            homePageViewBinding.forYouPostsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 33f)
             homePageViewBinding.forYouPostsTextView.setTypeface(homePageViewBinding.forYouPostsTextView.typeface, Typeface.BOLD)
 
         }
