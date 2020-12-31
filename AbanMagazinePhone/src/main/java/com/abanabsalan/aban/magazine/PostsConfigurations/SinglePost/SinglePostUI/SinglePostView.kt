@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 10:34 AM
- * Last modified 12/31/20 10:22 AM
+ * Created by Elias Fazel on 12/31/20 12:34 PM
+ * Last modified 12/31/20 12:21 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -301,17 +301,18 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
 
         } else if (postsViewUiBinding.gesturePinchImageViewContainer.isShown) {
 
-            postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
             postsViewUiBinding.postMenuButton.visibility = View.VISIBLE
+            postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
 
-            postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
             postsViewUiBinding.postMenuIcon.visibility = View.VISIBLE
+            postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
 
             postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.INVISIBLE
             postsViewUiBinding.gesturePinchImageViewContainer.startAnimation(AnimationUtils.loadAnimation(applicationContext, android.R.anim.slide_out_right))
 
             supportFragmentManager
                 .beginTransaction()
+                .setCustomAnimations(android.R.anim.slide_out_right, 0)
                 .remove(gesturePinchImageView)
                 .commit()
 

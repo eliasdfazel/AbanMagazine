@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2020 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/31/20 10:34 AM
-  ~ Last modified 12/31/20 10:32 AM
+  ~ Created by Elias Fazel on 12/31/20 12:34 PM
+  ~ Last modified 12/31/20 12:28 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -39,8 +39,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/closeImageView"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
         android:layout_marginVertical="19dp"
         android:insetLeft="0dp"
         android:insetRight="0dp"
@@ -52,7 +52,7 @@
         apps:icon="@android:drawable/ic_menu_close_clear_cancel"
         apps:iconSize="27dp"
         apps:iconGravity="textStart"
-        apps:iconTint="@color/default_color_game_light"
+        apps:iconTint="@color/light"
         apps:iconTintMode="src_in"
         apps:iconPadding="0dp"
         apps:rippleColor="@color/light_pink"

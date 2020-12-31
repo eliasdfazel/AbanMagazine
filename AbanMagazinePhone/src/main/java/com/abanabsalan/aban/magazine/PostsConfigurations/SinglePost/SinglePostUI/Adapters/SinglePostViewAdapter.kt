@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 10:34 AM
- * Last modified 12/31/20 10:34 AM
+ * Created by Elias Fazel on 12/31/20 12:34 PM
+ * Last modified 12/31/20 12:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -409,15 +409,16 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                         (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener {
 
+                            context.postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.VISIBLE
+
                             context.postsViewUiBinding.postMenuIcon.visibility = View.GONE
                             context.postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
 
                             context.postsViewUiBinding.postMenuButton.visibility = View.GONE
                             context.postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
 
-                            context.postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.VISIBLE
-
                             context.gesturePinchImageView.arguments = Bundle().apply {
+                                context.dominantColor?.let { aColor -> putInt("ExtractedColor", aColor) }
                                 putByteArray("ImageByteArray", (viewHolder as PostViewImageAdapterViewHolder).postImage.drawable.convertDrawableToByteArray())
                             }
 

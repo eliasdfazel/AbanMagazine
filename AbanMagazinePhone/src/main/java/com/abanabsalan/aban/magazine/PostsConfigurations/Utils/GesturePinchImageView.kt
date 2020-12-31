@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 10:37 AM
- * Last modified 12/31/20 10:37 AM
+ * Created by Elias Fazel on 12/31/20 12:34 PM
+ * Last modified 12/31/20 12:34 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Utils
 
 import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,10 +55,6 @@ class GesturePinchImageView : Fragment() {
                 ColorStateList.valueOf(
                     it
                 )
-            }.let {
-                ColorStateList.valueOf(
-                    Color.WHITE
-                )
             }
 
             pinchZoomLayoutBinding.gesturePinchImageView.setImageBitmap(BitmapFactory.decodeByteArray(byteArray,0, byteArray.size))
@@ -68,11 +63,11 @@ class GesturePinchImageView : Fragment() {
 
                 try {
 
-                    (requireActivity() as SinglePostView).postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                     (requireActivity() as SinglePostView).postsViewUiBinding.postMenuButton.visibility = View.VISIBLE
+                    (requireActivity() as SinglePostView).postsViewUiBinding.postMenuButton.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
 
-                    (requireActivity() as SinglePostView).postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                     (requireActivity() as SinglePostView).postsViewUiBinding.postMenuIcon.visibility = View.VISIBLE
+                    (requireActivity() as SinglePostView).postsViewUiBinding.postMenuIcon.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
 
                     this@GesturePinchImageView.requireActivity().supportFragmentManager
                         .beginTransaction()
