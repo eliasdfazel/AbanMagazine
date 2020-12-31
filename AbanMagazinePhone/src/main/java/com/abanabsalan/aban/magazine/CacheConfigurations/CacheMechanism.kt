@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 5:45 AM
- * Last modified 12/31/20 5:39 AM
+ * Created by Elias Fazel on 12/31/20 6:20 AM
+ * Last modified 12/31/20 6:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,11 +25,11 @@ class CacheMechanism (private val context: Context) {
         return  ((System.currentTimeMillis() - retrieveCachedTime()) > DefaultTimeToLive)
     }
 
-    fun storeCachedTime() {
+    fun storeCachedTime(nowTime: Long = System.currentTimeMillis()) {
 
         val savePreferences = SavePreferences(context)
 
-        savePreferences.savePreference("CacheMechanism", "CachedTime", System.currentTimeMillis())
+        savePreferences.savePreference("CacheMechanism", "CachedTime", nowTime)
 
     }
 

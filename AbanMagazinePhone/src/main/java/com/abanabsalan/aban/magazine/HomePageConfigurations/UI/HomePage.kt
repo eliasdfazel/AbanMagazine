@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/5/20 4:53 AM
- * Last modified 12/5/20 4:36 AM
+ * Created by Elias Fazel on 12/31/20 6:20 AM
+ * Last modified 12/31/20 6:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,6 +36,7 @@ import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
 import com.abanabsalan.aban.magazine.Advertising.AdvertisingConfiguration
 import com.abanabsalan.aban.magazine.BuildConfig
+import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.InstagramStoryHighlights.InstagramStoryHighlightsAdapter
@@ -76,9 +77,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerConstants
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
@@ -131,6 +129,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
     val firebaseAuth = Firebase.auth
 
     val applicationDataIndexing: ApplicationDataIndexing = ApplicationDataIndexing()
+
+    val cacheMechanism: CacheMechanism by lazy {
+        CacheMechanism(applicationContext)
+    }
 
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
@@ -730,21 +732,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                             updateDelay = false
 
                             cacheDir.deleteRecursively()
-
-                            CoroutineScope(Dispatchers.IO).launch {
-
-                                try {
-
-                                    (application as AbanMagazinePhoneApplication).firestoreDatabase.clearPersistence()
-
-                                    Glide.get(this@HomePage).clearDiskCache()
-                                    Glide.get(this@HomePage).clearMemory()
-
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-
-                            }
 
                             setupRefreshView()
 

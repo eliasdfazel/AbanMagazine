@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/20/20 9:00 AM
- * Last modified 11/20/20 8:42 AM
+ * Created by Elias Fazel on 12/31/20 6:20 AM
+ * Last modified 12/31/20 6:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,6 @@ import android.content.Intent
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
@@ -41,14 +40,10 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarActionHandlerInterface
 import com.abanabsalan.aban.magazine.Utils.UI.NotifyUser.SnackbarBuilder
 import com.abanabsalan.aban.magazine.databinding.HomePageViewBinding
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
 import javax.net.ssl.HttpsURLConnection
@@ -79,20 +74,7 @@ fun HomePage.homePageRemoteConfiguration() {
 
                             cacheDir.deleteRecursively()
 
-                            CoroutineScope(Dispatchers.IO).launch {
-
-                                try {
-
-                                    (application as AbanMagazinePhoneApplication).firestoreDatabase.clearPersistence()
-
-                                    Glide.get(this@homePageRemoteConfiguration).clearDiskCache()
-                                    Glide.get(this@homePageRemoteConfiguration).clearMemory()
-
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-
-                            }
+                            cacheMechanism.storeCachedTime(0)
 
                             setupRefreshView()
 
