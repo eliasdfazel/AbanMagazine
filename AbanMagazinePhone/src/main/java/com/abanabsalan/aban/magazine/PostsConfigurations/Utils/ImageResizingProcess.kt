@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/23/20 9:50 AM
- * Last modified 9/23/20 9:50 AM
+ * Created by Elias Fazel on 12/31/20 7:19 AM
+ * Last modified 12/31/20 6:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,6 +36,9 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
 
     var revertDelay: Long = 3975
 
+    /**
+     * 777 Millisecond
+     **/
     var pressDelay: Long = 777
 
     var recyclerView: RecyclerView? = null
@@ -175,17 +178,21 @@ class ImageResizingProcess (private val animationImage: ImageView, private val c
                 MotionEvent.ACTION_CANCEL -> {
                     Log.d(this@ImageResizingProcess.javaClass.simpleName, "Image Touch Cancel")
 
-                    allowAnimationPress = false
-
-                    runnablePressHold?.let {
-                        handlerPressHold.removeCallbacks(it)
-                    }
-
-                    spring.endValue = (0.0)
-
-                    animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
-
-                    imageResizingProcessAction.onImageViewReverted()
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//
+//                        allowAnimationPress = false
+//
+//                        runnablePressHold?.let {
+//                            handlerPressHold.removeCallbacks(it)
+//                        }
+//
+//                        spring.endValue = (0.0)
+//
+//                        animationImage.scaleType = ImageView.ScaleType.CENTER_CROP
+//
+//                        imageResizingProcessAction.onImageViewReverted()
+//
+//                    }, 531)
 
                 }
             }

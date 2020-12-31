@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 10/22/20 9:14 AM
- * Last modified 10/22/20 9:14 AM
+ * Created by Elias Fazel on 12/31/20 7:19 AM
+ * Last modified 12/31/20 7:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -459,12 +459,16 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
                         it.targetLink?.also { targetLink ->
 
-                            BuiltInWebView.show(
-                                context = context,
-                                linkToLoad = targetLink,
-                                gradientColorOne = context.dominantColor,
-                                gradientColorTwo = context.vibrantColor
-                            )
+                            (viewHolder as PostViewImageAdapterViewHolder).postImage.setOnClickListener {
+
+                                BuiltInWebView.show(
+                                    context = context,
+                                    linkToLoad = targetLink,
+                                    gradientColorOne = context.dominantColor,
+                                    gradientColorTwo = context.vibrantColor
+                                )
+
+                            }
 
                         }
 
