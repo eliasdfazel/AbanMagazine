@@ -1,8 +1,8 @@
 /*
  * Copyright © 2020 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 10:35 AM
- * Last modified 12/31/20 10:35 AM
+ * Created by Elias Fazel on 12/31/20 10:37 AM
+ * Last modified 12/31/20 10:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,9 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.Utils
 
+import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,9 +47,20 @@ class GesturePinchImageView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val extractedColor = arguments?.getInt("ExtractedColor")
         val imageByteArray = arguments?.getByteArray("ImageByteArray")
 
         imageByteArray?.let { byteArray ->
+
+            pinchZoomLayoutBinding.closeImageView.backgroundTintList = extractedColor?.let {
+                ColorStateList.valueOf(
+                    it
+                )
+            }.let {
+                ColorStateList.valueOf(
+                    Color.WHITE
+                )
+            }
 
             pinchZoomLayoutBinding.gesturePinchImageView.setImageBitmap(BitmapFactory.decodeByteArray(byteArray,0, byteArray.size))
 
