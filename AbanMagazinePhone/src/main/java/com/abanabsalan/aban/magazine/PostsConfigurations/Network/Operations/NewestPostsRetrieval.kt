@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 6:35 AM
- * Last modified 1/1/21 6:34 AM
+ * Created by Elias Fazel on 1/1/21 6:38 AM
+ * Last modified 1/1/21 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.Network.Operations
 
 import android.content.Context
 import android.util.Log
-import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpoints
 import com.abanabsalan.aban.magazine.PostsConfigurations.Network.Endpoints.PostsEndpointsFactory
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
@@ -30,8 +29,6 @@ object EnqueueEndPointQuery {
 }
 
 class NewestPostsRetrieval (private val context: Context) {
-
-    private val cacheMechanism = CacheMechanism(context)
 
     fun start(postsEndpointsFactory: PostsEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
@@ -69,18 +66,6 @@ class NewestPostsRetrieval (private val context: Context) {
         jsonObjectRequest.setShouldCache(false)
 
         val requestQueue = Volley.newRequestQueue(context)
-
-//        if (cacheMechanism.checkTimeToLive()) {
-//
-//            println(">>>>>>>>>>>> 1")
-//            cacheMechanism.storeCachedTime()
-//
-//            jsonObjectRequest.cacheEntry.refreshNeeded()
-//
-//        }
-
-        println(">>>>>>>>>>>> 2")
-
         requestQueue.add(jsonObjectRequest)
         requestQueue.start()
 

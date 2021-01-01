@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 6:35 AM
- * Last modified 1/1/21 6:30 AM
+ * Created by Elias Fazel on 1/1/21 6:38 AM
+ * Last modified 1/1/21 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ package com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operation
 
 import android.content.Context
 import android.util.Log
-import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpoints
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
@@ -31,12 +30,8 @@ object EnqueueEndPointQuery {
 
 class CategoriesRetrieval (private val context: Context){
 
-    private val cacheMechanism = CacheMechanism(context)
-
     fun start(categoriesEndpointsFactory: CategoriesEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
-
-        println(">>>>>>>>>>>> 00")
 
         val categoriesEndpoints: CategoriesEndpoints = CategoriesEndpoints(categoriesEndpointsFactory)
 
@@ -66,20 +61,9 @@ class CategoriesRetrieval (private val context: Context){
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
 
+        jsonObjectRequest.setShouldCache(false)
+
         val requestQueue = Volley.newRequestQueue(context)
-
-        if (cacheMechanism.checkTimeToLive()) {
-
-            println(">>>>>>>>>>>> 11")
-
-            cacheMechanism.storeCachedTime()
-
-            requestQueue.cache.clear()
-
-        }
-
-        println(">>>>>>>>>>>> 22")
-
         requestQueue.add(jsonObjectRequest)
         requestQueue.start()
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 5:24 AM
- * Last modified 1/1/21 5:21 AM
+ * Created by Elias Fazel on 1/1/21 6:38 AM
+ * Last modified 1/1/21 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ package com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Ne
 
 import android.content.Context
 import android.util.Log
-import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.Endpoints.StoryHighlightsEndpoint
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
@@ -28,8 +27,6 @@ object EnqueueEndPointQuery {
     const val JSON_REQUEST_RETRIES = (3)
 }
 class StoryHighlightsRetrieval (private val context: Context) {
-
-    private val cacheMechanism = CacheMechanism(context)
 
     fun start(jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
 
@@ -61,17 +58,12 @@ class StoryHighlightsRetrieval (private val context: Context) {
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
 
+        jsonObjectRequest.setShouldCache(false)
+
         val requestQueue = Volley.newRequestQueue(context)
-
-        if (cacheMechanism.checkTimeToLive()) {
-
-            cacheMechanism.storeCachedTime()
-
-            requestQueue.cache.clear()
-
-        }
-
         requestQueue.add(jsonObjectRequest)
+        requestQueue.start()
+
     }
 
 }
