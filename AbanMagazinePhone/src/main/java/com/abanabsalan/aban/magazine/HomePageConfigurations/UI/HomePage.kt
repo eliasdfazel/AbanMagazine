@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 6:20 AM
- * Last modified 12/31/20 6:20 AM
+ * Created by Elias Fazel on 1/1/21 8:01 AM
+ * Last modified 1/1/21 7:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -82,6 +82,7 @@ import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerConstan
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.GestureListenerInterface
 import net.geekstools.supershortcuts.PRO.Utils.UI.Gesture.SwipeGestureListener
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectionListenerInterface {
 
@@ -134,6 +135,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         CacheMechanism(applicationContext)
     }
 
+    var timeToLiveCache = false
+
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
 
@@ -173,34 +176,83 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
         networkConnectionListener.networkConnectionListenerInterface = this@HomePage
 
-        homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 115), RecyclerView.VERTICAL, false)
+        homePageViewBinding.primaryCategoriesRecyclerView.layoutManager = GridLayoutManager(
+            applicationContext, columnCount(
+                applicationContext,
+                115
+            ), RecyclerView.VERTICAL, false
+        )
 
-        homePageViewBinding.recommendedPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 333), RecyclerView.VERTICAL, false)
+        homePageViewBinding.recommendedPostsRecyclerView.layoutManager = GridLayoutManager(
+            applicationContext, columnCount(
+                applicationContext,
+                333
+            ), RecyclerView.VERTICAL, false
+        )
 
-        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        homePageViewBinding.secondaryCategoriesRecyclerView.layoutManager = LinearLayoutManager(
+            applicationContext,
+            RecyclerView.HORIZONTAL,
+            false
+        )
 
-        val specificCategoryLinearLayoutManager: LinearLayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        val specificCategoryLinearLayoutManager: LinearLayoutManager = LinearLayoutManager(
+            applicationContext,
+            RecyclerView.HORIZONTAL,
+            false
+        )
         homePageViewBinding.featuredPostsRecyclerView.layoutManager = specificCategoryLinearLayoutManager
 
-        homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
+        homePageViewBinding.newestPostsRecyclerView.layoutManager = GridLayoutManager(
+            applicationContext, columnCount(
+                applicationContext,
+                193
+            ), RecyclerView.VERTICAL, false
+        )
 
-        homePageViewBinding.productShowcaseRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        homePageViewBinding.productShowcaseRecyclerView.layoutManager = LinearLayoutManager(
+            applicationContext,
+            RecyclerView.HORIZONTAL,
+            false
+        )
 
-        homePageViewBinding.instagramStoryHighlightsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        homePageViewBinding.instagramStoryHighlightsRecyclerView.layoutManager = LinearLayoutManager(
+            applicationContext,
+            RecyclerView.HORIZONTAL,
+            false
+        )
 
-        val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(this@HomePage, overallTheme)
+        val primaryCategoryAdapter: PrimaryCategoryAdapter = PrimaryCategoryAdapter(
+            this@HomePage,
+            overallTheme
+        )
 
-        val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(this@HomePage, overallTheme)
+        val secondaryCategoryAdapter: SecondaryCategoryAdapter = SecondaryCategoryAdapter(
+            this@HomePage,
+            overallTheme
+        )
 
-        val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(this@HomePage, overallTheme)
+        val specificCategoryAdapter: SpecificCategoryAdapter = SpecificCategoryAdapter(
+            this@HomePage,
+            overallTheme
+        )
 
         val newestPostsAdapter: NewestPostsAdapter = NewestPostsAdapter(this@HomePage, overallTheme)
 
-        val recommendedPostsAdapter: RecommendedPostsAdapter = RecommendedPostsAdapter(this@HomePage, overallTheme)
+        val recommendedPostsAdapter: RecommendedPostsAdapter = RecommendedPostsAdapter(
+            this@HomePage,
+            overallTheme
+        )
 
-        val productShowcaseAdapter: ProductShowcaseAdapter = ProductShowcaseAdapter(this@HomePage, overallTheme)
+        val productShowcaseAdapter: ProductShowcaseAdapter = ProductShowcaseAdapter(
+            this@HomePage,
+            overallTheme
+        )
 
-        val instagramStoryHighlightsAdapter: InstagramStoryHighlightsAdapter = InstagramStoryHighlightsAdapter(this@HomePage, overallTheme)
+        val instagramStoryHighlightsAdapter: InstagramStoryHighlightsAdapter = InstagramStoryHighlightsAdapter(
+            this@HomePage,
+            overallTheme
+        )
 
         homePageViewBinding.root.post {
 
@@ -208,7 +260,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
             homePageViewBinding.officialLogo.setOnClickListener {
 
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.websiteLink))).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(
+                    Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.websiteLink))).addFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK
+                    )
+                )
 
             }
 
@@ -223,23 +279,33 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                         specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
 
-                        homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
+                        homePageViewBinding.featuredPostsRecyclerView.adapter =
+                            specificCategoryAdapter
 
                         Handler(Looper.getMainLooper()).postDelayed({
                             PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
 
-                            startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+                            startFeaturedPostCategoryRetrieval(
+                                applicationContext,
+                                homePageViewBinding,
+                                homePageLiveData,
+                                PageCounter.PageNumberToLoad
+                            )
                         }, 777)
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
                     } else {
 
-                        val previousDataCount: Int = specificCategoryAdapter.specificCategoryPostsItemData.size
+                        val previousDataCount: Int =
+                            specificCategoryAdapter.specificCategoryPostsItemData.size
 
                         specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
 
-                        specificCategoryAdapter.notifyItemRangeInserted(previousDataCount, (specificCategoryAdapter.specificCategoryPostsItemData.size - 1))
+                        specificCategoryAdapter.notifyItemRangeInserted(
+                            previousDataCount,
+                            (specificCategoryAdapter.specificCategoryPostsItemData.size - 1)
+                        )
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
@@ -256,7 +322,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.featuredPostsLoadingView.visibility = View.GONE
 
-                    Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        applicationContext,
+                        getString(R.string.noMoreContent),
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
 
@@ -301,25 +371,42 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                         primaryCategoryAdapter.categoriesItemData.clear()
                         primaryCategoryAdapter.categoriesItemData.addAll(it)
 
-                        homePageViewBinding.primaryCategoriesRecyclerView.adapter = primaryCategoryAdapter
+                        homePageViewBinding.primaryCategoriesRecyclerView.adapter =
+                            primaryCategoryAdapter
 
                         homePageViewBinding.secondaryCategoriesRecyclerView.visibility = View.GONE
 
                     } else {
 
-                        val primaryCategoriesData = it.slice(IntRange(0, (columnCount(applicationContext, 115) - 1)))
+                        val primaryCategoriesData = it.slice(
+                            IntRange(
+                                0, (columnCount(
+                                    applicationContext,
+                                    115
+                                ) - 1)
+                            )
+                        )
 
                         primaryCategoryAdapter.categoriesItemData.clear()
                         primaryCategoryAdapter.categoriesItemData.addAll(primaryCategoriesData)
 
-                        homePageViewBinding.primaryCategoriesRecyclerView.adapter = primaryCategoryAdapter
+                        homePageViewBinding.primaryCategoriesRecyclerView.adapter =
+                            primaryCategoryAdapter
 
-                        val secondaryCategoriesData = it.slice(IntRange(columnCount(applicationContext, 115), (it.size - 1)))
+                        val secondaryCategoriesData = it.slice(
+                            IntRange(
+                                columnCount(
+                                    applicationContext,
+                                    115
+                                ), (it.size - 1)
+                            )
+                        )
 
                         secondaryCategoryAdapter.categoriesItemData.clear()
                         secondaryCategoryAdapter.categoriesItemData.addAll(secondaryCategoriesData)
 
-                        homePageViewBinding.secondaryCategoriesRecyclerView.adapter = secondaryCategoryAdapter
+                        homePageViewBinding.secondaryCategoriesRecyclerView.adapter =
+                            secondaryCategoryAdapter
 
                     }
 
@@ -380,7 +467,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     recommendedPostsAdapter.recommendedPostsItemData.clear()
                     recommendedPostsAdapter.recommendedPostsItemData.addAll(it)
 
-                    homePageViewBinding.recommendedPostsRecyclerView.adapter = recommendedPostsAdapter
+                    homePageViewBinding.recommendedPostsRecyclerView.adapter =
+                        recommendedPostsAdapter
 
                 } else {
 
@@ -400,12 +488,14 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 if (it.isNotEmpty()) {
 
-                    homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility = View.VISIBLE
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.visibility =
+                        View.VISIBLE
 
                     instagramStoryHighlightsAdapter.storyHighlightsItemData.clear()
                     instagramStoryHighlightsAdapter.storyHighlightsItemData.addAll(it)
 
-                    homePageViewBinding.instagramStoryHighlightsRecyclerView.adapter = instagramStoryHighlightsAdapter
+                    homePageViewBinding.instagramStoryHighlightsRecyclerView.adapter =
+                        instagramStoryHighlightsAdapter
 
                 } else {
 
@@ -437,7 +527,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 var delayTheme: Long = 3333
 
-                when(overallTheme.checkThemeLightDark()) {
+                when (overallTheme.checkThemeLightDark()) {
                     ThemeType.ThemeLight -> {
                         delayTheme = 3000
                     }
@@ -450,13 +540,29 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     Handler(Looper.getMainLooper()).postDelayed({
 
-                        specificCategoryAdapter.notifyItemRangeChanged(0, specificCategoryAdapter.itemCount, null)
+                        specificCategoryAdapter.notifyItemRangeChanged(
+                            0,
+                            specificCategoryAdapter.itemCount,
+                            null
+                        )
 
-                        newestPostsAdapter.notifyItemRangeChanged(0, newestPostsAdapter.itemCount, null)
+                        newestPostsAdapter.notifyItemRangeChanged(
+                            0,
+                            newestPostsAdapter.itemCount,
+                            null
+                        )
 
-                        productShowcaseAdapter.notifyItemRangeChanged(0, productShowcaseAdapter.itemCount, null)
+                        productShowcaseAdapter.notifyItemRangeChanged(
+                            0,
+                            productShowcaseAdapter.itemCount,
+                            null
+                        )
 
-                        instagramStoryHighlightsAdapter.notifyItemRangeChanged(0, instagramStoryHighlightsAdapter.itemCount, null)
+                        instagramStoryHighlightsAdapter.notifyItemRangeChanged(
+                            0,
+                            instagramStoryHighlightsAdapter.itemCount,
+                            null
+                        )
 
                         toggleLightDarkThemeHomePage(this@HomePage)
 
@@ -500,6 +606,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             }
 
         }
+
+        timeToLiveCache = cacheMechanism.checkTimeToLive()
 
     }
 
@@ -568,7 +676,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     override fun onPause() {
         super.onPause()
-
     }
 
     override fun onDestroy() {
@@ -586,11 +693,38 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
         } else {
 
-            startActivity(Intent(Intent.ACTION_MAIN).apply {
-                this.addCategory(Intent.CATEGORY_HOME)
-                this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            }, ActivityOptions.makeCustomAnimation(applicationContext, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+            if (timeToLiveCache) {
 
+                cacheDir.delete()
+
+                cacheMechanism.storeCachedTime()
+
+                this@HomePage.finishAndRemoveTask()
+                exitProcess(1)
+
+            } else {
+
+                startActivity(
+                    Intent(Intent.ACTION_MAIN).apply {
+                        this.addCategory(Intent.CATEGORY_HOME)
+                        this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    }, ActivityOptions.makeCustomAnimation(
+                        applicationContext,
+                        android.R.anim.fade_in,
+                        android.R.anim.fade_out
+                    ).toBundle()
+                )
+
+            }
+
+        }
+
+    }
+
+    override fun finish() {
+
+        if (timeToLiveCache) {
+            super.finishAndRemoveTask()
         }
 
     }
@@ -603,83 +737,102 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             when (requestCode) {
                 UserInformation.GoogleSignInRequestCode -> {
 
-                    GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener { googleSignInAccount ->
+                    GoogleSignIn.getSignedInAccountFromIntent(data)
+                        .addOnSuccessListener { googleSignInAccount ->
 
-                        val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
-                        firebaseAuth.signInWithCredential(authCredential).addOnSuccessListener {
+                            val authCredential = GoogleAuthProvider.getCredential(
+                                googleSignInAccount.idToken,
+                                null
+                            )
+                            firebaseAuth.signInWithCredential(authCredential).addOnSuccessListener {
 
-                            val firebaseUser = firebaseAuth.currentUser
+                                val firebaseUser = firebaseAuth.currentUser
 
-                            if (firebaseUser != null) {
+                                if (firebaseUser != null) {
 
-                                val accountName: String = firebaseUser.email.toString()
+                                    val accountName: String = firebaseUser.email.toString()
 
-                                userInformationIO.saveUserInformation(accountName)
+                                    userInformationIO.saveUserInformation(accountName)
 
-                                userSignIn.signInSuccessful(accountName)
+                                    userSignIn.signInSuccessful(accountName)
 
-                                Glide.with(applicationContext)
-                                    .asDrawable()
-                                    .load(firebaseAuth.currentUser?.photoUrl)
-                                    .transform(CenterCrop(), CircleCrop())
-                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                    .listener(object : RequestListener<Drawable> {
-                                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                    Glide.with(applicationContext)
+                                        .asDrawable()
+                                        .load(firebaseAuth.currentUser?.photoUrl)
+                                        .transform(CenterCrop(), CircleCrop())
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .listener(object : RequestListener<Drawable> {
+                                            override fun onLoadFailed(
+                                                e: GlideException?,
+                                                model: Any?,
+                                                target: Target<Drawable>?,
+                                                isFirstResource: Boolean
+                                            ): Boolean {
 
-                                            return false
-                                        }
+                                                return false
+                                            }
 
-                                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                            override fun onResourceReady(
+                                                resource: Drawable?,
+                                                model: Any?,
+                                                target: Target<Drawable>?,
+                                                dataSource: DataSource?,
+                                                isFirstResource: Boolean
+                                            ): Boolean {
 
-                                            runOnUiThread {
+                                                runOnUiThread {
 
-                                                homePageViewBinding.preferencePopupInclude.signupView.icon = resource
+                                                    homePageViewBinding.preferencePopupInclude.signupView.icon =
+                                                        resource
+
+                                                }
+
+                                                return false
+                                            }
+
+                                        })
+                                        .submit()
+
+                                    /* Retrieve Favorited Data */
+                                    val favoriteIt: FavoriteIt = FavoriteIt(applicationContext)
+
+                                    val favoriteDatabasePath =
+                                        (application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostsCollectionPath(
+                                            accountName
+                                        )
+
+                                    (application as AbanMagazinePhoneApplication).firestoreDatabase
+                                        .collection(favoriteDatabasePath)
+                                        .get()
+                                        .addOnSuccessListener {
+
+                                            val favoritedPostsDocuments = it.documents
+
+                                            repeat(favoritedPostsDocuments.size) { index ->
+
+                                                favoriteIt.saveAsFavorite(favoritedPostsDocuments[index][PostsDataParameters.PostParameters.PostId].toString())
 
                                             }
 
-                                            return false
-                                        }
+                                            if (!it.isEmpty) {
+                                                homePageViewBinding.favoritedPostsView.visibility =
+                                                    View.VISIBLE
+                                            }
 
-                                    })
-                                    .submit()
+                                        }.addOnFailureListener {
 
-                                /* Retrieve Favorited Data */
-                                val favoriteIt: FavoriteIt = FavoriteIt(applicationContext)
-
-                                val favoriteDatabasePath = (application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostsCollectionPath(accountName)
-
-                                (application as AbanMagazinePhoneApplication).firestoreDatabase
-                                    .collection(favoriteDatabasePath)
-                                    .get()
-                                    .addOnSuccessListener {
-
-                                        val favoritedPostsDocuments = it.documents
-
-                                        repeat(favoritedPostsDocuments.size) { index ->
-
-                                            favoriteIt.saveAsFavorite(favoritedPostsDocuments[index][PostsDataParameters.PostParameters.PostId].toString())
 
                                         }
 
-                                        if (!it.isEmpty) {
-                                            homePageViewBinding.favoritedPostsView.visibility = View.VISIBLE
-                                        }
+                                }
 
-                                    }.addOnFailureListener {
+                            }.addOnFailureListener {
 
-
-
-                                    }
+                                userSignIn.signInDismissed()
 
                             }
 
-                        }.addOnFailureListener {
-
-                            userSignIn.signInDismissed()
-
                         }
-
-                    }
 
                 }
                 else -> {
@@ -739,7 +892,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                         } else {
 
-                            Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                applicationContext,
+                                getString(R.string.noMoreContent),
+                                Toast.LENGTH_LONG
+                            ).show()
 
                         }
 

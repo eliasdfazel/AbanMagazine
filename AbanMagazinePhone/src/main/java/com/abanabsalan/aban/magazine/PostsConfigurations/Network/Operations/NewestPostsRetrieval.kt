@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 6:38 AM
- * Last modified 1/1/21 6:38 AM
+ * Created by Elias Fazel on 1/1/21 8:01 AM
+ * Last modified 1/1/21 6:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -32,8 +32,6 @@ class NewestPostsRetrieval (private val context: Context) {
 
     fun start(postsEndpointsFactory: PostsEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
-
-        println(">>>>>>>>>>>> 0")
 
         val postsEndpoints: PostsEndpoints = PostsEndpoints(postsEndpointsFactory)
 
@@ -67,7 +65,6 @@ class NewestPostsRetrieval (private val context: Context) {
 
         val requestQueue = Volley.newRequestQueue(context)
         requestQueue.add(jsonObjectRequest)
-        requestQueue.start()
 
     }
 
