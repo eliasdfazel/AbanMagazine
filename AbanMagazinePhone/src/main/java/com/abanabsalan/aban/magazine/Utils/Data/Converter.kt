@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 10:34 AM
- * Last modified 12/31/20 9:37 AM
+ * Created by Elias Fazel on 1/1/21 5:24 AM
+ * Last modified 12/31/20 1:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,6 +26,7 @@ fun decodeStringToByteArray(inputByteArrayString: String) : ByteArray {
 
     return Base64.decode(inputByteArrayString, Base64.DEFAULT)
 }
+
 fun Drawable.convertDrawableToByteArray() : ByteArray {
 
     val bitmap: Bitmap = (this@convertDrawableToByteArray as BitmapDrawable).getBitmap()

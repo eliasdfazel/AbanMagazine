@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 6:20 AM
- * Last modified 12/31/20 6:04 AM
+ * Created by Elias Fazel on 1/1/21 5:24 AM
+ * Last modified 1/1/21 5:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,7 +38,7 @@ class CacheMechanism (private val context: Context) {
         val readPreferences = ReadPreferences(context)
 
 
-        return readPreferences.readPreference("CacheMechanism", "CachedTime", System.currentTimeMillis())
+        return readPreferences.readPreference("CacheMechanism", "CachedTime", 0).toLong()
     }
 
 }

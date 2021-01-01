@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 5:45 AM
- * Last modified 12/31/20 5:44 AM
+ * Created by Elias Fazel on 1/1/21 5:24 AM
+ * Last modified 1/1/21 5:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -68,7 +68,11 @@ class TagsPostsRetrieval (private val context: Context){
         val requestQueue = Volley.newRequestQueue(context)
 
         if (cacheMechanism.checkTimeToLive()) {
+
+            cacheMechanism.storeCachedTime()
+
             requestQueue.cache.clear()
+
         }
 
         requestQueue.add(jsonObjectRequest)
