@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 7:19 AM
- * Last modified 12/31/20 7:19 AM
+ * Created by Elias Fazel on 1/1/21 6:35 AM
+ * Last modified 1/1/21 6:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
@@ -28,22 +29,26 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
     fun initialize() {
 
-        MobileAds.initialize(appCompatActivity) { initializationStatus -> }
+        if (!BuildConfig.DEBUG) {
 
-        interstitialAdsLoadShow()
+            MobileAds.initialize(appCompatActivity) { initializationStatus -> }
 
-        bannerAdsLoadShow()
+            interstitialAdsLoadShow()
 
-        val testDeviceIds = listOf(
-            "3E192B3766F6EDE8127A5ADFAA0E7B67",
-            "A06676F37C8588BFF7D434B66274567A",
-            "F54D998BCE077711A17272B899B44798"
-        )
+            bannerAdsLoadShow()
 
-        val configuration = RequestConfiguration.Builder()
-            .setTestDeviceIds(testDeviceIds)
-            .build()
-        MobileAds.setRequestConfiguration(configuration)
+            val testDeviceIds = listOf(
+                "3E192B3766F6EDE8127A5ADFAA0E7B67",
+                "A06676F37C8588BFF7D434B66274567A",
+                "F54D998BCE077711A17272B899B44798"
+            )
+
+            val configuration = RequestConfiguration.Builder()
+                .setTestDeviceIds(testDeviceIds)
+                .build()
+            MobileAds.setRequestConfiguration(configuration)
+
+        }
 
     }
 

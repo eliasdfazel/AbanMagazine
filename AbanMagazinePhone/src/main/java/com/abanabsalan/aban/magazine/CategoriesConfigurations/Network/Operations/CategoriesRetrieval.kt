@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 5:24 AM
- * Last modified 1/1/21 5:21 AM
+ * Created by Elias Fazel on 1/1/21 6:35 AM
+ * Last modified 1/1/21 6:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,6 +36,8 @@ class CategoriesRetrieval (private val context: Context){
     fun start(categoriesEndpointsFactory: CategoriesEndpointsFactory,
               jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
 
+        println(">>>>>>>>>>>> 00")
+
         val categoriesEndpoints: CategoriesEndpoints = CategoriesEndpoints(categoriesEndpointsFactory)
 
         val jsonObjectRequest = JsonArrayRequest(
@@ -68,12 +70,18 @@ class CategoriesRetrieval (private val context: Context){
 
         if (cacheMechanism.checkTimeToLive()) {
 
+            println(">>>>>>>>>>>> 11")
+
             cacheMechanism.storeCachedTime()
 
             requestQueue.cache.clear()
 
         }
 
+        println(">>>>>>>>>>>> 22")
+
         requestQueue.add(jsonObjectRequest)
+        requestQueue.start()
+
     }
 }

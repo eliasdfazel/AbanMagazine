@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 12:34 PM
- * Last modified 12/31/20 12:34 PM
+ * Created by Elias Fazel on 1/1/21 6:35 AM
+ * Last modified 1/1/21 6:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -506,7 +506,10 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
                     (viewHolder as PostViewIFrameAdapterViewHolder).postIFrame.settings.javaScriptEnabled = true
                     (viewHolder as PostViewIFrameAdapterViewHolder).postIFrame.settings.domStorageEnabled = true
 
-                    (viewHolder as PostViewIFrameAdapterViewHolder).postIFrame.loadData(it.iFrameContent, "text/html", "UTF-8")
+                    (viewHolder as PostViewIFrameAdapterViewHolder).postIFrame.loadData(
+                        "<center>${it.iFrameContent}</center>",
+                        "text/html", "UTF-8"
+                    )
 
                 }
 

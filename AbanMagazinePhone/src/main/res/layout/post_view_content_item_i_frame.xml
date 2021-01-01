@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/2/20 4:02 AM
-  ~ Last modified 8/2/20 4:00 AM
+  ~ Created by Elias Fazel on 1/1/21 6:35 AM
+  ~ Last modified 1/1/21 6:35 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -14,16 +14,17 @@
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
     android:layout_width="match_parent"
-    android:layout_height="333dp"
+    android:layout_height="301dp"
     android:background="@android:color/transparent"
     tools:context=".PostsConfigurations.SinglePost.SinglePostUI.SinglePostView">
 
     <WebView
         android:id="@+id/postIFrame"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintBottom_toBottomOf="parent"
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"/>
 
