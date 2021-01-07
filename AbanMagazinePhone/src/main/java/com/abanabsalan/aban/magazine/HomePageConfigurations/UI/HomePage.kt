@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 8:01 AM
- * Last modified 1/1/21 7:54 AM
+ * Created by Elias Fazel on 1/7/21 10:43 AM
+ * Last modified 1/7/21 10:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -414,7 +414,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                         PopupShortcutsCreator(this@HomePage)
                             .buildAppShortcut(
-                                it as ArrayList<Any>,
+                                it,
                                 PopupShortcutsCreator.TYPE.Category
                             )
 

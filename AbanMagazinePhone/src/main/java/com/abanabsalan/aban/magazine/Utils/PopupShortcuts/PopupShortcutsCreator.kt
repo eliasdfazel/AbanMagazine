@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/16/20 5:54 AM
- * Last modified 8/16/20 5:54 AM
+ * Created by Elias Fazel on 1/7/21 10:43 AM
+ * Last modified 1/7/21 10:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,7 +46,7 @@ class PopupShortcutsCreator (private val context: AppCompatActivity) {
     }
 
     @RequiresApi(Build.VERSION_CODES.N_MR1)
-    fun buildAppShortcut(listOfShortcutsRawData: ArrayList<Any>, shortcutType: String) = CoroutineScope(Dispatchers.IO).async {
+    fun buildAppShortcut(listOfShortcutsRawData: ArrayList<CategoriesItemData>, shortcutType: String) = CoroutineScope(Dispatchers.IO).async {
 
         delay(3000)
 
