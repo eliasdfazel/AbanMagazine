@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/31/20 10:34 AM
-  ~ Last modified 12/16/20 8:20 AM
+  ~ Created by Elias Fazel on 1/29/21 10:02 AM
+  ~ Last modified 1/29/21 10:01 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-	android:shareInterpolator="true">
+	android:shareInterpolator="false">
 
 	<alpha
 		android:fromAlpha="1.0"
@@ -22,7 +22,7 @@
 		android:toXScale="0"
 		android:fromYScale="1.0"
 		android:toYScale="0.0"
-		android:pivotX="0%"
+		android:pivotX="100%"
 		android:pivotY="100%"
 		android:duration="555" />
 

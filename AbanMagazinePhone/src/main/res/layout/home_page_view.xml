@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/31/20 5:18 AM
-  ~ Last modified 12/31/20 4:51 AM
+  ~ Created by Elias Fazel on 1/29/21 10:02 AM
+  ~ Last modified 1/29/21 9:51 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -349,7 +349,7 @@
             android:layout_width="113dp"
             android:layout_height="0dp"
             android:layout_marginBottom="11dp"
-            android:layout_marginEnd="11dp"
+            android:layout_marginStart="11dp"
             android:padding="11dp"
             android:scaleType="centerCrop"
             android:src="@drawable/favorite_it_icon"
@@ -357,7 +357,7 @@
 
             apps:layout_constraintTop_toTopOf="parent"
             apps:layout_constraintBottom_toTopOf="@id/blurViewBottomBar"
-            apps:layout_constraintEnd_toEndOf="parent"/>
+            apps:layout_constraintStart_toStartOf="parent"/>
 
         <!-- Index View -->
         <androidx.appcompat.widget.AppCompatImageView
@@ -372,7 +372,7 @@
 
             apps:layout_constraintTop_toTopOf="parent"
             apps:layout_constraintBottom_toTopOf="@id/blurViewBottomBar"
-            apps:layout_constraintStart_toStartOf="parent" />
+            apps:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -413,10 +413,10 @@
         android:id="@+id/indexViewInclude"
         android:layout_width="213dp"
         android:layout_height="360dp"
-        android:layout_marginStart="91dp"
+        android:layout_marginEnd="91dp"
         android:visibility="invisible"
 
         apps:layout_constraintBottom_toTopOf="@id/homepageBottomBar"
-        apps:layout_constraintStart_toStartOf="parent"/>
+        apps:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
