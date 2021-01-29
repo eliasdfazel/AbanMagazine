@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/29/21 7:55 AM
- * Last modified 1/29/21 7:55 AM
+ * Created by Elias Fazel on 1/29/21 9:21 AM
+ * Last modified 1/29/21 9:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -304,12 +304,16 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
-                        featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView, IntRange(0, featuredPostsData.size)).also {
+                        featuredPostsSlider.initialSliderJob?.cancel()
+                        featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView,
+                            IntRange(0, featuredPostsData.size))
+                            .also {
+                                it.start()
 
-                            featuredPostsSlider.initialSliderJob = it
-                            featuredPostsSlider.initialSliderRange = IntRange(0, featuredPostsData.size)
+                                featuredPostsSlider.initialSliderJob = it
+                                featuredPostsSlider.initialSliderRange = IntRange(0, featuredPostsData.size)
 
-                        }
+                            }
 
                     } else {
 
@@ -321,22 +325,16 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
-//                        with(featuredPostsSlider.initialSliderJob) {
-//
-//                            if (isActive) {
-//                                cancel()
-//                            }
-//
-//                        }.let {
-//
-//                            featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView, IntRange(featuredPostsSlider.currentPosition, featuredPostsSlider.initialSliderRange.count() + featuredPostsData.size)).also {
-//
-//                                featuredPostsSlider.initialSliderJob = it
-//                                featuredPostsSlider.initialSliderRange = IntRange(0, specificCategoryAdapter.specificCategoryPostsItemData.size)
-//
-//                            }
-//
-//                        }
+                        featuredPostsSlider.initialSliderJob?.cancel()
+                        featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView,
+                            IntRange(featuredPostsSlider.currentSliderPosition, featuredPostsSlider.initialSliderRange.count() + featuredPostsData.size))
+                            .also {
+                                it.start()
+
+                                featuredPostsSlider.initialSliderJob = it
+                                featuredPostsSlider.initialSliderRange = IntRange(0, specificCategoryAdapter.specificCategoryPostsItemData.size)
+
+                            }
 
                     }
 

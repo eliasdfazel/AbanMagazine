@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/29/21 7:55 AM
- * Last modified 1/29/21 7:47 AM
+ * Created by Elias Fazel on 1/29/21 9:21 AM
+ * Last modified 1/29/21 9:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,13 +16,14 @@ import kotlinx.coroutines.*
 
 class FeaturedPostsSlider {
 
-    lateinit var initialSliderJob: Job
+    var initialSliderJob: Job? = null
 
     var initialSliderRange: IntRange = IntRange(0, 0)
 
     var currentSliderPosition = 0
 
     fun startSliding(recyclerView: RecyclerView, positionRange: IntRange) = CoroutineScope(Dispatchers.Main).async {
+        Log.d(this@FeaturedPostsSlider.javaClass.simpleName, "Slider Range ${positionRange}")
 
         delay(3579)
 
@@ -43,18 +44,18 @@ class FeaturedPostsSlider {
 
     private fun resetSlidingCheckpoint(recyclerView: RecyclerView, positionRange: IntRange, currentPosition: Int) {
 
-        if (initialSliderJob.isActive) {
-            initialSliderJob.cancel()
-        }
-
         if (currentPosition == positionRange.last) {
             Log.d(this@FeaturedPostsSlider.javaClass.simpleName, "Sliding Reset")
+
+            initialSliderJob?.cancel()
 
             currentSliderPosition = 0
 
             recyclerView.smoothScrollToPosition(0)
 
-            initialSliderJob = startSliding(recyclerView, IntRange(0, positionRange.last))
+            initialSliderJob = startSliding(recyclerView, IntRange(0, positionRange.last)).also {
+                it.start()
+            }
 
         }
 
