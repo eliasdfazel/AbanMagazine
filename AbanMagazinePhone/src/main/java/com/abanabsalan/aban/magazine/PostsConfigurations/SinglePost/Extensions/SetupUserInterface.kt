@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/27/20 6:33 AM
- * Last modified 9/27/20 6:33 AM
+ * Created by Elias Fazel on 1/29/21 9:46 AM
+ * Last modified 1/29/21 9:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import android.graphics.Color
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.view.Gravity
@@ -27,6 +28,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
+import com.abanabsalan.aban.magazine.Utils.Data.convertDrawableToByteArray
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.isColorDark
@@ -152,9 +154,9 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
 
                 runOnUiThread {
 
-                    postsViewUiBinding.postFeatureImage.setImageDrawable(resource)
-
                     resource?.let {
+
+                        postsViewUiBinding.postFeatureImage.setImageDrawable(resource)
 
                         dominantColor = extractDominantColor(applicationContext, it)
                         vibrantColor = extractVibrantColor(applicationContext, it)
@@ -180,6 +182,23 @@ fun SinglePostView.setupUserInterface(postTitle: String, featureImageLink: Strin
                             if (overallTheme.checkThemeLightDark() == ThemeType.ThemeLight) {
                                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                             }
+
+                        }
+
+                        postsViewUiBinding.postFeatureImage.setOnClickListener {
+
+                            postsViewUiBinding.gesturePinchImageViewContainer.visibility = View.VISIBLE
+
+                            gesturePinchImageView.arguments = Bundle().apply {
+                                dominantColor?.let { aColor -> putInt("ExtractedColor", aColor) }
+                                putByteArray("ImageByteArray", postsViewUiBinding.postFeatureImage.drawable.convertDrawableToByteArray())
+                            }
+
+                            supportFragmentManager
+                                .beginTransaction()
+                                .setCustomAnimations(R.anim.slide_in_right, 0)
+                                .replace(R.id.gesturePinchImageViewContainer, gesturePinchImageView, "Gesture Pinch Image View")
+                                .commit()
 
                         }
 
