@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/7/21 10:43 AM
- * Last modified 1/7/21 10:42 AM
+ * Created by Elias Fazel on 1/29/21 7:55 AM
+ * Last modified 1/29/21 7:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,6 +40,7 @@ import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.*
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.InstagramStoryHighlights.InstagramStoryHighlightsAdapter
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.FeaturedPostsSlider
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.ProductShowcase.ProductShowcaseAdapter
@@ -117,6 +118,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
     val homePagePopupIndex: HomePagePopupIndex by lazy {
         HomePagePopupIndex(applicationContext, homePageViewBinding)
     }
+
+    val featuredPostsSlider: FeaturedPostsSlider = FeaturedPostsSlider()
+
+    var moreFeaturedPostAvailable = true
 
     var scrollViewAtTop: Boolean = false
     var updateDelay: Boolean = true
@@ -269,45 +274,69 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             }
 
             /* Load Featured Posts */
-            homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer {
+            homePageLiveData.specificCategoryLiveItemData.observe(this@HomePage, Observer { featuredPostsData ->
 
-                if (!it.isNullOrEmpty()) {
+                if (!featuredPostsData.isNullOrEmpty()) {
 
                     homePageViewBinding.featuredPostsTextView.visibility = View.VISIBLE
 
                     if (specificCategoryAdapter.specificCategoryPostsItemData.isEmpty()) {
 
-                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
+                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(featuredPostsData)
 
-                        homePageViewBinding.featuredPostsRecyclerView.adapter =
-                            specificCategoryAdapter
+                        homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
 
                         Handler(Looper.getMainLooper()).postDelayed({
                             PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
 
-                            startFeaturedPostCategoryRetrieval(
-                                applicationContext,
-                                homePageViewBinding,
-                                homePageLiveData,
-                                PageCounter.PageNumberToLoad
-                            )
+                            if (moreFeaturedPostAvailable) {
+
+                                startFeaturedPostCategoryRetrieval(
+                                    applicationContext,
+                                    homePageViewBinding,
+                                    homePageLiveData,
+                                    PageCounter.PageNumberToLoad
+                                )
+
+                            }
+
                         }, 777)
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
+                        featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView, IntRange(0, featuredPostsData.size)).also {
+
+                            featuredPostsSlider.initialSliderJob = it
+                            featuredPostsSlider.initialSliderRange = IntRange(0, featuredPostsData.size)
+
+                        }
+
                     } else {
 
-                        val previousDataCount: Int =
-                            specificCategoryAdapter.specificCategoryPostsItemData.size
+                        val previousDataCount: Int = specificCategoryAdapter.specificCategoryPostsItemData.size
 
-                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(it)
+                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(featuredPostsData)
 
-                        specificCategoryAdapter.notifyItemRangeInserted(
-                            previousDataCount,
-                            (specificCategoryAdapter.specificCategoryPostsItemData.size - 1)
-                        )
+                        specificCategoryAdapter.notifyItemRangeInserted(previousDataCount, (specificCategoryAdapter.specificCategoryPostsItemData.size - 1))
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
+
+//                        with(featuredPostsSlider.initialSliderJob) {
+//
+//                            if (isActive) {
+//                                cancel()
+//                            }
+//
+//                        }.let {
+//
+//                            featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView, IntRange(featuredPostsSlider.initialSliderRange.last, featuredPostsSlider.initialSliderRange.count() + featuredPostsData.size)).also {
+//
+//                                featuredPostsSlider.initialSliderJob = it
+//                                featuredPostsSlider.initialSliderRange = IntRange(0, featuredPostsData.size)
+//
+//                            }
+//
+//                        }
 
                     }
 
@@ -322,11 +351,9 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.featuredPostsLoadingView.visibility = View.GONE
 
-                    Toast.makeText(
-                        applicationContext,
-                        getString(R.string.noMoreContent),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
+
+                    moreFeaturedPostAvailable = false
 
                 }
 

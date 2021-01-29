@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 7/12/20 12:18 PM
- * Last modified 7/12/20 9:22 AM
+ * Created by Elias Fazel on 1/29/21 7:55 AM
+ * Last modified 1/29/21 7:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,11 @@ fun HomePage.startFeaturedPostsLoadMoreListener(homePageLiveData: HomePageLiveDa
 
                     PageCounter.PageNumberToLoad = PageCounter.PageNumberToLoad.plus(1)
 
-                    startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+                    if (moreFeaturedPostAvailable) {
+
+                        startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+
+                    }
 
                 }
                 RecyclerView.SCROLL_STATE_IDLE -> {

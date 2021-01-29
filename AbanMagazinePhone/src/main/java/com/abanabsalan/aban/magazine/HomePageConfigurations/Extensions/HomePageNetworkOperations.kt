@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 6:20 AM
- * Last modified 12/31/20 6:20 AM
+ * Created by Elias Fazel on 1/29/21 7:55 AM
+ * Last modified 1/29/21 7:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -105,7 +105,11 @@ fun HomePage.startNetworkOperations() {
     if (networkCheckpoint.networkConnection()) {
 
         /*Load Featured Posts*/
-        startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+            if (moreFeaturedPostAvailable) {
+
+                startFeaturedPostCategoryRetrieval(applicationContext, homePageViewBinding, homePageLiveData, PageCounter.PageNumberToLoad)
+
+            }
 
         /*Load Newest Posts*/
         val newestPostsRetrieval: NewestPostsRetrieval = NewestPostsRetrieval(applicationContext)
