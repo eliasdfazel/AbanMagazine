@@ -329,10 +329,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 //
 //                        }.let {
 //
-//                            featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView, IntRange(featuredPostsSlider.initialSliderRange.last, featuredPostsSlider.initialSliderRange.count() + featuredPostsData.size)).also {
+//                            featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView, IntRange(featuredPostsSlider.currentPosition, featuredPostsSlider.initialSliderRange.count() + featuredPostsData.size)).also {
 //
 //                                featuredPostsSlider.initialSliderJob = it
-//                                featuredPostsSlider.initialSliderRange = IntRange(0, featuredPostsData.size)
+//                                featuredPostsSlider.initialSliderRange = IntRange(0, specificCategoryAdapter.specificCategoryPostsItemData.size)
 //
 //                            }
 //
