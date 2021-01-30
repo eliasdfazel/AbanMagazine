@@ -19,7 +19,7 @@ exports.sendNewestPostNotification = functions.runWith(runtimeOptions).https.onR
     //237DAE
     var postColor = req.query.postColor;
 
-    if (postColor == null){
+    if (postColor == null) {
         postColor = '237DAE';
     }
 
@@ -47,6 +47,82 @@ exports.sendNewestPostNotification = functions.runWith(runtimeOptions).https.onR
         var postTitle = newestPostJson['title'].rendered;
         var postSummary = newestPostJson['excerpt'].rendered.replace( /(<([^>]+)>)/ig, '');
         var postFeaturedImage = newestPostJson['jetpack_featured_media_url'];
+
+        var message = {
+            notification: {
+                title: postTitle,
+                body: postSummary
+            },
+            android: {
+                notification: {
+                    image: '' + postFeaturedImage,
+                    color: '#' + postColor
+                }
+            },
+            data: {
+                title: postTitle,
+                summary: postSummary,
+                color: '#' + postColor,
+                image: '' + postFeaturedImage
+            },
+            topic: 'NewestPosts'
+        };
+
+        admin.messaging().send(message)
+            .then((response) => {
+
+                res.status(200).send('Title: ' + postTitle + '<br/>' + 'Summary: ' + postSummary + '<br/>' + 'Color: ' + '#' + postColor + '<br/>' + 'Featured Image: ' + postFeaturedImage);
+
+            })
+            .catch((error) => {
+
+                res.status(200).send('Error: ' + error);
+
+            });
+
+    };
+    xmlHttpRequest.send();
+
+});
+
+exports.sendSpecificPostNotification = functions.runWith(runtimeOptions).https.onRequest((req, res) => {
+
+    var postId = req.query.postId;
+    //237DAE
+    var postColor = req.query.postColor;
+
+    if (postColor == null) {
+        postColor = '237DAE';
+    }
+
+    var xmlHttpRequest = new XMLHttpRequest();
+
+    if (postId == null) {
+        xmlHttpRequest.open('GET', 'https://abanabsalan.com/wp-json/wp/v2/posts?page=1&per_page=1&orderby=date', true);
+    } else {
+        xmlHttpRequest.open('GET', 'https://abanabsalan.com/wp-json/wp/v2/posts/' + postId.toString(), true);
+    }
+
+    xmlHttpRequest.setRequestHeader('accept', 'application/json');
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+    xmlHttpRequest.onreadystatechange = function () {
+        if (this.readyState == 4) {
+
+        } else {
+
+        }
+    };
+    xmlHttpRequest.onprogress = function () {
+
+    };
+    xmlHttpRequest.onload = function () {
+        //xmlHttpRequest.responseText
+
+        var jsonParserResponseText = JSON.parse(xmlHttpRequest.responseText);
+
+        var postTitle = jsonParserResponseText['title'].rendered;
+        var postSummary = jsonParserResponseText['excerpt'].rendered.replace( /(<([^>]+)>)/ig, '');
+        var postFeaturedImage = jsonParserResponseText['jetpack_featured_media_url'];
 
         var message = {
             notification: {
