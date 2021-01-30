@@ -96,13 +96,7 @@ exports.sendSpecificPostNotification = functions.runWith(runtimeOptions).https.o
     }
 
     var xmlHttpRequest = new XMLHttpRequest();
-
-    if (postId == null) {
-        xmlHttpRequest.open('GET', 'https://abanabsalan.com/wp-json/wp/v2/posts?page=1&per_page=1&orderby=date', true);
-    } else {
-        xmlHttpRequest.open('GET', 'https://abanabsalan.com/wp-json/wp/v2/posts/' + postId.toString(), true);
-    }
-
+    xmlHttpRequest.open('GET', 'https://abanabsalan.com/wp-json/wp/v2/posts/' + postId.toString(), true);
     xmlHttpRequest.setRequestHeader('accept', 'application/json');
     xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
     xmlHttpRequest.onreadystatechange = function () {
