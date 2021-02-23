@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/29/21 7:55 AM
- * Last modified 1/29/21 7:22 AM
+ * Created by Elias Fazel on 2/23/21 10:38 AM
+ * Last modified 2/23/21 10:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -167,12 +167,10 @@ fun HomePage.startNetworkOperations() {
         val productShowcaseRetrieval: ProductShowcaseRetrieval = ProductShowcaseRetrieval(applicationContext)
         productShowcaseRetrieval.start(object : JsonRequestResponseInterface {
 
-            override fun jsonRequestResponseSuccessHandler(rawDataJsonObject: JSONObject) {
-                super.jsonRequestResponseSuccessHandler(rawDataJsonObject)
+            override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
+                super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
 
-                homePageLiveData.prepareRawDataToRenderForProductShowcase(
-                    rawDataJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered)
-                )
+                homePageLiveData.prepareRawDataToRenderForProductShowcase(rawDataJsonArray)
 
             }
 

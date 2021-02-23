@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 8:01 AM
- * Last modified 1/1/21 6:46 AM
+ * Created by Elias Fazel on 2/23/21 10:38 AM
+ * Last modified 2/23/21 10:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Endpoints.Pro
 import com.abanabsalan.aban.magazine.Utils.Network.Extensions.JsonRequestResponseInterface
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,12 +32,12 @@ class ProductShowcaseRetrieval (private val context: Context) {
 
         val productShowcaseEndpoint: ProductShowcaseEndpoint = ProductShowcaseEndpoint()
 
-        val jsonObjectRequest = JsonObjectRequest(
+        val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             productShowcaseEndpoint.getProductShowcaseEndpoint,
             null,
             { response ->
-                Log.d("JsonObjectRequest ${this@ProductShowcaseRetrieval.javaClass.simpleName}", response.toString())
+                Log.d("JsonArrayRequest ${this@ProductShowcaseRetrieval.javaClass.simpleName}", response.toString())
 
                 if (response != null) {
 
@@ -46,22 +46,22 @@ class ProductShowcaseRetrieval (private val context: Context) {
                 }
 
             }, {
-                Log.d("JsonObjectRequestError", it?.networkResponse?.statusCode.toString())
+                Log.d("JsonArrayRequestError", it?.networkResponse?.statusCode.toString())
 
                 jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it?.networkResponse?.statusCode)
 
             })
 
-        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+        jsonArrayRequest.retryPolicy = DefaultRetryPolicy(
             EnqueueEndPointQuery.JSON_REQUEST_TIMEOUT,
             EnqueueEndPointQuery.JSON_REQUEST_RETRIES,
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
 
-        jsonObjectRequest.setShouldCache(false)
+        jsonArrayRequest.setShouldCache(false)
 
         val requestQueue = Volley.newRequestQueue(context)
-        requestQueue.add(jsonObjectRequest)
+        requestQueue.add(jsonArrayRequest)
 
     }
 

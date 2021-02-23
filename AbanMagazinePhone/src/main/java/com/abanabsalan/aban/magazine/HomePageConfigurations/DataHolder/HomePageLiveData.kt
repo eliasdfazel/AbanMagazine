@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:27 AM
- * Last modified 2/23/21 10:27 AM
+ * Created by Elias Fazel on 2/23/21 10:38 AM
+ * Last modified 2/23/21 10:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -187,11 +187,15 @@ class HomePageLiveData : ViewModel() {
 
     }
 
-    fun prepareRawDataToRenderForProductShowcase(rawProductShowcase: String) {
+    fun prepareRawDataToRenderForProductShowcase(rawProductShowcase: JSONArray) {
 
         val productShowcaseItemData: ArrayList<ProductShowcaseItemData> = ArrayList<ProductShowcaseItemData>()
 
+        for (i in 0 until rawProductShowcase.length()) {
 
+
+
+        }
 
         productShowcaseLiveItemData.postValue(productShowcaseItemData)
 
