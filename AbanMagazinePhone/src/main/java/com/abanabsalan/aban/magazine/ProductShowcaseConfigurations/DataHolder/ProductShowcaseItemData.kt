@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:38 AM
- * Last modified 2/23/21 10:37 AM
+ * Created by Elias Fazel on 2/23/21 10:42 AM
+ * Last modified 2/23/21 10:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,7 +22,7 @@ object ProductJsonDataStructure {
     const val ProductImages = "images"
     const val ProductTags = "tags"
     const val ProductCategories = "categories"
-    const val ProductRalated = "related_ids"
+    const val ProductRelated = "related_ids"
 }
 
 object ProductShowcase {
@@ -41,3 +41,18 @@ data class ProductShowcaseItemData(var titleOfProduct: String,
                                    var linkToProduct: String,
                                    var descriptionOfProduct: String?,
                                    var brandOfProduct: String?)
+
+data class ProductJsonDataStructureItem (
+    var productId: String,
+    var productName: String,
+    var productShortDescription: String,
+    var productDescription: String,
+    var productPrice: String,
+    var productOnSale: String,
+    var productSalePrice: String,
+    var productLink: String,
+    var productImages: String,
+    var productTags: String,
+    var productCategories: String,
+    var productRelated: String,
+)

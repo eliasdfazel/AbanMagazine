@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:38 AM
- * Last modified 2/23/21 10:32 AM
+ * Created by Elias Fazel on 2/23/21 10:42 AM
+ * Last modified 2/23/21 10:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Net
 import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.Endpoints.StoryHighlightsEndpoint
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
-import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductJsonDataStructureItem
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,8 +43,8 @@ class HomePageLiveData : ViewModel() {
         MutableLiveData<ArrayList<PostsItemData>>()
     }
 
-    val productShowcaseLiveItemData: MutableLiveData<ArrayList<ProductShowcaseItemData>> by lazy {
-        MutableLiveData<ArrayList<ProductShowcaseItemData>>()
+    val productShowcaseLiveItemData: MutableLiveData<ArrayList<ProductJsonDataStructureItem>> by lazy {
+        MutableLiveData<ArrayList<ProductJsonDataStructureItem>>()
     }
 
     val recommendedPostsLiveItemData: MutableLiveData<ArrayList<PostsItemData>> by lazy {
@@ -189,11 +189,11 @@ class HomePageLiveData : ViewModel() {
 
     fun prepareRawDataToRenderForProductShowcase(rawProductShowcase: JSONArray) {
 
-        val productShowcaseItemData: ArrayList<ProductShowcaseItemData> = ArrayList<ProductShowcaseItemData>()
+        val productShowcaseItemData: ArrayList<ProductJsonDataStructureItem> = ArrayList<ProductJsonDataStructureItem>()
 
         for (i in 0 until rawProductShowcase.length()) {
 
-
+            //ProductJsonDataStructure
 
         }
 
