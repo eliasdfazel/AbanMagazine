@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:42 AM
- * Last modified 2/23/21 10:42 AM
+ * Created by Elias Fazel on 2/23/21 10:43 AM
+ * Last modified 2/23/21 10:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,9 +19,21 @@ object ProductJsonDataStructure {
     const val ProductOnSale = "on_sale"
     const val ProductSalePrice = "sale_price"
     const val ProductLink = "external_url"
+    /**
+     * Json Array
+     **/
     const val ProductImages = "images"
+    /**
+     * Json Array
+     **/
     const val ProductTags = "tags"
+    /**
+     * Json Array
+     **/
     const val ProductCategories = "categories"
+    /**
+     * Json Array
+     **/
     const val ProductRelated = "related_ids"
 }
 
