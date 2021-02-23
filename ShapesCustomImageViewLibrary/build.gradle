@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 8/9/20 10:59 PM
- * Last modified 8/9/20 10:57 PM
+ * Created by Elias Fazel on 2/23/21 10:27 AM
+ * Last modified 2/23/21 10:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,12 +11,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion '29.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 30
 
         versionCode 1
         versionName "1.0"

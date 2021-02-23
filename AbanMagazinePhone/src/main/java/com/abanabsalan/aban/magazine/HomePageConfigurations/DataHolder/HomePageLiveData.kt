@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 9:16 AM
- * Last modified 11/12/20 8:35 AM
+ * Created by Elias Fazel on 2/23/21 10:27 AM
+ * Last modified 2/23/21 10:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,6 @@ import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Net
 import com.abanabsalan.aban.magazine.InstagramConfigurations.StoryHighlights.Network.Endpoints.StoryHighlightsEndpoint
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
-import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcase
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import kotlinx.coroutines.CoroutineScope
@@ -192,31 +191,7 @@ class HomePageLiveData : ViewModel() {
 
         val productShowcaseItemData: ArrayList<ProductShowcaseItemData> = ArrayList<ProductShowcaseItemData>()
 
-        val productShowcaseContent: Document = Jsoup.parse(rawProductShowcase)
 
-        val allHtmlElement = productShowcaseContent.allElements
-
-        allHtmlElement.forEachIndexed { index, element ->
-
-            if (element.`is`("p")) {
-                Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
-
-                val productName = element.getElementById(ProductShowcase.ProductLink).text()
-                val linkToProduct = element.getElementById(ProductShowcase.ProductLink).select("a").first().attr("abs:href")
-                val linkToProductImage = element.getElementById(ProductShowcase.ProductImage).select("a").first().attr("abs:href")
-
-                productShowcaseItemData.add(
-                    ProductShowcaseItemData(
-                        titleOfProduct = productName,
-                        linkToProduct = linkToProduct,
-                        linkToImageProduct = linkToProductImage,
-                        descriptionOfProduct = null,
-                        brandOfProduct = null
-                    ))
-
-            }
-
-        }
 
         productShowcaseLiveItemData.postValue(productShowcaseItemData)
 
