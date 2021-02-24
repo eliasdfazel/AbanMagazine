@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 1/29/21 10:02 AM
-  ~ Last modified 1/29/21 9:51 AM
+  ~ Created by Elias Fazel on 2/24/21 9:24 AM
+  ~ Last modified 2/24/21 8:45 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -287,9 +287,31 @@
             apps:layout_constraintHeight_percent="0.66" />
 
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/onlineStore"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="1dp"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:contentDescription="@string/onlineStoreText"
+
+            apps:lottie_rawRes="@raw/online_store_animation"
+            apps:lottie_repeatMode="restart"
+            apps:lottie_repeatCount="3"
+            apps:lottie_autoPlay="true"
+
+            apps:layout_constraintTop_toTopOf="@id/officialLogo"
+            apps:layout_constraintBottom_toBottomOf="@id/officialLogo"
+            apps:layout_constraintStart_toStartOf="parent"
+
+            apps:layout_constraintWidth_percent="0.3"
+            apps:layout_constraintHeight_percent="0.61" />
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="7dp"
             android:padding="13dp"
             android:gravity="center"
             android:textAllCaps="false"
@@ -301,9 +323,9 @@
 
             apps:layout_constraintTop_toTopOf="@id/officialLogo"
             apps:layout_constraintBottom_toBottomOf="@id/officialLogo"
-            apps:layout_constraintStart_toStartOf="parent"
+            apps:layout_constraintEnd_toEndOf="parent"
 
-            apps:layout_constraintWidth_percent="0.3"
+            apps:layout_constraintWidth_percent="0.139"
             apps:layout_constraintHeight_percent="0.61" />
 
         <com.airbnb.lottie.LottieAnimationView
@@ -318,9 +340,9 @@
 
             apps:layout_constraintTop_toTopOf="@id/officialLogo"
             apps:layout_constraintBottom_toBottomOf="@id/officialLogo"
-            apps:layout_constraintEnd_toEndOf="parent"
+            apps:layout_constraintEnd_toStartOf="@id/searchView"
 
-            apps:layout_constraintWidth_percent="0.3"
+            apps:layout_constraintWidth_percent="0.139"
             apps:layout_constraintHeight_percent="0.61" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

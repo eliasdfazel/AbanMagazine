@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 5:59 AM
- * Last modified 12/31/20 5:59 AM
+ * Created by Elias Fazel on 2/24/21 9:24 AM
+ * Last modified 2/24/21 8:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,8 @@
 package com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions
 
 import android.animation.Animator
+import android.app.ActivityOptions
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Handler
 import android.os.Looper
@@ -22,6 +24,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI.OnlineStore
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils.SetupSearchViewUI
 import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
@@ -53,6 +56,8 @@ fun HomePage.setupUserInterface() {
     setupPopupPreferencesClick()
 
     setupPopupSearchesClick()
+
+    setupOnlineStoreClick()
 
     val languageUtils = LanguageUtils()
 
@@ -331,6 +336,17 @@ fun HomePage.setupPopupSearchesClick() {
         this@setupPopupSearchesClick,
         homePageViewBinding.searchPopupInclude
     ).initialize()
+
+}
+
+fun HomePage.setupOnlineStoreClick() {
+
+    homePageViewBinding.onlineStore.setOnClickListener {
+
+        startActivity(Intent(this@setupOnlineStoreClick, OnlineStore::class.java),
+            ActivityOptions.makeCustomAnimation(applicationContext, R.anim.fade_in, 0).toBundle())
+
+    }
 
 }
 

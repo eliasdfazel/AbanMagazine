@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 12/5/20 4:53 AM
-  ~ Last modified 12/5/20 4:33 AM
+  ~ Created by Elias Fazel on 2/24/21 9:24 AM
+  ~ Last modified 2/24/21 8:16 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -24,6 +24,7 @@
     <string name="searchText">Search</string>
     <string name="searchRemoteText">Search In Fashion &amp; Style</string>
     <string name="typeToSearch">Type To Search…</string>
+    <string name="onlineStoreText">Online Store</string>
     <string name="searchError">Error Occurred ⚠</string>
 
     <string name="categoriesText">Categories</string>
