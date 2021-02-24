@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 9:24 AM
- * Last modified 2/24/21 8:39 AM
+ * Created by Elias Fazel on 2/24/21 9:53 AM
+ * Last modified 2/24/21 9:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,10 +12,16 @@ package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Extensions.setupOnlineStoreUserInterface
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.databinding.OnlineStoreLayoutBinding
 
 class OnlineStore : AppCompatActivity() {
+
+    val overallTheme: OverallTheme by lazy {
+        OverallTheme(applicationContext)
+    }
 
     lateinit var onlineStoreLayoutBinding: OnlineStoreLayoutBinding
 
@@ -24,7 +30,7 @@ class OnlineStore : AppCompatActivity() {
         onlineStoreLayoutBinding = OnlineStoreLayoutBinding.inflate(layoutInflater)
         setContentView(onlineStoreLayoutBinding.root)
 
-
+        setupOnlineStoreUserInterface()
 
     }
 
