@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 2/24/21 7:59 AM
-  ~ Last modified 2/24/21 7:58 AM
+  ~ Created by Elias Fazel on 2/24/21 8:04 AM
+  ~ Last modified 2/24/21 8:02 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:height="7dp"
+        android:height="3dp"
         android:id="@android:id/progress">
 
         <clip>
