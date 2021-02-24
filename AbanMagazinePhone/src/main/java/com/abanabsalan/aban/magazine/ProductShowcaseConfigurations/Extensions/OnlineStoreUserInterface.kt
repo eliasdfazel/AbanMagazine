@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 9:53 AM
- * Last modified 2/24/21 9:38 AM
+ * Created by Elias Fazel on 2/24/21 11:45 AM
+ * Last modified 2/24/21 11:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Extensions
 
+import android.graphics.drawable.LayerDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI.OnlineStore
 import com.abanabsalan.aban.magazine.R
@@ -31,6 +32,12 @@ fun OnlineStore.setupOnlineStoreUserInterface() {
             onlineStoreLayoutBinding.blurViewTopBar.setOverlayColor(getColor(R.color.default_color_light_transparent))
             onlineStoreLayoutBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_light_transparent))
 
+            val onlineStoreOptions = getDrawable(R.drawable.online_store_options_background) as LayerDrawable
+            onlineStoreOptions.findDrawableByLayerId(R.id.temporaryBackground).setTint(getColor(R.color.dark_transparent_high))
+            onlineStoreOptions.findDrawableByLayerId(R.id.temporaryForeground).setTint(getColor(R.color.white))
+
+            onlineStoreLayoutBinding.searchProductsView.background = onlineStoreOptions
+
         }
         ThemeType.ThemeDark -> {
 
@@ -42,6 +49,12 @@ fun OnlineStore.setupOnlineStoreUserInterface() {
 
             onlineStoreLayoutBinding.blurViewTopBar.setOverlayColor(getColor(R.color.default_color_dark_transparent))
             onlineStoreLayoutBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_dark_transparent))
+
+            val onlineStoreOptions = getDrawable(R.drawable.online_store_options_background) as LayerDrawable
+            onlineStoreOptions.findDrawableByLayerId(R.id.temporaryBackground).setTint(getColor(R.color.light_transparent_high))
+            onlineStoreOptions.findDrawableByLayerId(R.id.temporaryForeground).setTint(getColor(R.color.black))
+
+            onlineStoreLayoutBinding.searchProductsView.background = onlineStoreOptions
 
         }
     }

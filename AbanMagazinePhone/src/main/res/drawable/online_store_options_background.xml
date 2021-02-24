@@ -1,0 +1,79 @@
+<!--
+  ~ Copyright © 2021 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel on 2/24/21 11:45 AM
+  ~ Last modified 2/24/21 11:39 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/default_color">
+
+    <item
+        android:id="@+id/temporaryBackground">
+
+        <shape
+            android:shape="rectangle">
+
+            <corners
+                android:topLeftRadius="51dp"
+                android:topRightRadius="51dp"
+                android:bottomLeftRadius="51dp"
+                android:bottomRightRadius="51dp" />
+
+            <gradient
+                android:endColor="@color/dark"
+                android:centerColor="@color/dark"
+                android:startColor="@android:color/transparent"
+                android:centerY="0.5"
+                android:angle="90" />
+
+        </shape>
+
+    </item>
+
+    <item
+        android:id="@+id/temporaryForeground"
+        android:top="0dp"
+        android:bottom="3dp"
+        android:start="0dp"
+        android:end="0dp">
+
+        <shape
+            android:shape="rectangle">
+
+            <corners
+                android:topLeftRadius="51dp"
+                android:topRightRadius="51dp"
+                android:bottomLeftRadius="51dp"
+                android:bottomRightRadius="51dp" />
+
+            <solid
+                android:color="@color/default_color"/>
+
+        </shape>
+
+    </item>
+
+    <item
+        android:id="@android:id/mask">
+
+        <shape
+            android:shape="rectangle">
+
+            <corners
+                android:topLeftRadius="51dp"
+                android:topRightRadius="51dp"
+                android:bottomLeftRadius="51dp"
+                android:bottomRightRadius="51dp" />
+
+            <solid
+                android:color="@color/default_color"/>
+
+        </shape>
+
+    </item>
+
+</ripple>

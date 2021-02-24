@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 2/24/21 9:24 AM
-  ~ Last modified 2/24/21 9:23 AM
+  ~ Created by Elias Fazel on 2/24/21 11:45 AM
+  ~ Last modified 2/24/21 11:21 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -55,14 +55,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Search View -->
-    <ImageView
-        android:id="@+id/searchProductsView"
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
-
-        apps:layout_constraintTop_toBottomOf="@id/homepageTopBar" />
-
     <!-- Bottom Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homepageBottomBar"
@@ -83,5 +75,23 @@
             apps:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Search View -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/searchProductsView"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:layout_marginVertical="7dp"
+        android:background="@drawable/online_store_options_background"
+
+        apps:lottie_rawRes="@raw/product_search_animation"
+        apps:lottie_autoPlay="true"
+        apps:lottie_loop="true"
+
+        apps:layout_constraintWidth_percent="0.51"
+        apps:layout_constraintStart_toStartOf="parent"
+        apps:layout_constraintEnd_toEndOf="parent"
+        apps:layout_constraintBottom_toTopOf="@id/homepageBottomBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
