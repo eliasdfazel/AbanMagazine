@@ -1,8 +1,8 @@
  /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 5:05 AM
+ * Created by Elias Fazel on 2/24/21 7:56 AM
+ * Last modified 2/24/21 7:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,7 @@
 
 package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 
- import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
+ import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.InPostProductShowcaseItemData
 
 
  class PostsDataParameters {
@@ -114,4 +114,4 @@ data class SinglePostItemData (var dataType: Int,
                                var postItemButton: PostItemButton?,
                                var postItemIFrame: PostItemIFrame?,
                                var postItemBlockQuoteInstagram: PostItemBlockQuoteInstagram?,
-                               var productShowcaseItemData: ProductShowcaseItemData?)
+                               var inPostProductShowcaseItemData: InPostProductShowcaseItemData?)

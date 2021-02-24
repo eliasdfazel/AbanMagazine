@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/28/20 12:37 PM
- * Last modified 9/28/20 12:29 PM
+ * Created by Elias Fazel on 2/24/21 7:56 AM
+ * Last modified 2/24/21 7:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,8 +13,8 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.InPostProductShowcaseItemData
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcase
-import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductShowcaseItemData
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Utils.notProductShowcaseElement
 import kotlinx.coroutines.*
 import org.json.JSONArray
@@ -116,7 +116,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
-                        ProductShowcaseItemData(
+                        InPostProductShowcaseItemData(
                             linkToProduct = productLink,
                             titleOfProduct = productTitle,
                             descriptionOfProduct = productDescription,

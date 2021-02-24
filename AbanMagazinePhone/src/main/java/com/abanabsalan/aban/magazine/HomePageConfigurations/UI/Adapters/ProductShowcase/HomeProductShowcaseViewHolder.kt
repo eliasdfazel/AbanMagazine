@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 9/4/20 8:18 AM
- * Last modified 9/4/20 8:11 AM
+ * Created by Elias Fazel on 2/24/21 7:56 AM
+ * Last modified 2/24/21 7:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,7 +18,7 @@ import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.home_page_products_showcase_item.view.*
 import net.geekstools.imageview.customshapes.ShapesImage
 
-class ProductShowcaseViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+class HomeProductShowcaseViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val rootViewItem: ConstraintLayout = view.rootViewItem
     val productImageView: ShapesImage = view.productImageView
     val productTitleView: TextView = view.productTitleView

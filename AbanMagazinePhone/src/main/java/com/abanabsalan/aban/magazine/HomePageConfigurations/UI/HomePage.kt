@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/29/21 9:21 AM
- * Last modified 1/29/21 9:21 AM
+ * Created by Elias Fazel on 2/24/21 7:56 AM
+ * Last modified 2/24/21 7:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.Instagra
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.FeaturedPostsSlider
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestPosts.NewestPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.PrimaryCategory.PrimaryCategoryAdapter
-import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.ProductShowcase.ProductShowcaseAdapter
+import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.ProductShowcase.HomeProductShowcaseAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.RecommendedPosts.RecommendedPostsAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SecondaryCategory.SecondaryCategoryAdapter
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.SpecificCategory.SpecificCategoryAdapter
@@ -249,7 +249,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             overallTheme
         )
 
-        val productShowcaseAdapter: ProductShowcaseAdapter = ProductShowcaseAdapter(
+        val homeProductShowcaseAdapter: HomeProductShowcaseAdapter = HomeProductShowcaseAdapter(
             this@HomePage,
             overallTheme
         )
@@ -465,10 +465,10 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.productShowcaseTextView.visibility = View.VISIBLE
 
-                    productShowcaseAdapter.productShowcaseItemData.clear()
-                    productShowcaseAdapter.productShowcaseItemData.addAll(it)
+                    homeProductShowcaseAdapter.productShowcaseItemData.clear()
+                    homeProductShowcaseAdapter.productShowcaseItemData.addAll(it)
 
-                    homePageViewBinding.productShowcaseRecyclerView.adapter = productShowcaseAdapter
+                    homePageViewBinding.productShowcaseRecyclerView.adapter = homeProductShowcaseAdapter
 
                 } else {
 
@@ -577,9 +577,9 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                             null
                         )
 
-                        productShowcaseAdapter.notifyItemRangeChanged(
+                        homeProductShowcaseAdapter.notifyItemRangeChanged(
                             0,
-                            productShowcaseAdapter.itemCount,
+                            homeProductShowcaseAdapter.itemCount,
                             null
                         )
 

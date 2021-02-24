@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 10/21/20 3:06 AM
-  ~ Last modified 10/21/20 2:41 AM
+  ~ Created by Elias Fazel on 2/24/21 7:56 AM
+  ~ Last modified 2/24/21 7:18 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -138,6 +138,17 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:label="@string/applicationName"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsPictureInPicture="true"
+            android:resizeableActivity="true"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:theme="@style/GeeksEmpire.Material.Storefront"
+            android:name=".ProductShowcaseConfigurations.UI.Storefront"/>
 
         <activity
             android:exported="false"

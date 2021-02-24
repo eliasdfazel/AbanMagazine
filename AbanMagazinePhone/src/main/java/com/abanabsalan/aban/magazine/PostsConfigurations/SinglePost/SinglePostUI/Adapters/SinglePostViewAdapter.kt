@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 1/1/21 6:35 AM
- * Last modified 1/1/21 6:00 AM
+ * Created by Elias Fazel on 2/24/21 7:56 AM
+ * Last modified 2/24/21 7:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -595,7 +595,7 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
                 (viewHolder).productImage.background = productImageBackground
                 (viewHolder).productInformation.background = productTextBackground
 
-                singlePostItemsData[position].productShowcaseItemData?.let { productShowcaseItemData ->
+                singlePostItemsData[position].inPostProductShowcaseItemData?.let { productShowcaseItemData ->
 
                     (viewHolder).productTitle.text = Html.fromHtml(productShowcaseItemData.titleOfProduct, Html.FROM_HTML_MODE_LEGACY)
                     (viewHolder).productBrand.text = Html.fromHtml(productShowcaseItemData.brandOfProduct, Html.FROM_HTML_MODE_LEGACY)
