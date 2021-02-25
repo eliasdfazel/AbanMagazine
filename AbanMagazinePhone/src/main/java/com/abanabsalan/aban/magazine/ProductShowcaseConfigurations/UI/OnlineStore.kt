@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 8:29 AM
- * Last modified 2/25/21 8:28 AM
+ * Created by Elias Fazel on 2/25/21 8:31 AM
+ * Last modified 2/25/21 8:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Extensions.se
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Extensions.setupOnlineStoreUserInterface
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Extensions.startOnlineStoreNetworkOperations
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Operations.ProductShowcaseRetrieval
+import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI.Adapter.AllProductsAdapter
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.columnCount
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -53,7 +55,10 @@ class OnlineStore : AppCompatActivity() {
         setupOnlineStoreActionListener()
 
         onlineStoreLayoutBinding.featuredProductsRecyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, true)
+
         onlineStoreLayoutBinding.allProductsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 193), RecyclerView.VERTICAL, false)
+
+        val allProductsAdapter = AllProductsAdapter(this@OnlineStore, overallTheme)
 
         onlineStoreLayoutBinding.rootView.post {
 
@@ -61,7 +66,9 @@ class OnlineStore : AppCompatActivity() {
 
                 if (it.isNotEmpty()) {
 
+                    onlineStoreLayoutBinding.allProductsRecyclerView.visibility = View.VISIBLE
 
+                    onlineStoreLayoutBinding.allProductsRecyclerView.adapter = allProductsAdapter
 
                 } else {
 
