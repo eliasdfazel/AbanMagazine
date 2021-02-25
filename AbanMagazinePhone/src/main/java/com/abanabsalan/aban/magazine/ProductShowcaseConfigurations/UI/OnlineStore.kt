@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 8:31 AM
- * Last modified 2/25/21 8:31 AM
+ * Created by Elias Fazel on 2/25/21 11:12 AM
+ * Last modified 2/25/21 11:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -62,18 +62,20 @@ class OnlineStore : AppCompatActivity() {
 
         onlineStoreLayoutBinding.rootView.post {
 
+            onlineStoreLayoutBinding.allProductsRecyclerView.adapter = allProductsAdapter
+
             onlineStoreLiveData.allProductsShowcaseLiveItemData.observe(this@OnlineStore, Observer {
 
                 if (it.isNotEmpty()) {
 
+                    allProductsAdapter.productJsonDataStructureItem.addAll(it)
+
+                    onlineStoreLayoutBinding.waitingView.pauseAnimation()
+                    onlineStoreLayoutBinding.waitingView.visibility = View.INVISIBLE
+
                     onlineStoreLayoutBinding.allProductsRecyclerView.visibility = View.VISIBLE
 
-                    onlineStoreLayoutBinding.allProductsRecyclerView.adapter = allProductsAdapter
-
-                } else {
-
-
-
+                    allProductsAdapter.notifyDataSetChanged()
 
                 }
 

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 8:29 AM
- * Last modified 2/25/21 8:28 AM
+ * Created by Elias Fazel on 2/25/21 11:12 AM
+ * Last modified 2/25/21 11:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.json.JSONArray
@@ -45,6 +46,7 @@ class OnlineStoreLiveData : ViewModel() {
                 productRelated = aProductJsonObject.getJSONArray(ProductJsonDataStructure.ProductRelated)
             ))
 
+            Log.d(this@OnlineStoreLiveData.javaClass.simpleName, "Product: ${aProductJsonObject.getString(ProductJsonDataStructure.ProductName)}")
         }
 
         allProductsShowcaseLiveItemData.postValue(productShowcaseItemData)
