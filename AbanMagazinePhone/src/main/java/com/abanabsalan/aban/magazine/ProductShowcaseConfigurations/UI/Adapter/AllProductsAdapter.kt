@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 11:12 AM
- * Last modified 2/25/21 11:12 AM
+ * Created by Elias Fazel on 2/25/21 12:07 PM
+ * Last modified 2/25/21 11:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -59,7 +59,7 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
         Glide.with(context)
             .asDrawable()
             .load(productJsonDataStructureItem[position].productFeaturedImage)
-            .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 19)))
+            .transform(CenterCrop(), RoundedCorners(DpToInteger(context, 7)))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(allProductsViewHolder.productFeatureImageView)
 

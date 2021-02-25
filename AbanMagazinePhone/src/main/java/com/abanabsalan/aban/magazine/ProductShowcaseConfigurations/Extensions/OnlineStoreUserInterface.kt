@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 11:45 AM
- * Last modified 2/24/21 11:45 AM
+ * Created by Elias Fazel on 2/25/21 12:07 PM
+ * Last modified 2/25/21 12:01 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import android.graphics.drawable.LayerDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI.OnlineStore
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -66,5 +67,12 @@ fun OnlineStore.setupOnlineStoreUserInterface() {
     val bottomBarLayoutManager = onlineStoreLayoutBinding.blurViewBottomBar.layoutParams as ConstraintLayout.LayoutParams
     bottomBarLayoutManager.height = navigationBarHeight(applicationContext)
     onlineStoreLayoutBinding.blurViewBottomBar.layoutParams = bottomBarLayoutManager
+
+    onlineStoreLayoutBinding.allProductsRecyclerView.setPadding(0, statusBarHeight(applicationContext), 0, 0)
+
+    onlineStoreLayoutBinding.onlineStoreScrollingContentView.setPadding(0,
+        statusBarHeight(applicationContext),
+        0,
+        navigationBarHeight(applicationContext) + DpToInteger(applicationContext, 71))
 
 }
