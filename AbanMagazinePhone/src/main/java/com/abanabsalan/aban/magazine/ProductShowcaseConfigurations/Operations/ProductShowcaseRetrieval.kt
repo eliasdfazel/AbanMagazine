@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:38 AM
- * Last modified 2/23/21 10:33 AM
+ * Created by Elias Fazel on 2/25/21 8:29 AM
+ * Last modified 2/25/21 8:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,13 +28,13 @@ object EnqueueEndPointQuery {
 }
 class ProductShowcaseRetrieval (private val context: Context) {
 
-    fun start(jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
+    val productShowcaseEndpoint: ProductShowcaseEndpoint = ProductShowcaseEndpoint()
 
-        val productShowcaseEndpoint: ProductShowcaseEndpoint = ProductShowcaseEndpoint()
+    fun getAllProducts(jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
-            productShowcaseEndpoint.getProductShowcaseEndpoint,
+            productShowcaseEndpoint.getAllProductShowcaseEndpoint,
             null,
             { response ->
                 Log.d("JsonArrayRequest ${this@ProductShowcaseRetrieval.javaClass.simpleName}", response.toString())

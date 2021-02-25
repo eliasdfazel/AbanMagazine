@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:38 AM
- * Last modified 2/23/21 10:33 AM
+ * Created by Elias Fazel on 2/25/21 8:29 AM
+ * Last modified 2/25/21 8:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -165,7 +165,7 @@ fun HomePage.startNetworkOperations() {
 
         /*Load Products Showcase*/
         val productShowcaseRetrieval: ProductShowcaseRetrieval = ProductShowcaseRetrieval(applicationContext)
-        productShowcaseRetrieval.start(object : JsonRequestResponseInterface {
+        productShowcaseRetrieval.getAllProducts(object : JsonRequestResponseInterface {
 
             override fun jsonRequestResponseSuccessHandler(rawDataJsonArray: JSONArray) {
                 super.jsonRequestResponseSuccessHandler(rawDataJsonArray)
