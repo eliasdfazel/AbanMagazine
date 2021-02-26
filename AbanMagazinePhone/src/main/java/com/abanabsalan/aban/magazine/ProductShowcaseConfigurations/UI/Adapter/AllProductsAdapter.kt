@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/26/21 10:09 AM
- * Last modified 2/26/21 10:05 AM
+ * Created by Elias Fazel on 2/26/21 10:16 AM
+ * Last modified 2/26/21 10:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,8 @@
 package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI.Adapter
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.text.Html
 import android.view.LayoutInflater
@@ -47,12 +49,26 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeLight -> {
 
+                val productsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = productsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.lighter))
+                productsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.darker))
 
+                allProductsViewHolder.rootViewItem.background = productsItemBackground
+
+                allProductsViewHolder.productTitleView.setTextColor(context.getColor(R.color.dark))
 
             }
             ThemeType.ThemeDark -> {
 
+                val productsItemBackground: LayerDrawable = context.getDrawable(R.drawable.newest_posts_item_background) as LayerDrawable
+                val temporaryForeground: Drawable = productsItemBackground.findDrawableByLayerId(R.id.temporaryForeground)
+                temporaryForeground.setTint(context.getColor(R.color.darker))
+                productsItemBackground.findDrawableByLayerId(R.id.temporaryBackground).setTint(context.getColor(R.color.lighter))
 
+                allProductsViewHolder.rootViewItem.background = productsItemBackground
+
+                allProductsViewHolder.productTitleView.setTextColor(context.getColor(R.color.light))
 
             }
         }
