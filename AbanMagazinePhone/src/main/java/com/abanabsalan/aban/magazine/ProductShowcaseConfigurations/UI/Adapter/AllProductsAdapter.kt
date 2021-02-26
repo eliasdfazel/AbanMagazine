@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/26/21 9:10 AM
- * Last modified 2/26/21 8:51 AM
+ * Created by Elias Fazel on 2/26/21 10:09 AM
+ * Last modified 2/26/21 10:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,8 +58,17 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
         }
 
         allProductsViewHolder.onSaleView.visibility = if (productJsonDataStructureItem[position].productOnSale) {
+
+            allProductsViewHolder.productPriceView.text = Html.fromHtml(
+                "<strike>" + "$" + productJsonDataStructureItem[position].productPrice + "</strike>" +
+                        "<br/>" + "<b>" + "$" + productJsonDataStructureItem[position].productSalePrice + "</b>",
+                Html.FROM_HTML_MODE_LEGACY)
+
             View.VISIBLE
         } else {
+
+            allProductsViewHolder.productPriceView.text = Html.fromHtml("<b>" + "$" + productJsonDataStructureItem[position].productPrice + "</b>", Html.FROM_HTML_MODE_LEGACY)
+
             View.GONE
         }
 
@@ -79,6 +88,22 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
                 action = Intent.ACTION_VIEW
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             })
+
+        }
+
+        allProductsViewHolder.addProductToBasket.setOnClickListener {
+
+            context.startActivity(Intent().apply {
+                data = Uri.parse(productJsonDataStructureItem[position].productLink)
+                action = Intent.ACTION_VIEW
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            })
+
+        }
+
+        allProductsViewHolder.productPriceView.setOnClickListener {
+
+
 
         }
 

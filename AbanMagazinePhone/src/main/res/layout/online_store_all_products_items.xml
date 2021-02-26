@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 2/26/21 9:10 AM
-  ~ Last modified 2/26/21 9:00 AM
+  ~ Created by Elias Fazel on 2/26/21 10:09 AM
+  ~ Last modified 2/26/21 10:05 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="11dp"
     android:layout_marginVertical="3dp"
+    android:paddingBottom="11dp"
     android:elevation="3dp"
     android:background="@drawable/newest_posts_item_background"
 
@@ -30,17 +31,17 @@
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
 
-        apps:shapeDrawable="@drawable/shoping_fashion_icon"
+        apps:shapeDrawable="@drawable/shopping_fashion_icon"
 
         apps:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productTitleView"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="wrap_content"
         android:paddingHorizontal="9dp"
         android:paddingVertical="3dp"
-        android:lines="3"
+        android:maxLines="3"
         android:ellipsize="end"
         android:textSize="13sp"
         android:textStyle="bold"
@@ -51,9 +52,56 @@
 
         apps:layout_constraintTop_toBottomOf="@id/productFeatureImageView"/>
 
-    <!--  add to basket button  -->
-    <!--  price  -->
-    <!--  on sale  -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/productPriceView"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="7dp"
+        android:ellipsize="marquee"
+        android:textSize="13sp"
+        android:fontFamily="@font/ubuntu"
+        android:textAllCaps="false"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/pink"
+        apps:backgroundTint="@color/default_color_light"
+
+        apps:layout_constraintTop_toBottomOf="@id/productTitleView"
+        apps:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addProductToBasket"
+        android:layout_width="111dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="7dp"
+        android:text="@string/plusSignText"
+        android:textSize="29sp"
+        android:fontFamily="@font/ubuntu"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+
+        apps:icon="@drawable/shopping_bag"
+        apps:iconTint="@color/light"
+        apps:iconSize="29dp"
+        apps:iconGravity="textEnd"
+        apps:cornerRadius="51dp"
+        apps:rippleColor="@color/pink"
+        apps:backgroundTint="@color/default_color"
+
+        apps:layout_constraintTop_toTopOf="@id/productPriceView"
+        apps:layout_constraintBottom_toBottomOf="@id/productPriceView"
+        apps:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/onSaleView"
         android:layout_width="match_parent"
