@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 11:12 AM
- * Last modified 2/25/21 11:02 AM
+ * Created by Elias Fazel on 2/26/21 9:10 AM
+ * Last modified 2/26/21 8:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,7 +38,7 @@ class OnlineStoreLiveData : ViewModel() {
                 productDescription = aProductJsonObject.getString(ProductJsonDataStructure.ProductDescription),
                 productShortDescription = aProductJsonObject.getString(ProductJsonDataStructure.ProductShortDescription),
                 productPrice = aProductJsonObject.getString(ProductJsonDataStructure.ProductPrice),
-                productOnSale = aProductJsonObject.getString(ProductJsonDataStructure.ProductOnSale),
+                productOnSale = aProductJsonObject.getBoolean(ProductJsonDataStructure.ProductOnSale),
                 productSalePrice = aProductJsonObject.getString(ProductJsonDataStructure.ProductSalePrice),
                 productLink = aProductJsonObject.getString(ProductJsonDataStructure.ProductLink),
                 productCategories = aProductJsonObject.getJSONArray(ProductJsonDataStructure.ProductCategories),

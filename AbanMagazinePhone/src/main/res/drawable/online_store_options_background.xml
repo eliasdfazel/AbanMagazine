@@ -1,15 +1,15 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 2/24/21 11:45 AM
-  ~ Last modified 2/24/21 11:39 AM
+  ~ Created by Elias Fazel on 2/26/21 9:10 AM
+  ~ Last modified 2/26/21 8:59 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
   -->
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/default_color">
+    android:color="@color/white">
 
     <item
         android:id="@+id/temporaryBackground">

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 12:07 PM
- * Last modified 2/25/21 11:44 AM
+ * Created by Elias Fazel on 2/26/21 9:10 AM
+ * Last modified 2/26/21 8:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,8 +10,11 @@
 
 package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.UI.Adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.text.Html
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.DataHolder.ProductJsonDataStructureItem
@@ -54,6 +57,12 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
             }
         }
 
+        allProductsViewHolder.onSaleView.visibility = if (productJsonDataStructureItem[position].productOnSale) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
         allProductsViewHolder.productTitleView.text = Html.fromHtml(productJsonDataStructureItem[position].productName, Html.FROM_HTML_MODE_LEGACY)
 
         Glide.with(context)
@@ -65,7 +74,11 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
 
         allProductsViewHolder.rootViewItem.setOnClickListener {
 
-
+            context.startActivity(Intent().apply {
+                data = Uri.parse(productJsonDataStructureItem[position].productLink)
+                action = Intent.ACTION_VIEW
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            })
 
         }
 

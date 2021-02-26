@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 7:56 AM
- * Last modified 2/24/21 7:53 AM
+ * Created by Elias Fazel on 2/26/21 9:10 AM
+ * Last modified 2/26/21 8:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -65,7 +65,7 @@ data class ProductJsonDataStructureItem(var productId: String,
                                         var productShortDescription: String,
                                         var productDescription: String,
                                         var productPrice: String,
-                                        var productOnSale: String,
+                                        var productOnSale: Boolean,
                                         var productSalePrice: String,
                                         var productLink: String,
                                         var productFeaturedImage: String,
