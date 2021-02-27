@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/26/21 10:09 AM
- * Last modified 2/26/21 10:09 AM
+ * Created by Elias Fazel on 2/27/21 7:25 AM
+ * Last modified 2/27/21 4:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,6 +67,11 @@ class OnlineStore : AppCompatActivity() {
             onlineStoreLiveData.allProductsShowcaseLiveItemData.observe(this@OnlineStore, Observer {
 
                 if (it.isNotEmpty()) {
+
+                    if (allProductsAdapter.productJsonDataStructureItem.isNotEmpty()) {
+                        allProductsAdapter.productJsonDataStructureItem.clear()
+                        allProductsAdapter.notifyDataSetChanged()
+                    }
 
                     allProductsAdapter.productJsonDataStructureItem.addAll(it)
 

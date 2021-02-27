@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 8:29 AM
- * Last modified 2/25/21 8:09 AM
+ * Created by Elias Fazel on 2/27/21 7:25 AM
+ * Last modified 2/27/21 2:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,9 +21,11 @@ class ProductShowcaseEndpoint {
      * -
      * Then Replace This Link.
      **/
-    val getAllProductShowcaseEndpoint = "https://abanabsalan.com/wp-json/wc/v3/products?" +
+    val getAllProductsShowcaseEndpoint = "https://abanabsalan.com/wp-json/wc/v3/products?" +
             "consumer_key=${Security.ConsumerKey}" +
             "&" +
             "consumer_secret=${Security.ConsumerSecret}"
+
+    fun getProductsSearchEndpoint(productSearchQuery: String): String = "$getAllProductsShowcaseEndpoint&search=$productSearchQuery"
 
 }

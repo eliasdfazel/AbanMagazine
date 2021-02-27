@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/25/21 8:29 AM
- * Last modified 2/25/21 8:09 AM
+ * Created by Elias Fazel on 2/27/21 7:25 AM
+ * Last modified 2/27/21 4:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,42 @@ class ProductShowcaseRetrieval (private val context: Context) {
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
-            productShowcaseEndpoint.getAllProductShowcaseEndpoint,
+            productShowcaseEndpoint.getAllProductsShowcaseEndpoint,
+            null,
+            { response ->
+                Log.d("JsonArrayRequest ${this@ProductShowcaseRetrieval.javaClass.simpleName}", response.toString())
+
+                if (response != null) {
+
+                    jsonRequestResponseInterface.jsonRequestResponseSuccessHandler(response)
+
+                }
+
+            }, {
+                Log.d("JsonArrayRequestError", it?.networkResponse?.statusCode.toString())
+
+                jsonRequestResponseInterface.jsonRequestResponseFailureHandler(it?.networkResponse?.statusCode)
+
+            })
+
+        jsonArrayRequest.retryPolicy = DefaultRetryPolicy(
+            EnqueueEndPointQuery.JSON_REQUEST_TIMEOUT,
+            EnqueueEndPointQuery.JSON_REQUEST_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+
+        jsonArrayRequest.setShouldCache(false)
+
+        val requestQueue = Volley.newRequestQueue(context)
+        requestQueue.add(jsonArrayRequest)
+
+    }
+
+    fun startProductsSearch(productSearchQuery: String, jsonRequestResponseInterface: JsonRequestResponseInterface) = CoroutineScope(Dispatchers.IO).async {
+
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET,
+            productShowcaseEndpoint.getProductsSearchEndpoint(productSearchQuery),
             null,
             { response ->
                 Log.d("JsonArrayRequest ${this@ProductShowcaseRetrieval.javaClass.simpleName}", response.toString())

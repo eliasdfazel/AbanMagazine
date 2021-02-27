@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 2/25/21 12:17 PM
-  ~ Last modified 2/25/21 12:16 PM
+  ~ Created by Elias Fazel on 2/27/21 7:25 AM
+  ~ Last modified 2/27/21 6:52 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -108,24 +108,68 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <!-- Search View -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/searchProductsView"
         android:layout_width="0dp"
-        android:layout_height="57dp"
-        android:layout_marginVertical="7dp"
-        android:elevation="23dp"
+        android:layout_height="73dp"
+        android:layout_marginVertical="23dp"
         android:background="@drawable/online_store_options_background"
+        android:visibility="visible"
 
         apps:lottie_rawRes="@raw/product_search_animation"
         apps:lottie_autoPlay="true"
-        apps:lottie_repeatCount="3"
+        apps:lottie_repeatCount="1"
         apps:lottie_loop="true"
 
-        apps:layout_constraintWidth_percent="0.51"
+        apps:layout_constraintWidth_percent="0.53"
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintEnd_toEndOf="parent"
         apps:layout_constraintBottom_toTopOf="@id/homepageBottomBar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputSearchView"
+        android:layout_width="0dp"
+        android:layout_height="77dp"
+        android:gravity="center_vertical"
+        android:imeOptions="actionSearch"
+        android:hint="@string/typeToSearch"
+        android:textColorHint="@color/default_color_game_light"
+        android:visibility="invisible"
+
+        apps:boxBackgroundMode="outline"
+        apps:boxBackgroundColor="@color/default_color_transparent_high"
+        apps:boxCornerRadiusTopStart="51dp"
+        apps:boxCornerRadiusTopEnd="51dp"
+        apps:boxCornerRadiusBottomStart="51dp"
+        apps:boxCornerRadiusBottomEnd="51dp"
+        apps:boxStrokeColor="@color/default_color_game_light"
+        apps:boxStrokeWidth="3dp"
+        apps:hintEnabled="true"
+        apps:hintAnimationEnabled="true"
+        apps:hintTextColor="@color/default_color_game_light"
+        apps:errorEnabled="true"
+        apps:errorTextColor="@color/red"
+
+        apps:layout_constraintBottom_toBottomOf="@id/searchProductsView"
+        apps:layout_constraintStart_toStartOf="@id/searchProductsView"
+        apps:layout_constraintEnd_toEndOf="@id/searchProductsView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:lines="1"
+            android:inputType="text|textAutoComplete"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/light"
+            android:textColorHint="@color/light"
+            android:fontFamily="@font/persian_sans"
+            android:cursorVisible="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

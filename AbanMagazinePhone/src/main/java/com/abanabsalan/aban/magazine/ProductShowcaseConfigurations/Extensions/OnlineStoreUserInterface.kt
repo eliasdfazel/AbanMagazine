@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/26/21 9:10 AM
- * Last modified 2/26/21 9:10 AM
+ * Created by Elias Fazel on 2/27/21 7:25 AM
+ * Last modified 2/27/21 5:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,8 @@ fun OnlineStore.setupOnlineStoreUserInterface() {
             onlineStoreLayoutBinding.blurViewTopBar.setOverlayColor(getColor(R.color.default_color_light_transparent))
             onlineStoreLayoutBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_light_transparent))
 
+            onlineStoreLayoutBinding.searchView.setTextColor(getColor(R.color.darker))
+
             val onlineStoreOptions = getDrawable(R.drawable.online_store_options_background) as LayerDrawable
             onlineStoreOptions.findDrawableByLayerId(R.id.temporaryBackground).setTint(getColor(R.color.dark_transparent_high))
             onlineStoreOptions.findDrawableByLayerId(R.id.temporaryForeground).setTint(getColor(R.color.lighter))
@@ -50,6 +52,8 @@ fun OnlineStore.setupOnlineStoreUserInterface() {
 
             onlineStoreLayoutBinding.blurViewTopBar.setOverlayColor(getColor(R.color.default_color_dark_transparent))
             onlineStoreLayoutBinding.blurViewBottomBar.setOverlayColor(getColor(R.color.default_color_dark_transparent))
+
+            onlineStoreLayoutBinding.searchView.setTextColor(getColor(R.color.lighter))
 
             val onlineStoreOptions = getDrawable(R.drawable.online_store_options_background) as LayerDrawable
             onlineStoreOptions.findDrawableByLayerId(R.id.temporaryBackground).setTint(getColor(R.color.light_transparent_high))
