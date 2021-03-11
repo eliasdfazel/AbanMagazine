@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 3/11/21 7:27 AM
- * Last modified 3/11/21 7:27 AM
+ * Created by Elias Fazel on 3/11/21 9:24 AM
+ * Last modified 3/11/21 9:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,7 +21,7 @@ class ProductShowcaseEndpoint {
      * -
      * Then Replace This Link.
      **/
-    val getAllProductsShowcaseEndpoint = "https://abanabsalan.com/wp-json/wc/v3/products?" +
+    val getAllProductsShowcaseEndpoint = "https://abanabsalan.com/storefront/wp-json/wc/v3/products?" +
             "consumer_key=${Security.ConsumerKey}" +
             "&" +
             "consumer_secret=${Security.ConsumerSecret}"
