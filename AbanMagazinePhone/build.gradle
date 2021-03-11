@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/27/21 7:46 AM
- * Last modified 2/27/21 7:44 AM
+ * Created by Elias Fazel on 3/11/21 12:08 PM
+ * Last modified 3/11/21 9:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -107,16 +107,16 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
 
 
-    implementation 'com.google.firebase:firebase-config-ktx:20.0.3'
+    implementation 'com.google.firebase:firebase-config-ktx:20.0.4'
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
-    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.4'
+    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.5'
 
     implementation 'com.google.firebase:firebase-appindexing:19.2.0'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:19.1.1'
 
-    implementation 'com.google.firebase:firebase-firestore-ktx:22.1.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:22.1.1'
 
-    implementation 'com.google.firebase:firebase-auth-ktx:20.0.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:20.0.3'
 
     implementation 'com.google.firebase:firebase-ads:19.7.0'
 
@@ -138,7 +138,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    implementation 'androidx.fragment:fragment-ktx:1.3.0'
+    implementation 'androidx.fragment:fragment-ktx:1.3.1'
 
 
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
@@ -157,7 +157,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
 
-    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.android.volley:volley:1.2.0'
 
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -168,9 +168,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
 
-    implementation 'com.google.dagger:dagger:2.32'
-    kapt 'com.google.dagger:dagger-android-processor:2.32'
-    kapt 'com.google.dagger:dagger-compiler:2.32'
+    implementation 'com.google.dagger:dagger:2.33'
+    kapt 'com.google.dagger:dagger-android-processor:2.33'
+    kapt 'com.google.dagger:dagger-compiler:2.33'
 
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.4.31'

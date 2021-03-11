@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 8/1/20 2:47 AM
-  ~ Last modified 8/1/20 2:33 AM
+  ~ Created by Elias Fazel on 3/11/21 12:08 PM
+  ~ Last modified 3/11/21 12:07 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -44,7 +44,7 @@
         android:bottom="66dp"
         android:gravity="bottom|center_horizontal" >
         <bitmap
-            android:src="@drawable/official_website_logo" />
+            android:src="@drawable/official_website_logo_image" />
     </item>
 
 </layer-list>

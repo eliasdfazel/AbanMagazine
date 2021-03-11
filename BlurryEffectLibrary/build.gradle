@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/23/21 10:27 AM
- * Last modified 2/23/21 10:17 AM
+ * Created by Elias Fazel on 3/11/21 12:08 PM
+ * Last modified 3/11/21 9:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,5 +43,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.4.30'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.4.31'
 }
