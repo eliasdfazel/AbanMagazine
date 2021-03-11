@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 3/7/21 7:16 AM
- * Last modified 3/7/21 7:16 AM
+ * Created by Elias Fazel on 3/11/21 7:27 AM
+ * Last modified 3/11/21 7:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,8 +13,8 @@ package com.abanabsalan.aban.magazine.ProductShowcaseConfigurations.Endpoints
 class ProductShowcaseEndpoint {
 
     private object Security {
-        const val ConsumerKey = "ck_e4cd587ec0d07dbac1138b06602e8e028a99ad43"
-        const val ConsumerSecret = "cs_55a87f5e6354700dc5fc3861d3fae730df9c4921"
+        const val ConsumerKey = "ck_7ca66b035ebaedd855568e0e51fa4d3c54a2706a"
+        const val ConsumerSecret = "cs_5e3d3b4da30f32d124613401da35a6c7997e551b"
     }
     /**
      * Add All Your Products Title, Image, Link To Product In A Wordpress Page Inside
