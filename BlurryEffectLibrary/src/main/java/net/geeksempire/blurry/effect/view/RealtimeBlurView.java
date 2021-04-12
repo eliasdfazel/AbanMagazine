@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/5/20 4:53 AM
- * Last modified 12/5/20 3:27 AM
+ * Created by Elias Fazel on 4/12/21 3:21 PM
+ * Last modified 4/12/21 3:21 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,7 +17,9 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -45,7 +47,8 @@ public class RealtimeBlurView extends View {
 	private Canvas mBlurringCanvas;
 	private boolean mIsRendering;
 	private Paint mPaint;
-	private final Rect mRectSrc = new Rect(), mRectDst = new Rect();
+	private final Rect mRectSrc = new Rect();
+	private final RectF mRectDst = new RectF();
 	// mDecorView should be the root view of the activity (even if you are on a different window like a dialog)
 	private View mDecorView;
 	// If the view is on different root view (usually means we are on a PopupWindow),
@@ -337,10 +340,33 @@ public class RealtimeBlurView extends View {
 		}
 	}
 
+	Path clipPath = new Path();
+	RectF rect = new RectF();
+
 	@Override
 	protected void onDraw(Canvas canvas) {
+
+		rect.set(0,0, this.getWidth(), this.getHeight());
+
+		float[] radii = {0, 0, 0, 0, 0, 0, 0, 0};
+
+		radii[0] = 0f;
+		radii[1] = 0f;
+		radii[2] = 0f;
+		radii[3] = 0f;
+
+		radii[4] = 0f;
+		radii[5] = 0f;
+		radii[6] = 0f;
+		radii[7] = 0f;
+
+		clipPath.addRoundRect(rect, radii, Path.Direction.CW);
+		canvas.clipPath(clipPath);
+
 		super.onDraw(canvas);
+
 		drawBlurredBitmap(canvas, mBlurredBitmap, mOverlayColor);
+
 	}
 
 	/**
@@ -351,6 +377,7 @@ public class RealtimeBlurView extends View {
 	 * @param overlayColor
 	 */
 	protected void drawBlurredBitmap(Canvas canvas, Bitmap blurredBitmap, int overlayColor) {
+
 		if (blurredBitmap != null) {
 
 			mRectSrc.right = blurredBitmap.getWidth();
@@ -359,10 +386,14 @@ public class RealtimeBlurView extends View {
 			mRectDst.right = getWidth();
 			mRectDst.bottom = getHeight();
 
-			canvas.drawBitmap(blurredBitmap, mRectSrc, mRectDst, null);
+			canvas.drawBitmap(blurredBitmap, mRectSrc, mRectDst, /*new Paint().set*/null);
+
 		}
+
 		mPaint.setColor(overlayColor);
+
 		canvas.drawRect(mRectDst, mPaint);
+
 	}
 
 	private static class StopException extends RuntimeException {
