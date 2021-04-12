@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/12/21 3:21 PM
- * Last modified 4/12/21 3:21 PM
+ * Created by Elias Fazel on 4/12/21 3:40 PM
+ * Last modified 4/12/21 3:37 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,6 +49,12 @@ public class RealtimeBlurView extends View {
 	private Paint mPaint;
 	private final Rect mRectSrc = new Rect();
 	private final RectF mRectDst = new RectF();
+
+	private Float topLeftCorner = 0f;
+	private Float topRightCorner = 0f;
+	private Float bottomLeftCorner = 0f;
+	private Float bottomRightCorner = 0f;
+
 	// mDecorView should be the root view of the activity (even if you are on a different window like a dialog)
 	private View mDecorView;
 	// If the view is on different root view (usually means we are on a PopupWindow),
@@ -63,10 +69,16 @@ public class RealtimeBlurView extends View {
 		mBlurImpl = getBlurImpl(); // provide your own by override getBlurImpl()
 
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RealtimeBlurView);
-		mBlurRadius = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurRadius,
-				TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
-		mDownsampleFactor = a.getFloat(R.styleable.RealtimeBlurView_realtimeDownsampleFactor, 4);
+
+		mBlurRadius = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurRadius, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
+		mDownsampleFactor = a.getFloat(R.styleable.RealtimeBlurView_realtimeDownSampleFactor, 4);
 		mOverlayColor = a.getColor(R.styleable.RealtimeBlurView_realtimeOverlayColor, 0xAAFFFFFF);
+
+		topLeftCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurTopLeft, 0f);
+		topRightCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurTopRight, 0f);
+		bottomLeftCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurBottomLeft, 0f);
+		bottomRightCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurBottomRight, 0f);
+
 		a.recycle();
 
 		mPaint = new Paint();
@@ -350,15 +362,17 @@ public class RealtimeBlurView extends View {
 
 		float[] radii = {0, 0, 0, 0, 0, 0, 0, 0};
 
-		radii[0] = 0f;
-		radii[1] = 0f;
-		radii[2] = 0f;
-		radii[3] = 0f;
+		radii[0] = topLeftCorner;
+		radii[1] = topLeftCorner;
 
-		radii[4] = 0f;
-		radii[5] = 0f;
-		radii[6] = 0f;
-		radii[7] = 0f;
+		radii[2] = topRightCorner;
+		radii[3] = topRightCorner;
+
+		radii[4] = bottomRightCorner;
+		radii[5] = bottomRightCorner;
+
+		radii[6] = bottomLeftCorner;
+		radii[7] = bottomLeftCorner;
 
 		clipPath.addRoundRect(rect, radii, Path.Direction.CW);
 		canvas.clipPath(clipPath);
