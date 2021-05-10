@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 5/10/21, 8:05 AM
- * Last modified 5/10/21, 6:45 AM
+ * Created by Elias Fazel on 5/10/21, 9:11 AM
+ * Last modified 5/10/21, 9:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -170,13 +170,6 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
         when (singlePostItemsData[position].dataType) {
 
-            PostsDataParameters.PostItemsViewParameters.AuthorBlock -> {
-
-                (viewHolder as PostViewAuthorAdapterViewHolder)
-
-                viewHolder.postAuthorName.text = Html.fromHtml(singlePostItemsData[position].postAuthorBlock?.authorBlockName, Html.FROM_HTML_MODE_COMPACT)
-
-            }
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 (viewHolder as PostViewParagraphAdapterViewHolder)
@@ -296,6 +289,20 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
         when (singlePostItemsData[position].dataType) {
 
+            PostsDataParameters.PostItemsViewParameters.AuthorBlock -> {
+
+                (viewHolder as PostViewAuthorAdapterViewHolder)
+
+                viewHolder.postAuthorName.text = Html.fromHtml("${singlePostItemsData[position].postAuthorBlock?.authorBlockName}", Html.FROM_HTML_MODE_COMPACT)
+                viewHolder.postAuthorBiography.text = Html.fromHtml(singlePostItemsData[position].postAuthorBlock?.authorBlockBiography, Html.FROM_HTML_MODE_COMPACT)
+
+                Glide.with(context)
+                    .load(singlePostItemsData[position].postAuthorBlock?.authorBlockImage)
+                    .transform(CenterInside(), RoundedCorners(19))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(viewHolder.postAuthorImage)
+
+            }
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 (viewHolder as PostViewParagraphAdapterViewHolder).postParagraph.setTextColor(when (context.overallTheme.checkThemeLightDark()) {

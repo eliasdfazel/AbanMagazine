@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2021 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 5/10/21, 8:05 AM
-  ~ Last modified 5/10/21, 8:04 AM
+  ~ Created by Elias Fazel on 5/10/21, 9:11 AM
+  ~ Last modified 5/10/21, 9:11 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -14,17 +14,15 @@
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootViewItem"
     android:layout_width="match_parent"
-    android:layout_height="101dp"
-    android:background="@android:color/transparent"
+    android:layout_height="177dp"
+    android:background="@drawable/wave_block_background"
     tools:context=".PostsConfigurations.SinglePost.SinglePostUI.SinglePostView">
 
-    <net.geekstools.imageview.customshapes.ShapesImage
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/postAuthorImage"
         android:layout_width="79dp"
         android:layout_height="79dp"
-        android:layout_marginStart="19dp"
-
-        apps:shape="rounded"
+        android:layout_marginStart="13dp"
 
         apps:layout_constraintTop_toTopOf="parent"
         apps:layout_constraintBottom_toBottomOf="parent"
@@ -34,13 +32,17 @@
         android:id="@+id/postAuthorName"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="13dp"
         android:ellipsize="end"
         android:lines="1"
-        android:textColor="@color/default_color"
-        android:textSize="25sp"
+        android:textColor="@color/light"
+        android:textSize="21sp"
         android:textStyle="bold"
+        android:shadowColor="@color/light_transparent"
+        android:shadowRadius="7"
+        android:shadowDx="1"
+        android:shadowDy="1"
 
         apps:layout_constraintTop_toTopOf="@id/postAuthorImage"
         apps:layout_constraintStart_toEndOf="@id/postAuthorImage"
@@ -50,15 +52,27 @@
         android:id="@+id/postAuthorBiography"
         android:layout_width="0dp"
         android:layout_height="41dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="13dp"
         android:ellipsize="end"
         android:lines="2"
-        android:textColor="@color/default_color_light"
-        android:textSize="15sp"
+        android:textColor="@color/lighter"
+        android:textSize="13sp"
 
         apps:layout_constraintTop_toBottomOf="@id/postAuthorName"
         apps:layout_constraintStart_toEndOf="@id/postAuthorImage"
         apps:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:layout_marginHorizontal="13dp"
+        android:text="Author"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:textStyle="normal"
+        android:fontFamily="@font/floral"
+
+        apps:layout_constraintBottom_toTopOf="@id/postAuthorName"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

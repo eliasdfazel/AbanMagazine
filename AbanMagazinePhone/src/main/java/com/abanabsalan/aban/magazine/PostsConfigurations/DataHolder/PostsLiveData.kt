@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 5/10/21, 8:05 AM
- * Last modified 5/10/21, 7:50 AM
+ * Created by Elias Fazel on 5/10/21, 9:11 AM
+ * Last modified 5/10/21, 8:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,15 +48,9 @@ class PostsLiveData : ViewModel() {
 
         val postContent: Document = Jsoup.parse(rawPostContent)
 
-
-
-
         val authorBlockName = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockName).allElements.select("h6")
         val authorBlockBiography = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockBiography).allElements.select("h6")
         val authorBlockImage = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockImage).allElements.select("img").attr("src")
-        println(">>> >> > " + authorBlockImage)
-
-
 
         postContent.select("blockquote").empty()
         postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlock).empty()
@@ -266,7 +260,7 @@ class PostsLiveData : ViewModel() {
                 null,
                 null,
                 null,
-                PostAuthorBlock(authorBlockName = authorBlockName.toString(), null, null)
+                PostAuthorBlock(authorBlockName = authorBlockName.toString(), authorBlockImage, authorBlockBiography.toString())
             )
         )
 
