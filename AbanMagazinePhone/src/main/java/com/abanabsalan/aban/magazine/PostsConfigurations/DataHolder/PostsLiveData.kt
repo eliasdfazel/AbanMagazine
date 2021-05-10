@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 7:56 AM
- * Last modified 2/24/21 7:56 AM
+ * Created by Elias Fazel on 5/10/21, 8:05 AM
+ * Last modified 5/10/21, 7:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,7 +48,18 @@ class PostsLiveData : ViewModel() {
 
         val postContent: Document = Jsoup.parse(rawPostContent)
 
+
+
+
+        val authorBlockName = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockName).allElements.select("h6")
+        val authorBlockBiography = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockBiography).allElements.select("h6")
+        val authorBlockImage = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockImage).allElements.select("img").attr("src")
+        println(">>> >> > " + authorBlockImage)
+
+
+
         postContent.select("blockquote").empty()
+        postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlock).empty()
 
         val allHtmlElement = postContent.allElements
 
@@ -85,6 +96,7 @@ class PostsLiveData : ViewModel() {
                                     instagramPostImage = rawJsonInstagramPost.getString("thumbnail_url"),
                                     instagramPostTitle = rawJsonInstagramPost.getString("title")
                                 ),
+                                null,
                                 null
                             )
                         )
@@ -122,7 +134,8 @@ class PostsLiveData : ViewModel() {
                             descriptionOfProduct = productDescription,
                             brandOfProduct = productBrand,
                             linkToImageProduct = productImage
-                        )
+                        ),
+                        null
                     )
                 )
 
@@ -132,6 +145,7 @@ class PostsLiveData : ViewModel() {
                 singlePostItemsData.add(
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostParagraph,
                         PostItemParagraph(element.text()),
+                        null,
                         null,
                         null,
                         null,
@@ -149,6 +163,7 @@ class PostsLiveData : ViewModel() {
                     SinglePostItemData(PostsDataParameters.PostItemsViewParameters.PostSubTitle,
                         null,
                         PostItemSubTitle(element.text()),
+                        null,
                         null,
                         null,
                         null,
@@ -172,6 +187,7 @@ class PostsLiveData : ViewModel() {
                             PostItemButton(element.select("a").first().attr("abs:href"), element.text()),
                             null,
                             null,
+                            null,
                             null
                         )
                     )
@@ -184,6 +200,7 @@ class PostsLiveData : ViewModel() {
                             null,
                             null,
                             PostItemTextLink("${element}"),
+                            null,
                             null,
                             null,
                             null,
@@ -213,6 +230,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         null,
                         null,
+                        null,
                         null
                     )
                 )
@@ -229,6 +247,7 @@ class PostsLiveData : ViewModel() {
                         null,
                         PostItemIFrame("${element}"),
                         null,
+                        null,
                         null
                     )
                 )
@@ -236,6 +255,20 @@ class PostsLiveData : ViewModel() {
             }
 
         }
+
+        singlePostItemsData.add(
+            SinglePostItemData(PostsDataParameters.PostItemsViewParameters.AuthorBlock,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                PostAuthorBlock(authorBlockName = authorBlockName.toString(), null, null)
+            )
+        )
 
         singleSinglePostLiveItemData.postValue(singlePostItemsData)
 

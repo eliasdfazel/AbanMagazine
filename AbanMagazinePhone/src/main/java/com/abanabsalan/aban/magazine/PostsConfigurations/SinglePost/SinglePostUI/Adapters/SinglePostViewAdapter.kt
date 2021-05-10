@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 7:56 AM
- * Last modified 2/24/21 7:31 AM
+ * Created by Elias Fazel on 5/10/21, 8:05 AM
+ * Last modified 5/10/21, 6:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,6 +58,14 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
         return when (viewType) {
 
+            PostsDataParameters.PostItemsViewParameters.AuthorBlock -> {
+
+                PostViewAuthorAdapterViewHolder(
+                    LayoutInflater.from(context)
+                        .inflate(R.layout.post_view_content_item_author, viewGroup, false)
+                )
+
+            }
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 PostViewParagraphAdapterViewHolder(
@@ -162,6 +170,13 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
 
         when (singlePostItemsData[position].dataType) {
 
+            PostsDataParameters.PostItemsViewParameters.AuthorBlock -> {
+
+                (viewHolder as PostViewAuthorAdapterViewHolder)
+
+                viewHolder.postAuthorName.text = Html.fromHtml(singlePostItemsData[position].postAuthorBlock?.authorBlockName, Html.FROM_HTML_MODE_COMPACT)
+
+            }
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 (viewHolder as PostViewParagraphAdapterViewHolder)

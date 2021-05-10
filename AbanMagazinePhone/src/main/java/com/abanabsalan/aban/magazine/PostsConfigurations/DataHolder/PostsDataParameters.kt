@@ -1,8 +1,8 @@
  /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 7:56 AM
- * Last modified 2/24/21 7:31 AM
+ * Created by Elias Fazel on 5/10/21, 8:05 AM
+ * Last modified 5/10/21, 6:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -77,6 +77,7 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
         const val PostBlockQuoteTwitter: Int = 7
         const val PostBlockQuoteFacebook: Int = 8
         const val ProductShowcase: Int = 9
+        const val AuthorBlock: Int = 10
     }
 
     object PostItemsBlockQuoteType {
@@ -84,6 +85,14 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder
         const val BlockQuoteTwitter: String = "twitter"
         const val BlockQuoteFacebook: String = "facebook"
     }
+
+     object PostAuthorBlock {
+         const val AuthorBlock: String = "authorBlock"
+         const val AuthorBlockName: String = "authorBlockName"
+         const val AuthorBlockBiography: String = "authorBlockBiography"
+         const val AuthorBlockImage: String = "authorBlockImage"
+         const val AuthorBlockSocialMedia: String = "authorBlockSocialMedia"
+     }
 
 }
 
@@ -105,6 +114,7 @@ data class PostItemTextLink(var linkText: String)
 data class PostItemButton(var linkButton: String, var textButton: String)
 data class PostItemIFrame(var iFrameContent: String)
 data class PostItemBlockQuoteInstagram(var instagramUsername: String, var instagramUserAddress: String, var instagramPostAddress: String, var instagramPostImage: String, var instagramPostTitle: String)
+data class PostAuthorBlock(var authorBlockName: String, var authorBlockImage: String?, var authorBlockBiography: String?)
 
 data class SinglePostItemData (var dataType: Int,
                                var postItemParagraph: PostItemParagraph?,
@@ -114,4 +124,5 @@ data class SinglePostItemData (var dataType: Int,
                                var postItemButton: PostItemButton?,
                                var postItemIFrame: PostItemIFrame?,
                                var postItemBlockQuoteInstagram: PostItemBlockQuoteInstagram?,
-                               var inPostProductShowcaseItemData: InPostProductShowcaseItemData?)
+                               var inPostProductShowcaseItemData: InPostProductShowcaseItemData?,
+                               var postAuthorBlock: PostAuthorBlock?)
