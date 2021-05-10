@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 2/24/21 7:56 AM
- * Last modified 2/24/21 7:05 AM
+ * Created by Elias Fazel on 5/10/21, 4:30 AM
+ * Last modified 5/10/21, 4:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -658,9 +658,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         homePageRemoteConfiguration()
 
         advertisingConfiguration.getInterstitialAd?.let {
-            if (it.isLoaded) {
-                it.show()
-            }
+            it.show(this@HomePage)
         }
 
         if (OverallTheme.LastActivity != null) {

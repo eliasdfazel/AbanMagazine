@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 12/31/20 12:34 PM
- * Last modified 12/31/20 12:21 PM
+ * Created by Elias Fazel on 5/10/21, 4:30 AM
+ * Last modified 5/10/21, 4:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -277,9 +277,7 @@ open class SinglePostView : AppCompatActivity(), GestureListenerInterface, AppBa
         super.onResume()
 
         advertisingConfiguration.getInterstitialAd?.let {
-            if (it.isLoaded) {
-                it.show()
-            }
+            it.show(this@SinglePostView)
         }
 
         postsViewUiBinding.postTopBar.addOnOffsetChangedListener(this@SinglePostView)
