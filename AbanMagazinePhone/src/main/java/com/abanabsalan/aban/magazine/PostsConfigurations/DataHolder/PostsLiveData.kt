@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 5/10/21, 9:11 AM
- * Last modified 5/10/21, 8:24 AM
+ * Created by Elias Fazel on 5/11/21, 3:58 AM
+ * Last modified 5/11/21, 3:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,12 +48,21 @@ class PostsLiveData : ViewModel() {
 
         val postContent: Document = Jsoup.parse(rawPostContent)
 
-        val authorBlockName = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockName).allElements.select("h6")
-        val authorBlockBiography = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockBiography).allElements.select("h6")
-        val authorBlockImage = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockImage).allElements.select("img").attr("src")
+        var authorBlockName = "Aban"
+        var authorBlockBiography = "I Am Aban Absalan 🙂"
+        var authorBlockImage = "https://pbs.twimg.com/profile_images/1266516847869833216/yMysLRJ4_400x400.jpg"
+
+        if (postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlock) != null) {
+
+            authorBlockName = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockName).allElements.select("h6").toString()
+            authorBlockBiography = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockBiography).allElements.select("h6").toString()
+            authorBlockImage = postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlockImage).allElements.select("img").attr("src")
+
+            postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlock).empty()
+
+        }
 
         postContent.select("blockquote").empty()
-        postContent.getElementById(PostsDataParameters.PostAuthorBlock.AuthorBlock).empty()
 
         val allHtmlElement = postContent.allElements
 
@@ -260,7 +269,7 @@ class PostsLiveData : ViewModel() {
                 null,
                 null,
                 null,
-                PostAuthorBlock(authorBlockName = authorBlockName.toString(), authorBlockImage, authorBlockBiography.toString())
+                PostAuthorBlock(authorBlockName = authorBlockName, authorBlockImage, authorBlockBiography)
             )
         )
 
