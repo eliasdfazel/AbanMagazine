@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 5/10/21, 4:30 AM
- * Last modified 5/10/21, 4:22 AM
+ * Created by Elias Fazel on 6/8/21, 9:17 AM
+ * Last modified 6/8/21, 9:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -134,7 +134,9 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
     val firebaseAuth = Firebase.auth
 
-    val applicationDataIndexing: ApplicationDataIndexing = ApplicationDataIndexing()
+    val applicationDataIndexing: ApplicationDataIndexing by lazy {
+        ApplicationDataIndexing(applicationContext)
+    }
 
     val cacheMechanism: CacheMechanism by lazy {
         CacheMechanism(applicationContext)
