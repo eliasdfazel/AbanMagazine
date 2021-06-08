@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/15/20 9:54 AM
- * Last modified 11/15/20 9:54 AM
+ * Created by Elias Fazel on 6/8/21, 8:29 AM
+ * Last modified 6/8/21, 8:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,14 +20,13 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
-import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -82,17 +81,24 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
         recommendedPostsViewHolder.readMoreView.setOnClickListener {
 
-            SinglePostView.show(
+//            SinglePostView.show(
+//                context = context,
+//                featuredImageSharedElement = recommendedPostsViewHolder.postFeaturedImage as AppCompatImageView,
+//                postId = recommendedPostsItemData[position].postId,
+//                postFeaturedImage = recommendedPostsItemData[position].postFeaturedImage,
+//                postTitle = recommendedPostsItemData[position].postTitle,
+//                postContent = recommendedPostsItemData[position].postContent,
+//                postTags = recommendedPostsItemData[position].postTags,
+//                postExcerpt = recommendedPostsItemData[position].postExcerpt,
+//                postLink = recommendedPostsItemData[position].postLink,
+//                relatedPostStringJson = recommendedPostsItemData[position].relatedPostsContent
+//            )
+
+            BuiltInWebView.show(
                 context = context,
-                featuredImageSharedElement = recommendedPostsViewHolder.postFeaturedImage as AppCompatImageView,
-                postId = recommendedPostsItemData[position].postId,
-                postFeaturedImage = recommendedPostsItemData[position].postFeaturedImage,
-                postTitle = recommendedPostsItemData[position].postTitle,
-                postContent = recommendedPostsItemData[position].postContent,
-                postTags = recommendedPostsItemData[position].postTags,
-                postExcerpt = recommendedPostsItemData[position].postExcerpt,
-                postLink = recommendedPostsItemData[position].postLink,
-                relatedPostStringJson = recommendedPostsItemData[position].relatedPostsContent
+                linkToLoad = recommendedPostsItemData[position].postLink,
+                gradientColorOne = context.getColor(R.color.instagramOne),
+                gradientColorTwo = context.getColor(R.color.instagramThree)
             )
 
         }

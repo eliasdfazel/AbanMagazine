@@ -1,8 +1,8 @@
 /*
  * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 5/10/21, 4:30 AM
- * Last modified 5/10/21, 4:30 AM
+ * Created by Elias Fazel on 6/8/21, 8:29 AM
+ * Last modified 6/8/21, 8:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,26 +29,22 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
 
     fun initialize() {
 
-//        if (!BuildConfig.DEBUG) {
+        MobileAds.initialize(appCompatActivity) { initializationStatus -> }
 
-            MobileAds.initialize(appCompatActivity) { initializationStatus -> }
+        interstitialAdsLoadShow()
 
-            interstitialAdsLoadShow()
+        bannerAdsLoadShow()
 
-            bannerAdsLoadShow()
+        val testDeviceIds = listOf(
+            "3E192B3766F6EDE8127A5ADFAA0E7B67",
+            "A06676F37C8588BFF7D434B66274567A",
+            "F54D998BCE077711A17272B899B44798"
+        )
 
-            val testDeviceIds = listOf(
-                "3E192B3766F6EDE8127A5ADFAA0E7B67",
-                "A06676F37C8588BFF7D434B66274567A",
-                "F54D998BCE077711A17272B899B44798"
-            )
-
-            val configuration = RequestConfiguration.Builder()
-                .setTestDeviceIds(testDeviceIds)
-                .build()
-            MobileAds.setRequestConfiguration(configuration)
-
-//        }
+        val configuration = RequestConfiguration.Builder()
+            .setTestDeviceIds(testDeviceIds)
+            .build()
+        MobileAds.setRequestConfiguration(configuration)
 
     }
 

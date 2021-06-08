@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 5:04 AM
+ * Created by Elias Fazel on 6/8/21, 8:29 AM
+ * Last modified 6/8/21, 8:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,15 +15,14 @@ import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView
-import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -149,18 +148,24 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
 
         favoritesPostsViewViewHolder.rootViewItem.setOnClickListener {
 
-            SinglePostView.show(
-                context = context,
-                featuredImageSharedElement = favoritesPostsViewViewHolder.postFeatureImageView as AppCompatImageView,
-                postId = postsItemData[position].postId,
-                postFeaturedImage = postsItemData[position].postFeaturedImage,
-                postTitle = postsItemData[position].postTitle,
-                postContent = postsItemData[position].postContent,
-                postTags = postsItemData[position].postTags,
-                postExcerpt = postsItemData[position].postExcerpt,
-                postLink = postsItemData[position].postLink,
-                relatedPostStringJson = postsItemData[position].relatedPostsContent
+//            SinglePostView.show(
+//                context = context,
+//                featuredImageSharedElement = favoritesPostsViewViewHolder.postFeatureImageView as AppCompatImageView,
+//                postId = postsItemData[position].postId,
+//                postFeaturedImage = postsItemData[position].postFeaturedImage,
+//                postTitle = postsItemData[position].postTitle,
+//                postContent = postsItemData[position].postContent,
+//                postTags = postsItemData[position].postTags,
+//                postExcerpt = postsItemData[position].postExcerpt,
+//                postLink = postsItemData[position].postLink,
+//                relatedPostStringJson = postsItemData[position].relatedPostsContent
+//            )
 
+            BuiltInWebView.show(
+                context = context,
+                linkToLoad = postsItemData[position].postLink,
+                gradientColorOne = context.getColor(R.color.instagramOne),
+                gradientColorTwo = context.getColor(R.color.instagramThree)
             )
 
         }

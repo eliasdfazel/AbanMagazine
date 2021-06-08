@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 5:04 AM
+ * Created by Elias Fazel on 6/8/21, 8:29 AM
+ * Last modified 6/8/21, 8:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,13 +15,13 @@ import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -143,17 +143,24 @@ class RelatedPostsAdapter (private val context: SinglePostView, private val over
 
         relatedPostsViewHolder.rootViewItem.setOnClickListener {
 
-            SinglePostView.show(
+//            SinglePostView.show(
+//                context = context,
+//                featuredImageSharedElement = relatedPostsViewHolder.postFeatureImageView as AppCompatImageView,
+//                postId = relatedPostsItemData[position].postId,
+//                postFeaturedImage = relatedPostsItemData[position].postFeaturedImage,
+//                postTitle = relatedPostsItemData[position].postTitle,
+//                postContent = relatedPostsItemData[position].postContent,
+//                postTags = relatedPostsItemData[position].postTags,
+//                postExcerpt = relatedPostsItemData[position].postExcerpt,
+//                postLink = relatedPostsItemData[position].postLink,
+//                relatedPostStringJson = relatedPostsItemData[position].relatedPostsContent
+//            )
+
+            BuiltInWebView.show(
                 context = context,
-                featuredImageSharedElement = relatedPostsViewHolder.postFeatureImageView as AppCompatImageView,
-                postId = relatedPostsItemData[position].postId,
-                postFeaturedImage = relatedPostsItemData[position].postFeaturedImage,
-                postTitle = relatedPostsItemData[position].postTitle,
-                postContent = relatedPostsItemData[position].postContent,
-                postTags = relatedPostsItemData[position].postTags,
-                postExcerpt = relatedPostsItemData[position].postExcerpt,
-                postLink = relatedPostsItemData[position].postLink,
-                relatedPostStringJson = relatedPostsItemData[position].relatedPostsContent
+                linkToLoad = relatedPostsItemData[position].postLink,
+                gradientColorOne = context.getColor(R.color.instagramOne),
+                gradientColorTwo = context.getColor(R.color.instagramThree)
             )
 
         }

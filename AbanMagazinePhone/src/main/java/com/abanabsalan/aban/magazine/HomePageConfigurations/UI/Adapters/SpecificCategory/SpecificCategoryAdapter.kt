@@ -1,8 +1,8 @@
 /*
- * Copyright © 2020 By Geeks Empire.
+ * Copyright © 2021 By Geeks Empire.
  *
- * Created by Elias Fazel on 11/12/20 6:05 AM
- * Last modified 11/12/20 5:03 AM
+ * Created by Elias Fazel on 6/8/21, 8:29 AM
+ * Last modified 6/8/21, 8:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,14 +15,13 @@ import android.graphics.drawable.LayerDrawable
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
-import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -145,17 +144,24 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
 
         specificCategoryViewHolder.rootViewItem.setOnClickListener {
 
-            SinglePostView.show(
+//            SinglePostView.show(
+//                context = context,
+//                featuredImageSharedElement = specificCategoryViewHolder.postFeatureImageView as AppCompatImageView,
+//                postId = specificCategoryPostsItemData[position].postId,
+//                postFeaturedImage = specificCategoryPostsItemData[position].postFeaturedImage,
+//                postTitle = specificCategoryPostsItemData[position].postTitle,
+//                postContent = specificCategoryPostsItemData[position].postContent,
+//                postTags = specificCategoryPostsItemData[position].postTags,
+//                postExcerpt = specificCategoryPostsItemData[position].postExcerpt,
+//                postLink = specificCategoryPostsItemData[position].postLink,
+//                relatedPostStringJson = specificCategoryPostsItemData[position].relatedPostsContent
+//            )
+
+            BuiltInWebView.show(
                 context = context,
-                featuredImageSharedElement = specificCategoryViewHolder.postFeatureImageView as AppCompatImageView,
-                postId = specificCategoryPostsItemData[position].postId,
-                postFeaturedImage = specificCategoryPostsItemData[position].postFeaturedImage,
-                postTitle = specificCategoryPostsItemData[position].postTitle,
-                postContent = specificCategoryPostsItemData[position].postContent,
-                postTags = specificCategoryPostsItemData[position].postTags,
-                postExcerpt = specificCategoryPostsItemData[position].postExcerpt,
-                postLink = specificCategoryPostsItemData[position].postLink,
-                relatedPostStringJson = specificCategoryPostsItemData[position].relatedPostsContent
+                linkToLoad = specificCategoryPostsItemData[position].postLink,
+                gradientColorOne = context.getColor(R.color.instagramOne),
+                gradientColorTwo = context.getColor(R.color.instagramThree)
             )
 
         }
