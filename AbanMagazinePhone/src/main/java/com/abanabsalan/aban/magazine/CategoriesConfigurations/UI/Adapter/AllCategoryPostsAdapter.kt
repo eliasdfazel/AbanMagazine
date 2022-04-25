@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:31 AM
- * Last modified 4/25/22, 9:31 AM
+ * Created by Elias Fazel on 4/25/22, 10:24 AM
+ * Last modified 4/25/22, 10:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,6 +19,8 @@ import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPost
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
@@ -159,25 +161,36 @@ class AllCategoryPostsAdapter (private val context: AllCategoryPosts, private va
 
         allCategoryPostsViewHolder.rootViewItem.setOnClickListener {
 
-//            SinglePostView.show(
-//                context = context,
-//                featuredImageSharedElement = allCategoryPostsViewHolder.postFeatureImageView as AppCompatImageView,
-//                postId = postsItemData[position].postId,
-//                postFeaturedImage = postsItemData[position].postFeaturedImage,
-//                postTitle = postsItemData[position].postTitle,
-//                postContent = postsItemData[position].postContent,
-//                postTags = postsItemData[position].postTags,
-//                postExcerpt = postsItemData[position].postExcerpt,
-//                postLink = postsItemData[position].postLink,
-//                relatedPostStringJson = postsItemData[position].relatedPostsContent
-//            )
+            Glide.with(context)
+                .asDrawable()
+                .load(postsItemData[position].postFeaturedImage)
+                .apply(requestOptions)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .listener(object : RequestListener<Drawable> {
 
-            BuiltInWebView.show(
-                context = context,
-                linkToLoad = postsItemData[position].postLink,
-                gradientColorOne = context.getColor(R.color.instagramOne),
-                gradientColorTwo = context.getColor(R.color.instagramThree)
-            )
+                    override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                        context.runOnUiThread {
+
+                            BuiltInWebView.show(
+                                context = context,
+                                linkToLoad = postsItemData[position].postLink,
+                                gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                            )
+
+                        }
+
+                        return false
+                    }
+
+                })
+                .submit()
 
         }
 

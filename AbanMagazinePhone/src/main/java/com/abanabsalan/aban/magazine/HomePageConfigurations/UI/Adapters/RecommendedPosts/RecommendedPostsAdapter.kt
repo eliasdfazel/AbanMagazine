@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:40 AM
- * Last modified 4/25/22, 9:40 AM
+ * Created by Elias Fazel on 4/25/22, 10:24 AM
+ * Last modified 4/25/22, 10:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,15 +23,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.abanabsalan.aban.magazine.databinding.HomePageRecommendedItemBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 
 class RecommendedPostsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<RecommendedPostsViewHolder>() {
 
@@ -81,25 +87,36 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
         recommendedPostsViewHolder.readMoreView.setOnClickListener {
 
-//            SinglePostView.show(
-//                context = context,
-//                featuredImageSharedElement = recommendedPostsViewHolder.postFeaturedImage as AppCompatImageView,
-//                postId = recommendedPostsItemData[position].postId,
-//                postFeaturedImage = recommendedPostsItemData[position].postFeaturedImage,
-//                postTitle = recommendedPostsItemData[position].postTitle,
-//                postContent = recommendedPostsItemData[position].postContent,
-//                postTags = recommendedPostsItemData[position].postTags,
-//                postExcerpt = recommendedPostsItemData[position].postExcerpt,
-//                postLink = recommendedPostsItemData[position].postLink,
-//                relatedPostStringJson = recommendedPostsItemData[position].relatedPostsContent
-//            )
+            Glide.with(context)
+                .asDrawable()
+                .load(recommendedPostsItemData[position].postFeaturedImage)
+                .apply(requestOptions)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .listener(object : RequestListener<Drawable> {
 
-            BuiltInWebView.show(
-                context = context,
-                linkToLoad = recommendedPostsItemData[position].postLink,
-                gradientColorOne = context.getColor(R.color.instagramOne),
-                gradientColorTwo = context.getColor(R.color.instagramThree)
-            )
+                    override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                        context.runOnUiThread {
+
+                            BuiltInWebView.show(
+                                context = context,
+                                linkToLoad = recommendedPostsItemData[position].postLink,
+                                gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                            )
+
+                        }
+
+                        return false
+                    }
+
+                })
+                .submit()
 
         }
 

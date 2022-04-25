@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:54 AM
- * Last modified 4/25/22, 9:54 AM
+ * Created by Elias Fazel on 4/25/22, 10:24 AM
+ * Last modified 4/25/22, 10:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractDominantColor
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.extractVibrantColor
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
@@ -151,12 +153,36 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
 
         newestPostsViewHolder.rootViewItem.setOnClickListener {
 
-            BuiltInWebView.show(
-                context = context,
-                linkToLoad = newestPostsItemData[position].postLink,
-                gradientColorOne = context.getColor(R.color.instagramOne),
-                gradientColorTwo = context.getColor(R.color.instagramThree)
-            )
+            Glide.with(context)
+                .asDrawable()
+                .load(newestPostsItemData[position].postFeaturedImage)
+                .apply(requestOptions)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .listener(object : RequestListener<Drawable> {
+
+                    override fun onLoadFailed(glideException: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                        context.runOnUiThread {
+
+                            BuiltInWebView.show(
+                                context = context,
+                                linkToLoad = newestPostsItemData[position].postLink,
+                                gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                            )
+
+                        }
+
+                        return false
+                    }
+
+                })
+                .submit()
 
         }
 
