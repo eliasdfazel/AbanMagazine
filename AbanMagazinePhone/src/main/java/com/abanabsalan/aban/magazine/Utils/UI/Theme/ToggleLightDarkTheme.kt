@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:57 AM
- * Last modified 4/25/22, 9:56 AM
+ * Created by Elias Fazel on 4/25/22, 10:03 AM
+ * Last modified 4/25/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,41 +60,6 @@ fun toggleLightDarkThemeHomePage(homePage: HomePage) {
             homePage.homePageViewBinding.productShowcaseTextView.setTextColor(homePage.getColor(R.color.lighter))
 
             homePage.homePageViewBinding.optionMenus.setAnimation(R.raw.lady_settings_dark)
-
-        }
-    }
-
-}
-
-fun toggleLightDarkThemePostView(singlePostView: SinglePostView) {
-
-    OverallTheme.LastActivity = singlePostView.javaClass.simpleName
-
-    when (singlePostView.overallTheme.checkThemeLightDark()) {
-        ThemeType.ThemeLight -> {
-
-            singlePostView.window.navigationBarColor = singlePostView.getColor(R.color.light)
-
-            singlePostView.postsViewUiBinding.rootView.setBackgroundColor(singlePostView.getColor(R.color.light))
-
-            singlePostView.postsViewUiBinding.postTitle.setTextColor(singlePostView.getColor(R.color.darker))
-
-            singlePostView.postsViewUiBinding.postRecyclerView.setBackgroundColor(singlePostView.getColor(R.color.light))
-
-            singlePostView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(singlePostView.getColor(R.color.light_transparent))
-
-        }
-        ThemeType.ThemeDark -> {
-
-            singlePostView.window.navigationBarColor = singlePostView.getColor(R.color.dark)
-
-            singlePostView.postsViewUiBinding.rootView.setBackgroundColor(singlePostView.getColor(R.color.dark))
-
-            singlePostView.postsViewUiBinding.postTitle.setTextColor(singlePostView.getColor(R.color.lighter))
-
-            singlePostView.postsViewUiBinding.postRecyclerView.setBackgroundColor(singlePostView.getColor(R.color.dark))
-
-            singlePostView.postsViewUiBinding.preferencePopupInclude.preferencesBlurView.setOverlayColor(singlePostView.getColor(R.color.dark_transparent))
 
         }
     }

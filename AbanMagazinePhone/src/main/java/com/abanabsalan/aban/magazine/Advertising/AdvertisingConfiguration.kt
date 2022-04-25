@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:57 AM
- * Last modified 4/25/22, 9:56 AM
+ * Created by Elias Fazel on 4/25/22, 10:03 AM
+ * Last modified 4/25/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -61,15 +61,6 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
                 )
 
                 adUnitId = appCompatActivity.getString(R.string.homePageInterstitial)
-
-            }
-            is SinglePostView -> {
-                Log.d(
-                    this@AdvertisingConfiguration.javaClass.simpleName,
-                    "Post View Requesting Ads"
-                )
-
-                adUnitId = appCompatActivity.getString(R.string.postViewInterstitial)
 
             }
             is FavoritesPostsView -> {
@@ -174,48 +165,6 @@ class AdvertisingConfiguration(private val appCompatActivity: AppCompatActivity)
                     override fun onAdFailedToLoad(loadAdError: LoadAdError) {
 
                         bannerAdViewBottom.loadAd(adRequest)
-
-                    }
-
-                    override fun onAdOpened() {
-
-                    }
-
-                    override fun onAdClicked() {
-
-                    }
-
-                    override fun onAdClosed() {
-
-                    }
-
-                }
-
-            }
-            is SinglePostView -> {
-
-                val bannerAdView = AdView(appCompatActivity)
-
-                bannerAdView.adUnitId = appCompatActivity.getString(R.string.postViewBanner)
-                bannerAdView.adSize = bannerAdsSize((appCompatActivity).postsViewUiBinding.bannerAdView)
-
-                (appCompatActivity).postsViewUiBinding.bannerAdView.addView(bannerAdView)
-
-                (appCompatActivity).postsViewUiBinding.bannerAdView.post {
-                    bannerAdView.loadAd(adRequest)
-                }
-
-                bannerAdView.adListener = object : AdListener() {
-
-                    override fun onAdLoaded() {
-
-                        (appCompatActivity).postsViewUiBinding.bannerAdView.visibility = View.VISIBLE
-
-                    }
-
-                    override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-
-                        bannerAdView.loadAd(adRequest)
 
                     }
 

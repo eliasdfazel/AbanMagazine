@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:57 AM
- * Last modified 4/25/22, 9:56 AM
+ * Created by Elias Fazel on 4/25/22, 10:03 AM
+ * Last modified 4/25/22, 10:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
-import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -29,8 +28,6 @@ import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopup
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
-import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
-import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
@@ -119,9 +116,6 @@ class PopupPreferencesController(
                 is HomePage -> {
                     (context as HomePage).homePageLiveData.toggleTheme.postValue(true)
                 }
-                is SinglePostView -> {
-                    (context as SinglePostView).postsLiveData.toggleTheme.postValue(overallTheme.checkThemeLightDark())
-                }
             }
 
         }
@@ -131,9 +125,6 @@ class PopupPreferencesController(
             when(context) {
                 is HomePage -> {
                     (context as HomePage).hidePopupPreferences()
-                }
-                is SinglePostView -> {
-                    (context as SinglePostView).hidePopupPreferences()
                 }
             }
 
@@ -463,25 +454,21 @@ class PopupPreferencesController(
                     /*
                      * Database Process
                      */
-                    accountName?.let {
-
-                        postId?.let {
-
-                            val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
-
-                            val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
-
-                            firestoreDatabase.document(databasePath).set(favoritedPostData)
-                                .addOnSuccessListener {
-
-                                }.addOnFailureListener {
-                                    it.printStackTrace()
-
-                                }
-
-                        }
-
-                    }
+//                    postId?.let {
+//
+//                        val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
+//
+//                        val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
+//
+//                        firestoreDatabase.document(databasePath).set(favoritedPostData)
+//                            .addOnSuccessListener {
+//
+//                            }.addOnFailureListener {
+//                                it.printStackTrace()
+//
+//                            }
+//
+//                    }
 
                 }
 
@@ -507,33 +494,33 @@ class PopupPreferencesController(
                         /*
                          * Database Process
                          */
-                        val accountName = userInformationIO.getUserAccountName()
-
-                        accountName?.let {
-
-                            postId?.let {
-
-                                val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
-
-                                val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
-
-                                firestoreDatabase.document(databasePath).set(favoritedPostData)
-                                    .addOnSuccessListener {
-
-
-                                    }.addOnFailureListener {
-                                        it.printStackTrace()
-
-
-                                    }
-
-                            }
-
-                        }
+//                        val accountName = userInformationIO.getUserAccountName()
+//
+//                        accountName?.let {
+//
+//                            postId?.let {
+//
+//                                val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
+//
+//                                val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
+//
+//                                firestoreDatabase.document(databasePath).set(favoritedPostData)
+//                                    .addOnSuccessListener {
+//
+//
+//                                    }.addOnFailureListener {
+//                                        it.printStackTrace()
+//
+//
+//                                    }
+//
+//                            }
+//
+//                        }
 
                     } else {
 
-                        userInformation.startSignInProcessSinglePostView(context as SinglePostView)
+
 
                     }
 
@@ -594,17 +581,17 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.shareView.setOnClickListener {
 
-            SharePost(context).invoke(
-                sharePostTitle = Html.fromHtml(
-                    (context as SinglePostView).postTitle ?: context.getString(
-                        R.string.applicationName
-                    ), Html.FROM_HTML_MODE_LEGACY
-                ).toString(),
-                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString(), Html.FROM_HTML_MODE_LEGACY)
-                    .toString(),
-                sharePostLink = (context as SinglePostView).postLink
-                    ?: context.getString(R.string.playStoreLink)
-            )
+//            SharePost(context).invoke(
+//                sharePostTitle = Html.fromHtml(
+//                    (context as SinglePostView).postTitle ?: context.getString(
+//                        R.string.applicationName
+//                    ), Html.FROM_HTML_MODE_LEGACY
+//                ).toString(),
+//                sharePostExcerpt = Html.fromHtml((context as SinglePostView).postExcerpt.toString(), Html.FROM_HTML_MODE_LEGACY)
+//                    .toString(),
+//                sharePostLink = (context as SinglePostView).postLink
+//                    ?: context.getString(R.string.playStoreLink)
+//            )
 
         }
 
