@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:31 AM
- * Last modified 4/25/22, 9:29 AM
+ * Created by Elias Fazel on 4/25/22, 9:40 AM
+ * Last modified 4/25/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,7 +17,6 @@ import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -34,6 +33,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Display.displayX
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
+import com.abanabsalan.aban.magazine.databinding.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -61,64 +61,64 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
             PostsDataParameters.PostItemsViewParameters.AuthorBlock -> {
 
                 PostViewAuthorAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_author, viewGroup, false)
+                    PostViewContentItemAuthorBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostParagraph -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
+                    PostViewContentItemParagraphBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostSubTitle -> {
 
                 PostViewSubTitleAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_sub_title, viewGroup, false)
+                    PostViewContentItemSubTitleBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostImage -> {
 
                 PostViewImageAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_image, viewGroup, false)
+                    PostViewContentItemImageBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostTextLink -> {
 
                 PostViewTextLinkAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_text_link, viewGroup, false)
+                    PostViewContentItemTextLinkBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostButton -> {
 
                 PostViewButtonAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_button, viewGroup, false)
+                    PostViewContentItemButtonBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostIFrame -> {
 
                 PostViewIFrameAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_i_frame, viewGroup, false)
+                    PostViewContentItemIFrameBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
             PostsDataParameters.PostItemsViewParameters.PostBlockQuoteInstagram -> {
 
                 PostViewBlockQuoteInstagramAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_block_quote_instagram, viewGroup, false)
+                    PostViewContentItemBlockQuoteInstagramBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }
@@ -127,15 +127,15 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
                 if (displayX(context) <= DpToInteger(context, 700)) {
 
                     PostViewProductShowcaseAdapterViewHolder(
-                        LayoutInflater.from(context)
-                            .inflate(R.layout.post_view_content_item_showcase_vertical, viewGroup, false)
+                        PostViewContentItemShowcaseVerticalBinding
+                            .inflate(context.layoutInflater, viewGroup, false)
                     )
 
                 } else {
 
                     PostViewProductShowcaseAdapterViewHolder(
-                        LayoutInflater.from(context)
-                            .inflate(R.layout.post_view_content_item_showcase_horizontal, viewGroup, false)
+                        PostViewContentItemShowcaseVerticalBinding
+                            .inflate(context.layoutInflater, viewGroup, false)
                     )
 
                 }
@@ -144,8 +144,8 @@ class SinglePostViewAdapter (private val context: SinglePostView) : RecyclerView
             else -> {
 
                 PostViewParagraphAdapterViewHolder(
-                    LayoutInflater.from(context)
-                        .inflate(R.layout.post_view_content_item_paragraph, viewGroup, false)
+                    PostViewContentItemParagraphBinding
+                        .inflate(context.layoutInflater, viewGroup, false)
                 )
 
             }

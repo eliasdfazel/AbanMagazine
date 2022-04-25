@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:31 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/25/22, 9:40 AM
+ * Last modified 4/25/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,6 @@ package com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.UI.Adap
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.text.Html
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsItemData
@@ -23,6 +22,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
+import com.abanabsalan.aban.magazine.databinding.FavoritesPostsItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -36,7 +36,7 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FavoritesPostsViewViewHolder {
 
-        return FavoritesPostsViewViewHolder(LayoutInflater.from(context).inflate(R.layout.favorites_posts_item, viewGroup, false))
+        return FavoritesPostsViewViewHolder(FavoritesPostsItemBinding.inflate(context.layoutInflater, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

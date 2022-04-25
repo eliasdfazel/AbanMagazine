@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/25/22, 9:40 AM
+ * Last modified 4/25/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,17 +12,16 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.Primary
 
 import android.content.Intent
 import android.text.Html
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesDataParameters
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.DataHolder.CategoriesItemData
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.UI.AllCategoryPosts
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.databinding.HomePagePrimaryCategoriesItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -34,7 +33,7 @@ class PrimaryCategoryAdapter (private val context: HomePage, private val overall
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PrimaryCategoryViewHolder {
 
-        return PrimaryCategoryViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_primary_categories_item, viewGroup, false))
+        return PrimaryCategoryViewHolder(HomePagePrimaryCategoriesItemBinding.inflate(context.layoutInflater, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

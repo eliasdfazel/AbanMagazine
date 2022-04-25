@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/25/22, 9:40 AM
+ * Last modified 4/25/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,6 @@ package com.abanabsalan.aban.magazine.HomePageConfigurations.UI.Adapters.NewestP
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.text.Html
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
@@ -22,6 +21,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
+import com.abanabsalan.aban.magazine.databinding.HomePageNewestPostsItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -36,7 +36,7 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): NewestPostsViewHolder {
 
-        return NewestPostsViewHolder(LayoutInflater.from(context).inflate(R.layout.home_page_newest_posts_item, viewGroup, false))
+        return NewestPostsViewHolder(HomePageNewestPostsItemBinding.inflate(context.layoutInflater, viewGroup, false))
     }
 
     override fun getItemCount(): Int {

@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:31 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/25/22, 9:40 AM
+ * Last modified 4/25/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.text.Html
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +24,7 @@ import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToInteger
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.databinding.OnlineStoreAllProductsItemsBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -36,7 +36,7 @@ class AllProductsAdapter (private val context: OnlineStore, private val overallT
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): AllProductsViewHolder {
 
-        return AllProductsViewHolder(LayoutInflater.from(context).inflate(R.layout.online_store_all_products_items, viewGroup, false))
+        return AllProductsViewHolder(OnlineStoreAllProductsItemsBinding.inflate(context.layoutInflater, viewGroup, false))
     }
 
     override fun getItemCount(): Int {
