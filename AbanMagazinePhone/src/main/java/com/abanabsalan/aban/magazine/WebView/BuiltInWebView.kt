@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/25/22, 9:47 AM
+ * Last modified 4/25/22, 9:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,7 +27,6 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.databinding.BrowserViewBinding
-import java.io.File
 
 class BuiltInWebView : AppCompatActivity() {
 
@@ -83,7 +82,15 @@ class BuiltInWebView : AppCompatActivity() {
         val dominantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color))
         val vibrantColor = intent.getIntExtra("GradientColorTwo", getColor(R.color.default_color_game))
 
-        window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, arrayOf(vibrantColor, dominantColor).toIntArray()))
+        window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.TL_BR,
+            arrayOf(
+                vibrantColor,
+                dominantColor,
+                dominantColor,
+                vibrantColor,
+                vibrantColor,
+                dominantColor
+            ).toIntArray()))
 
         val linkToLoad = intent.getStringExtra(Intent.EXTRA_TEXT)
 
@@ -106,8 +113,6 @@ class BuiltInWebView : AppCompatActivity() {
             browserViewBinding.webView.setInitialScale(0)
 
             browserViewBinding.webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-            browserViewBinding.webView.settings.setAppCacheEnabled(true)
-            browserViewBinding.webView.settings.setAppCachePath(getFileStreamPath("").path + "${File.separator}cache${File.separator}")
 
             browserViewBinding.webView.webViewClient = BuiltInWebViewClient()
             browserViewBinding.webView.webChromeClient = BuiltInChromeWebViewClient()
