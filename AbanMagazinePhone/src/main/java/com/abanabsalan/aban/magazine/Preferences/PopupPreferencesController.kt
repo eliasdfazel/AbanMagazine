@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/25/22, 9:31 AM
+ * Last modified 4/25/22, 9:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,17 +25,14 @@ import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
-import com.abanabsalan.aban.magazine.EntryConfiguration
 import com.abanabsalan.aban.magazine.HomePageConfigurations.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.HomePageConfigurations.UI.HomePage
-import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteInterface
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Utils.FavoriteIt
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView
 import com.abanabsalan.aban.magazine.PostsConfigurations.Utils.SharePost
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.BlogContent.LanguageUtils
 import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationReviewProcess
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
@@ -153,8 +150,6 @@ class PopupPreferencesController(
         signInProcess()
 
         socialMediaActionHomePage()
-
-        languageSwitchActionHomePage()
 
     }
 
@@ -356,60 +351,6 @@ class PopupPreferencesController(
             context.startActivity(shareIntent)
 
             true
-        }
-
-    }
-
-    private fun languageSwitchActionHomePage() {
-
-//        preferencesPopupUiViewBinding.languageSwitch.visibility = View.VISIBLE
-
-        val languageUtils = LanguageUtils()
-
-        when (languageUtils.selectedLanguage(context)) {
-            PostsDataParameters.Language.Persian -> {
-
-                preferencesPopupUiViewBinding.languageSwitch.setImageDrawable(context.getDrawable(R.drawable.persian))
-
-            }
-            PostsDataParameters.Language.English -> {
-
-                preferencesPopupUiViewBinding.languageSwitch.setAnimation(R.raw.english)
-                preferencesPopupUiViewBinding.languageSwitch.playAnimation()
-
-            }
-        }
-
-        preferencesPopupUiViewBinding.languageSwitch.setOnClickListener {
-
-            when (languageUtils.selectedLanguage(context)) {
-                PostsDataParameters.Language.Persian -> {
-
-                    languageUtils.saveSelectedLanguage(context, PostsDataParameters.Language.English)
-
-                    preferencesPopupUiViewBinding.languageSwitch.setAnimation(R.raw.english)
-                    preferencesPopupUiViewBinding.languageSwitch.playAnimation()
-
-                }
-                PostsDataParameters.Language.English -> {
-
-                    languageUtils.saveSelectedLanguage(context, PostsDataParameters.Language.Persian)
-
-                    preferencesPopupUiViewBinding.languageSwitch.setImageDrawable(context.getDrawable(R.drawable.persian))
-
-                }
-            }
-
-            Handler(Looper.getMainLooper()).postDelayed({
-
-                context.startActivity(Intent(context, EntryConfiguration::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                })
-
-                context.finish()
-
-            }, 3333)
-
         }
 
     }
