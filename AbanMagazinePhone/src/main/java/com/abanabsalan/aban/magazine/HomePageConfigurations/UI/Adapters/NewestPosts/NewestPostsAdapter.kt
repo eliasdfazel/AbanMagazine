@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:40 AM
- * Last modified 4/25/22, 9:40 AM
+ * Created by Elias Fazel on 4/25/22, 9:54 AM
+ * Last modified 4/25/22, 9:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -150,19 +150,6 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
         )
 
         newestPostsViewHolder.rootViewItem.setOnClickListener {
-
-//            SinglePostView.show(
-//                context = context,
-//                featuredImageSharedElement = newestPostsViewHolder.postFeatureImageView as AppCompatImageView,
-//                postId = newestPostsItemData[position].postId,
-//                postFeaturedImage = newestPostsItemData[position].postFeaturedImage,
-//                postTitle = newestPostsItemData[position].postTitle,
-//                postContent = newestPostsItemData[position].postContent,
-//                postTags = newestPostsItemData[position].postTags,
-//                postExcerpt = newestPostsItemData[position].postExcerpt,
-//                postLink = newestPostsItemData[position].postLink,
-//                relatedPostStringJson = newestPostsItemData[position].relatedPostsContent
-//            )
 
             BuiltInWebView.show(
                 context = context,
