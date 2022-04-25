@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 4/25/22, 5:47 AM
+ * Created by Elias Fazel on 4/25/22, 6:01 AM
+ * Last modified 4/25/22, 6:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -116,6 +116,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
 
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
+
+    implementation 'com.google.firebase:firebase-ads:20.1.0'
 
 
     implementation 'com.google.android.play:core-ktx:1.8.1'
