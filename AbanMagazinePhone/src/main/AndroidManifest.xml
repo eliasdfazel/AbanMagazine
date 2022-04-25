@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2021 By Geeks Empire.
+  ~ Copyright © 2022 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 2/24/21 9:24 AM
-  ~ Last modified 2/24/21 8:18 AM
+  ~ Created by Elias Fazel on 4/25/22, 5:35 AM
+  ~ Last modified 4/25/22, 5:34 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -61,6 +61,7 @@
             android:value="@string/adMobAppId"/>
 
         <activity
+            android:exported="true"
             android:name="com.abanabsalan.aban.magazine.EntryConfiguration"
             android:theme="@style/GeeksEmpire.Material">
             <intent-filter>
@@ -71,6 +72,7 @@
         </activity>
 
         <activity
+            android:exported="false"
             android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -91,6 +93,7 @@
             android:name=".SearchConfigurations.UI.SearchResults" />
 
         <activity
+            android:exported="true"
             android:label="@string/searchRemoteText"
             android:name=".SearchConfigurations.RemoteQuery.UI.SearchRemoteQuery"
             android:theme="@style/GeeksEmpire.Material.RemoteSearch">
@@ -104,16 +107,7 @@
         </activity>
 
         <activity
-            android:label="@string/applicationName"
-            android:icon="@mipmap/ic_launcher"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsPictureInPicture="true"
-            android:resizeableActivity="true"
-            android:theme="@style/GeeksEmpire.Material.PostView"
-            android:screenOrientation="sensorPortrait"
-            android:name="com.abanabsalan.aban.magazine.PostsConfigurations.SinglePost.SinglePostUI.SinglePostView"/>
-
-        <activity
+            android:exported="false"
             android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -121,9 +115,10 @@
             android:resizeableActivity="true"
             android:theme="@style/GeeksEmpire.Material.FavoritesPostView"
             android:screenOrientation="sensorPortrait"
-            android:name=".PostsConfigurations.FavoritedPosts.UI.FavoritesPostsView"/>
+            android:name=".Favorite.FavoritesPostsView"/>
 
         <activity
+            android:exported="true"
             android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -140,17 +135,6 @@
         </activity>
 
         <activity
-            android:label="@string/applicationName"
-            android:icon="@mipmap/ic_launcher"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsPictureInPicture="true"
-            android:resizeableActivity="true"
-            android:screenOrientation="sensorPortrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:theme="@style/GeeksEmpire.Material.Storefront"
-            android:name=".ProductShowcaseConfigurations.UI.OnlineStore"/>
-
-        <activity
             android:exported="false"
             android:label="@string/applicationName"
             android:icon="@mipmap/ic_launcher"
@@ -160,6 +144,7 @@
             android:name=".WebView.BuiltInWebView" />
 
         <activity
+            android:exported="false"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/GeeksEmpire.Material.Preferences"
@@ -167,6 +152,7 @@
             android:name=".Preferences.PreferencesController" />
 
         <activity
+            android:exported="true"
             android:noHistory="true"
             android:theme="@style/GeeksEmpire.Material.Mediate"
             android:screenOrientation="sensorPortrait"
@@ -234,6 +220,7 @@
         </activity>
 
         <activity
+            android:exported="true"
             android:noHistory="true"
             android:theme="@style/GeeksEmpire.Material.Mediate"
             android:screenOrientation="sensorPortrait"
