@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2021 By Geeks Empire.
+  ~ Copyright © 2022 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 3/11/21 12:08 PM
-  ~ Last modified 3/11/21 12:07 PM
+  ~ Created by Elias Fazel on 4/25/22, 10:06 AM
+  ~ Last modified 4/25/22, 10:06 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -370,7 +370,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoritedPostsView"
-            android:layout_width="113dp"
+            android:layout_width="93dp"
             android:layout_height="0dp"
             android:layout_marginBottom="11dp"
             android:layout_marginStart="11dp"
@@ -386,8 +386,8 @@
         <!-- Index View -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/indexInvocation"
-            android:layout_width="113dp"
-            android:layout_height="81dp"
+            android:layout_width="93dp"
+            android:layout_height="0dp"
             android:layout_marginVertical="7dp"
             android:layout_marginEnd="11dp"
             android:scaleType="fitCenter"
