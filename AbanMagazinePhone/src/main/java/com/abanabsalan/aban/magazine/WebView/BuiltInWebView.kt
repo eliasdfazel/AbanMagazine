@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:47 AM
- * Last modified 4/25/22, 9:47 AM
+ * Created by Elias Fazel on 4/25/22, 10:17 AM
+ * Last modified 4/25/22, 10:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,8 +22,6 @@ import android.view.View
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
 import com.abanabsalan.aban.magazine.R
-import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
-import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.databinding.BrowserViewBinding
@@ -63,21 +61,15 @@ class BuiltInWebView : AppCompatActivity() {
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeDark -> {
 
-                window.navigationBarColor = getColor(R.color.dark)
-
                 browserViewBinding.webView.setBackgroundColor(getColor(R.color.dark))
 
             }
             ThemeType.ThemeLight -> {
 
-                window.navigationBarColor = getColor(R.color.light)
-
                 browserViewBinding.webView.setBackgroundColor(getColor(R.color.light))
 
             }
         }
-
-        browserViewBinding.root.setPadding(0, statusBarHeight(applicationContext) , 0, navigationBarHeight(applicationContext))
 
         val dominantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color))
         val vibrantColor = intent.getIntExtra("GradientColorTwo", getColor(R.color.default_color_game))
