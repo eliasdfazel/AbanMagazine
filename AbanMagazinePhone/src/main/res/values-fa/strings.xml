@@ -1,68 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright © 2021 By Geeks Empire.
-  ~
-  ~ Created by Elias Fazel on 2/24/21 9:24 AM
-  ~ Last modified 2/24/21 8:16 AM
-  ~
-  ~ Licensed Under MIT License.
-  ~ https://opensource.org/licenses/MIT
-  -->
-
-<resources>
-
-    <string name="applicationName">آبان</string>
-
-    <string name="changeLanguageText">تنظیمات</string>
-    <string name="signupText">ثبت نام</string>
-    <string name="rateText">امتیاز پنج ستاره بدهید</string>
-    <string name="shareText">برنامه ما را با دوستان خود به اشتراک بگذارید</string>
-
-    <string name="rateFiveStars">لطفا امتیاز ۵ ستاره بدهید با سپاس ✨✨✨✨✨</string>
-
-    <string name="readMore">بیشتر بخوانید ➡</string>
-
-    <string name="searchText">جستجو</string>
-    <string name="searchRemoteText">جستجو در مد و استایل</string>
-    <string name="typeToSearch">برای جستجو بنویسید…</string>
-    <string name="onlineStoreText">فروشگاه آنلاین</string>
-    <string name="searchError">⚠ اشکال در شبکه</string>
-
-    <string name="categoriesText">دسته ها</string>
-    <string name="featuredPostsText">پست های ویژه</string>
-    <string name="newestPostsText">جدیدترین ها</string>
-    <string name="forYouPostsText">پیشنهاد برای شما</string>
-    <string name="relatedPosts">مطالب مرتبط</string>
-    <string name="instagramStoriesText">اینستاگرام هایلایت ستوری</string>
-
-    <string name="productsShowcaseText">محصولات دستچین و منتخب آبان 💟</string>
-    <string name="purchaseText">مشاهده محصول بروی دیچی کالا</string>
-    <string name="purchaseTextTwoLines">See Details\nOn Amazon</string>
-
-    <string name="noMoreContent">مطلب دیگری یافت نشد</string>
-    <string name="turnOnText">روشن کردن</string>
-    <string name="grantPermission">اجرا</string>
-
-    <string name="clickHere">
-        <![CDATA[
-            اینجا کلیک کنید
-            <br/>
-            👇
-        ]]>
-    </string>
-
-    <string name="showFullScreen">نمایش تمام صفحه</string>
-
-    <string name="permissionMessage">بدون مجوزها برنامه با مشکل روبرو خواهد شد</string>
-    <string name="noInternetConnectionText">" ⚠ دسترسی به اینترنت مقدور نیست "</string>
-
-    <string name="inAppUpdateDescription">اطلاعات برای بروزرسانی آمده است</string>
-    <string name="inAppUpdateAction">
-        <![CDATA[
-            کامل کنید!
-        ]]>
-    </string>
-
-    <string name="associateText">As an Amazon Associate I Earn from Qualifying Purchases.</string>
-
-</resources>
