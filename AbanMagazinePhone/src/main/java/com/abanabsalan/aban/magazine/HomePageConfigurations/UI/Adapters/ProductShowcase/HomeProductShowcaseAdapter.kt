@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 9:40 AM
- * Last modified 4/25/22, 9:40 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -97,7 +97,7 @@ class HomeProductShowcaseAdapter (private val context: HomePage, private val ove
 
         homeProductShowcaseViewHolder.productPurchaseView.setOnClickListener {
 
-            BuiltInWebView.show(
+            BuiltInWebView.showLink(
                 context = context,
                 linkToLoad = productShowcaseItemData[position].productLink,
                 gradientColorOne = context.getColor(R.color.default_color_dark),

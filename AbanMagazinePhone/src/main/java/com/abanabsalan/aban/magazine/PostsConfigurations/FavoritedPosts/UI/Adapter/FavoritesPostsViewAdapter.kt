@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 10:24 AM
- * Last modified 4/25/22, 10:23 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -170,11 +170,19 @@ class FavoritesPostsViewAdapter (private val context: FavoritesPostsView, privat
 
                         context.runOnUiThread {
 
-                            BuiltInWebView.show(
+                            BuiltInWebView.showPost(
                                 context = context,
-                                linkToLoad = postsItemData[position].postLink,
+                                postId = postsItemData[position].postId,
+                                postFeaturedImage = postsItemData[position].postFeaturedImage,
+                                postTitle = postsItemData[position].postTitle,
+                                postContent = postsItemData[position].postContent,
+                                postTags = postsItemData[position].postTags,
+                                postExcerpt = postsItemData[position].postExcerpt,
+                                postLink = postsItemData[position].postLink,
+                                relatedPostStringJson = postsItemData[position].relatedPostsContent,
                                 gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
-                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                linkToLoad = postsItemData[position].postLink,
                             )
 
                         }

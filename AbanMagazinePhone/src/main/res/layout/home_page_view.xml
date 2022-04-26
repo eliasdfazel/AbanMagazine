@@ -2,8 +2,8 @@
 <!--
   ~ Copyright © 2022 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 4/25/22, 10:06 AM
-  ~ Last modified 4/25/22, 10:06 AM
+  ~ Created by Elias Fazel on 4/26/22, 7:31 AM
+  ~ Last modified 4/26/22, 7:09 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -294,6 +294,7 @@
             android:gravity="center"
             android:textAllCaps="false"
             android:contentDescription="@string/onlineStoreText"
+            android:visibility="invisible"
 
             apps:lottie_rawRes="@raw/online_store_animation"
             apps:lottie_repeatMode="restart"
@@ -370,12 +371,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoritedPostsView"
-            android:layout_width="93dp"
+            android:layout_width="73dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="11dp"
-            android:layout_marginStart="11dp"
-            android:padding="11dp"
-            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="19dp"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
             android:src="@drawable/favorite_it_icon"
             android:visibility="visible"
 
@@ -386,10 +386,10 @@
         <!-- Index View -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/indexInvocation"
-            android:layout_width="93dp"
+            android:layout_width="73dp"
             android:layout_height="0dp"
-            android:layout_marginVertical="7dp"
-            android:layout_marginEnd="11dp"
+            android:layout_marginHorizontal="11dp"
+            android:padding="15dp"
             android:scaleType="fitCenter"
             android:src="@drawable/index_foreground"
             android:visibility="visible"

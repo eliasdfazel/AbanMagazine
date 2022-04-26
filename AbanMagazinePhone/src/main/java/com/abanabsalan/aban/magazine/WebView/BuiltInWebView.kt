@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 10:17 AM
- * Last modified 4/25/22, 10:17 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
+import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.R
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
@@ -32,19 +33,72 @@ class BuiltInWebView : AppCompatActivity() {
         OverallTheme(applicationContext)
     }
 
+    var postId: String? = null
+    var featureImageLink: String? = null
+    var postTitle: String? = null
+    var postExcerpt: String? = null
+    var postLink: String? = null
+    var rawPostContent: String? = null
+    var relatedPostContent: String? = null
+
+    val favoritedPostData: HashMap<String, Any?> = HashMap<String, Any?>()
+
     private lateinit var browserViewBinding: BrowserViewBinding
 
     companion object {
 
-        fun show(context: Context,
+        fun showLink(context: Context,
                  linkToLoad: String,
                  gradientColorOne: Int?,
                  gradientColorTwo: Int?) {
 
             Intent(context, BuiltInWebView::class.java).apply {
+
                 putExtra(Intent.EXTRA_TEXT, linkToLoad)
+
                 putExtra("GradientColorOne", gradientColorOne)
                 putExtra("GradientColorTwo", gradientColorTwo)
+
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.slide_in_right, R.anim.fade_out).toBundle())
+            }
+
+        }
+
+        fun showPost(context: Context,
+                 linkToLoad: String,
+                 gradientColorOne: Int?,
+                 gradientColorTwo: Int?,
+                 postId: String,
+                 postFeaturedImage: String,
+                 postTitle: String,
+                 postContent: String,
+                 postTags: String,
+                 postExcerpt: String,
+                 postLink: String,
+                 relatedPostStringJson: String?) {
+
+            Intent(context, BuiltInWebView::class.java).apply {
+
+                putExtra(Intent.EXTRA_TEXT, linkToLoad)
+
+                putExtra("GradientColorOne", gradientColorOne)
+                putExtra("GradientColorTwo", gradientColorTwo)
+
+                putExtra(PostsDataParameters.PostParameters.PostId, postId)
+
+                putExtra(PostsDataParameters.PostParameters.PostFeaturedImage, postFeaturedImage)
+
+                putExtra(PostsDataParameters.PostParameters.PostTitle, postTitle)
+                putExtra(PostsDataParameters.PostParameters.PostContent, postContent)
+
+                putExtra(PostsDataParameters.PostParameters.PostTags, postTags)
+
+                putExtra(PostsDataParameters.PostParameters.PostExcerpt, postExcerpt)
+                putExtra(PostsDataParameters.PostParameters.PostLink, postLink)
+
+                putExtra(PostsDataParameters.PostParameters.RelatedPosts, relatedPostStringJson)
+
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(this@apply, ActivityOptions.makeCustomAnimation(context, R.anim.slide_in_right, R.anim.fade_out).toBundle())
             }
@@ -57,6 +111,37 @@ class BuiltInWebView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         browserViewBinding = BrowserViewBinding.inflate(layoutInflater)
         setContentView(browserViewBinding.root)
+
+        if (intent.hasExtra(PostsDataParameters.PostParameters.PostId) &&
+            intent.hasExtra(PostsDataParameters.PostParameters.PostFeaturedImage) &&
+            intent.hasExtra(PostsDataParameters.PostParameters.PostTitle) &&
+            intent.hasExtra(PostsDataParameters.PostParameters.PostExcerpt) &&
+            intent.hasExtra(PostsDataParameters.PostParameters.PostLink) &&
+            intent.hasExtra(PostsDataParameters.PostParameters.PostContent) &&
+            intent.hasExtra(PostsDataParameters.PostParameters.RelatedPosts)) {
+
+            postId = intent.getStringExtra(PostsDataParameters.PostParameters.PostId)
+            favoritedPostData[PostsDataParameters.PostParameters.PostId] = postId
+
+            featureImageLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostFeaturedImage)
+            favoritedPostData[PostsDataParameters.PostParameters.PostFeaturedImage] = featureImageLink
+
+            postTitle = intent.getStringExtra(PostsDataParameters.PostParameters.PostTitle)
+            favoritedPostData[PostsDataParameters.PostParameters.PostTitle] = postTitle
+
+            postExcerpt = intent.getStringExtra(PostsDataParameters.PostParameters.PostExcerpt)
+            favoritedPostData[PostsDataParameters.PostParameters.PostExcerpt] = postExcerpt
+
+            postLink = intent.getStringExtra(PostsDataParameters.PostParameters.PostLink)
+            favoritedPostData[PostsDataParameters.PostParameters.PostLink] = postLink
+
+            rawPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.PostContent)
+            favoritedPostData[PostsDataParameters.PostParameters.PostContent] = rawPostContent
+
+            relatedPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.RelatedPosts)
+            favoritedPostData[PostsDataParameters.PostParameters.RelatedPosts] = relatedPostContent
+
+        }
 
         when (overallTheme.checkThemeLightDark()) {
             ThemeType.ThemeDark -> {

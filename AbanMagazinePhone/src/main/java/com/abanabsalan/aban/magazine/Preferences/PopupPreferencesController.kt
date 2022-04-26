@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 10:03 AM
- * Last modified 4/25/22, 10:03 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,7 @@ import com.abanabsalan.aban.magazine.Utils.InApplicationReview.InApplicationRevi
 import com.abanabsalan.aban.magazine.Utils.UI.Display.navigationBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.BuiltInWebView
 import com.abanabsalan.aban.magazine.databinding.PreferencesPopupUiViewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -112,7 +113,7 @@ class PopupPreferencesController(
 
             }
 
-            when(context) {
+            when (context) {
                 is HomePage -> {
                     (context as HomePage).homePageLiveData.toggleTheme.postValue(true)
                 }
@@ -122,7 +123,7 @@ class PopupPreferencesController(
 
         preferencesPopupUiViewBinding.root.setOnClickListener {
 
-            when(context) {
+            when (context) {
                 is HomePage -> {
                     (context as HomePage).hidePopupPreferences()
                 }
@@ -157,12 +158,23 @@ class PopupPreferencesController(
                     .transform(CenterCrop(), CircleCrop())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .listener(object : RequestListener<Drawable> {
-                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean
+                        ): Boolean {
 
                             return false
                         }
 
-                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
 
                             context.runOnUiThread {
 
@@ -185,7 +197,6 @@ class PopupPreferencesController(
             if ((context as HomePage).userInformationIO.userSignedIn()) {
 
 
-
             } else {
 
                 val userInformation = UserInformation(object : UserSignIn {
@@ -197,7 +208,6 @@ class PopupPreferencesController(
                     }
 
                     override fun signInDismissed() {
-
 
 
                     }
@@ -214,9 +224,12 @@ class PopupPreferencesController(
 
     private fun socialMediaActionHomePage() {
 
-        val associateInformationLayoutParams = preferencesPopupUiViewBinding.associateInformationView.layoutParams as ConstraintLayout.LayoutParams
-        associateInformationLayoutParams.bottomMargin = associateInformationLayoutParams.bottomMargin + navigationBarHeight(context)
-        preferencesPopupUiViewBinding.associateInformationView.layoutParams = associateInformationLayoutParams
+        val associateInformationLayoutParams =
+            preferencesPopupUiViewBinding.associateInformationView.layoutParams as ConstraintLayout.LayoutParams
+        associateInformationLayoutParams.bottomMargin =
+            associateInformationLayoutParams.bottomMargin + navigationBarHeight(context)
+        preferencesPopupUiViewBinding.associateInformationView.layoutParams =
+            associateInformationLayoutParams
 
         preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.rate_icon))
         preferencesPopupUiViewBinding.shareView.setImageDrawable(context.getDrawable(R.drawable.share_icon))
@@ -441,7 +454,8 @@ class PopupPreferencesController(
 
         val userInformationIO = UserInformationIO(context)
 
-        val firestoreDatabase = (context.application as AbanMagazinePhoneApplication).firestoreDatabase
+        val firestoreDatabase =
+            (context.application as AbanMagazinePhoneApplication).firestoreDatabase
 
         preferencesPopupUiViewBinding.rateFavoriteView.setOnClickListener {
 
@@ -454,35 +468,39 @@ class PopupPreferencesController(
                     /*
                      * Database Process
                      */
-//                    postId?.let {
-//
-//                        val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
-//
-//                        val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
-//
-//                        firestoreDatabase.document(databasePath).set(favoritedPostData)
-//                            .addOnSuccessListener {
-//
-//                            }.addOnFailureListener {
-//                                it.printStackTrace()
-//
-//                            }
-//
-//                    }
+                    postId?.let {
+
+                        val favoritedPostData: HashMap<String, Any?> =
+                            (context as BuiltInWebView).favoritedPostData
+
+                        val databasePath =
+                            (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(
+                                accountName,
+                                postId
+                            )
+
+                        firestoreDatabase.document(databasePath).set(favoritedPostData)
+                            .addOnSuccessListener {
+
+                            }.addOnFailureListener {
+                                it.printStackTrace()
+
+                            }
+
+                    }
 
                 }
 
                 override fun signInDismissed() {
 
 
-
                 }
 
             })
 
-            favoriteIt.favoriteInterface =  object : FavoriteInterface {
+            favoriteIt.favoriteInterface = object : FavoriteInterface {
 
-                override fun favoritedIt() : Job {
+                override fun favoritedIt(): Job {
                     Log.d(FavoriteIt.PreferenceName, "${postId} Favorited")
 
                     preferencesPopupUiViewBinding.rateFavoriteView.setAnimation(R.raw.favorite_it_animation)
@@ -494,32 +512,36 @@ class PopupPreferencesController(
                         /*
                          * Database Process
                          */
-//                        val accountName = userInformationIO.getUserAccountName()
-//
-//                        accountName?.let {
-//
-//                            postId?.let {
-//
-//                                val favoritedPostData: HashMap<String, Any?> = (context as SinglePostView).favoritedPostData
-//
-//                                val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
-//
-//                                firestoreDatabase.document(databasePath).set(favoritedPostData)
-//                                    .addOnSuccessListener {
-//
-//
-//                                    }.addOnFailureListener {
-//                                        it.printStackTrace()
-//
-//
-//                                    }
-//
-//                            }
-//
-//                        }
+                        val accountName = userInformationIO.getUserAccountName()
+
+                        accountName?.let {
+
+                            postId?.let {
+
+                                val favoritedPostData: HashMap<String, Any?> =
+                                    (context as BuiltInWebView).favoritedPostData
+
+                                val databasePath =
+                                    (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(
+                                        accountName,
+                                        postId
+                                    )
+
+                                firestoreDatabase.document(databasePath).set(favoritedPostData)
+                                    .addOnSuccessListener {
+
+
+                                    }.addOnFailureListener {
+                                        it.printStackTrace()
+
+
+                                    }
+
+                            }
+
+                        }
 
                     } else {
-
 
 
                     }
@@ -527,10 +549,14 @@ class PopupPreferencesController(
                     return super.favoritedIt()
                 }
 
-                override fun unfavoritedIt() : Job {
+                override fun unfavoritedIt(): Job {
                     Log.d(FavoriteIt.PreferenceName, "${postId} Unfavorited")
 
-                    preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(context.getDrawable(R.drawable.unfavorite_it_icon))
+                    preferencesPopupUiViewBinding.rateFavoriteView.setImageDrawable(
+                        context.getDrawable(
+                            R.drawable.unfavorite_it_icon
+                        )
+                    )
 
                     /*
                     * Database Process
@@ -541,7 +567,11 @@ class PopupPreferencesController(
 
                         postId?.let {
 
-                            val databasePath = (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(accountName, postId)
+                            val databasePath =
+                                (context.application as AbanMagazinePhoneApplication).firestoreConfiguration.favoritedPostDatabasePath(
+                                    accountName,
+                                    postId
+                                )
 
                             firestoreDatabase.document(databasePath).delete()
                                 .addOnSuccessListener {

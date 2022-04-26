@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/26/22, 6:03 AM
- * Last modified 4/26/22, 6:03 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -282,9 +282,9 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.featuredPostsTextView.visibility = View.VISIBLE
 
-                    if (specificCategoryAdapter.specificCategoryPostsItemData.isEmpty()) {
+                    if (specificCategoryAdapter.postsItemData.isEmpty()) {
 
-                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(featuredPostsData)
+                        specificCategoryAdapter.postsItemData.addAll(featuredPostsData)
 
                         homePageViewBinding.featuredPostsRecyclerView.adapter = specificCategoryAdapter
 
@@ -319,11 +319,11 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     } else {
 
-                        val previousDataCount: Int = specificCategoryAdapter.specificCategoryPostsItemData.size
+                        val previousDataCount: Int = specificCategoryAdapter.postsItemData.size
 
-                        specificCategoryAdapter.specificCategoryPostsItemData.addAll(featuredPostsData)
+                        specificCategoryAdapter.postsItemData.addAll(featuredPostsData)
 
-                        specificCategoryAdapter.notifyItemRangeInserted(previousDataCount, (specificCategoryAdapter.specificCategoryPostsItemData.size - 1))
+                        specificCategoryAdapter.notifyItemRangeInserted(previousDataCount, (specificCategoryAdapter.postsItemData.size - 1))
 
                         homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
@@ -334,7 +334,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                                 it.start()
 
                                 featuredPostsSlider.initialSliderJob = it
-                                featuredPostsSlider.initialSliderRange = IntRange(0, specificCategoryAdapter.specificCategoryPostsItemData.size)
+                                featuredPostsSlider.initialSliderRange = IntRange(0, specificCategoryAdapter.postsItemData.size)
 
                             }
 
@@ -342,7 +342,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 } else {
 
-                    if (specificCategoryAdapter.specificCategoryPostsItemData.isNullOrEmpty()) {
+                    if (specificCategoryAdapter.postsItemData.isNullOrEmpty()) {
 
                         homePageViewBinding.featuredPostsTextView.visibility = View.GONE
                         homePageViewBinding.featuredPostsRecyclerView.visibility = View.GONE
@@ -370,8 +370,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                     homePageViewBinding.newestPostsTextView.visibility = View.VISIBLE
 
-                    newestPostsAdapter.newestPostsItemData.clear()
-                    newestPostsAdapter.newestPostsItemData.addAll(it)
+                    newestPostsAdapter.postsItemData.clear()
+                    newestPostsAdapter.postsItemData.addAll(it)
 
                     homePageViewBinding.newestPostsRecyclerView.adapter = newestPostsAdapter
 
@@ -491,8 +491,8 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                     homePageViewBinding.forYouPostsTextView.visibility = View.VISIBLE
                     homePageViewBinding.recommendedPostsRecyclerView.visibility = View.VISIBLE
 
-                    recommendedPostsAdapter.recommendedPostsItemData.clear()
-                    recommendedPostsAdapter.recommendedPostsItemData.addAll(it)
+                    recommendedPostsAdapter.postsItemData.clear()
+                    recommendedPostsAdapter.postsItemData.addAll(it)
 
                     homePageViewBinding.recommendedPostsRecyclerView.adapter =
                         recommendedPostsAdapter

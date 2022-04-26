@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 10:24 AM
- * Last modified 4/25/22, 10:21 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,7 @@ import com.bumptech.glide.request.target.Target
 
 class NewestPostsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<NewestPostsViewHolder>() {
 
-    val newestPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+    val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): NewestPostsViewHolder {
 
@@ -43,7 +43,7 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
 
     override fun getItemCount(): Int {
 
-        return newestPostsItemData.size
+        return postsItemData.size
     }
 
     override fun onBindViewHolder(newestPostsViewHolder: NewestPostsViewHolder, position: Int, dataPayloads: MutableList<Any>) {
@@ -119,7 +119,7 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
 
         Glide.with(context)
             .asDrawable()
-            .load(newestPostsItemData[position].postFeaturedImage)
+            .load(postsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .listener(object : RequestListener<Drawable> {
@@ -141,21 +141,21 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
             })
             .submit()
 
-        newestPostsViewHolder.postTitleView.text = Html.fromHtml(newestPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
+        newestPostsViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
 
         context.applicationDataIndexing.insert(
-            indexLink = newestPostsItemData[position].postLink,
-            indexId = newestPostsItemData[position].postId,
-            indexTitle = Html.fromHtml(newestPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY).toString(),
-            indexDescription = Html.fromHtml(newestPostsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY).toString(),
-            indexImage = newestPostsItemData[position].postFeaturedImage
+            indexLink = postsItemData[position].postLink,
+            indexId = postsItemData[position].postId,
+            indexTitle = Html.fromHtml(postsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY).toString(),
+            indexDescription = Html.fromHtml(postsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY).toString(),
+            indexImage = postsItemData[position].postFeaturedImage
         )
 
         newestPostsViewHolder.rootViewItem.setOnClickListener {
 
             Glide.with(context)
                 .asDrawable()
-                .load(newestPostsItemData[position].postFeaturedImage)
+                .load(postsItemData[position].postFeaturedImage)
                 .apply(requestOptions)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .listener(object : RequestListener<Drawable> {
@@ -169,11 +169,19 @@ class NewestPostsAdapter (private val context: HomePage, private val overallThem
 
                         context.runOnUiThread {
 
-                            BuiltInWebView.show(
+                            BuiltInWebView.showPost(
                                 context = context,
-                                linkToLoad = newestPostsItemData[position].postLink,
+                                postId = postsItemData[position].postId,
+                                postFeaturedImage = postsItemData[position].postFeaturedImage,
+                                postTitle = postsItemData[position].postTitle,
+                                postContent = postsItemData[position].postContent,
+                                postTags = postsItemData[position].postTags,
+                                postExcerpt = postsItemData[position].postExcerpt,
+                                postLink = postsItemData[position].postLink,
+                                relatedPostStringJson = postsItemData[position].relatedPostsContent,
                                 gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
-                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                linkToLoad = postsItemData[position].postLink,
                             )
 
                         }

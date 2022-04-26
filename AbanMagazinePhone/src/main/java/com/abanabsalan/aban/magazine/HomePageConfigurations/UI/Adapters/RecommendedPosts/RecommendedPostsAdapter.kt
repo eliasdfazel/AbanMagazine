@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 10:24 AM
- * Last modified 4/25/22, 10:23 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,7 +41,7 @@ import com.bumptech.glide.request.target.Target
 
 class RecommendedPostsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<RecommendedPostsViewHolder>() {
 
-    val recommendedPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+    val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecommendedPostsViewHolder {
 
@@ -50,7 +50,7 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
     override fun getItemCount(): Int {
 
-        return recommendedPostsItemData.size
+        return postsItemData.size
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -77,19 +77,19 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
         Glide.with(context)
             .asDrawable()
-            .load(recommendedPostsItemData[position].postFeaturedImage)
+            .load(postsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .transform(CenterCrop(), RoundedCorners(13))
             .into(recommendedPostsViewHolder.postFeaturedImage)
 
-        recommendedPostsViewHolder.postTitleView.text = Html.fromHtml(recommendedPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
+        recommendedPostsViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
 
         recommendedPostsViewHolder.readMoreView.setOnClickListener {
 
             Glide.with(context)
                 .asDrawable()
-                .load(recommendedPostsItemData[position].postFeaturedImage)
+                .load(postsItemData[position].postFeaturedImage)
                 .apply(requestOptions)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .listener(object : RequestListener<Drawable> {
@@ -103,11 +103,19 @@ class RecommendedPostsAdapter (private val context: HomePage, private val overal
 
                         context.runOnUiThread {
 
-                            BuiltInWebView.show(
+                            BuiltInWebView.showPost(
                                 context = context,
-                                linkToLoad = recommendedPostsItemData[position].postLink,
+                                postId = postsItemData[position].postId,
+                                postFeaturedImage = postsItemData[position].postFeaturedImage,
+                                postTitle = postsItemData[position].postTitle,
+                                postContent = postsItemData[position].postContent,
+                                postTags = postsItemData[position].postTags,
+                                postExcerpt = postsItemData[position].postExcerpt,
+                                postLink = postsItemData[position].postLink,
+                                relatedPostStringJson = postsItemData[position].relatedPostsContent,
                                 gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
-                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                linkToLoad = postsItemData[position].postLink,
                             )
 
                         }

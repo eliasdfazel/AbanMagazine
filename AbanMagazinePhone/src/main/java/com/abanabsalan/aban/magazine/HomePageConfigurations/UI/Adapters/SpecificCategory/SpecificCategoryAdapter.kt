@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 10:24 AM
- * Last modified 4/25/22, 10:23 AM
+ * Created by Elias Fazel on 4/26/22, 7:31 AM
+ * Last modified 4/26/22, 7:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,7 @@ import com.bumptech.glide.request.target.Target
 
 class SpecificCategoryAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<SpecificCategoryViewHolder>() {
 
-    val specificCategoryPostsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
+    val postsItemData: ArrayList<PostsItemData> = ArrayList<PostsItemData>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SpecificCategoryViewHolder {
 
@@ -43,7 +43,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
 
     override fun getItemCount(): Int {
 
-        return specificCategoryPostsItemData.size
+        return postsItemData.size
     }
 
     override fun onBindViewHolder(specificCategoryViewHolder: SpecificCategoryViewHolder, position: Int, dataPayloads: MutableList<Any>) {
@@ -119,7 +119,7 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
 
         Glide.with(context)
             .asDrawable()
-            .load(specificCategoryPostsItemData[position].postFeaturedImage)
+            .load(postsItemData[position].postFeaturedImage)
             .apply(requestOptions)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .listener(object : RequestListener<Drawable> {
@@ -141,14 +141,14 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
             })
             .submit()
 
-        specificCategoryViewHolder.postTitleView.text = Html.fromHtml(specificCategoryPostsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
-        specificCategoryViewHolder.postExcerptView.text = Html.fromHtml(specificCategoryPostsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY)
+        specificCategoryViewHolder.postTitleView.text = Html.fromHtml(postsItemData[position].postTitle, Html.FROM_HTML_MODE_LEGACY)
+        specificCategoryViewHolder.postExcerptView.text = Html.fromHtml(postsItemData[position].postExcerpt, Html.FROM_HTML_MODE_LEGACY)
 
         specificCategoryViewHolder.rootViewItem.setOnClickListener {
 
             Glide.with(context)
                 .asDrawable()
-                .load(specificCategoryPostsItemData[position].postFeaturedImage)
+                .load(postsItemData[position].postFeaturedImage)
                 .apply(requestOptions)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .listener(object : RequestListener<Drawable> {
@@ -162,11 +162,19 @@ class SpecificCategoryAdapter (private val context: HomePage, private val overal
 
                         context.runOnUiThread {
 
-                            BuiltInWebView.show(
+                            BuiltInWebView.showPost(
                                 context = context,
-                                linkToLoad = specificCategoryPostsItemData[position].postLink,
+                                postId = postsItemData[position].postId,
+                                postFeaturedImage = postsItemData[position].postFeaturedImage,
+                                postTitle = postsItemData[position].postTitle,
+                                postContent = postsItemData[position].postContent,
+                                postTags = postsItemData[position].postTags,
+                                postExcerpt = postsItemData[position].postExcerpt,
+                                postLink = postsItemData[position].postLink,
+                                relatedPostStringJson = postsItemData[position].relatedPostsContent,
                                 gradientColorOne = extractDominantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
-                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!)
+                                gradientColorTwo = extractVibrantColor(context, resource?:context.getDrawable(R.drawable.official_business_logo)!!),
+                                linkToLoad = postsItemData[position].postLink,
                             )
 
                         }
