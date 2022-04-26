@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/26/22, 6:03 AM
+ * Last modified 4/26/22, 6:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -511,7 +511,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             })
 
             /* Instagram Story Highlights */
-            homePageLiveData.instagramStoryHighlightsLiveItemData.observe(this@HomePage, Observer {
+            /*homePageLiveData.instagramStoryHighlightsLiveItemData.observe(this@HomePage, Observer {
 
                 if (it.isNotEmpty()) {
 
@@ -532,7 +532,7 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                 homePagePopupIndex.addInstagramStoriesIndex()
 
-            })
+            })*/
 
             /* Progress Loading View */
             homePageLiveData.controlLoadingView.observe(this@HomePage, Observer {
