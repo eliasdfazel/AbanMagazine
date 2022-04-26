@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/26/22, 9:26 AM
+ * Last modified 4/26/22, 9:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,6 @@ import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import android.util.Log
-import android.view.View
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Endpoints.CategoriesEndpointsFactory
 import com.abanabsalan.aban.magazine.CategoriesConfigurations.Network.Operations.CategoriesRetrieval
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
@@ -312,8 +311,6 @@ fun HomePage.internetCheckpoint() {
  * Load All Posts From Featured Post Category
  **/
 fun startFeaturedPostCategoryRetrieval(context: Context, homePageViewBinding: HomePageViewBinding, homePageLiveData: HomePageLiveData, numberOfPageInPostsList: Int) {
-
-    homePageViewBinding.featuredPostsLoadingView.visibility = View.VISIBLE
 
     val languageUtils: LanguageUtils = LanguageUtils()
 

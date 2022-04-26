@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/26/22, 7:31 AM
- * Last modified 4/26/22, 7:29 AM
+ * Created by Elias Fazel on 4/26/22, 9:26 AM
+ * Last modified 4/26/22, 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -304,8 +304,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
 
                         }, 777)
 
-                        homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
-
                         featuredPostsSlider.initialSliderJob?.cancel()
                         featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView,
                             IntRange(0, featuredPostsData.size))
@@ -324,8 +322,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                         specificCategoryAdapter.postsItemData.addAll(featuredPostsData)
 
                         specificCategoryAdapter.notifyItemRangeInserted(previousDataCount, (specificCategoryAdapter.postsItemData.size - 1))
-
-                        homePageViewBinding.featuredPostsLoadingView.visibility = View.INVISIBLE
 
                         featuredPostsSlider.initialSliderJob?.cancel()
                         featuredPostsSlider.startSliding(homePageViewBinding.featuredPostsRecyclerView,
@@ -348,10 +344,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
                         homePageViewBinding.featuredPostsRecyclerView.visibility = View.GONE
 
                     }
-
-                    homePageViewBinding.featuredPostsLoadingView.visibility = View.GONE
-
-                    Toast.makeText(applicationContext, getString(R.string.noMoreContent), Toast.LENGTH_LONG).show()
 
                     moreFeaturedPostAvailable = false
 

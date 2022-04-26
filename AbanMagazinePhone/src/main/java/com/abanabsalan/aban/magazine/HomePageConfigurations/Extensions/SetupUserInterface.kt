@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/25/22, 5:58 AM
- * Last modified 6/8/21, 9:17 AM
+ * Created by Elias Fazel on 4/26/22, 9:26 AM
+ * Last modified 4/26/22, 9:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,7 +35,7 @@ import kotlin.math.hypot
 fun HomePage.setupUserInterface() {
 
     val topBarLayoutParams = homePageViewBinding.homepageTopBar.layoutParams as ConstraintLayout.LayoutParams
-    topBarLayoutParams.height = homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext)
+    topBarLayoutParams.height = homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext) + DpToInteger(applicationContext, 11)
     homePageViewBinding.homepageTopBar.layoutParams = topBarLayoutParams
 
     val bottomBarBlurViewLayoutParams = homePageViewBinding.blurViewBottomBar.layoutParams as ConstraintLayout.LayoutParams
@@ -43,7 +43,7 @@ fun HomePage.setupUserInterface() {
     homePageViewBinding.blurViewBottomBar.layoutParams = bottomBarBlurViewLayoutParams
 
     homePageViewBinding.homepageScrollingContentView.setPadding(0,
-        homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext),
+        homePageViewBinding.homepageTopBar.height + statusBarHeight(applicationContext) + DpToInteger(applicationContext, 13),
         0, 0)
 
     Handler(Looper.getMainLooper()).postDelayed({
