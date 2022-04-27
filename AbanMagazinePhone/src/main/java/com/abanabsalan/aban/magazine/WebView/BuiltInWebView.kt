@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/27/22, 6:21 AM
- * Last modified 4/27/22, 6:20 AM
+ * Created by Elias Fazel on 4/27/22, 6:25 AM
+ * Last modified 4/27/22, 6:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.SearchConfigurations.UI.Utils.SetupSearchViewUI
 import com.abanabsalan.aban.magazine.Utils.UI.Colors.setColorAlpha
 import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToPixel
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
@@ -185,6 +186,11 @@ class BuiltInWebView : AppCompatActivity() {
                     }
 
                 }
+
+                SetupSearchViewUI(
+                    this@BuiltInWebView,
+                    browserViewBinding.searchPopupInclude
+                ).initialize()
 
             }
 
