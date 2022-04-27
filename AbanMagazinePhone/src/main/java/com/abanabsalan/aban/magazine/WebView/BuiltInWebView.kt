@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/27/22, 6:18 AM
- * Last modified 4/27/22, 6:18 AM
+ * Created by Elias Fazel on 4/27/22, 6:21 AM
+ * Last modified 4/27/22, 6:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,9 +30,7 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToPixel
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
-import com.abanabsalan.aban.magazine.WebView.Extensions.hidePopupPreferences
 import com.abanabsalan.aban.magazine.WebView.Extensions.hidePopupSearches
-import com.abanabsalan.aban.magazine.WebView.Extensions.showPopupPreferences
 import com.abanabsalan.aban.magazine.WebView.Extensions.showPopupSearches
 import com.abanabsalan.aban.magazine.databinding.BrowserViewBinding
 
@@ -183,21 +181,6 @@ class BuiltInWebView : AppCompatActivity() {
 
 
                         showPopupSearches()
-
-                    }
-
-                }
-
-                browserViewBinding.optionMenus.setOnClickListener {
-
-                    if (browserViewBinding.preferencePopupInclude.root.isShown) {
-
-                        hidePopupPreferences()
-
-                    } else {
-
-
-                        showPopupPreferences()
 
                     }
 
