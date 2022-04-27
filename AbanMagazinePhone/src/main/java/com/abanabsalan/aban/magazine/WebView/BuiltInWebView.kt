@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/27/22, 6:08 AM
- * Last modified 4/27/22, 6:08 AM
+ * Created by Elias Fazel on 4/27/22, 6:18 AM
+ * Last modified 4/27/22, 6:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,7 +17,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -31,6 +30,10 @@ import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToPixel
 import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
+import com.abanabsalan.aban.magazine.WebView.Extensions.hidePopupPreferences
+import com.abanabsalan.aban.magazine.WebView.Extensions.hidePopupSearches
+import com.abanabsalan.aban.magazine.WebView.Extensions.showPopupPreferences
+import com.abanabsalan.aban.magazine.WebView.Extensions.showPopupSearches
 import com.abanabsalan.aban.magazine.databinding.BrowserViewBinding
 
 
@@ -52,7 +55,7 @@ class BuiltInWebView : AppCompatActivity() {
 
     val favoritedPostData: HashMap<String, Any?> = HashMap<String, Any?>()
 
-    private lateinit var browserViewBinding: BrowserViewBinding
+    lateinit var browserViewBinding: BrowserViewBinding
 
     companion object {
 
@@ -158,15 +161,7 @@ class BuiltInWebView : AppCompatActivity() {
 
             browserViewBinding.homepageTopBar.visibility = View.VISIBLE
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-
-                window.setDecorFitsSystemWindows(false)
-
-            } else {
-
-                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-            }
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
             browserViewBinding.root.post {
 
@@ -177,6 +172,36 @@ class BuiltInWebView : AppCompatActivity() {
                 browserViewBinding.homepageTopBar.layoutParams = topBarLayoutParams
 
                 builtInWebViewClient.topPadding = statusBarHeight(applicationContext).toFloat()
+
+                browserViewBinding.searchView.setOnClickListener {
+
+                    if (browserViewBinding.searchPopupInclude.root.isShown) {
+
+                        hidePopupSearches()
+
+                    } else {
+
+
+                        showPopupSearches()
+
+                    }
+
+                }
+
+                browserViewBinding.optionMenus.setOnClickListener {
+
+                    if (browserViewBinding.preferencePopupInclude.root.isShown) {
+
+                        hidePopupPreferences()
+
+                    } else {
+
+
+                        showPopupPreferences()
+
+                    }
+
+                }
 
             }
 
