@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2020 By Geeks Empire.
+  ~ Copyright © 2022 By Geeks Empire.
   ~
-  ~ Created by Elias Fazel on 11/15/20 10:49 AM
-  ~ Last modified 11/15/20 10:21 AM
+  ~ Created by Elias Fazel on 4/27/22, 6:08 AM
+  ~ Last modified 4/27/22, 5:04 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -33,7 +33,7 @@
         android:layout_height="match_parent"
 
         apps:realtimeBlurRadius="11dp"
-        apps:realtimeOverlayColor="@android:color/transparent" />
+        apps:realtimeFirstColor="@android:color/transparent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/postTitleView"

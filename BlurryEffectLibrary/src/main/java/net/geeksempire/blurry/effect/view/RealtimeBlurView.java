@@ -1,8 +1,8 @@
 /*
- * Copyright © 2021 By Geeks Empire.
+ * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/12/21 3:40 PM
- * Last modified 4/12/21 3:37 PM
+ * Created by Elias Fazel on 4/27/22, 6:08 AM
+ * Last modified 4/27/22, 5:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,10 +16,13 @@ import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -38,7 +41,10 @@ import android.view.ViewTreeObserver;
 public class RealtimeBlurView extends View {
 
 	private float mDownsampleFactor; // default 4
-	private int mOverlayColor; // default #aaffffff
+
+	private int firstOverlayColor; // default #aaffffff
+	private int secondOvarlayColr; // default -666
+
 	private float mBlurRadius; // default 10dp (0 < r <= 25)
 
 	private final BlurImpl mBlurImpl;
@@ -46,7 +52,7 @@ public class RealtimeBlurView extends View {
 	private Bitmap mBitmapToBlur, mBlurredBitmap;
 	private Canvas mBlurringCanvas;
 	private boolean mIsRendering;
-	private Paint mPaint;
+	private Paint paintInstance;
 	private final Rect mRectSrc = new Rect();
 	private final RectF mRectDst = new RectF();
 
@@ -63,6 +69,15 @@ public class RealtimeBlurView extends View {
 	private static int RENDERING_COUNT;
 	private static int BLUR_IMPL;
 
+	int gradientType = 0;
+
+	public static int GradientTypeNone = 0;
+	public static int GradientTypeRadial = 1;
+
+	public static int GradientTypeLinearTB = 2;
+	public static int GradientTypeLinearLR = 3;
+
+
 	public RealtimeBlurView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -70,18 +85,31 @@ public class RealtimeBlurView extends View {
 
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RealtimeBlurView);
 
-		mBlurRadius = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurRadius, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
+		mBlurRadius = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurRadius,
+				TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
 		mDownsampleFactor = a.getFloat(R.styleable.RealtimeBlurView_realtimeDownSampleFactor, 4);
-		mOverlayColor = a.getColor(R.styleable.RealtimeBlurView_realtimeOverlayColor, 0xAAFFFFFF);
+
+		firstOverlayColor = a.getColor(R.styleable.RealtimeBlurView_realtimeFirstColor, 0xAAFFFFFF);
+		secondOvarlayColr = a.getColor(R.styleable.RealtimeBlurView_realtimeSecondColor, -666);
 
 		topLeftCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurTopLeft, 0f);
 		topRightCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurTopRight, 0f);
 		bottomLeftCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurBottomLeft, 0f);
 		bottomRightCorner = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurBottomRight, 0f);
 
+		if (a.getInteger(R.styleable.RealtimeBlurView_realtimeBlurGradientType, 0) == 0) {
+			gradientType = GradientTypeNone;
+		} else if (a.getInteger(R.styleable.RealtimeBlurView_realtimeBlurGradientType, 0) == 1) {
+			gradientType = GradientTypeRadial;
+		} else if (a.getInteger(R.styleable.RealtimeBlurView_realtimeBlurGradientType, 0) == 2) {
+			gradientType = GradientTypeLinearTB;
+		} else if (a.getInteger(R.styleable.RealtimeBlurView_realtimeBlurGradientType, 0) == 3) {
+			gradientType = GradientTypeLinearLR;
+		}
+
 		a.recycle();
 
-		mPaint = new Paint();
+		paintInstance = new Paint();
 	}
 
 	protected BlurImpl getBlurImpl() {
@@ -167,8 +195,15 @@ public class RealtimeBlurView extends View {
 	}
 
 	public void setOverlayColor(int color) {
-		if (mOverlayColor != color) {
-			mOverlayColor = color;
+		if (firstOverlayColor != color) {
+			firstOverlayColor = color;
+			invalidate();
+		}
+	}
+
+	public void setSecondOverlayColor(int color) {
+		if (secondOvarlayColr != color) {
+			secondOvarlayColr = color;
 			invalidate();
 		}
 	}
@@ -257,11 +292,15 @@ public class RealtimeBlurView extends View {
 	}
 
 	private final ViewTreeObserver.OnPreDrawListener preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+
 		@Override
 		public boolean onPreDraw() {
+
 			final int[] locations = new int[2];
+
 			Bitmap oldBmp = mBlurredBitmap;
 			View decor = mDecorView;
+
 			if (decor != null && isShown() && prepare()) {
 				boolean redrawBitmap = mBlurredBitmap != oldBmp;
 				oldBmp = null;
@@ -274,7 +313,8 @@ public class RealtimeBlurView extends View {
 				y += locations[1];
 
 				// just erase transparent
-				mBitmapToBlur.eraseColor(mOverlayColor & 0xffffff);
+				mBitmapToBlur.eraseColor(firstOverlayColor & 0xffffff);
+				mBitmapToBlur.eraseColor(secondOvarlayColr & 0xffffff);
 
 				int rc = mBlurringCanvas.save();
 				mIsRendering = true;
@@ -353,12 +393,12 @@ public class RealtimeBlurView extends View {
 	}
 
 	Path clipPath = new Path();
-	RectF rect = new RectF();
+	RectF rectF = new RectF();
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 
-		rect.set(0,0, this.getWidth(), this.getHeight());
+		rectF.set(0,0, this.getWidth(), this.getHeight());
 
 		float[] radii = {0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -374,23 +414,19 @@ public class RealtimeBlurView extends View {
 		radii[6] = bottomLeftCorner;
 		radii[7] = bottomLeftCorner;
 
-		clipPath.addRoundRect(rect, radii, Path.Direction.CW);
+		clipPath.addRoundRect(rectF, radii, Path.Direction.CW);
 		canvas.clipPath(clipPath);
 
 		super.onDraw(canvas);
 
-		drawBlurredBitmap(canvas, mBlurredBitmap, mOverlayColor);
+		drawBlurredBitmap(canvas, mBlurredBitmap, firstOverlayColor, secondOvarlayColr);
 
 	}
 
 	/**
 	 * Custom draw the blurred bitmap and color to define your own shape
-	 *
-	 * @param canvas
-	 * @param blurredBitmap
-	 * @param overlayColor
-	 */
-	protected void drawBlurredBitmap(Canvas canvas, Bitmap blurredBitmap, int overlayColor) {
+	 **/
+	protected void drawBlurredBitmap(Canvas canvas, Bitmap blurredBitmap, int mOverlayColor, int sOverlayColor) {
 
 		if (blurredBitmap != null) {
 
@@ -400,13 +436,42 @@ public class RealtimeBlurView extends View {
 			mRectDst.right = getWidth();
 			mRectDst.bottom = getHeight();
 
-			canvas.drawBitmap(blurredBitmap, mRectSrc, mRectDst, /*new Paint().set*/null);
+			canvas.drawBitmap(blurredBitmap, mRectSrc, mRectDst, null);
 
 		}
 
-		mPaint.setColor(overlayColor);
+		if (gradientType == GradientTypeNone) {
 
-		canvas.drawRect(mRectDst, mPaint);
+			paintInstance.setColor(mOverlayColor);
+
+		} else if (gradientType == GradientTypeLinearLR) {
+
+			paintInstance.setShader(new LinearGradient(
+					0, 0,
+					getWidth(), 0,
+					/* First Color */ sOverlayColor, /* Second Color */ mOverlayColor,
+					Shader.TileMode.CLAMP));
+
+		} else if (gradientType == GradientTypeLinearTB) {
+
+			paintInstance.setShader(new LinearGradient(
+					0, 0,
+					0, getHeight(),
+					/* First Color */ sOverlayColor, /* Second Color */ mOverlayColor,
+					Shader.TileMode.CLAMP));
+
+		} else if (gradientType == GradientTypeRadial) {
+
+			paintInstance.setShader(new RadialGradient(getWidth() / 2f,
+					getHeight() / 2f,
+					Math.min(getWidth(), getHeight()) / 2f,
+					sOverlayColor,
+					mOverlayColor,
+					Shader.TileMode.CLAMP));
+
+		}
+
+		canvas.drawRect(mRectDst, paintInstance);
 
 	}
 

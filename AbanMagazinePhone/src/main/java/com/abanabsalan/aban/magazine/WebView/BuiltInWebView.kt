@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/26/22, 7:31 AM
- * Last modified 4/26/22, 7:16 AM
+ * Created by Elias Fazel on 4/27/22, 6:08 AM
+ * Last modified 4/27/22, 6:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,21 +17,30 @@ import android.graphics.Bitmap
 import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsDataParameters
 import com.abanabsalan.aban.magazine.R
+import com.abanabsalan.aban.magazine.Utils.UI.Colors.setColorAlpha
+import com.abanabsalan.aban.magazine.Utils.UI.Display.DpToPixel
+import com.abanabsalan.aban.magazine.Utils.UI.Display.statusBarHeight
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.OverallTheme
 import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.databinding.BrowserViewBinding
+
 
 class BuiltInWebView : AppCompatActivity() {
 
     val overallTheme: OverallTheme by lazy {
         OverallTheme(applicationContext)
     }
+
+    val builtInWebViewClient = BuiltInWebViewClient()
 
     var postId: String? = null
     var featureImageLink: String? = null
@@ -112,6 +121,9 @@ class BuiltInWebView : AppCompatActivity() {
         browserViewBinding = BrowserViewBinding.inflate(layoutInflater)
         setContentView(browserViewBinding.root)
 
+        val dominantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color))
+        val vibrantColor = intent.getIntExtra("GradientColorTwo", getColor(R.color.default_color_game))
+
         if (intent.hasExtra(PostsDataParameters.PostParameters.PostId) &&
             intent.hasExtra(PostsDataParameters.PostParameters.PostFeaturedImage) &&
             intent.hasExtra(PostsDataParameters.PostParameters.PostTitle) &&
@@ -141,6 +153,33 @@ class BuiltInWebView : AppCompatActivity() {
             relatedPostContent = intent.getStringExtra(PostsDataParameters.PostParameters.RelatedPosts)
             favoritedPostData[PostsDataParameters.PostParameters.RelatedPosts] = relatedPostContent
 
+            browserViewBinding.blurViewTopBar.setOverlayColor(setColorAlpha(vibrantColor, 0.7f))
+            browserViewBinding.blurViewTopBar.setSecondOverlayColor(setColorAlpha(dominantColor, 0.7f))
+
+            browserViewBinding.homepageTopBar.visibility = View.VISIBLE
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+
+                window.setDecorFitsSystemWindows(false)
+
+            } else {
+
+                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+            }
+
+            browserViewBinding.root.post {
+
+                val topPadding = browserViewBinding.homepageTopBar.height + statusBarHeight(applicationContext) + DpToPixel(applicationContext, 11f)
+
+                val topBarLayoutParams = browserViewBinding.homepageTopBar.layoutParams as ConstraintLayout.LayoutParams
+                topBarLayoutParams.height = topPadding.toInt()
+                browserViewBinding.homepageTopBar.layoutParams = topBarLayoutParams
+
+                builtInWebViewClient.topPadding = statusBarHeight(applicationContext).toFloat()
+
+            }
+
         }
 
         when (overallTheme.checkThemeLightDark()) {
@@ -155,9 +194,6 @@ class BuiltInWebView : AppCompatActivity() {
 
             }
         }
-
-        val dominantColor = intent.getIntExtra("GradientColorOne", getColor(R.color.default_color))
-        val vibrantColor = intent.getIntExtra("GradientColorTwo", getColor(R.color.default_color_game))
 
         window.setBackgroundDrawable(GradientDrawable(GradientDrawable.Orientation.TL_BR,
             arrayOf(
@@ -191,10 +227,15 @@ class BuiltInWebView : AppCompatActivity() {
 
             browserViewBinding.webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
 
-            browserViewBinding.webView.webViewClient = BuiltInWebViewClient()
+            browserViewBinding.webView.webViewClient = builtInWebViewClient
             browserViewBinding.webView.webChromeClient = BuiltInChromeWebViewClient()
             browserViewBinding.webView.addJavascriptInterface(WebInterface(this@BuiltInWebView), "Android")
-            browserViewBinding.webView.loadUrl(linkToLoad)
+
+            browserViewBinding.root.post {
+
+                browserViewBinding.webView.loadUrl(linkToLoad)
+
+            }
 
         } else {
 
@@ -217,6 +258,8 @@ class BuiltInWebView : AppCompatActivity() {
 
     inner class BuiltInWebViewClient : WebViewClient() {
 
+        var topPadding: Float = 0f
+
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
             if (request != null) {
                 view?.loadUrl(request.url.toString())
@@ -236,6 +279,8 @@ class BuiltInWebView : AppCompatActivity() {
             super.onPageFinished(webView, url)
 
             browserViewBinding.webViewProgressBar.visibility = View.INVISIBLE
+
+            webView?.loadUrl("javascript:(function(){ document.body.style.paddingTop = '${topPadding}px'})();")
 
         }
 
