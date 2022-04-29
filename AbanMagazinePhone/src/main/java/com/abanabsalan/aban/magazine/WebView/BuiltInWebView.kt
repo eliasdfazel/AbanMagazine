@@ -1,8 +1,8 @@
 /*
  * Copyright © 2022 By Geeks Empire.
  *
- * Created by Elias Fazel on 4/27/22, 6:25 AM
- * Last modified 4/27/22, 6:25 AM
+ * Created by Elias Fazel on 4/29/22, 7:49 AM
+ * Last modified 4/29/22, 7:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,6 @@ import com.abanabsalan.aban.magazine.Utils.UI.Theme.ThemeType
 import com.abanabsalan.aban.magazine.WebView.Extensions.hidePopupSearches
 import com.abanabsalan.aban.magazine.WebView.Extensions.showPopupSearches
 import com.abanabsalan.aban.magazine.databinding.BrowserViewBinding
-
 
 class BuiltInWebView : AppCompatActivity() {
 
@@ -170,7 +169,7 @@ class BuiltInWebView : AppCompatActivity() {
                 topBarLayoutParams.height = topPadding.toInt()
                 browserViewBinding.homepageTopBar.layoutParams = topBarLayoutParams
 
-                builtInWebViewClient.topPadding = statusBarHeight(applicationContext).toFloat()
+                builtInWebViewClient.topPadding = browserViewBinding.homepageTopBar.height + statusBarHeight(applicationContext).toFloat()
 
                 browserViewBinding.searchView.setOnClickListener {
 
