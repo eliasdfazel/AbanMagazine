@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
-import com.abanabsalan.aban.magazine.Advertising.AdvertisingConfiguration
 import com.abanabsalan.aban.magazine.PostsConfigurations.DataHolder.PostsLiveData
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.favoritesPostsNetworkOperations
 import com.abanabsalan.aban.magazine.PostsConfigurations.FavoritedPosts.Extensions.setupUserInterface
@@ -51,10 +50,6 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
         FavoriteIt(applicationContext)
     }
 
-    val advertisingConfiguration: AdvertisingConfiguration by lazy {
-        AdvertisingConfiguration(this@FavoritesPostsView)
-    }
-
     @Inject
     lateinit var networkConnectionListener: NetworkConnectionListener
 
@@ -76,8 +71,6 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
         setupUserInterface()
 
         favoritePostsBinding.favoritePostsRecyclerView.layoutManager = GridLayoutManager(applicationContext, columnCount(applicationContext, 379), RecyclerView.VERTICAL, false)
-
-        advertisingConfiguration.initialize()
 
         favoritesPostsLiveData.allFavoritedPosts.observe(this@FavoritesPostsView, Observer {
 
@@ -134,12 +127,6 @@ class FavoritesPostsView : AppCompatActivity(), NetworkConnectionListenerInterfa
                 }
 
             }
-
-        }
-
-        advertisingConfiguration.getInterstitialAd?.let {
-
-            it.show(this@FavoritesPostsView)
 
         }
 

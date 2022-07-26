@@ -34,7 +34,6 @@ import com.abanabsalan.aban.magazine.AbanMagazinePhoneApplication
 import com.abanabsalan.aban.magazine.AccountManager.UserInformation
 import com.abanabsalan.aban.magazine.AccountManager.UserInformationIO
 import com.abanabsalan.aban.magazine.AccountManager.UserSignIn
-import com.abanabsalan.aban.magazine.Advertising.AdvertisingConfiguration
 import com.abanabsalan.aban.magazine.BuildConfig
 import com.abanabsalan.aban.magazine.CacheConfigurations.CacheMechanism
 import com.abanabsalan.aban.magazine.HomePageConfigurations.DataHolder.HomePageLiveData
@@ -107,10 +106,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         TagsIO(applicationContext)
     }
 
-    val advertisingConfiguration: AdvertisingConfiguration by lazy {
-        AdvertisingConfiguration(this@HomePage)
-    }
-
     private val swipeGestureListener: SwipeGestureListener by lazy {
         SwipeGestureListener(applicationContext, this@HomePage)
     }
@@ -169,8 +164,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
             .addOnSuccessListener {
 
             }
-
-        advertisingConfiguration.initialize()
 
         PopupPreferencesController(this@HomePage, homePageViewBinding.preferencePopupInclude)
             .initializeForHomePage()
@@ -650,10 +643,6 @@ class HomePage : AppCompatActivity(), GestureListenerInterface, NetworkConnectio
         super.onResume()
 
         homePageRemoteConfiguration()
-
-        advertisingConfiguration.getInterstitialAd?.let {
-            it.show(this@HomePage)
-        }
 
         if (OverallTheme.LastActivity != null) {
             if (OverallTheme.LastActivity != this@HomePage.javaClass.simpleName) {

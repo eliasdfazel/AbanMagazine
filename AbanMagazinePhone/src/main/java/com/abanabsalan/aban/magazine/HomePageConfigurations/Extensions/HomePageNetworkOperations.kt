@@ -205,27 +205,6 @@ fun HomePage.startNetworkOperations() {
             )
         }
 
-        /*Load Instagram Story Highlights*/
-        val storyHighlightsRetrieval: StoryHighlightsRetrieval = StoryHighlightsRetrieval(applicationContext)
-        storyHighlightsRetrieval.start(object : JsonRequestResponseInterface {
-
-            override fun jsonRequestResponseSuccessHandler(rawDataJsonObject: JSONObject) {
-                super.jsonRequestResponseSuccessHandler(rawDataJsonObject)
-
-
-                homePageLiveData.prepareRawDataToRenderForInstagramStoryHighlights(
-                    rawDataJsonObject.getJSONObject(PostsDataParameters.JsonDataStructure.PostContent).getString(PostsDataParameters.JsonDataStructure.Rendered)
-                )
-
-            }
-
-            override fun jsonRequestResponseFailureHandler(jsonError: String?) {
-                Log.d(this@startNetworkOperations.javaClass.simpleName, jsonError.toString())
-
-            }
-
-        })
-
         /*Invoke In Application Update*/
         InApplicationUpdateProcess(this@startNetworkOperations, homePageViewBinding.rootView)
             .initialize()

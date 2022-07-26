@@ -28,8 +28,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import org.json.JSONArray
 import org.json.JSONObject
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 
 class HomePageLiveData : ViewModel() {
 
@@ -245,37 +243,6 @@ class HomePageLiveData : ViewModel() {
         }
 
         recommendedPostsLiveItemData.postValue(recommendedPostsItemData)
-
-    }
-
-    fun prepareRawDataToRenderForInstagramStoryHighlights(rawInstagramStoryHighlights: String) {
-
-        val storyHighlightsItemData: ArrayList<StoryHighlightsItemData> = ArrayList<StoryHighlightsItemData>()
-
-        val storyHighlightsContent: Document = Jsoup.parse(rawInstagramStoryHighlights)
-
-        val allHtmlElement = storyHighlightsContent.allElements
-
-        allHtmlElement.forEachIndexed { index, element ->
-            if (element.`is`("a")) {
-                Log.d(this@HomePageLiveData.javaClass.simpleName, "Link ${element}")
-
-                val linkContent: Document = Jsoup.parse(element.toString())
-                val linkToStoryHighlights = linkContent.select("a").first()!!.attr("abs:href")
-
-                val linkToStoryHighlightsCoverImage = StoryHighlightsEndpoint.InstagramStoryHighlightsCoverImageBaseLink + linkToStoryHighlights.replace("https://www.instagram.com/stories/highlights/", "").replace("/", "")
-
-                storyHighlightsItemData.add(
-                    StoryHighlightsItemData(
-                        linkToStoryHighlight = linkToStoryHighlights,
-                        storyHighlightsName = element.text(),
-                        storyHighlightsCoverImage = linkToStoryHighlightsCoverImage
-                    ))
-
-            }
-        }
-
-        instagramStoryHighlightsLiveItemData.postValue(storyHighlightsItemData)
 
     }
 

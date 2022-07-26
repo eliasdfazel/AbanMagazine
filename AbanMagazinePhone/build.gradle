@@ -18,16 +18,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "31.0.0"
+    compileSdkVersion 32
+    buildToolsVersion "32.1.0-rc1"
 
     defaultConfig {
         applicationId "com.abanabsalan.aban.magazine"
 
         minSdkVersion 25
-        targetSdkVersion 31
+        targetSdkVersion 32
 
-        versionCode 69
+        versionCode 70
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
 
         wearAppUnbundled true
@@ -102,64 +102,60 @@ dependencies {
     implementation project(path: ':BlurryEffectLibrary')
 
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.9'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
 
 
-    implementation 'com.google.firebase:firebase-config-ktx:21.0.2'
-    implementation 'com.google.firebase:firebase-messaging:23.0.3'
+    implementation 'com.google.firebase:firebase-config-ktx:21.1.1'
+    implementation 'com.google.firebase:firebase-messaging:23.0.6'
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:20.1.2'
 
     implementation 'com.google.firebase:firebase-appindexing:20.0.0'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:21.0.1'
 
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.2.1'
 
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
-
-    implementation 'com.google.firebase:firebase-ads:20.6.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.6'
 
 
     implementation 'com.google.android.play:core-ktx:1.8.1'
 
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
     implementation 'androidx.palette:palette-ktx:1.0.0'
 
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
 
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.0'
 
 
-    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
 
 
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
 
 
     implementation 'com.airbnb.android:lottie:5.0.3'
 
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
 
     implementation 'com.android.volley:volley:1.2.1'
 
 
-    implementation 'com.github.bumptech.glide:glide:4.13.1'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
 
-
-    implementation 'org.jsoup:jsoup:1.14.3'
 
     implementation 'com.google.code.gson:gson:2.9.0'
 

@@ -23,8 +23,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 
 class InstagramStoryHighlightsAdapter (private val context: HomePage, private val overallTheme: OverallTheme): RecyclerView.Adapter<InstagramStoryHighlightsViewHolder>() {
 
@@ -58,8 +56,6 @@ class InstagramStoryHighlightsAdapter (private val context: HomePage, private va
         }
 
         instagramStoryHighlightsViewHolder.storyHighlightsName.text = (storyHighlightsItemData[position].storyHighlightsName)
-
-        val linkContent: Document = Jsoup.parse(storyHighlightsItemData[position].storyHighlightsName)
 
         instagramStoryHighlightsViewHolder.rootViewItem.setOnClickListener {
 
