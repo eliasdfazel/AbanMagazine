@@ -56,10 +56,6 @@
             android:name="firebase_crashlytics_collection_enabled"
             android:value="${enableCrashReporting}" />
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/adMobAppId"/>
-
         <activity
             android:exported="true"
             android:name="com.abanabsalan.aban.magazine.EntryConfiguration"
